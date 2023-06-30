@@ -1,0 +1,23 @@
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX rdf: <https://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX gdprov2: <http://example.org/GDPRov-v2#>
+PREFIX : <http://example.org/GDPRov-v2#>
+
+# SELECT ?process ?step ?data ?thirdParty
+# WHERE {
+#     ?step rdf:type*/rdf:subClassOf* gdprov2:DataSharingStep ;
+#         gdprov2:isPartOfProcess ?process ;
+#         gdprov2:sharesData ?data ;
+#         gdprov2:sharesDataWith ?thirdParty .
+#     ?data rdf:type*/rdfs:subClassOf* gdprov2:PersonalData .
+#     ?process rdf:type*/rdfs:subClassOf* gdprov2:HandleCrossBorderTransferingProcess .
+# }
+
+SELECT DISTINCT ?process ?subject ?action ?item
+WHERE {
+    ?process rdf:type/rdf:subClassOf* :HandleCrossBorderTransferingProcess .
+    ?subject ?action ?item
+    { ?subject p-plan:correspondsToStep ?step . }
+UNION
+    { ?subject :isPartOfProcess ?process . }
+} ORDER BY ?process ?subject ?action ?item

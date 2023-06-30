@@ -1,0 +1,32 @@
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX rdf: <https://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX p-plan: <http://purl.org/net/p-plan#>
+PREFIX prov: <http://www.w3.org/ns/prov#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX rdf: <https://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX gdprov2: <http://example.org/GDPRov-v2#>
+PREFIX prox: <http://example.org/proximus-ontology/#>
+
+prox:AmericanTelephoneAndTelegraph rdf:type prov:Agent ;
+    rdf:comment "American Telephone and Telegraph" .
+
+prox:TelephoneNumber rdf:type gdprov2:PersonalData .
+prox:MobilePhoneNumber rdf:type gdprov2:PersonalData .
+
+prox:InternationalTelephoneCallingProcess rdf:type gdprov2:HandleCrossBorderTransferingProcess .
+prox:InternationalMobileCallingProcess rdf:type gdprov2:HandleCrossBorderTransferingProcess .
+
+prox:TransferTelephoneNumberStep rdf:type gdprov2:DataSharingStep ;
+    rdf:comment "The transference of the telephone number to an international company." ;
+    gdprov2:isPartOfProcess prox:InternationalTelephoneCallingProcess ;
+    gdprov2:sharesDataWith prox:AmericanTelephoneAndTelegraph ;
+    gdprov2:usesData prox:TelephoneNumber ;
+    gdprov2:sharesData prox:TelephoneNumber .
+
+prox:TransferMobileNumberStep rdf:type gdprov2:DataSharingStep ;
+    rdf:comment "The transference of the mobile number to an international company." ;
+    gdprov2:isPartOfProcess prox:InternationalMobileCallingProcess ;
+    gdprov2:sharesDataWith prox:AmericanTelephoneAndTelegraph ;
+    gdprov2:usesData prox:MobilePhoneNumber ;
+    gdprov2:sharesData prox:MobilePhoneNumber .

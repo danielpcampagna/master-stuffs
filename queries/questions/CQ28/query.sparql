@@ -1,0 +1,43 @@
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX rdf: <https://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX gdprov: <https://w3id.org/GDPRov#>
+PREFIX dpv: <https://w3c.github.io/dpv/dpv/#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX gdprove: <http://example.org/GDPRovExtension#>
+
+SELECT 
+    ?process
+    (
+        (
+            SUM(?seconds)
+            + ( SUM(?minutes) * 60 )
+            + ( SUM(?hours) * 60 * 60 )
+            + ( SUM(?days) * 24 * 60 * 60 )
+            + ( SUM(?months) * 30 * 24 * 60 * 60 )
+            + ( SUM(?years) * 365 * 24 * 60 * 60 )
+        ) <= 3 * 24 * 60 * 60
+        AS ?withoutDelay
+    )
+WHERE {
+    SELECT
+        ?process
+        ?step
+        ( YEAR(now()    + ?reactiveDuration) - YEAR(now())    AS ?years   )
+        ( MONTH(now()   + ?reactiveDuration) - MONTH(now())   AS ?months  )
+        ( DAY(now()     + ?reactiveDuration) - DAY(now())     AS ?days    )
+        ( HOURS(now()   + ?reactiveDuration) - HOURS(now())   AS ?hours   )
+        ( MINUTES(now() + ?reactiveDuration) - MINUTES(now()) AS ?minutes )
+        ( SECONDS(now() + ?reactiveDuration) - SECONDS(now()) AS ?seconds )
+    WHERE {
+        ?step gdprov:isPartOfProcess  [rdf:type*/rdfs:subClassOf* ?process ] ;
+            dpv:hasDuration/owl:sameAs* ?reactiveDuration .
+
+        VALUES ?process
+        {
+            gdprove:DataRectificationReactiveProcess
+            gdprove:DataRectificationProactiveProcess
+        }
+
+        FILTER (DATATYPE(?reactiveDuration) = xsd:duration)
+    }
+} GROUP BY ?process

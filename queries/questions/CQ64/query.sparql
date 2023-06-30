@@ -1,0 +1,15 @@
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX rdf: <https://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX gdprov2: <http://example.org/GDPRov-v2#>
+PREFIX : <http://example.org/GDPRov-v2#>
+
+SELECT DISTINCT ?process ?step ?plannedLegalBasis ?plannedDocument ?activity ?legalBasis ?documentURI
+WHERE {
+    ?activity rdf:type/rdf:subClassOf* :CrossBorderTransferActivity .
+    ?activity p-plan:correspondsToStep ?step .
+    ?step :isPartOfProcess ?process .
+    OPTIONAL { ?activity :usesRecipientLegalBasis ?legalBasis . }
+    OPTIONAL { ?step :usesRecipientLegalBasis ?plannedLegalBasis . }
+    OPTIONAL { ?activity :usesRecipientLegalBasisURI ?documentURI . }
+    OPTIONAL { ?step :usesRecipientLegalBasisURI ?plannedDocument . }
+} ORDER BY ?process ?step ?plannedLegalBasis ?plannedDocument ?activity ?legalBasis ?documentURI

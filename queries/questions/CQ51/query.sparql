@@ -1,0 +1,126 @@
+# This competency question ask to demonstrate that: (1) all performed procedures
+# for deletion data have strictly occurred according to the steps in the deletion
+# plan and (2) do not exist retained data that is no longer legally necessary.
+
+
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX rdf: <https://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX p-plan: <http://purl.org/net/p-plan#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX prov: <http://www.w3.org/ns/prov#>
+PREFIX time: <https://www.w3.org/TR/owl-time/>
+PREFIX gdprov2: <http://example.org/GDPRov-v2#>
+
+# SELECT ?unplannedActivities
+# WHERE {
+#     {
+#         SELECT ?unplannedActivities
+#         WHERE {
+#             ?unplannedActivities rdf:type/rdfs:subClassOf* gdprov2:DataActivity .
+#             FILTER NOT EXISTS {
+#                 ?unplannedActivities p-plan:correspondsToStep ?step .
+#             }
+#         }
+#     }
+# }
+
+# SELECT ?unperformedStep
+# WHERE {
+#     ?unperformedStep rdf:type/rdfs:subClassOf* gdprov2:DataStep .
+#     FILTER NOT EXISTS {
+#         ?activities p-plan:correspondsToStep ?unperformedStep .
+#     }
+# }
+# SELECT ?activities
+# WHERE {
+#     ?process rdf:type/rdfs:subClassOf* gdprov2:DataErasureProcess ;
+#     ?step gdprov2:isPartOfProcess ?process .
+#     ?activities p-plan:correspondsToStep ?step .
+# }
+
+# SELECT ?plannedActivity
+# WHERE {
+#     ?process rdf:type/rdfs:subClassOf* gdprov2:DataErasureProcess .
+#     ?step gdprov2:isPartOfProcess ?process .
+#     ?plannedActivity p-plan:correspondsToStep ?step .
+# }
+
+### All activities involved from the source to the final entity
+
+# ### All activitoes 
+# SELECT ?agent (GROUP_CONCAT(DISTINCT ?activitiyAfterStartDelete; SEPARATOR=" -> ") as ?activities)
+# # SELECT ?agent (GROUP_CONCAT(DISTINCT ?firstEntity; SEPARATOR=" -> ") as ?activities)
+# # SELECT ?firstEntity
+# WHERE {
+#     ?firstStep gdprov2:isPartOfProcess/rdf:type/rdfs:subClassOf* gdprov2:DataErasureProcess .
+#     FILTER NOT EXISTS { ?firstStep p-plan:isPrecededBy ?_ . }
+
+#     ?firstActivity p-plan:correspondsToStep ?firstStep ;
+#         prov:endedAtTime ?firstActivityTime ;
+#         gdprov2:used/prov:wasAttributedTo ?agent ;
+#         ^gdprov2:wasGeneratedBy ?firstEntity .
+
+#     # ?firstEntity rdf:type/rdfs:subClassOf* gdprov2:PersonalDataEntity ;
+#     #     # ^gdprov2:used ?firstActivity ;
+#     #     prov:wasAttributedTo ?agent .
+    
+#     ?anyEntityAfterFirst rdf:type/rdfs:subClassOf* gdprov2:PersonalDataEntity ;
+#         (^gdprov2:used|gdprov2:wasGeneratedBy|^gdprov2:invalidatedData) ?activitiyAfterStartDelete .
+
+#     ?activitiyAfterStartDelete prov:startedAtTime ?activitiyAfterStartDeleteTime ;
+#         (gdprov2:used|^gdprov2:wasGeneratedBy|gdprov2:invalidatedData) ?anyEntityAfterFirst ;
+#         (gdprov2:used|^gdprov2:wasGeneratedBy) ?firstEntity .
+
+#     # OPTIONAL {
+#     #     ?anyEntityAfterFirst rdf:type/rdfs:subClassOf* gdprov2:PersonalDataEntity ;
+#     #         (^gdprov2:used|gdprov2:wasGeneratedBy|^gdprov2:invalidatedData) ?activitiyAfterStartDelete .
+
+#     #     ?activitiyAfterStartDelete prov:startedAtTime ?activitiyAfterStartDeleteTime ;
+#     #         (gdprov2:used|^gdprov2:wasGeneratedBy|gdprov2:invalidatedData) ?anyEntityAfterFirst .
+#     # }
+#     # FILTER(?activitiyAfterStartDeleteTime > ?firstActivityTime)
+# } GROUP BY ?agent
+
+## Duration is OK
+# SELECT DISTINCT ?firstActivity ?startTime ?endTime ?lastActivity ?firstStep
+SELECT DISTINCT ?lastActivity ?consentwidraw ?originalEntity ?maxDuration ?duration ?hasValidDuration
+WHERE {
+    # The total processing duration to delete data is the difference between the
+    # time the consent was withdrawal with the time the last activity ended.
+    ?process rdf:type/rdfs:subClassOf* gdprov2:DataErasureProcess .
+
+    # Query the start time
+    ?consentwidraw rdf:type/rdfs:subClassOf* gdprov2:WithdrawConsentActivity ;
+        prov:startedAtTime ?startTime ;
+        p-plan:correspondsToStep/gdprov2:isPartOfProcess ?process .
+
+    # Query the end time; if doesn't exist, take now
+    OPTIONAL {
+        ?lastActivity rdf:type/rdfs:subClassOf* gdprov2:DataActivity ;
+            prov:endedAtTime ?endTime ;
+            prov:wasInformedBy+ ?consentwidraw ;
+            p-plan:correspondsToStep/gdprov2:isPartOfProcess ?process .
+        FILTER NOT EXISTS { ?activity prov:wasInformedBy ?lastActivity }
+    }
+    BIND ( IF(?endTime, ?endTime, NOW()) AS ?endTime )
+    
+    # Query the max duration period
+    OPTIONAL {
+        ?entity rdf:type/rdfs:subClassOf* gdprov2:PersonalDataEntity ;
+            (^gdprov2:used|^gdprov2:invalidatedData) ?lastActivity ;
+            prov:wasDerivedFrom+ ?originalEntity .
+        FILTER NOT EXISTS { ?originalEntity prov:wasDerivedFrom ?_entity }
+
+        ?collectionProcess rdf:type/rdfs:subClassOf* gdprov2:HandleDataCollectionProcess ;
+            gdprov2:hasStorageCondition/gdprov2:hasDuration/owl:sameAs ?maxDuration .
+    
+        ?collectionProcess ^gdprov2:isPartOfProcess/gdprov2:generatesData/^p-plan:correspondsToVariable ?originalEntity .
+
+    }
+
+    BIND ( ?endTime - ?startTime AS ?duration )
+    BIND ( NOW() + ?maxDuration > NOW() + ?duration AS ?hasValidDuration )
+
+} GROUP BY ?originalEntity
+ORDER BY ?originalEntity

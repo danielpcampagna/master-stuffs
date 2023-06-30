@@ -1,0 +1,9 @@
+#!/bin/bash
+if [ -z "$VIRTUAL_ENV" ]
+then
+    python -m venv .venv
+    source .venv/bin/activate
+fi
+
+chmod +x setup/bin/*
+cp setup/bin/* .venv/bin/

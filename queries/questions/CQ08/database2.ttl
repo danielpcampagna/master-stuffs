@@ -1,0 +1,80 @@
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX rdf: <https://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX time: <https://www.w3.org/TR/owl-time/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX : <http://example.org/GDPRov-v0.8#>
+PREFIX prox: <http://example.org/proximus-ontology/#>
+
+prox:PersonalDataUse rdfs:subClassOf :PersonalData ;
+    rdfs:label "Personal Data Use"@en ;
+    rdf:comment "Information we obtain through your use of our products/services"@en .
+
+prox:UserInformation rdfs:subClassOf :PersonalData ;
+    rdfs:label "User Information"@en ;
+    rdf:comment "Information you provide to us"@en .
+
+
+prox:InstantCeaseToBeACustomer rdf:subClassOf time:Instant ;
+    rdfs:label "Cease to be a customer"@en ;
+    rdf:comment "The instant where a person has ceased to be a Proximus customer"@en .
+
+prox:10YearsAfterCeaseToBeACustomerDuration a :UntilEventDuration, time:Duration ;
+    rdfs:label "10 years after cease to be a customer"@en ;
+    rdf:comment "10 years after the instant where a person has ceased to be a Proximus customer."@en ;
+    time:numericDuration "10"^^xsd:decimal ;
+    time:unitType time:unitYear ;
+    time:after prox:InstantCeaseToBeACustomer .
+
+prox:12monthsDuration a :TemporalDuration, time:Duration ;
+    time:numericDuration "12"^^xsd:decimal ;
+    rdf:comment "Shorter storage periods apply for certain categories of data, such as data on your communication traffic, which are kept for no more than 12 months."@en ;
+    time:unitType time:unitMonth .
+
+
+prox:PersonalDataCollectionProcess a :HandleDataCollectionProcess ;
+    :hasStorageCondition [
+        a :StorageCondition ;
+        :hasDuration prox:12monthsDuration ;
+    ] .
+
+prox:UserInformationDataCollectionProcess a :HandleDataCollectionProcess ;
+    :hasStorageCondition [
+        a :StorageCondition ;
+        :hasDuration prox:10YearsAfterCeaseToBeACustomerDuration ;
+    ] .
+
+prox:StoreStepUserInformation a :DataStorageStep ;
+    rdfs:label "Store user information"@en ;
+    rdf:comment "Store user information"@en ;
+    :isPartOfProcess prox:UserInformationDataCollectionProcess ;
+
+:generatesData prox:Surname, prox:FirstName, prox:Login,
+        prox:Email, prox:Address, prox:TelephoneNumber,
+        prox:MobilePhoneNumber, prox:DataOfBirth, prox:Language .
+        
+prox:StoreStepPersonalDataUse a :DataStorageStep ;
+    rdfs:label "Store personal data use"@en ;
+    rdf:comment "Store personal data use"@en ;
+    :isPartOfProcess prox:PersonalDataCollectionProcess ;
+    :generatesData prox:DeviceType, prox:DeviceNumber,
+        prox:DeviceIMEINumber, prox:CommunicationDuration,
+        prox:CommunicationLocation, prox:DeviceDate .
+
+
+prox:Surname rdfs:subClassOf prox:UserInformation .
+prox:FirstName rdfs:subClassOf prox:UserInformation .
+prox:Login rdfs:subClassOf prox:UserInformation .
+prox:Email rdfs:subClassOf prox:UserInformation .
+prox:Address rdfs:subClassOf prox:UserInformation .
+prox:TelephoneNumber rdfs:subClassOf prox:UserInformation .
+prox:MobilePhoneNumber rdfs:subClassOf prox:UserInformation .
+prox:DataOfBirth rdfs:subClassOf prox:UserInformation .
+prox:Language rdfs:subClassOf prox:UserInformation .
+
+prox:DeviceType rdfs:subClassOf prox:PersonalDataUse .
+prox:DeviceNumber rdfs:subClassOf prox:PersonalDataUse .
+prox:DeviceIMEINumber rdfs:subClassOf prox:PersonalDataUse .
+prox:CommunicationDuration rdfs:subClassOf prox:PersonalDataUse .
+prox:CommunicationLocation rdfs:subClassOf prox:PersonalDataUse .
+prox:DeviceDate rdfs:subClassOf prox:PersonalDataUse .

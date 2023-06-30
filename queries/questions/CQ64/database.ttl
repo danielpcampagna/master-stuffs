@@ -1,0 +1,50 @@
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX rdf: <https://www.w3.org/1999/02/22-rdf-syntax-ns#>
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+PREFIX p-plan: <http://purl.org/net/p-plan#>
+PREFIX prov: <http://www.w3.org/ns/prov#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX rdf: <https://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX gdprov2: <http://example.org/GDPRov-v2#>
+PREFIX : <http://example.org/GDPRov-v2#>
+PREFIX prox: <http://example.org/proximus-ontology/#>
+PREFIX gdprtext2: <https://w3id.org/GDPRtEXT#>
+
+prox:TMandT rdf:type :ThirdParty .
+prox:MobilePhoneNumber rdf:type :PersonalData .
+prox:TelephoneNumber rdf:type :PersonalData .
+
+prox:HandleCrossBorderTransferingProcess rdf:type :HandleCrossBorderTransferingProcess .
+
+prox:InternetionalMobileCallingStep rdf:type :CrossBorderDataTransfer ;
+    :isPartOfProcess prox:HandleCrossBorderTransferingProcess ;
+    :sharesDataWith prox:TMandT ;
+    :usesData prox:MobilePhoneNumber ;
+    :usesRecipientLegalBasisURI "https://curia.europa.eu/juris/document/document.jsf?text&docid=228677&pageIndex=0&doclang=EN&mode=lst&dir&occ=first&part=1&cid=9710189"^^xsd:anyURI ;
+    :usesRecipientLegalBasis gdprtext2:AdequacyDecision .
+
+prox:InternetionalTelephoneCallingStep rdf:type :CrossBorderDataTransfer ;
+    :isPartOfProcess prox:HandleCrossBorderTransferingProcess ;
+    :sharesDataWith prox:TMandT ;
+    :usesData prox:TelephoneNumber ;
+    :usesRecipientLegalBasisURI
+    "https://curia.europa.eu/juris/document/document.jsf?text&docid=228677&pageIndex=0&doclang=EN&mode=lst&dir&occ=first&part=1&cid=9710189"^^xsd:anyURI ;
+    :usesRecipientLegalBasis gdprtext2:AdequacyDecision .
+
+prox:Alice rdf:type :DataSubject .
+
+prox:AlicesMobilePhoneNumber rdf:type :PersonalDataEntity ;
+    prov:wasAttributedTo prox:Alice ;
+    p-plan:correspondsToVariable prox:MobilePhoneNumber .
+
+prox:AlicesSharedMobilePhoneNumber rdf:type :PersonalDataEntity ;
+    prov:wasAttributedTo prox:Alice ;
+    p-plan:correspondsToVariable prox:MobilePhoneNumber .
+
+prox:CrossBorderAlicesDataTransfer rdf:type :CrossBorderTransferActivity ;
+    prov:startedAtTime "2019-01-01T12:33:33Z"^^xsd:dateTime ;
+    prov:endedAtTime "2019-01-01T11:34:12Z"^^xsd:dateTime ;
+    p-plan:correspondsToStep prox:InternetionalMobileCallingStep ;
+    prov:used prox:AlicesMobilePhoneNumber ;
+    :sharesData prox:AlicesSharedMobilePhoneNumber .
