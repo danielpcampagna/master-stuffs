@@ -1,0 +1,1 @@
+Are retention policies and procedures in place to ensure data are held for no longer than is necessary for the purposes for which they were collected?

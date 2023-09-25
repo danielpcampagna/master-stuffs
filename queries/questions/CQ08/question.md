@@ -1,0 +1,2 @@
+For each category of personal data, list the period for which the data will be retained e.g. one month? one year?
+As a general rule data must be retained for no longer than is necessary for the purpose for which it was collected in the first place.
