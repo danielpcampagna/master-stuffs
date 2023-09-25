@@ -1,1 +1,8 @@
 .venv
+
+datasets/associations/eat.nt
+
+datasets/sociallink/sociallink.final.tql
+datasets/sociallink/sociallink.json
+datasets/sociallink/sociallink.tql
+datasets/sociallink/sociallink.void.tql.gz
