@@ -1,0 +1,19 @@
+Oi Altigran,
+
+Tudo bem? Como faz um tempo que não nos falamos, vou tentar dar um panorama geral dos fatos até aqui a fim de te colocar na mesma página. Perdoe-me se o texto for extenso demais, não foi minha intenção.
+
+Eu e a Vanessa seguimos trabalhando naquela hipótese de explorar o uso de proveniência para resolver problemas de privacidade introduzidos pela GDPR. Encontramos muitos trabalhos seguindo nessa linha, depois de uma revisão da literatura [1]; encontramos um espaço de contribuição, que consiste em estender um modelo para ser capaz de responder algumas das perguntas não respondidas até então [2]; e começamos a escrita da dissertação [3].
+
+Infelizmente, não consegui concluir tudo antes do prazo e acabei perdendo o mestrado. Mas fui orientado pela Vanessa a tentar o reingresso, cujo resultado sai no dia 11 de Julho.
+
+Apesar disso, continuamos trabalhando e buscando ajustar algumas pontas soltas da nossa contribuição. No momento, estamos em busca de uma base de dados que possa nos ajudar a validar as contribuições feitas até o momento.
+
+
+
+Referencias:
+
+[1] Literatura. https://github.com/danielpcampagna/master-literature
+
+[2] Nossa contribuição. https://docs.google.com/spreadsheets/d/1vFmn-jhF6wMoZeiLz02Z-dwyqgiNF2XtoBJ4H5bo1QU/
+
+[3] Dissertação. https://www.overleaf.com/read/wjrzwccrtpdf

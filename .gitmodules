@@ -1,0 +1,15 @@
+[submodule "datasets/SAPOS/repo"]
+	path = datasets/SAPOS/repo
+	url = git@github.com:gems-uff/sapos.git
+
+[submodule "lab/GDPRov"]
+	path = lab/GDPRov
+	url = git@github.com:danielpcampagna/GDPRov.git
+
+[submodule "lab/gpt-engineer"]
+	path = lab/gpt-engineer
+	url = git@github.com:AntonOsika/gpt-engineer.git
+
+[submodule "lab/privateGPT"]
+	path = lab/privateGPT
+	url = git@github.com:imartinez/privateGPT.git
