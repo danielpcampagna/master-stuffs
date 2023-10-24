@@ -3,16 +3,16 @@ PREFIX rdf: <https://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX owl: <http://www.w3.org/2002/07/owl#>
 PREFIX time: <https://www.w3.org/TR/owl-time/>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
-PREFIX gdprov2: <http://example.org/GDPRov-v2#>
+PREFIX gdprov: <http://example.org/GDPRov-v2#>
 
 
 SELECT ?dataCategory ?durationTime ?duration ?durationUnit ?durationComment ?hasDuration
 WHERE {
-    ?dataCategory rdf:type*/rdfs:subClassOf* gdprov2:PersonalData .
-    ?step gdprov2:generatesData ?dataCategory ;
-        gdprov2:isPartOfProcess/gdprov2:hasStorageCondition ?storageCondition .
+    ?dataCategory rdf:type*/rdfs:subClassOf* gdprov:PersonalData .
+    ?step gdprov:generatesData ?dataCategory ;
+        gdprov:isPartOfProcess/gdprov:hasStorageCondition ?storageCondition .
 
-    ?storageCondition gdprov2:hasDuration ?duration .
+    ?storageCondition gdprov:hasDuration ?duration .
     ?duration rdf:comment ?durationComment ;
         time:numericDuration ?durationTime ;
         time:unitType ?durationUnit .

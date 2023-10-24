@@ -5,14 +5,14 @@ PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 PREFIX prov: <http://www.w3.org/ns/prov#>
 PREFIX time: <https://www.w3.org/TR/owl-time/>
 PREFIX owl: <http://www.w3.org/2002/07/owl#>
-PREFIX gdprov2: <http://example.org/GDPRov-v2#>
+PREFIX gdprov: <http://example.org/GDPRov-v2#>
 PREFIX prox: <http://example.org/proximus-ontology/#>
 
-prox:PersonalDataUse rdfs:subClassOf gdprov2:PersonalData ;
+prox:PersonalDataUse rdfs:subClassOf gdprov:PersonalData ;
     rdfs:label "Personal Data Use"@en ;
     rdf:comment "Information we obtain through your use of our products/services"@en .
 
-prox:UserInformation rdfs:subClassOf gdprov2:PersonalData ;
+prox:UserInformation rdfs:subClassOf gdprov:PersonalData ;
     rdfs:label "User Information"@en ;
     rdf:comment "Information you provide to us"@en .
 
@@ -65,7 +65,7 @@ prox:ArchivedCommunicationDuration rdfs:subClassOf prox:PersonalDataUse .
 prox:ArchivedCommunicationLocation rdfs:subClassOf prox:PersonalDataUse .
 prox:ArchivedeviceDateEntity rdfs:subClassOf prox:PersonalDataUse .
 
-prox:10YearsAfterCeaseToBeACustomerDuration rdf:type gdprov2:UntilEventDuration, time:Duration ;
+prox:10YearsAfterCeaseToBeACustomerDuration rdf:type gdprov:UntilEventDuration, time:Duration ;
     rdfs:label "10 years after cease to be a customer"@en ;
     rdf:comment "10 years after the instant where a person has ceased to be a Proximus customer."@en ;
     time:numericDuration "10"^^xsd:decimal ;
@@ -75,59 +75,59 @@ prox:10YearsAfterCeaseToBeACustomerDuration rdf:type gdprov2:UntilEventDuration,
 prox:startsAfterCeaseToBeACustomer rdfs:subClassOf time:hasBeginning ;
     rdfs:comment "Defines the begining of the duration where data subject ceased to be a customer"@en ;
     rdf:domain prox:10YearsAfterCeaseToBeACustomerDuration, prox:12monthsDuration ;
-    rdf:range gdprov2:UntilEventDuration, time:Duration .
+    rdf:range gdprov:UntilEventDuration, time:Duration .
 
-prox:12monthsDuration rdf:type gdprov2:TemporalDuration, time:Duration ;
+prox:12monthsDuration rdf:type gdprov:TemporalDuration, time:Duration ;
     rdf:comment "Shorter storage periods apply for certain categories of data, such as data on your communication traffic, which are kept for no more than 12 months."@en ;
     time:numericDuration "12"^^xsd:decimal ;
     time:unitType time:unitMonth ;
     owl:sameAs "P12M"^^xsd:duration .
 
-prox:PersonalDataCollectionProcess rdf:type gdprov2:HandleDataCollectionProcess ;
-    gdprov2:hasStorageCondition [
-        rdf:type gdprov2:StorageCondition ;
-        gdprov2:hasDuration prox:12monthsDuration ;
+prox:PersonalDataCollectionProcess rdf:type gdprov:HandleDataCollectionProcess ;
+    gdprov:hasStorageCondition [
+        rdf:type gdprov:StorageCondition ;
+        gdprov:hasDuration prox:12monthsDuration ;
     ] .
 
-prox:UserInformationDataCollectionProcess rdf:type gdprov2:HandleDataCollectionProcess ;
-    gdprov2:hasStorageCondition [
-        rdf:type gdprov2:StorageCondition ;
-        gdprov2:hasDuration prox:10YearsAfterCeaseToBeACustomerDuration ;
+prox:UserInformationDataCollectionProcess rdf:type gdprov:HandleDataCollectionProcess ;
+    gdprov:hasStorageCondition [
+        rdf:type gdprov:StorageCondition ;
+        gdprov:hasDuration prox:10YearsAfterCeaseToBeACustomerDuration ;
     ] .
 
-prox:StoreStepUserInformation rdf:type gdprov2:DataStorageStep ;
+prox:StoreStepUserInformation rdf:type gdprov:DataStorageStep ;
     rdfs:label "Store user information"@en ;
     rdf:comment "Store user information"@en ;
-    gdprov2:isPartOfProcess prox:UserInformationDataCollectionProcess ;
-    gdprov2:generatesData prox:Surname, prox:FirstName, prox:Login,
+    gdprov:isPartOfProcess prox:UserInformationDataCollectionProcess ;
+    gdprov:generatesData prox:Surname, prox:FirstName, prox:Login,
         prox:Email, prox:Address, prox:TelephoneNumber,
         prox:MobilePhoneNumber, prox:DateOfBirth, prox:Language .
 
-prox:StoreStepPersonalDataUse rdf:type gdprov2:DataStorageStep ;
+prox:StoreStepPersonalDataUse rdf:type gdprov:DataStorageStep ;
     rdfs:label "Store personal data use"@en ;
     rdf:comment "Store personal data use"@en ;
-    gdprov2:isPartOfProcess prox:PersonalDataCollectionProcess ;
-    gdprov2:generatesData prox:DeviceType, prox:DeviceNumber,
+    gdprov:isPartOfProcess prox:PersonalDataCollectionProcess ;
+    gdprov:generatesData prox:DeviceType, prox:DeviceNumber,
         prox:DeviceIMEINumber, prox:CommunicationDuration,
         prox:CommunicationLocation, prox:DeviceDate .
 
 
-prox:EraseCustomerDataProcess rdf:type gdprov2:DataErasureProcess .
+prox:EraseCustomerDataProcess rdf:type gdprov:DataErasureProcess .
 
-prox:CustomersConsentWithdrawalStep rdf:type gdprov2:ConsentWithdrawalStep ;
-    gdprov2:isPartOfProcess prox:EraseCustomerDataProcess .
+prox:CustomersConsentWithdrawalStep rdf:type gdprov:ConsentWithdrawalStep ;
+    gdprov:isPartOfProcess prox:EraseCustomerDataProcess .
 
-prox:AnonymiseCustomerDataStep rdf:type gdprov2:DataAnonymisationStep ;
+prox:AnonymiseCustomerDataStep rdf:type gdprov:DataAnonymisationStep ;
     rdfs:label "Anonymise Information Step"@en ;
     rdf:comment "Anonyise data subject's information"@en ;
-    gdprov2:isPartOfProcess prox:EraseCustomerDataProcess ;
-    gdprov2:usesData prox:Surname, prox:FirstName, prox:Login,
+    gdprov:isPartOfProcess prox:EraseCustomerDataProcess ;
+    gdprov:usesData prox:Surname, prox:FirstName, prox:Login,
         prox:Email, prox:Address, prox:TelephoneNumber,
         prox:MobilePhoneNumber, prox:DateOfBirth, prox:Language,
         prox:DeviceType, prox:DeviceNumber, prox:DeviceIMEINumber,
         prox:CommunicationDuration, prox:CommunicationLocation,
         prox:DeviceDate ;
-    gdprov2:generatesAnonymisedData prox:Anonymisedurname, prox:AnonymisedFirstName, 
+    gdprov:generatesAnonymisedData prox:Anonymisedurname, prox:AnonymisedFirstName, 
         prox:AnonymisedLogin, prox:AnonymisedEmail, prox:AnonymisedAddress,
         prox:AnonymisedTelephoneNumber, prox:AnonymisedMobilePhoneNumber,
         prox:AnonymisedDateOfBirth, prox:AnonymisedLanguage,
@@ -135,19 +135,19 @@ prox:AnonymiseCustomerDataStep rdf:type gdprov2:DataAnonymisationStep ;
         prox:AnonymisedDeviceIMEINumber, prox:AnonymisedCommunicationDuration,
         prox:AnonymisedCommunicationLocation, prox:AnonymisedDeviceDate .
 
-prox:ArchiveCustomerDataStep rdf:type gdprov2:DataStep ;
+prox:ArchiveCustomerDataStep rdf:type gdprov:DataStep ;
     rdfs:label "Archive Information Step"@en ;
     rdf:comment "Archive informations"@en ;
-    gdprov2:isPartOfProcess prox:EraseCustomerDataProcess ;
+    gdprov:isPartOfProcess prox:EraseCustomerDataProcess ;
     p-plan:isPrecededBy prox:AnonymiseCustomerDataStep ;
-    gdprov2:usesData prox:Anonymisedurname, prox:AnonymisedFirstName, 
+    gdprov:usesData prox:Anonymisedurname, prox:AnonymisedFirstName, 
         prox:AnonymisedLogin, prox:AnonymisedEmail, prox:AnonymisedAddress,
         prox:AnonymisedTelephoneNumber, prox:AnonymisedMobilePhoneNumber,
         prox:AnonymisedDateOfBirth, prox:AnonymisedLanguage,
         prox:AnonymisedDeviceType, prox:AnonymisedDeviceNumber,
         prox:AnonymisedDeviceIMEINumber, prox:AnonymisedCommunicationDuration,
         prox:AnonymisedCommunicationLocation, prox:AnonymisedDeviceDate ;
-    gdprov2:generatesData prox:ArchivedSurname, prox:ArchivedFirstName, 
+    gdprov:generatesData prox:ArchivedSurname, prox:ArchivedFirstName, 
         prox:ArchivedLogin, prox:ArchivedEmail, prox:ArchivedAddress,
         prox:ArchivedTelephoneNumber, prox:ArchivedMobilePhoneNumber,
         prox:ArchivedDateOfBirthEntity, prox:ArchivedLanguage, prox:ArchivedeviceTypeEntity,
@@ -155,22 +155,22 @@ prox:ArchiveCustomerDataStep rdf:type gdprov2:DataStep ;
         prox:ArchivedCommunicationDuration, prox:ArchivedCommunicationLocation,
         prox:ArchivedeviceDateEntity .
 
-prox:ErasureUserInformationStep rdf:type gdprov2:DataDeletionStep ;
+prox:ErasureUserInformationStep rdf:type gdprov:DataDeletionStep ;
     rdfs:label "Archive Information Step"@en ;
     rdf:comment "Deletion of user information"@en ;
-    gdprov2:isPartOfProcess prox:EraseCustomerDataProcess ;
+    gdprov:isPartOfProcess prox:EraseCustomerDataProcess ;
     p-plan:isPrecededBy prox:ArchiveCustomerDataStep ;
-    gdprov2:invalidatesData prox:ArchivedSurname, prox:ArchivedFirstName, 
+    gdprov:invalidatesData prox:ArchivedSurname, prox:ArchivedFirstName, 
         prox:ArchivedLogin, prox:ArchivedEmail, prox:ArchivedAddress,
         prox:ArchivedTelephoneNumber, prox:ArchivedMobilePhoneNumber,
         prox:ArchivedDateOfBirthEntity, prox:ArchivedLanguage .
 
-prox:ErasurePersonalDataUseStep rdf:type gdprov2:DataDeletionStep ;
+prox:ErasurePersonalDataUseStep rdf:type gdprov:DataDeletionStep ;
     rdfs:label "Archive Information Step"@en ;
     rdf:comment "Deletion of personal data's use of Proximus' services"@en ;
-    gdprov2:isPartOfProcess prox:EraseCustomerDataProcess ;
+    gdprov:isPartOfProcess prox:EraseCustomerDataProcess ;
     p-plan:isPrecededBy prox:ArchiveCustomerDataStep ;
-    gdprov2:invalidatesData prox:ArchivedeviceTypeEntity,
+    gdprov:invalidatesData prox:ArchivedeviceTypeEntity,
         prox:ArchivedeviceNumberEntity, prox:ArchivedeviceIMEINumberEntity,
         prox:ArchivedCommunicationDuration, prox:ArchivedCommunicationLocation,
         prox:ArchivedeviceDateEntity .
@@ -178,62 +178,62 @@ prox:ErasurePersonalDataUseStep rdf:type gdprov2:DataDeletionStep ;
 
 prox:Alice rdf:type prov:Agent.
 
-prox:WithdrawAlicesConsentActivity rdf:type gdprov2:WithdrawConsentActivity ;
+prox:WithdrawAlicesConsentActivity rdf:type gdprov:WithdrawConsentActivity ;
     prov:startedAtTime "2019-12-24T23:48:13Z"^^xsd:dateTime ;
     prov:endedAtTime "2019-12-24T23:49:33Z"^^xsd:dateTime ;
     p-plan:correspondsToStep prox:CustomersConsentWithdrawalStep .
 
-prox:AlicesSurname rdf:type gdprov2:PersonalDataEntity ;
+prox:AlicesSurname rdf:type gdprov:PersonalDataEntity ;
     prov:wasAttributedTo prox:Alice ;
     p-plan:correspondsToVariable prox:Surname .
-prox:AlicesFirstName rdf:type gdprov2:PersonalDataEntity ;
+prox:AlicesFirstName rdf:type gdprov:PersonalDataEntity ;
     prov:wasAttributedTo prox:Alice ;
     p-plan:correspondsToVariable prox:FirstName .
-prox:AlicesLogin rdf:type gdprov2:PersonalDataEntity ;
+prox:AlicesLogin rdf:type gdprov:PersonalDataEntity ;
     prov:wasAttributedTo prox:Alice ;
     p-plan:correspondsToVariable prox:Login .
-prox:AlicesEmail rdf:type gdprov2:PersonalDataEntity ;
+prox:AlicesEmail rdf:type gdprov:PersonalDataEntity ;
     prov:wasAttributedTo prox:Alice ;
     p-plan:correspondsToVariable prox:Email .
-prox:AlicesAddress rdf:type gdprov2:PersonalDataEntity ;
+prox:AlicesAddress rdf:type gdprov:PersonalDataEntity ;
     prov:wasAttributedTo prox:Alice ;
     p-plan:correspondsToVariable prox:Address .
-prox:AlicesTelephoneNumber rdf:type gdprov2:PersonalDataEntity ;
+prox:AlicesTelephoneNumber rdf:type gdprov:PersonalDataEntity ;
     prov:wasAttributedTo prox:Alice ;
     p-plan:correspondsToVariable prox:TelephoneNumber .
-prox:AlicesMobilePhoneNumber rdf:type gdprov2:PersonalDataEntity ;
+prox:AlicesMobilePhoneNumber rdf:type gdprov:PersonalDataEntity ;
     prov:wasAttributedTo prox:Alice ;
     p-plan:correspondsToVariable prox:MobilePhoneNumber .
-prox:AlicesDateOfBirth rdf:type gdprov2:PersonalDataEntity ;
+prox:AlicesDateOfBirth rdf:type gdprov:PersonalDataEntity ;
     prov:wasAttributedTo prox:Alice ;
     p-plan:correspondsToVariable prox:DateOfBirth .
-prox:AlicesLanguage rdf:type gdprov2:PersonalDataEntity ;
+prox:AlicesLanguage rdf:type gdprov:PersonalDataEntity ;
     prov:wasAttributedTo prox:Alice ;
     p-plan:correspondsToVariable prox:Language .
-prox:AlicesDeviceType rdf:type gdprov2:PersonalDataEntity ;
+prox:AlicesDeviceType rdf:type gdprov:PersonalDataEntity ;
     prov:wasAttributedTo prox:Alice ;
     p-plan:correspondsToVariable prox:DeviceType .
-prox:AlicesDeviceNumber rdf:type gdprov2:PersonalDataEntity ;
+prox:AlicesDeviceNumber rdf:type gdprov:PersonalDataEntity ;
     prov:wasAttributedTo prox:Alice ;
     p-plan:correspondsToVariable prox:DeviceNumber .
-prox:AlicesDeviceIMEINumber rdf:type gdprov2:PersonalDataEntity ;
+prox:AlicesDeviceIMEINumber rdf:type gdprov:PersonalDataEntity ;
     prov:wasAttributedTo prox:Alice ;
     p-plan:correspondsToVariable prox:DeviceIMEINumber .
-prox:AlicesCommunicationDuration rdf:type gdprov2:PersonalDataEntity ;
+prox:AlicesCommunicationDuration rdf:type gdprov:PersonalDataEntity ;
     prov:wasAttributedTo prox:Alice ;
     p-plan:correspondsToVariable prox:CommunicationDuration .
-prox:AlicesCommunicationLocation rdf:type gdprov2:PersonalDataEntity ;
+prox:AlicesCommunicationLocation rdf:type gdprov:PersonalDataEntity ;
     prov:wasAttributedTo prox:Alice ;
     p-plan:correspondsToVariable prox:CommunicationLocation .
-prox:AlicesDeviceDate rdf:type gdprov2:PersonalDataEntity ;
+prox:AlicesDeviceDate rdf:type gdprov:PersonalDataEntity ;
     prov:wasAttributedTo prox:Alice ;
     p-plan:correspondsToVariable prox:DeviceDate .
 
-prox:UsedAlicesDataActivity rdf:type gdprov2:DataActivity ;
+prox:UsedAlicesDataActivity rdf:type gdprov:DataActivity ;
     prov:startedAtTime "2019-12-24T23:47:03Z"^^xsd:dateTime ;
     prov:endedAtTime "2020-12-24T23:55:12Z"^^xsd:dateTime ;
     p-plan:correspondsToStep prox:AnyOtherStep ;
-    gdprov2:used prox:AlicesSurname ,
+    gdprov:used prox:AlicesSurname ,
         prox:AlicesFirstName ,
         prox:AlicesLogin ,
         prox:AlicesEmail ,
@@ -249,12 +249,12 @@ prox:UsedAlicesDataActivity rdf:type gdprov2:DataActivity ;
         prox:AlicesCommunicationLocation ,
         prox:AlicesDeviceDate .
 
-prox:AnonymiseAlicesDataActivity rdf:type gdprov2:AnonymisationActivity ;
+prox:AnonymiseAlicesDataActivity rdf:type gdprov:AnonymisationActivity ;
     prov:startedAtTime "2020-01-01T00:00:03Z"^^xsd:dateTime ;
     prov:endedAtTime "2020-01-01T00:05:01Z"^^xsd:dateTime ;
     prov:wasInformedBy prox:WithdrawAlicesConsentActivity ;
     p-plan:correspondsToStep prox:AnonymiseCustomerDataStep ;
-    gdprov2:used prox:AlicesSurname ,
+    gdprov:used prox:AlicesSurname ,
         prox:AlicesFirstName ,
         prox:AlicesLogin ,
         prox:AlicesEmail ,
@@ -270,73 +270,73 @@ prox:AnonymiseAlicesDataActivity rdf:type gdprov2:AnonymisationActivity ;
         prox:AlicesCommunicationLocation ,
         prox:AlicesDeviceDate .
 
-prox:AnonymisedAlicesSurname rdf:type gdprov2:PersonalDataEntity ;
-    gdprov2:wasGeneratedBy prox:AnonymiseAlicesDataActivity ;
+prox:AnonymisedAlicesSurname rdf:type gdprov:PersonalDataEntity ;
+    gdprov:wasGeneratedBy prox:AnonymiseAlicesDataActivity ;
     p-plan:correspondsToVariable prox:Anonymisedurname ;
     prov:wasDerivedFrom prox:AlicesSurname .
-prox:AnonymisedAlicesFirstName rdf:type gdprov2:PersonalDataEntity ;
-    gdprov2:wasGeneratedBy prox:AnonymiseAlicesDataActivity ;
+prox:AnonymisedAlicesFirstName rdf:type gdprov:PersonalDataEntity ;
+    gdprov:wasGeneratedBy prox:AnonymiseAlicesDataActivity ;
     p-plan:correspondsToVariable prox:AnonymisedFirstName ;
     prov:wasDerivedFrom prox:AlicesFirstName .
-prox:AnonymisedAlicesLogin rdf:type gdprov2:PersonalDataEntity ;
-    gdprov2:wasGeneratedBy prox:AnonymiseAlicesDataActivity ;
+prox:AnonymisedAlicesLogin rdf:type gdprov:PersonalDataEntity ;
+    gdprov:wasGeneratedBy prox:AnonymiseAlicesDataActivity ;
     p-plan:correspondsToVariable prox:AnonymisedLogin ;
     prov:wasDerivedFrom prox:AlicesLogin .
-prox:AnonymisedAlicesEmail rdf:type gdprov2:PersonalDataEntity ;
-    gdprov2:wasGeneratedBy prox:AnonymiseAlicesDataActivity ;
+prox:AnonymisedAlicesEmail rdf:type gdprov:PersonalDataEntity ;
+    gdprov:wasGeneratedBy prox:AnonymiseAlicesDataActivity ;
     p-plan:correspondsToVariable prox:AnonymisedEmail ;
     prov:wasDerivedFrom prox:AlicesEmail .
-prox:AnonymisedAlicesAddress rdf:type gdprov2:PersonalDataEntity ;
-    gdprov2:wasGeneratedBy prox:AnonymiseAlicesDataActivity ;
+prox:AnonymisedAlicesAddress rdf:type gdprov:PersonalDataEntity ;
+    gdprov:wasGeneratedBy prox:AnonymiseAlicesDataActivity ;
     p-plan:correspondsToVariable prox:AnonymisedAddress ;
     prov:wasDerivedFrom prox:AlicesAddress .
-prox:AnonymisedAlicesTelephoneNumber rdf:type gdprov2:PersonalDataEntity ;
-    gdprov2:wasGeneratedBy prox:AnonymiseAlicesDataActivity ;
+prox:AnonymisedAlicesTelephoneNumber rdf:type gdprov:PersonalDataEntity ;
+    gdprov:wasGeneratedBy prox:AnonymiseAlicesDataActivity ;
     p-plan:correspondsToVariable prox:AnonymisedTelephoneNumber ;
     prov:wasDerivedFrom prox:AlicesTelephoneNumber .
-prox:AnonymisedAlicesMobilePhoneNumber rdf:type gdprov2:PersonalDataEntity ;
-    gdprov2:wasGeneratedBy prox:AnonymiseAlicesDataActivity ;
+prox:AnonymisedAlicesMobilePhoneNumber rdf:type gdprov:PersonalDataEntity ;
+    gdprov:wasGeneratedBy prox:AnonymiseAlicesDataActivity ;
     p-plan:correspondsToVariable prox:AnonymisedMobilePhoneNumber ;
     prov:wasDerivedFrom prox:AlicesMobilePhoneNumber .
-prox:AnonymisedAlicesDateOfBirth rdf:type gdprov2:PersonalDataEntity ;
-    gdprov2:wasGeneratedBy prox:AnonymiseAlicesDataActivity ;
+prox:AnonymisedAlicesDateOfBirth rdf:type gdprov:PersonalDataEntity ;
+    gdprov:wasGeneratedBy prox:AnonymiseAlicesDataActivity ;
     p-plan:correspondsToVariable prox:AnonymisedDateOfBirth ;
     prov:wasDerivedFrom prox:AlicesDateOfBirth .
-prox:AnonymisedAlicesLanguage rdf:type gdprov2:PersonalDataEntity ;
-    gdprov2:wasGeneratedBy prox:AnonymiseAlicesDataActivity ;
+prox:AnonymisedAlicesLanguage rdf:type gdprov:PersonalDataEntity ;
+    gdprov:wasGeneratedBy prox:AnonymiseAlicesDataActivity ;
     p-plan:correspondsToVariable prox:AnonymisedLanguage ;
     prov:wasDerivedFrom prox:AlicesLanguage .
-prox:AnonymisedAlicesDeviceType rdf:type gdprov2:PersonalDataEntity ;
-    gdprov2:wasGeneratedBy prox:AnonymiseAlicesDataActivity ;
+prox:AnonymisedAlicesDeviceType rdf:type gdprov:PersonalDataEntity ;
+    gdprov:wasGeneratedBy prox:AnonymiseAlicesDataActivity ;
     p-plan:correspondsToVariable prox:AnonymisedDeviceType ;
     prov:wasDerivedFrom prox:AlicesDeviceType .
-prox:AnonymisedAlicesDeviceNumber rdf:type gdprov2:PersonalDataEntity ;
-    gdprov2:wasGeneratedBy prox:AnonymiseAlicesDataActivity ;
+prox:AnonymisedAlicesDeviceNumber rdf:type gdprov:PersonalDataEntity ;
+    gdprov:wasGeneratedBy prox:AnonymiseAlicesDataActivity ;
     p-plan:correspondsToVariable prox:AnonymisedDeviceNumber ;
     prov:wasDerivedFrom prox:AlicesDeviceNumber .
-prox:AnonymisedAlicesDeviceIMEINumber rdf:type gdprov2:PersonalDataEntity ;
-    gdprov2:wasGeneratedBy prox:AnonymiseAlicesDataActivity ;
+prox:AnonymisedAlicesDeviceIMEINumber rdf:type gdprov:PersonalDataEntity ;
+    gdprov:wasGeneratedBy prox:AnonymiseAlicesDataActivity ;
     p-plan:correspondsToVariable prox:AnonymisedDeviceIMEINumber ;
     prov:wasDerivedFrom prox:AlicesDeviceIMEINumber .
-prox:AnonymisedAlicesCommunicationDuration rdf:type gdprov2:PersonalDataEntity ;
-    gdprov2:wasGeneratedBy prox:AnonymiseAlicesDataActivity ;
+prox:AnonymisedAlicesCommunicationDuration rdf:type gdprov:PersonalDataEntity ;
+    gdprov:wasGeneratedBy prox:AnonymiseAlicesDataActivity ;
     p-plan:correspondsToVariable prox:AnonymisedCommunicationDuration ;
     prov:wasDerivedFrom prox:AlicesCommunicationDuration .
-prox:AnonymisedAlicesCommunicationLocation rdf:type gdprov2:PersonalDataEntity ;
-    gdprov2:wasGeneratedBy prox:AnonymiseAlicesDataActivity ;
+prox:AnonymisedAlicesCommunicationLocation rdf:type gdprov:PersonalDataEntity ;
+    gdprov:wasGeneratedBy prox:AnonymiseAlicesDataActivity ;
     p-plan:correspondsToVariable prox:AnonymisedCommunicationLocation ;
     prov:wasDerivedFrom prox:AlicesCommunicationLocation .
-prox:AnonymisedAlicesDeviceDate rdf:type gdprov2:PersonalDataEntity ;
-    gdprov2:wasGeneratedBy prox:AnonymiseAlicesDataActivity ;
+prox:AnonymisedAlicesDeviceDate rdf:type gdprov:PersonalDataEntity ;
+    gdprov:wasGeneratedBy prox:AnonymiseAlicesDataActivity ;
     p-plan:correspondsToVariable prox:AnonymisedDeviceDate ;
     prov:wasDerivedFrom prox:AlicesDeviceDate .
 
-prox:ArchiveAlicesDataActivity rdf:type gdprov2:DataTransformationActivity ;
+prox:ArchiveAlicesDataActivity rdf:type gdprov:DataTransformationActivity ;
     prov:startedAtTime "2020-01-01T00:05:02Z"^^xsd:dateTime ;
     prov:endedAtTime "2020-01-01T00:07:27Z"^^xsd:dateTime ;
     p-plan:correspondsToStep prox:ArchiveCustomerDataStep ;
     prov:wasInformedBy prox:AnonymiseAlicesDataActivity ;
-    gdprov2:used prox:AnonymisedAlicesSurname ,
+    gdprov:used prox:AnonymisedAlicesSurname ,
         prox:AnonymisedAlicesFirstName ,
         prox:AnonymisedAlicesLogin ,
         prox:AnonymisedAlicesEmail ,
@@ -352,73 +352,73 @@ prox:ArchiveAlicesDataActivity rdf:type gdprov2:DataTransformationActivity ;
         prox:AnonymisedAlicesCommunicationLocation ,
         prox:AnonymisedAlicesDeviceDate .
 
-prox:ArchivedAlicesSurname rdf:type gdprov2:PersonalDataEntity ;
-    gdprov2:wasGeneratedBy prox:ArchiveAlicesDataActivity ;
+prox:ArchivedAlicesSurname rdf:type gdprov:PersonalDataEntity ;
+    gdprov:wasGeneratedBy prox:ArchiveAlicesDataActivity ;
     p-plan:correspondsToVariable prox:ArchivedSurname ;
     prov:wasDerivedFrom prox:AnonymisedAlicesSurname .
-prox:ArchivedAlicesFirstName rdf:type gdprov2:PersonalDataEntity ;
-    gdprov2:wasGeneratedBy prox:ArchiveAlicesDataActivity ;
+prox:ArchivedAlicesFirstName rdf:type gdprov:PersonalDataEntity ;
+    gdprov:wasGeneratedBy prox:ArchiveAlicesDataActivity ;
     p-plan:correspondsToVariable prox:ArchivedFirstName ;
     prov:wasDerivedFrom prox:AnonymisedBobsFirstName .
-prox:ArchivedAlicesLogin rdf:type gdprov2:PersonalDataEntity ;
-    gdprov2:wasGeneratedBy prox:ArchiveAlicesDataActivity ;
+prox:ArchivedAlicesLogin rdf:type gdprov:PersonalDataEntity ;
+    gdprov:wasGeneratedBy prox:ArchiveAlicesDataActivity ;
     p-plan:correspondsToVariable prox:ArchivedLogin ;
     prov:wasDerivedFrom prox:AnonymisedAlicesLogin .
-prox:ArchivedAlicesEmail rdf:type gdprov2:PersonalDataEntity ;
-    gdprov2:wasGeneratedBy prox:ArchiveAlicesDataActivity ;
+prox:ArchivedAlicesEmail rdf:type gdprov:PersonalDataEntity ;
+    gdprov:wasGeneratedBy prox:ArchiveAlicesDataActivity ;
     p-plan:correspondsToVariable prox:ArchivedEmail ;
     prov:wasDerivedFrom prox:AnonymisedAlicesEmail .
-prox:ArchivedAlicesAddress rdf:type gdprov2:PersonalDataEntity ;
-    gdprov2:wasGeneratedBy prox:ArchiveAlicesDataActivity ;
+prox:ArchivedAlicesAddress rdf:type gdprov:PersonalDataEntity ;
+    gdprov:wasGeneratedBy prox:ArchiveAlicesDataActivity ;
     p-plan:correspondsToVariable prox:ArchivedAddress ;
     prov:wasDerivedFrom prox:AnonymisedAlicesAddress .
-prox:ArchivedAlicesTelephoneNumber rdf:type gdprov2:PersonalDataEntity ;
-    gdprov2:wasGeneratedBy prox:ArchiveAlicesDataActivity ;
+prox:ArchivedAlicesTelephoneNumber rdf:type gdprov:PersonalDataEntity ;
+    gdprov:wasGeneratedBy prox:ArchiveAlicesDataActivity ;
     p-plan:correspondsToVariable prox:ArchivedTelephoneNumber ;
     prov:wasDerivedFrom prox:AnonymisedAlicesTelephoneNumber .
-prox:ArchivedAlicesMobilePhoneNumber rdf:type gdprov2:PersonalDataEntity ;
-    gdprov2:wasGeneratedBy prox:ArchiveAlicesDataActivity ;
+prox:ArchivedAlicesMobilePhoneNumber rdf:type gdprov:PersonalDataEntity ;
+    gdprov:wasGeneratedBy prox:ArchiveAlicesDataActivity ;
     p-plan:correspondsToVariable prox:ArchivedMobilePhoneNumber ;
     prov:wasDerivedFrom prox:AnonymisedAlicesMobilePhoneNumber .
-prox:ArchivedAlicesDateOfBirth rdf:type gdprov2:PersonalDataEntity ;
-    gdprov2:wasGeneratedBy prox:ArchiveAlicesDataActivity ;
+prox:ArchivedAlicesDateOfBirth rdf:type gdprov:PersonalDataEntity ;
+    gdprov:wasGeneratedBy prox:ArchiveAlicesDataActivity ;
     p-plan:correspondsToVariable prox:ArchivedDateOfBirth ;
     prov:wasDerivedFrom prox:AnonymisedAlicesDateOfBirth .
-prox:ArchivedAlicesLanguage rdf:type gdprov2:PersonalDataEntity ;
-    gdprov2:wasGeneratedBy prox:ArchiveAlicesDataActivity ;
+prox:ArchivedAlicesLanguage rdf:type gdprov:PersonalDataEntity ;
+    gdprov:wasGeneratedBy prox:ArchiveAlicesDataActivity ;
     p-plan:correspondsToVariable prox:ArchivedLanguage ;
     prov:wasDerivedFrom prox:AnonymisedAlicesLanguage .
-prox:ArchivedAlicesDeviceType rdf:type gdprov2:PersonalDataEntity ;
-    gdprov2:wasGeneratedBy prox:ArchiveAlicesDataActivity ;
+prox:ArchivedAlicesDeviceType rdf:type gdprov:PersonalDataEntity ;
+    gdprov:wasGeneratedBy prox:ArchiveAlicesDataActivity ;
     p-plan:correspondsToVariable prox:ArchivedDeviceType ;
     prov:wasDerivedFrom prox:AnonymisedAlicesDeviceType .
-prox:ArchivedAlicesDeviceNumber rdf:type gdprov2:PersonalDataEntity ;
-    gdprov2:wasGeneratedBy prox:ArchiveAlicesDataActivity ;
+prox:ArchivedAlicesDeviceNumber rdf:type gdprov:PersonalDataEntity ;
+    gdprov:wasGeneratedBy prox:ArchiveAlicesDataActivity ;
     p-plan:correspondsToVariable prox:ArchivedDeviceNumber ;
     prov:wasDerivedFrom prox:AnonymisedAlicesDeviceNumber .
-prox:ArchivedAlicesDeviceIMEINumber rdf:type gdprov2:PersonalDataEntity ;
-    gdprov2:wasGeneratedBy prox:ArchiveAlicesDataActivity ;
+prox:ArchivedAlicesDeviceIMEINumber rdf:type gdprov:PersonalDataEntity ;
+    gdprov:wasGeneratedBy prox:ArchiveAlicesDataActivity ;
     p-plan:correspondsToVariable prox:ArchivedDeviceIMEINumber ;
     prov:wasDerivedFrom prox:AnonymisedBobsDeviceIMEINumber .
-prox:ArchivedAlicesCommunicationDuration rdf:type gdprov2:PersonalDataEntity ;
-    gdprov2:wasGeneratedBy prox:ArchiveAlicesDataActivity ;
+prox:ArchivedAlicesCommunicationDuration rdf:type gdprov:PersonalDataEntity ;
+    gdprov:wasGeneratedBy prox:ArchiveAlicesDataActivity ;
     p-plan:correspondsToVariable prox:ArchivedCommunicationDuration ;
     prov:wasDerivedFrom prox:AnonymisedAlicesCommunicationDuration .
-prox:ArchivedAlicesCommunicationLocation rdf:type gdprov2:PersonalDataEntity ;
-    gdprov2:wasGeneratedBy prox:ArchiveAlicesDataActivity ;
+prox:ArchivedAlicesCommunicationLocation rdf:type gdprov:PersonalDataEntity ;
+    gdprov:wasGeneratedBy prox:ArchiveAlicesDataActivity ;
     p-plan:correspondsToVariable prox:ArchivedCommunicationLocation ;
     prov:wasDerivedFrom prox:AnonymisedAlicesCommunicationLocation .
-prox:ArchivedAlicesDeviceDate rdf:type gdprov2:PersonalDataEntity ;
-    gdprov2:wasGeneratedBy prox:ArchiveAlicesDataActivity ;
+prox:ArchivedAlicesDeviceDate rdf:type gdprov:PersonalDataEntity ;
+    gdprov:wasGeneratedBy prox:ArchiveAlicesDataActivity ;
     p-plan:correspondsToVariable prox:ArchivedDeviceDate ;
     prov:wasDerivedFrom prox:AnonymisedAlicesDeviceDate .
 
-prox:ErasureAlicesInformationActivity rdf:type gdprov2:DataDeletionActivity ;
+prox:ErasureAlicesInformationActivity rdf:type gdprov:DataDeletionActivity ;
     prov:startedAtTime "2021-01-02T00:07:27Z"^^xsd:dateTime ;
     prov:endedAtTime "2021-01-02T01:23:32Z"^^xsd:dateTime ;
     p-plan:correspondsToStep prox:ErasureUserInformationStep ;
     prov:wasInformedBy prox:ArchiveAlicesDataActivity ;
-    gdprov2:invalidatedData prox:ArchivedAlicesSurname ,
+    gdprov:invalidatedData prox:ArchivedAlicesSurname ,
         prox:ArchivedAlicesFirstName ,
         prox:ArchivedAlicesLogin ,
         prox:ArchivedAlicesEmail ,
@@ -428,12 +428,12 @@ prox:ErasureAlicesInformationActivity rdf:type gdprov2:DataDeletionActivity ;
         prox:ArchivedAlicesDateOfBirth ,
         prox:ArchivedAlicesLanguage .
 
-prox:ErasureAlicesUseDataActivity rdf:type gdprov2:DataDeletionActivity ;
+prox:ErasureAlicesUseDataActivity rdf:type gdprov:DataDeletionActivity ;
     prov:startedAtTime "2021-01-02T00:07:27Z"^^xsd:dateTime ;
     prov:endedAtTime "2021-01-02T01:23:32Z"^^xsd:dateTime ;
     p-plan:correspondsToStep prox:ErasureUserInformationStep ;
     prov:wasInformedBy prox:ArchiveAlicesDataActivity ;
-    gdprov2:invalidatedData prox:ArchivedAlicesDeviceType ,
+    gdprov:invalidatedData prox:ArchivedAlicesDeviceType ,
         prox:ArchivedAlicesDeviceNumber ,
         prox:ArchivedAlicesDeviceIMEINumber ,
         prox:ArchivedAlicesCommunicationDuration ,
@@ -443,63 +443,63 @@ prox:ErasureAlicesUseDataActivity rdf:type gdprov2:DataDeletionActivity ;
 
 prox:Bob rdf:type prov:Agent.
 
-prox:WithdrawBobsConsentActivity rdf:type gdprov2:WithdrawConsentActivity ;
+prox:WithdrawBobsConsentActivity rdf:type gdprov:WithdrawConsentActivity ;
     prov:startedAtTime "2019-12-24T23:48:13Z"^^xsd:dateTime ;
     prov:endedAtTime "2019-12-24T23:49:33Z"^^xsd:dateTime ;
     p-plan:correspondsToStep prox:CustomersConsentWithdrawalStep .
 
-prox:BobsSurname rdf:type gdprov2:PersonalDataEntity ;
+prox:BobsSurname rdf:type gdprov:PersonalDataEntity ;
     prov:wasAttributedTo prox:Bob ;
     p-plan:correspondsToVariable prox:Surname .
-prox:BobsFirstName rdf:type gdprov2:PersonalDataEntity ;
+prox:BobsFirstName rdf:type gdprov:PersonalDataEntity ;
     prov:wasAttributedTo prox:Bob ;
     p-plan:correspondsToVariable prox:FirstName .
-prox:BobsLogin rdf:type gdprov2:PersonalDataEntity ;
+prox:BobsLogin rdf:type gdprov:PersonalDataEntity ;
     prov:wasAttributedTo prox:Bob ;
     p-plan:correspondsToVariable prox:Login .
-prox:BobsEmail rdf:type gdprov2:PersonalDataEntity ;
+prox:BobsEmail rdf:type gdprov:PersonalDataEntity ;
     prov:wasAttributedTo prox:Bob ;
     p-plan:correspondsToVariable prox:Email .
-prox:BobsAddress rdf:type gdprov2:PersonalDataEntity ;
+prox:BobsAddress rdf:type gdprov:PersonalDataEntity ;
     prov:wasAttributedTo prox:Bob ;
     p-plan:correspondsToVariable prox:Address .
-prox:BobsTelephoneNumber rdf:type gdprov2:PersonalDataEntity ;
+prox:BobsTelephoneNumber rdf:type gdprov:PersonalDataEntity ;
     prov:wasAttributedTo prox:Bob ;
     p-plan:correspondsToVariable prox:TelephoneNumber .
-prox:BobsMobilePhoneNumber rdf:type gdprov2:PersonalDataEntity ;
+prox:BobsMobilePhoneNumber rdf:type gdprov:PersonalDataEntity ;
     prov:wasAttributedTo prox:Bob ;
     p-plan:correspondsToVariable prox:MobilePhoneNumber .
-prox:BobsDateOfBirth rdf:type gdprov2:PersonalDataEntity ;
+prox:BobsDateOfBirth rdf:type gdprov:PersonalDataEntity ;
     prov:wasAttributedTo prox:Bob ;
     p-plan:correspondsToVariable prox:DateOfBirth .
-prox:BobsLanguage rdf:type gdprov2:PersonalDataEntity ;
+prox:BobsLanguage rdf:type gdprov:PersonalDataEntity ;
     prov:wasAttributedTo prox:Bob ;
     p-plan:correspondsToVariable prox:Language .
-prox:BobsDeviceType rdf:type gdprov2:PersonalDataEntity ;
+prox:BobsDeviceType rdf:type gdprov:PersonalDataEntity ;
     prov:wasAttributedTo prox:Bob ;
     p-plan:correspondsToVariable prox:DeviceType .
-prox:BobsDeviceNumber rdf:type gdprov2:PersonalDataEntity ;
+prox:BobsDeviceNumber rdf:type gdprov:PersonalDataEntity ;
     prov:wasAttributedTo prox:Bob ;
     p-plan:correspondsToVariable prox:DeviceNumber .
-prox:BobsDeviceIMEINumber rdf:type gdprov2:PersonalDataEntity ;
+prox:BobsDeviceIMEINumber rdf:type gdprov:PersonalDataEntity ;
     prov:wasAttributedTo prox:Bob ;
     p-plan:correspondsToVariable prox:DeviceIMEINumber .
-prox:BobsCommunicationDuration rdf:type gdprov2:PersonalDataEntity ;
+prox:BobsCommunicationDuration rdf:type gdprov:PersonalDataEntity ;
     prov:wasAttributedTo prox:Bob ;
     p-plan:correspondsToVariable prox:CommunicationDuration .
-prox:BobsCommunicationLocation rdf:type gdprov2:PersonalDataEntity ;
+prox:BobsCommunicationLocation rdf:type gdprov:PersonalDataEntity ;
     prov:wasAttributedTo prox:Bob ;
     p-plan:correspondsToVariable prox:CommunicationLocation .
-prox:BobsDeviceDate rdf:type gdprov2:PersonalDataEntity ;
+prox:BobsDeviceDate rdf:type gdprov:PersonalDataEntity ;
     prov:wasAttributedTo prox:Bob ;
     p-plan:correspondsToVariable prox:DeviceDate .
 
-prox:AnonymiseBobsDataActivity rdf:type gdprov2:AnonymisationActivity ;
+prox:AnonymiseBobsDataActivity rdf:type gdprov:AnonymisationActivity ;
     prov:startedAtTime "2020-01-01T00:00:03Z"^^xsd:dateTime ;
     prov:endedAtTime "2020-01-01T00:05:01Z"^^xsd:dateTime ;
     p-plan:correspondsToStep prox:AnonymiseCustomerDataStep ;
     prov:wasInformedBy prox:WithdrawBobsConsentActivity ;
-    gdprov2:used prox:BobsSurname ,
+    gdprov:used prox:BobsSurname ,
         prox:BobsFirstName ,
         prox:BobsLogin ,
         prox:BobsEmail ,
@@ -515,73 +515,73 @@ prox:AnonymiseBobsDataActivity rdf:type gdprov2:AnonymisationActivity ;
         prox:BobsCommunicationLocation ,
         prox:BobsDeviceDate .
 
-prox:AnonymisedBobsSurname rdf:type gdprov2:PersonalDataEntity ;
-    gdprov2:wasGeneratedBy prox:AnonymiseBobsDataActivity ;
+prox:AnonymisedBobsSurname rdf:type gdprov:PersonalDataEntity ;
+    gdprov:wasGeneratedBy prox:AnonymiseBobsDataActivity ;
     p-plan:correspondsToVariable prox:Anonymisedurname ;
     prov:wasDerivedFrom prox:BobsSurname .
-prox:AnonymisedBobsFirstName rdf:type gdprov2:PersonalDataEntity ;
-    gdprov2:wasGeneratedBy prox:AnonymiseBobsDataActivity ;
+prox:AnonymisedBobsFirstName rdf:type gdprov:PersonalDataEntity ;
+    gdprov:wasGeneratedBy prox:AnonymiseBobsDataActivity ;
     p-plan:correspondsToVariable prox:AnonymisedFirstName ;
     prov:wasDerivedFrom prox:BobsFirstName .
-prox:AnonymisedBobsLogin rdf:type gdprov2:PersonalDataEntity ;
-    gdprov2:wasGeneratedBy prox:AnonymiseBobsDataActivity ;
+prox:AnonymisedBobsLogin rdf:type gdprov:PersonalDataEntity ;
+    gdprov:wasGeneratedBy prox:AnonymiseBobsDataActivity ;
     p-plan:correspondsToVariable prox:AnonymisedLogin ;
     prov:wasDerivedFrom prox:BobsLogin .
-prox:AnonymisedBobsEmail rdf:type gdprov2:PersonalDataEntity ;
-    gdprov2:wasGeneratedBy prox:AnonymiseBobsDataActivity ;
+prox:AnonymisedBobsEmail rdf:type gdprov:PersonalDataEntity ;
+    gdprov:wasGeneratedBy prox:AnonymiseBobsDataActivity ;
     p-plan:correspondsToVariable prox:AnonymisedEmail ;
     prov:wasDerivedFrom prox:BobsEmail .
-prox:AnonymisedBobsAddress rdf:type gdprov2:PersonalDataEntity ;
-    gdprov2:wasGeneratedBy prox:AnonymiseBobsDataActivity ;
+prox:AnonymisedBobsAddress rdf:type gdprov:PersonalDataEntity ;
+    gdprov:wasGeneratedBy prox:AnonymiseBobsDataActivity ;
     p-plan:correspondsToVariable prox:AnonymisedAddress ;
     prov:wasDerivedFrom prox:BobsAddress .
-prox:AnonymisedBobsTelephoneNumber rdf:type gdprov2:PersonalDataEntity ;
-    gdprov2:wasGeneratedBy prox:AnonymiseBobsDataActivity ;
+prox:AnonymisedBobsTelephoneNumber rdf:type gdprov:PersonalDataEntity ;
+    gdprov:wasGeneratedBy prox:AnonymiseBobsDataActivity ;
     p-plan:correspondsToVariable prox:AnonymisedTelephoneNumber ;
     prov:wasDerivedFrom prox:BobsTelephoneNumber .
-prox:AnonymisedBobsMobilePhoneNumber rdf:type gdprov2:PersonalDataEntity ;
-    gdprov2:wasGeneratedBy prox:AnonymiseBobsDataActivity ;
+prox:AnonymisedBobsMobilePhoneNumber rdf:type gdprov:PersonalDataEntity ;
+    gdprov:wasGeneratedBy prox:AnonymiseBobsDataActivity ;
     p-plan:correspondsToVariable prox:AnonymisedMobilePhoneNumber ;
     prov:wasDerivedFrom prox:BobsMobilePhoneNumber .
-prox:AnonymisedBobsDateOfBirth rdf:type gdprov2:PersonalDataEntity ;
-    gdprov2:wasGeneratedBy prox:AnonymiseBobsDataActivity ;
+prox:AnonymisedBobsDateOfBirth rdf:type gdprov:PersonalDataEntity ;
+    gdprov:wasGeneratedBy prox:AnonymiseBobsDataActivity ;
     p-plan:correspondsToVariable prox:AnonymisedDateOfBirth ;
     prov:wasDerivedFrom prox:BobsDateOfBirth .
-prox:AnonymisedBobsLanguage rdf:type gdprov2:PersonalDataEntity ;
-    gdprov2:wasGeneratedBy prox:AnonymiseBobsDataActivity ;
+prox:AnonymisedBobsLanguage rdf:type gdprov:PersonalDataEntity ;
+    gdprov:wasGeneratedBy prox:AnonymiseBobsDataActivity ;
     p-plan:correspondsToVariable prox:AnonymisedLanguage ;
     prov:wasDerivedFrom prox:BobsLanguage .
-prox:AnonymisedBobsDeviceType rdf:type gdprov2:PersonalDataEntity ;
-    gdprov2:wasGeneratedBy prox:AnonymiseBobsDataActivity ;
+prox:AnonymisedBobsDeviceType rdf:type gdprov:PersonalDataEntity ;
+    gdprov:wasGeneratedBy prox:AnonymiseBobsDataActivity ;
     p-plan:correspondsToVariable prox:AnonymisedDeviceType ;
     prov:wasDerivedFrom prox:BobsDeviceType .
-prox:AnonymisedBobsDeviceNumber rdf:type gdprov2:PersonalDataEntity ;
-    gdprov2:wasGeneratedBy prox:AnonymiseBobsDataActivity ;
+prox:AnonymisedBobsDeviceNumber rdf:type gdprov:PersonalDataEntity ;
+    gdprov:wasGeneratedBy prox:AnonymiseBobsDataActivity ;
     p-plan:correspondsToVariable prox:AnonymisedDeviceNumber ;
     prov:wasDerivedFrom prox:BobsDeviceNumber .
-prox:AnonymisedBobsDeviceIMEINumber rdf:type gdprov2:PersonalDataEntity ;
-    gdprov2:wasGeneratedBy prox:AnonymiseBobsDataActivity ;
+prox:AnonymisedBobsDeviceIMEINumber rdf:type gdprov:PersonalDataEntity ;
+    gdprov:wasGeneratedBy prox:AnonymiseBobsDataActivity ;
     p-plan:correspondsToVariable prox:AnonymisedDeviceIMEINumber ;
     prov:wasDerivedFrom prox:BobsDeviceIMEINumber .
-prox:AnonymisedBobsCommunicationDuration rdf:type gdprov2:PersonalDataEntity ;
-    gdprov2:wasGeneratedBy prox:AnonymiseBobsDataActivity ;
+prox:AnonymisedBobsCommunicationDuration rdf:type gdprov:PersonalDataEntity ;
+    gdprov:wasGeneratedBy prox:AnonymiseBobsDataActivity ;
     p-plan:correspondsToVariable prox:AnonymisedCommunicationDuration ;
     prov:wasDerivedFrom prox:BobsCommunicationDuration .
-prox:AnonymisedBobsCommunicationLocation rdf:type gdprov2:PersonalDataEntity ;
-    gdprov2:wasGeneratedBy prox:AnonymiseBobsDataActivity ;
+prox:AnonymisedBobsCommunicationLocation rdf:type gdprov:PersonalDataEntity ;
+    gdprov:wasGeneratedBy prox:AnonymiseBobsDataActivity ;
     p-plan:correspondsToVariable prox:AnonymisedCommunicationLocation ;
     prov:wasDerivedFrom prox:BobsCommunicationLocation .
-prox:AnonymisedBobsDeviceDate rdf:type gdprov2:PersonalDataEntity ;
-    gdprov2:wasGeneratedBy prox:AnonymiseBobsDataActivity ;
+prox:AnonymisedBobsDeviceDate rdf:type gdprov:PersonalDataEntity ;
+    gdprov:wasGeneratedBy prox:AnonymiseBobsDataActivity ;
     p-plan:correspondsToVariable prox:AnonymisedDeviceDate ;
     prov:wasDerivedFrom prox:BobsDeviceDate .
 
-prox:ArchivedBobsDataActivity rdf:type gdprov2:DataTransformationActivity ;
+prox:ArchivedBobsDataActivity rdf:type gdprov:DataTransformationActivity ;
     prov:startedAtTime "2020-01-01T00:05:02Z"^^xsd:dateTime ;
     prov:endedAtTime "2020-01-01T00:07:27Z"^^xsd:dateTime ;
     p-plan:correspondsToStep prox:ArchiveCustomerDataStep ;
     prov:wasInformedBy prox:AnonymiseBobsDataActivity ;
-    gdprov2:used prox:AnonymisedBobsSurname ,
+    gdprov:used prox:AnonymisedBobsSurname ,
         prox:AnonymisedBobsFirstName ,
         prox:AnonymisedBobsLogin ,
         prox:AnonymisedBobsEmail ,
@@ -597,11 +597,11 @@ prox:ArchivedBobsDataActivity rdf:type gdprov2:DataTransformationActivity ;
         prox:AnonymisedBobsCommunicationLocation ,
         prox:AnonymisedBobsDeviceDate .
 
-prox:InvalidUsedBobsDataActivity rdf:type gdprov2:AnonymisationActivity ;
+prox:InvalidUsedBobsDataActivity rdf:type gdprov:AnonymisationActivity ;
     prov:startedAtTime "2019-12-24T23:50:03Z"^^xsd:dateTime ;
     prov:endedAtTime "2020-12-24T23:55:12Z"^^xsd:dateTime ;
     prov:wasInformedBy prox:AnonymiseBobsDataActivity ;
-    gdprov2:used prox:AnonymisedBobsSurname ,
+    gdprov:used prox:AnonymisedBobsSurname ,
         prox:AnonymisedBobsFirstName ,
         prox:AnonymisedBobsLogin ,
         prox:AnonymisedBobsEmail ,
@@ -617,73 +617,73 @@ prox:InvalidUsedBobsDataActivity rdf:type gdprov2:AnonymisationActivity ;
         prox:AnonymisedBobsCommunicationLocation ,
         prox:AnonymisedBobsDeviceDate .
 
-prox:ArchivedBobsSurname rdf:type gdprov2:PersonalDataEntity ;
-    gdprov2:wasGeneratedBy prox:ArchivedBobsDataActivity ;
+prox:ArchivedBobsSurname rdf:type gdprov:PersonalDataEntity ;
+    gdprov:wasGeneratedBy prox:ArchivedBobsDataActivity ;
     p-plan:correspondsToVariable prox:ArchivedSurname ;
     prov:wasDerivedFrom prox:AnonymisedBobsSurname .
-prox:ArchivedBobsFirstName rdf:type gdprov2:PersonalDataEntity ;
-    gdprov2:wasGeneratedBy prox:ArchivedBobsDataActivity ;
+prox:ArchivedBobsFirstName rdf:type gdprov:PersonalDataEntity ;
+    gdprov:wasGeneratedBy prox:ArchivedBobsDataActivity ;
     p-plan:correspondsToVariable prox:ArchivedFirstName ;
     prov:wasDerivedFrom prox:AnonymisedBobsFirstName .
-prox:ArchivedBobsLogin rdf:type gdprov2:PersonalDataEntity ;
-    gdprov2:wasGeneratedBy prox:ArchivedBobsDataActivity ;
+prox:ArchivedBobsLogin rdf:type gdprov:PersonalDataEntity ;
+    gdprov:wasGeneratedBy prox:ArchivedBobsDataActivity ;
     p-plan:correspondsToVariable prox:ArchivedLogin ;
     prov:wasDerivedFrom prox:AnonymisedBobsLogin .
-prox:ArchivedBobsEmail rdf:type gdprov2:PersonalDataEntity ;
-    gdprov2:wasGeneratedBy prox:ArchivedBobsDataActivity ;
+prox:ArchivedBobsEmail rdf:type gdprov:PersonalDataEntity ;
+    gdprov:wasGeneratedBy prox:ArchivedBobsDataActivity ;
     p-plan:correspondsToVariable prox:ArchivedEmail ;
     prov:wasDerivedFrom prox:AnonymisedBobsEmail .
-prox:ArchivedBobsAddress rdf:type gdprov2:PersonalDataEntity ;
-    gdprov2:wasGeneratedBy prox:ArchivedBobsDataActivity ;
+prox:ArchivedBobsAddress rdf:type gdprov:PersonalDataEntity ;
+    gdprov:wasGeneratedBy prox:ArchivedBobsDataActivity ;
     p-plan:correspondsToVariable prox:ArchivedAddress ;
     prov:wasDerivedFrom prox:AnonymisedBobsAddress .
-prox:ArchivedBobsTelephoneNumber rdf:type gdprov2:PersonalDataEntity ;
-    gdprov2:wasGeneratedBy prox:ArchivedBobsDataActivity ;
+prox:ArchivedBobsTelephoneNumber rdf:type gdprov:PersonalDataEntity ;
+    gdprov:wasGeneratedBy prox:ArchivedBobsDataActivity ;
     p-plan:correspondsToVariable prox:ArchivedTelephoneNumber ;
     prov:wasDerivedFrom prox:AnonymisedBobsTelephoneNumber .
-prox:ArchivedBobsMobilePhoneNumber rdf:type gdprov2:PersonalDataEntity ;
-    gdprov2:wasGeneratedBy prox:ArchivedBobsDataActivity ;
+prox:ArchivedBobsMobilePhoneNumber rdf:type gdprov:PersonalDataEntity ;
+    gdprov:wasGeneratedBy prox:ArchivedBobsDataActivity ;
     p-plan:correspondsToVariable prox:ArchivedMobilePhoneNumber ;
     prov:wasDerivedFrom prox:AnonymisedBobsTelephoneNumber .
-prox:ArchivedBobsDateOfBirth rdf:type gdprov2:PersonalDataEntity ;
-    gdprov2:wasGeneratedBy prox:ArchivedBobsDataActivity ;
+prox:ArchivedBobsDateOfBirth rdf:type gdprov:PersonalDataEntity ;
+    gdprov:wasGeneratedBy prox:ArchivedBobsDataActivity ;
     p-plan:correspondsToVariable prox:ArchivedDateOfBirth ;
     prov:wasDerivedFrom prox:AnonymisedBobsDateOfBirth .
-prox:ArchivedBobsLanguage rdf:type gdprov2:PersonalDataEntity ;
-    gdprov2:wasGeneratedBy prox:ArchivedBobsDataActivity ;
+prox:ArchivedBobsLanguage rdf:type gdprov:PersonalDataEntity ;
+    gdprov:wasGeneratedBy prox:ArchivedBobsDataActivity ;
     p-plan:correspondsToVariable prox:ArchivedLanguage ;
     prov:wasDerivedFrom prox:AnonymisedBobsLanguage .
-prox:ArchivedBobsDeviceType rdf:type gdprov2:PersonalDataEntity ;
-    gdprov2:wasGeneratedBy prox:ArchivedBobsDataActivity ;
+prox:ArchivedBobsDeviceType rdf:type gdprov:PersonalDataEntity ;
+    gdprov:wasGeneratedBy prox:ArchivedBobsDataActivity ;
     p-plan:correspondsToVariable prox:ArchivedDeviceType ;
     prov:wasDerivedFrom prox:AnonymisedBobsDeviceType .
-prox:ArchivedBobsDeviceNumber rdf:type gdprov2:PersonalDataEntity ;
-    gdprov2:wasGeneratedBy prox:ArchivedBobsDataActivity ;
+prox:ArchivedBobsDeviceNumber rdf:type gdprov:PersonalDataEntity ;
+    gdprov:wasGeneratedBy prox:ArchivedBobsDataActivity ;
     p-plan:correspondsToVariable prox:ArchivedDeviceNumber ;
     prov:wasDerivedFrom prox:AnonymisedBobsDeviceNumber .
-prox:ArchivedBobsDeviceIMEINumber rdf:type gdprov2:PersonalDataEntity ;
-    gdprov2:wasGeneratedBy prox:ArchivedBobsDataActivity ;
+prox:ArchivedBobsDeviceIMEINumber rdf:type gdprov:PersonalDataEntity ;
+    gdprov:wasGeneratedBy prox:ArchivedBobsDataActivity ;
     p-plan:correspondsToVariable prox:ArchivedDeviceIMEINumber ;
     prov:wasDerivedFrom prox:AnonymisedBobsDeviceIMEINumber .
-prox:ArchivedBobsCommunicationDuration rdf:type gdprov2:PersonalDataEntity ;
-    gdprov2:wasGeneratedBy prox:ArchivedBobsDataActivity ;
+prox:ArchivedBobsCommunicationDuration rdf:type gdprov:PersonalDataEntity ;
+    gdprov:wasGeneratedBy prox:ArchivedBobsDataActivity ;
     p-plan:correspondsToVariable prox:ArchivedCommunicationDuration ;
     prov:wasDerivedFrom prox:AnonymisedBobsCommunicationDuration .
-prox:ArchivedBobsCommunicationLocation rdf:type gdprov2:PersonalDataEntity ;
-    gdprov2:wasGeneratedBy prox:ArchivedBobsDataActivity ;
+prox:ArchivedBobsCommunicationLocation rdf:type gdprov:PersonalDataEntity ;
+    gdprov:wasGeneratedBy prox:ArchivedBobsDataActivity ;
     p-plan:correspondsToVariable prox:ArchivedCommunicationLocation ;
     prov:wasDerivedFrom prox:AnonymisedBobsCommunicationLocation .
-prox:ArchivedBobsDeviceDate rdf:type gdprov2:PersonalDataEntity ;
-    gdprov2:wasGeneratedBy prox:ArchivedBobsDataActivity ;
+prox:ArchivedBobsDeviceDate rdf:type gdprov:PersonalDataEntity ;
+    gdprov:wasGeneratedBy prox:ArchivedBobsDataActivity ;
     p-plan:correspondsToVariable prox:ArchivedDeviceDate ;
     prov:wasDerivedFrom prox:AnonymisedBobsDeviceDate .
 
-prox:ErasureBobsInformationActivity rdf:type gdprov2:DataDeletionActivity ;
+prox:ErasureBobsInformationActivity rdf:type gdprov:DataDeletionActivity ;
     prov:startedAtTime "2021-01-02T00:07:27Z"^^xsd:dateTime ;
     prov:endedAtTime "2021-01-02T01:23:32Z"^^xsd:dateTime ;
     p-plan:correspondsToStep prox:ErasureUserInformationStep ;
     prov:wasInformedBy prox:ArchivedBobsDataActivity ;
-    gdprov2:invalidatedData prox:ArchivedBobsSurname ,
+    gdprov:invalidatedData prox:ArchivedBobsSurname ,
         prox:ArchivedBobsFirstName ,
         prox:ArchivedBobsLogin ,
         prox:ArchivedBobsEmail ,
@@ -696,13 +696,13 @@ prox:ErasureBobsInformationActivity rdf:type gdprov2:DataDeletionActivity ;
 
 
 
-gdprov2:DataActivity rdfs:subClassOf prov:Activity .
-gdprov2:DataTransformationActivity rdfs:subClassOf gdprov2:DataActivity .
-gdprov2:DataDeletionActivity rdfs:subClassOf gdprov2:DataTransformationActivity .
-gdprov2:ArchiveDataActivity rdfs:subClassOf gdprov2:DataTransformationActivity .
-gdprov2:AnonymisationActivity rdfs:subClassOf gdprov2:DataTransformationActivity .
+gdprov:DataActivity rdfs:subClassOf prov:Activity .
+gdprov:DataTransformationActivity rdfs:subClassOf gdprov:DataActivity .
+gdprov:DataDeletionActivity rdfs:subClassOf gdprov:DataTransformationActivity .
+gdprov:ArchiveDataActivity rdfs:subClassOf gdprov:DataTransformationActivity .
+gdprov:AnonymisationActivity rdfs:subClassOf gdprov:DataTransformationActivity .
 
-gdprov2:DataStep rdfs:subClassOf p-plan:Step .
-gdprov2:DataTransformationStep rdfs:subClassOf gdprov2:DataStep .
-gdprov2:DataAnonymisationStep rdfs:subClassOf gdprov2:DataTransformationStep .
-gdprov2:DataDeletionStep rdfs:subClassOf gdprov2:DataStep; .
+gdprov:DataStep rdfs:subClassOf p-plan:Step .
+gdprov:DataTransformationStep rdfs:subClassOf gdprov:DataStep .
+gdprov:DataAnonymisationStep rdfs:subClassOf gdprov:DataTransformationStep .
+gdprov:DataDeletionStep rdfs:subClassOf gdprov:DataStep; .
