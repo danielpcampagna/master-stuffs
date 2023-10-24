@@ -1,0 +1,3390 @@
+@prefix rdfs: <http://www.w3.org/2000/01/rdf schema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix terms: <http://purl.org/dc/terms/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix gdprov: <http://example.org/GDPRov#> .
+@base <http://example.org/TrinityCollegeDublin#> .
+
+
+#################################################################
+#    Annotation properties
+#################################################################
+
+
+### https://example.org/GDPRov#Data
+gdprov:Data rdf:type owl:Class .
+
+
+### https://example.org/GDPRov#PersonalData
+gdprov:PersonalData rdf:type owl:Class .
+
+
+#################################################################
+#    Object Properties
+#################################################################
+
+
+### https://example.org/TrinityCollegeDublin#includesRecord
+:includesRecord rdf:type owl:ObjectProperty ;
+				rdfs:domain :RecordSeries ;
+				rdfs:range :Record ;
+				owl:inverseOf :belongsToRecordSeries ;
+				rdfs:label "includesRecord" .
+
+
+### https://example.org/TrinityCollegeDublin#belongsToRecordSeries
+:belongsToRecordSeries rdf:type owl:ObjectProperty ;
+					   rdfs:domain :Record ;
+					   rdfs:range :RecordSeries ;
+					   owl:inverseOf :includesRecord ;
+					   rdfs:label "belongsToRecordSeries" .
+
+
+### https://example.org/TrinityCollegeDublin#hasRetentionPeriod
+:hasRetentionPeriod rdf:type owl:ObjectProperty ;
+					rdfs:domain :RecordSeries ;
+					rdfs:range :RetentionPeriod ;
+					rdfs:label "hasRetentionPeriod" .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+
+### https://example.org/TrinityCollegeDublin#Record
+:Record rdf:type owl:Class ;
+		rdfs:subClassOf gdprov:Data ;
+		rdfs:comment "a record is defined as recorded information, in any form, created or received and maintained by the University in the course of its official business."@en ;
+		rdfs:isDefinedBy <https://www.tcd.ie/about/policies/160713%20Records%20Management%20Policy_website.pdf#page=2&search=4.1> ;
+		rdfs:label "Record"@en .
+
+
+### https://example.org/TrinityCollegeDublin#PermanentlyValuableRecord
+:PermanentlyValuableRecord rdf:type owl:Class ;
+						   rdfs:subClassOf :Record ;
+						   rdfs:comment "Permanently Valuable Records are defined as records with permanent legal, operational, administrative, historical, scientific, cultural or social significance. Permanently Valuable Records are subject to permanent archiving procedures."@en ;
+						   rdfs:isDefinedBy <https://www.tcd.ie/about/policies/160713%20Records%20Management%20Policy_website.pdf#page=2&search=4.2> ;
+						   rdfs:label "PermanentlyValuableRecord"@en .
+
+
+### https://example.org/TrinityCollegeDublin#RecordSeries
+:RecordSeries rdf:type owl:Class ;
+			  rdfs:comment "Record Series are groups of related records, which are created and used with a common purpose, for example, financial records; personnel records; examination results, committee minutes etc."@en ;
+			  rdfs:isDefinedBy <https://www.tcd.ie/about/policies/160713%20Records%20Management%20Policy_website.pdf#page=3&search=4.5> ;
+			  rdfs:label "RecordSeries"@en .
+
+
+### https://example.org/TrinityCollegeDublin#ActiveRecord
+:ActiveRecord rdf:type owl:Class
+			  rdfs:subClassOf :Record ;
+			  rdfs:comment "Active records are records which are required and referred to regularly for current use, and should be retained and maintained in office space and equipment which is readily accessible to users."@en ;
+			  rdfs:isDefinedBy <https://www.tcd.ie/about/policies/160713%20Records%20Management%20Policy_website.pdf#page=4&search=7.6> ;
+			  owl:disjointWith :SemiActiveRecord, :InactiveRecord ;
+			  rdfs:label "ActiveRecord"@en .
+
+
+### https://example.org/TrinityCollegeDublin#SemiActiveRecord
+:SemiActiveRecord rdf:type owl:Class
+				  rdfs:subClassOf :Record ;
+				  rdfs:comment "Semi-active records are records which are referred to infrequently and are not required regularly for current use. Semi-active records can be removed from the office space to off-site storage until they are no longer needed."@en ;
+				  rdfs:isDefinedBy <https://www.tcd.ie/about/policies/160713%20Records%20Management%20Policy_website.pdf#page=4&search=7.7> ;
+				  owl:disjointWith :ActiveRecord, :InactiveRecord ;
+				  rdfs:label "SemiActiveRecord"@en .
+
+
+### https://example.org/TrinityCollegeDublin#InactiveRecord
+:InactiveRecord rdf:type owl:Class
+				rdfs:subClassOf :Record ;
+				rdfs:comment "Inactive records are records for which the active and semi-active retention periods have lapsed and which are no longer required to carry out the functions for which they were created. Inactive records can be disposed of/archived as per the Records Retention Schedule appended to this document. "@en ;
+				rdfs:isDefinedBy <https://www.tcd.ie/about/policies/160713%20Records%20Management%20Policy_website.pdf#page=4&search=7.8> ;
+				owl:disjointWith :ActiveRecord, :SemiActiveRecord ;
+				rdfs:label "InactiveRecord"@en .
+
+
+### https://example.org/TrinityCollegeDublin#StudentEnrolmentRecord
+:StudentEnrolmentRecord rdf:type owl:Class ;
+						rdfs:subClassOf :RecordSeries ;
+						rdfs:comment "Student enrolment record (incl. student name, ID number, contact details on SI system etc.)"@en ;
+						rdfs:isDefinedBy <https://www.tcd.ie/about/policies/assets/pdf/160713-Records-Management-Policy-Records-Retention-Schedule-website.pdf#page=7> ;
+						rdfs:label "StudentEnrolmentRecord"@en .
+
+
+### https://example.org/TrinityCollegeDublin#TeachingAllocationsSemesterSchedules
+:TeachingAllocationsSemesterSchedules rdf:type owl:Class ;
+					 rdfs:subClassOf :RecordSeries ;
+					 rdfs:comment "Teaching allocations / semester schedules."@en ;
+					 rdfs:isDefinedBy <https://www.tcd.ie/about/policies/assets/pdf/160713-Records-Management-Policy-Records-Retention-Schedule-website.pdf#page=4> ;
+					 rdfs:label "TeachingAllocationsSemesterSchedules"@en .
+
+
+### https://example.org/TrinityCollegeDublin#RetentionPeriod
+:RetentionPeriod rdf:type owl:Class ;
+				 rdfs:subClassOf gdprov:StorageCondition ;
+				 rdfs:comment "The length of time each Record Series should be retained prior to final disposition."@en ;
+				 rdfs:isDefinedBy <https://www.tcd.ie/about/policies/160713%20Records%20Management%20Policy_website.pdf#page=3&search=4.6> ;
+				 rdfs:label "RetentionPeriod"@en .
+
+
+### https://example.org/TrinityCollegeDublin#Disposition
+:Disposition rdf:type owl:Class ;
+			 rdfs:subClassOf gdprov:Process ;
+			 rdfs:comment "Disposition is the action taken in regard to the disposal of active records, which can involve physical destruction by means of security shredding or recycling; transfer to archival storage for selective or full retention; or special disposition though a formal act of alienation from the custody of the University."@en ;
+			 rdfs:isDefinedBy <https://www.tcd.ie/about/policies/160713%20Records%20Management%20Policy_website.pdf#page=3&search=4.7> ;
+			 rdfs:label "Disposition"@en .
+
+
+### https://example.org/TrinityCollegeDublin#ConfidencialShreddingSecureDeletion
+:ConfidencialShreddingSecureDeletion rdf:type owl:Class ;
+									 rdfs:subClassOf :Disposition, gdprov:DataErasureProcess ;
+									 rdfs:comment "physical destruction by means of security shredding or recycling."@en ;
+			 						 rdfs:isDefinedBy <https://www.tcd.ie/about/policies/160713%20Records%20Management%20Policy_website.pdf#page=3&search=4.7> ;
+									 rdfs:label "ConfidencialShreddingSecureDeletion"@en .
+
+
+### Classes criadas pelo SAPOS #################################################
+
+
+### https://example.org/TrinityCollegeDublin#NonPersonalData
+:NonPersonalData rdf:type owl:Class ;
+    rdfs:subClassOf :Record ;
+    rdf:comment "Represents class of nonpersonal data"@en ;
+    rdfs:label "Nonpersonal Data"@en .
+
+
+### https://example.org/TrinityCollegeDublin#PersonalData
+:PersonalData rdf:type owl:Class, gdprov:PersonalData ;
+    rdfs:subClassOf :Record ;
+    rdf:comment "A nonpersonal data class"@en ;
+    rdfs:label "PersonalData"@en .
+
+
+### https://example.org/TrinityCollegeDublin#IndirectPersonalData
+:IndirectPersonalData rdf:type owl:Class, gdprov:PersonalData ;
+    rdfs:subClassOf :PersonalData ;
+    rdf:comment "A information that can be used to identify a person through some foreign key(s)"@en ;
+    rdfs:label "IndirectPersonalData"@en .
+
+
+### https://example.org/TrinityCollegeDublin#AccomplishmentId
+:AccomplishmentId rdf:type owl:Class ;
+    rdfs:subClassOf :IndirectPersonalData ;
+    rdf:comment "The idenifier of an accomplishment"@en ;
+    rdfs:label "AccomplishmentId"@en .
+
+
+### https://example.org/TrinityCollegeDublin#AccomplishmentEnrollmentId
+:AccomplishmentEnrollmentId rdf:type owl:Class ;
+    rdfs:subClassOf :PersonalData ;
+    rdf:comment "The identifier of the enrollment related to an accomplishment"@en ;
+    rdfs:label "AccomplishmentEnrollmentId"@en .
+
+
+### https://example.org/TrinityCollegeDublin#AccomplishmentPhaseId
+:AccomplishmentPhaseId rdf:type owl:Class ;
+    rdfs:subClassOf :IndirectPersonalData ;
+    rdf:comment "The identifier of the phase related to an accomplishment"@en ;
+    rdfs:label "AccomplishmentPhaseId"@en .
+
+
+### https://example.org/TrinityCollegeDublin#AccomplishmentConclusionDate
+:AccomplishmentConclusionDate rdf:type owl:Class ;
+    rdfs:subClassOf :IndirectPersonalData ;
+    rdf:comment "The conclusion date of an accomplishment"@en ;
+    rdfs:label "AccomplishmentConclusionDate"@en .
+
+
+### https://example.org/TrinityCollegeDublin#AccomplishmentObs
+:AccomplishmentObs rdf:type owl:Class ;
+    rdfs:subClassOf :IndirectPersonalData ;
+    rdf:comment "The observation notes about an accomplishment"@en ;
+    rdfs:label "AccomplishmentObs"@en .
+
+
+### https://example.org/TrinityCollegeDublin#AccomplishmentCreatedAt
+:AccomplishmentCreatedAt rdf:type owl:Class ;
+    rdfs:subClassOf :IndirectPersonalData ;
+    rdf:comment "The timestamp an accomplishment was created in the database"@en ;
+    rdfs:label "AccomplishmentCreatedAt"@en .
+
+
+### https://example.org/TrinityCollegeDublin#AccomplishmentUpdatedAt
+:AccomplishmentUpdatedAt rdf:type owl:Class ;
+    rdfs:subClassOf :IndirectPersonalData ;
+    rdf:comment "The timestamp of an accomplishment was updated in the database"@en ;
+    rdfs:label "AccomplishmentUpdatedAt"@en .
+
+
+### https://example.org/TrinityCollegeDublin#SqliteSequenceName
+:SqliteSequenceName rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The name of a sqlite sequence"@en ;
+	rdfs:label "SqliteSequenceName"@en .
+
+
+### https://example.org/TrinityCollegeDublin#SqliteSequenceSeq
+:SqliteSequenceSeq rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The seq of a sqlite sequence"@en ;
+	rdfs:label "SqliteSequenceSeq"@en .
+
+
+### https://example.org/TrinityCollegeDublin#AdvisementAuthorizationId
+:AdvisementAuthorizationId rdf:type owl:Class ;
+    rdfs:subClassOf :NonPersonalData ;
+    rdf:comment "The identifier of an advisement authorization"@en ;
+    rdfs:label "AdvisementAuthorizationId"@en .
+
+
+### https://example.org/TrinityCollegeDublin#AdvisementAuthorizationProfessorId
+:AdvisementAuthorizationProfessorId rdf:type owl:Class ;
+    rdfs:subClassOf :PersonalData ;
+    rdf:comment "The professor identifier of an advisement authorization"@en ;
+    rdfs:label "AdvisementAuthorizationProfessorId"@en .
+
+
+### https://example.org/TrinityCollegeDublin#AdvisementAuthorizationLevelId
+:AdvisementAuthorizationLevelId rdf:type owl:Class ;
+    rdfs:subClassOf :NonPersonalData ;
+    rdf:comment "The level identifier of an advisement authorization"@en ;
+    rdfs:label "AdvisementAuthorizationLevelId"@en .
+
+
+### https://example.org/TrinityCollegeDublin#AdvisementAuthorizationCreatedAt
+:AdvisementAuthorizationCreatedAt rdf:type owl:Class ;
+    rdfs:subClassOf :NonPersonalData ;
+    rdf:comment "The timestamp an advisement authorization was created in the database"@en ;
+    rdfs:label "AdvisementAuthorizationCreatedAt"@en .
+
+
+### https://example.org/TrinityCollegeDublin#AdvisementAuthorizationUpdatedAt
+:AdvisementAuthorizationUpdatedAt rdf:type owl:Class ;
+    rdfs:subClassOf :NonPersonalData ;
+    rdf:comment "The updated_at of an advisement authorization"@en ;
+    rdfs:label "AdvisementAuthorizationUpdatedAt"@en .
+
+
+### https://example.org/TrinityCollegeDublin#AdvisementId
+:AdvisementId rdf:type owl:Class ;
+	rdfs:subClassOf :IndirectPersonalData ;
+	rdf:comment "The identification of an advisement"@en ;
+	rdfs:label "AdvisementId"@en .
+
+
+### https://example.org/TrinityCollegeDublin#AdvisementProfessorId
+:AdvisementProfessorId rdf:type owl:Class ;
+	rdfs:subClassOf :PersonalData ;
+	rdf:comment "The professor identification of an advisement"@en ;
+	rdfs:label "AdvisementProfessorId"@en .
+
+
+### https://example.org/TrinityCollegeDublin#AdvisementEnrollmentId
+:AdvisementEnrollmentId rdf:type owl:Class ;
+	rdfs:subClassOf :PersonalData ;
+	rdf:comment "The enrollment identification of an advisement"@en ;
+	rdfs:label "AdvisementEnrollmentId"@en .
+
+
+### https://example.org/TrinityCollegeDublin#AdvisementMainAdvisor
+:AdvisementMainAdvisor rdf:type owl:Class ;
+	rdfs:subClassOf :IndirectPersonalData ;
+	rdf:comment "The main advisor of an advisement"@en ;
+	rdfs:label "AdvisementMainAdvisor"@en .
+
+
+### https://example.org/TrinityCollegeDublin#AdvisementCreatedAt
+:AdvisementCreatedAt rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The timestamp an advisement was created in the database"@en ;
+	rdfs:label "AdvisementCreatedAt"@en .
+
+
+### https://example.org/TrinityCollegeDublin#AdvisementUpdatedAt
+:AdvisementUpdatedAt rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The timestamp of an advisement was updated in the database"@en ;
+	rdfs:label "AdvisementUpdatedAt"@en .
+
+
+### https://example.org/TrinityCollegeDublin#AllocationId
+:AllocationId rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The identification of an allocation"@en ;
+	rdfs:label "AllocationId"@en .
+
+
+### https://example.org/TrinityCollegeDublin#AllocationDay
+:AllocationDay rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The week day an allocation occurs"@en ;
+	rdfs:label "AllocationDay"@en .
+
+
+### https://example.org/TrinityCollegeDublin#AllocationRoom
+:AllocationRoom rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The room of an allocation"@en ;
+	rdfs:label "AllocationRoom"@en .
+
+
+### https://example.org/TrinityCollegeDublin#AllocationStartTime
+:AllocationStartTime rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The start time of an allocation"@en ;
+	rdfs:label "AllocationStartTime"@en .
+
+
+### https://example.org/TrinityCollegeDublin#AllocationEndTime
+:AllocationEndTime rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The end time of an allocation"@en ;
+	rdfs:label "AllocationEndTime"@en .
+
+
+### https://example.org/TrinityCollegeDublin#AllocationCourseClassId
+:AllocationCourseClassId rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The course class identification of an allocation"@en ;
+	rdfs:label "AllocationCourseClassId"@en .
+
+
+### https://example.org/TrinityCollegeDublin#AllocationCreatedAt
+:AllocationCreatedAt rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The timestamp an allocation was created in the database"@en ;
+	rdfs:label "AllocationCreatedAt"@en .
+
+
+### https://example.org/TrinityCollegeDublin#AllocationUpdatedAt
+:AllocationUpdatedAt rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The timestamp of an allocation was updated in the database"@en ;
+	rdfs:label "AllocationUpdatedAt"@en .
+
+
+### https://example.org/TrinityCollegeDublin#CarrierWaveFileId
+:CarrierWaveFileId rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The identification of a carrier wave file"@en ;
+	rdfs:label "CarrierWaveFileId"@en .
+
+
+### https://example.org/TrinityCollegeDublin#CarrierWaveFileMediumHash
+:CarrierWaveFileMediumHash rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The medium hash of a carrier wave file"@en ;
+	rdfs:label "CarrierWaveFileMediumHash"@en .
+
+
+### https://example.org/TrinityCollegeDublin#CarrierWaveFileBinary
+:CarrierWaveFileBinary rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The binary of a carrier wave file"@en ;
+	rdfs:label "CarrierWaveFileBinary"@en .
+
+
+### https://example.org/TrinityCollegeDublin#CarrierWaveFileCreatedAt
+:CarrierWaveFileCreatedAt rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The timestamp a carrier wave file was created in the database"@en ;
+	rdfs:label "CarrierWaveFileCreatedAt"@en .
+
+
+### https://example.org/TrinityCollegeDublin#CarrierWaveFileUpdatedAt
+:CarrierWaveFileUpdatedAt rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The timestamp of a carrier wave file was updated in the database"@en ;
+	rdfs:label "CarrierWaveFileUpdatedAt"@en .
+
+
+### https://example.org/TrinityCollegeDublin#CarrierWaveFileReferenceCounter
+:CarrierWaveFileReferenceCounter rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The reference counter of a carrier wave file"@en ;
+	rdfs:label "CarrierWaveFileReferenceCounter"@en .
+
+
+### https://example.org/TrinityCollegeDublin#CarrierWaveFileOriginalFilename
+:CarrierWaveFileOriginalFilename rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The original filename of a carrier wave file"@en ;
+	rdfs:label "CarrierWaveFileOriginalFilename"@en .
+
+
+### https://example.org/TrinityCollegeDublin#CarrierWaveFileContentType
+:CarrierWaveFileContentType rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The content type of a carrier wave file"@en ;
+	rdfs:label "CarrierWaveFileContentType"@en .
+
+
+### https://example.org/TrinityCollegeDublin#CarrierWaveFileSize
+:CarrierWaveFileSize rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The size of a carrier wave file"@en ;
+	rdfs:label "CarrierWaveFileSize"@en .
+
+
+### https://example.org/TrinityCollegeDublin#CityId
+:CityId rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The identification of a city"@en ;
+	rdfs:label "CityId"@en .
+
+
+### https://example.org/TrinityCollegeDublin#CityName
+:CityName rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The name of a city"@en ;
+	rdfs:label "CityName"@en .
+
+
+### https://example.org/TrinityCollegeDublin#CityStateId
+:CityStateId rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The state identification of a city"@en ;
+	rdfs:label "CityStateId"@en .
+
+
+### https://example.org/TrinityCollegeDublin#CityCreatedAt
+:CityCreatedAt rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The timestamp a city was created in the database"@en ;
+	rdfs:label "CityCreatedAt"@en .
+
+
+### https://example.org/TrinityCollegeDublin#CityUpdatedAt
+:CityUpdatedAt rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The timestamp of a city was updated in the database"@en ;
+	rdfs:label "CityUpdatedAt"@en .
+
+
+### https://example.org/TrinityCollegeDublin#ClassEnrollmentRequestId
+:ClassEnrollmentRequestId rdf:type owl:Class ;
+	rdfs:subClassOf :IndirectPersonalData ;
+	rdf:comment "The identification of a class enrollment request"@en ;
+	rdfs:label "ClassEnrollmentRequestId"@en .
+
+
+### https://example.org/TrinityCollegeDublin#ClassEnrollmentRequestEnrollmentRequestId
+:ClassEnrollmentRequestEnrollmentRequestId rdf:type owl:Class ;
+	rdfs:subClassOf :IndirectPersonalData ;
+	rdf:comment "The enrollment request identification of a class enrollment request"@en ;
+	rdfs:label "ClassEnrollmentRequestEnrollmentRequestId"@en .
+
+
+### https://example.org/TrinityCollegeDublin#ClassEnrollmentRequestCourseClassId
+:ClassEnrollmentRequestCourseClassId rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The course class identification of a class enrollment request"@en ;
+	rdfs:label "ClassEnrollmentRequestCourseClassId"@en .
+
+
+### https://example.org/TrinityCollegeDublin#ClassEnrollmentRequestClassEnrollmentId
+:ClassEnrollmentRequestClassEnrollmentId rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The class enrollment identification of a class enrollment request"@en ;
+	rdfs:label "ClassEnrollmentRequestClassEnrollmentId"@en .
+
+
+### https://example.org/TrinityCollegeDublin#ClassEnrollmentRequestStatus
+:ClassEnrollmentRequestStatus rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The status of a class enrollment request"@en ;
+	rdfs:label "ClassEnrollmentRequestStatus"@en .
+
+
+### https://example.org/TrinityCollegeDublin#ClassEnrollmentRequestCreatedAt
+:ClassEnrollmentRequestCreatedAt rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The timestamp a class enrollment request was created in the database"@en ;
+	rdfs:label "ClassEnrollmentRequestCreatedAt"@en .
+
+
+### https://example.org/TrinityCollegeDublin#ClassEnrollmentRequestUpdatedAt
+:ClassEnrollmentRequestUpdatedAt rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The timestamp of a class enrollment request was updated in the database"@en ;
+	rdfs:label "ClassEnrollmentRequestUpdatedAt"@en .
+
+
+### https://example.org/TrinityCollegeDublin#ClassEnrollmentRequestAction
+:ClassEnrollmentRequestAction rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The action of a class enrollment request"@en ;
+	rdfs:label "ClassEnrollmentRequestAction"@en .
+
+
+### https://example.org/TrinityCollegeDublin#ClassEnrollmentId
+:ClassEnrollmentId rdf:type owl:Class ;
+	rdfs:subClassOf :IndirectPersonalData ;
+	rdf:comment "The identification of a class enrollment"@en ;
+	rdfs:label "ClassEnrollmentId"@en .
+
+
+### https://example.org/TrinityCollegeDublin#ClassEnrollmentObs
+:ClassEnrollmentObs rdf:type owl:Class ;
+	rdfs:subClassOf :IndirectPersonalData ;
+	rdf:comment "The obs of a class enrollment"@en ;
+	rdfs:label "ClassEnrollmentObs"@en .
+
+
+### https://example.org/TrinityCollegeDublin#ClassEnrollmentGrade
+:ClassEnrollmentGrade rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The grade of a class enrollment"@en ;
+	rdfs:label "ClassEnrollmentGrade"@en .
+
+
+### https://example.org/TrinityCollegeDublin#ClassEnrollmentSituation
+:ClassEnrollmentSituation rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The situation of a class enrollment"@en ;
+	rdfs:label "ClassEnrollmentSituation"@en .
+
+
+### https://example.org/TrinityCollegeDublin#ClassEnrollmentCourseClassId
+:ClassEnrollmentCourseClassId rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The course class identification of a class enrollment"@en ;
+	rdfs:label "ClassEnrollmentCourseClassId"@en .
+
+
+### https://example.org/TrinityCollegeDublin#ClassEnrollmentEnrollmentId
+:ClassEnrollmentEnrollmentId rdf:type owl:Class ;
+	rdfs:subClassOf :PersonalData ;
+	rdf:comment "The enrollment identification of a class enrollment"@en ;
+	rdfs:label "ClassEnrollmentEnrollmentId"@en .
+
+
+### https://example.org/TrinityCollegeDublin#ClassEnrollmentCreatedAt
+:ClassEnrollmentCreatedAt rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The timestamp a class enrollment was created in the database"@en ;
+	rdfs:label "ClassEnrollmentCreatedAt"@en .
+
+
+### https://example.org/TrinityCollegeDublin#ClassEnrollmentUpdatedAt
+:ClassEnrollmentUpdatedAt rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The timestamp of a class enrollment was updated in the database"@en ;
+	rdfs:label "ClassEnrollmentUpdatedAt"@en .
+
+
+### https://example.org/TrinityCollegeDublin#ClassEnrollmentDisapprovedByAbsence
+:ClassEnrollmentDisapprovedByAbsence rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The disapproved by absence of a class enrollment"@en ;
+	rdfs:label "ClassEnrollmentDisapprovedByAbsence"@en .
+
+
+### https://example.org/TrinityCollegeDublin#ClassEnrollmentGradeNotCountInGpr
+:ClassEnrollmentGradeNotCountInGpr rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The grade not count in gpr of a class enrollment"@en ;
+	rdfs:label "ClassEnrollmentGradeNotCountInGpr"@en .
+
+
+### https://example.org/TrinityCollegeDublin#ClassEnrollmentJustificationGradeNotCountInGpr
+:ClassEnrollmentJustificationGradeNotCountInGpr rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The justification grade not count in gpr of a class enrollment"@en ;
+	rdfs:label "ClassEnrollmentJustificationGradeNotCountInGpr"@en .
+
+
+### https://example.org/TrinityCollegeDublin#ClassScheduleId
+:ClassScheduleId rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The identification of a class schedule"@en ;
+	rdfs:label "ClassScheduleId"@en .
+
+
+### https://example.org/TrinityCollegeDublin#ClassScheduleYear
+:ClassScheduleYear rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The year of a class schedule"@en ;
+	rdfs:label "ClassScheduleYear"@en .
+
+
+### https://example.org/TrinityCollegeDublin#ClassScheduleSemester
+:ClassScheduleSemester rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The semester of a class schedule"@en ;
+	rdfs:label "ClassScheduleSemester"@en .
+
+
+### https://example.org/TrinityCollegeDublin#ClassScheduleEnrollmentStart
+:ClassScheduleEnrollmentStart rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The enrollment start of a class schedule"@en ;
+	rdfs:label "ClassScheduleEnrollmentStart"@en .
+
+
+### https://example.org/TrinityCollegeDublin#ClassScheduleEnrollmentEnd
+:ClassScheduleEnrollmentEnd rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The enrollment end of a class schedule"@en ;
+	rdfs:label "ClassScheduleEnrollmentEnd"@en .
+
+
+### https://example.org/TrinityCollegeDublin#ClassScheduleCreatedAt
+:ClassScheduleCreatedAt rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The timestamp a class schedule was created in the database"@en ;
+	rdfs:label "ClassScheduleCreatedAt"@en .
+
+
+### https://example.org/TrinityCollegeDublin#ClassScheduleUpdatedAt
+:ClassScheduleUpdatedAt rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The timestamp of a class schedule was updated in the database"@en ;
+	rdfs:label "ClassScheduleUpdatedAt"@en .
+
+
+### https://example.org/TrinityCollegeDublin#ClassScheduleEnrollmentAdjust
+:ClassScheduleEnrollmentAdjust rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The enrollment adjust of a class schedule"@en ;
+	rdfs:label "ClassScheduleEnrollmentAdjust"@en .
+
+
+### https://example.org/TrinityCollegeDublin#ClassScheduleEnrollmentInsert
+:ClassScheduleEnrollmentInsert rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The enrollment insert of a class schedule"@en ;
+	rdfs:label "ClassScheduleEnrollmentInsert"@en .
+
+
+### https://example.org/TrinityCollegeDublin#ClassScheduleEnrollmentRemove
+:ClassScheduleEnrollmentRemove rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The enrollment remove of a class schedule"@en ;
+	rdfs:label "ClassScheduleEnrollmentRemove"@en .
+
+
+### https://example.org/TrinityCollegeDublin#CountryId
+:CountryId rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The identification of a country"@en ;
+	rdfs:label "CountryId"@en .
+
+
+### https://example.org/TrinityCollegeDublin#CountryName
+:CountryName rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The name of a country"@en ;
+	rdfs:label "CountryName"@en .
+
+
+### https://example.org/TrinityCollegeDublin#CountryCreatedAt
+:CountryCreatedAt rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The timestamp a country was created in the database"@en ;
+	rdfs:label "CountryCreatedAt"@en .
+
+
+### https://example.org/TrinityCollegeDublin#CountryUpdatedAt
+:CountryUpdatedAt rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The timestamp of a country was updated in the database"@en ;
+	rdfs:label "CountryUpdatedAt"@en .
+
+
+### https://example.org/TrinityCollegeDublin#CountryNationality
+:CountryNationality rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The nationality of a country"@en ;
+	rdfs:label "CountryNationality"@en .
+
+
+### https://example.org/TrinityCollegeDublin#CourseClassId
+:CourseClassId rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The identification of a course class"@en ;
+	rdfs:label "CourseClassId"@en .
+
+
+### https://example.org/TrinityCollegeDublin#CourseClassName
+:CourseClassName rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The name of a course class"@en ;
+	rdfs:label "CourseClassName"@en .
+
+
+### https://example.org/TrinityCollegeDublin#CourseClassCourseId
+:CourseClassCourseId rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The course identification of a course class"@en ;
+	rdfs:label "CourseClassCourseId"@en .
+
+
+### https://example.org/TrinityCollegeDublin#CourseClassProfessorId
+:CourseClassProfessorId rdf:type owl:Class ;
+	rdfs:subClassOf :PersonalData ;
+	rdf:comment "The professor identification of a course class"@en ;
+	rdfs:label "CourseClassProfessorId"@en .
+
+
+### https://example.org/TrinityCollegeDublin#CourseClassYear
+:CourseClassYear rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The year of a course class"@en ;
+	rdfs:label "CourseClassYear"@en .
+
+
+### https://example.org/TrinityCollegeDublin#CourseClassSemester
+:CourseClassSemester rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The semester of a course class"@en ;
+	rdfs:label "CourseClassSemester"@en .
+
+
+### https://example.org/TrinityCollegeDublin#CourseClassCreatedAt
+:CourseClassCreatedAt rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The timestamp a course class was created in the database"@en ;
+	rdfs:label "CourseClassCreatedAt"@en .
+
+
+### https://example.org/TrinityCollegeDublin#CourseClassUpdatedAt
+:CourseClassUpdatedAt rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The timestamp of a course class was updated in the database"@en ;
+	rdfs:label "CourseClassUpdatedAt"@en .
+
+
+### https://example.org/TrinityCollegeDublin#CourseClassNotSchedulable
+:CourseClassNotSchedulable rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The not schedulable of a course class"@en ;
+	rdfs:label "CourseClassNotSchedulable"@en .
+
+
+### https://example.org/TrinityCollegeDublin#CourseClassObsSchedule
+:CourseClassObsSchedule rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The obs schedule of a course class"@en ;
+	rdfs:label "CourseClassObsSchedule"@en .
+
+
+### https://example.org/TrinityCollegeDublin#CourseResearchAreaId
+:CourseResearchAreaId rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The identification of a course research area"@en ;
+	rdfs:label "CourseResearchAreaId"@en .
+
+
+### https://example.org/TrinityCollegeDublin#CourseResearchAreaCourseId
+:CourseResearchAreaCourseId rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The course identification of a course research area"@en ;
+	rdfs:label "CourseResearchAreaCourseId"@en .
+
+
+### https://example.org/TrinityCollegeDublin#CourseResearchAreaResearchAreaId
+:CourseResearchAreaResearchAreaId rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The research area identification of a course research area"@en ;
+	rdfs:label "CourseResearchAreaResearchAreaId"@en .
+
+
+### https://example.org/TrinityCollegeDublin#CourseResearchAreaCreatedAt
+:CourseResearchAreaCreatedAt rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The timestamp a course research area was created in the database"@en ;
+	rdfs:label "CourseResearchAreaCreatedAt"@en .
+
+
+### https://example.org/TrinityCollegeDublin#CourseResearchAreaUpdatedAt
+:CourseResearchAreaUpdatedAt rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The timestamp of a course research area was updated in the database"@en ;
+	rdfs:label "CourseResearchAreaUpdatedAt"@en .
+
+
+### https://example.org/TrinityCollegeDublin#CourseTypeId
+:CourseTypeId rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The identification of a course type"@en ;
+	rdfs:label "CourseTypeId"@en .
+
+
+### https://example.org/TrinityCollegeDublin#CourseTypeName
+:CourseTypeName rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The name of a course type"@en ;
+	rdfs:label "CourseTypeName"@en .
+
+
+### https://example.org/TrinityCollegeDublin#CourseTypeHasScore
+:CourseTypeHasScore rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The has score of a course type"@en ;
+	rdfs:label "CourseTypeHasScore"@en .
+
+
+### https://example.org/TrinityCollegeDublin#CourseTypeCreatedAt
+:CourseTypeCreatedAt rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The timestamp a course type was created in the database"@en ;
+	rdfs:label "CourseTypeCreatedAt"@en .
+
+
+### https://example.org/TrinityCollegeDublin#CourseTypeUpdatedAt
+:CourseTypeUpdatedAt rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The timestamp of a course type was updated in the database"@en ;
+	rdfs:label "CourseTypeUpdatedAt"@en .
+
+
+### https://example.org/TrinityCollegeDublin#CourseTypeSchedulable
+:CourseTypeSchedulable rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The schedulable of a course type"@en ;
+	rdfs:label "CourseTypeSchedulable"@en .
+
+
+### https://example.org/TrinityCollegeDublin#CourseTypeShowClassName
+:CourseTypeShowClassName rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The show class name of a course type"@en ;
+	rdfs:label "CourseTypeShowClassName"@en .
+
+
+### https://example.org/TrinityCollegeDublin#CourseTypeAllowMultipleClasses
+:CourseTypeAllowMultipleClasses rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The allow multiple classes of a course type"@en ;
+	rdfs:label "CourseTypeAllowMultipleClasses"@en .
+
+
+### https://example.org/TrinityCollegeDublin#CourseTypeOnDemand
+:CourseTypeOnDemand rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The on demand of a course type"@en ;
+	rdfs:label "CourseTypeOnDemand"@en .
+
+
+### https://example.org/TrinityCollegeDublin#CourseId
+:CourseId rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The identification of a course"@en ;
+	rdfs:label "CourseId"@en .
+
+
+### https://example.org/TrinityCollegeDublin#CourseName
+:CourseName rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The name of a course"@en ;
+	rdfs:label "CourseName"@en .
+
+
+### https://example.org/TrinityCollegeDublin#CourseCode
+:CourseCode rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The code of a course"@en ;
+	rdfs:label "CourseCode"@en .
+
+
+### https://example.org/TrinityCollegeDublin#CourseContent
+:CourseContent rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The content of a course"@en ;
+	rdfs:label "CourseContent"@en .
+
+
+### https://example.org/TrinityCollegeDublin#CourseCredits
+:CourseCredits rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The credits of a course"@en ;
+	rdfs:label "CourseCredits"@en .
+
+
+### https://example.org/TrinityCollegeDublin#CourseCourseTypeId
+:CourseCourseTypeId rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The course type identification of a course"@en ;
+	rdfs:label "CourseCourseTypeId"@en .
+
+
+### https://example.org/TrinityCollegeDublin#CourseCreatedAt
+:CourseCreatedAt rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The timestamp a course was created in the database"@en ;
+	rdfs:label "CourseCreatedAt"@en .
+
+
+### https://example.org/TrinityCollegeDublin#CourseUpdatedAt
+:CourseUpdatedAt rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The timestamp of a course was updated in the database"@en ;
+	rdfs:label "CourseUpdatedAt"@en .
+
+
+### https://example.org/TrinityCollegeDublin#CourseWorkload
+:CourseWorkload rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The workload of a course"@en ;
+	rdfs:label "CourseWorkload"@en .
+
+
+### https://example.org/TrinityCollegeDublin#CourseAvailable
+:CourseAvailable rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The available of a course"@en ;
+	rdfs:label "CourseAvailable"@en .
+
+
+### https://example.org/TrinityCollegeDublin#CustomVariableId
+:CustomVariableId rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The identification of a custom variable"@en ;
+	rdfs:label "CustomVariableId"@en .
+
+
+### https://example.org/TrinityCollegeDublin#CustomVariableDescription
+:CustomVariableDescription rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The description of a custom variable"@en ;
+	rdfs:label "CustomVariableDescription"@en .
+
+
+### https://example.org/TrinityCollegeDublin#CustomVariableVariable
+:CustomVariableVariable rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The variable of a custom variable"@en ;
+	rdfs:label "CustomVariableVariable"@en .
+
+
+### https://example.org/TrinityCollegeDublin#CustomVariableCreatedAt
+:CustomVariableCreatedAt rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The timestamp a custom variable was created in the database"@en ;
+	rdfs:label "CustomVariableCreatedAt"@en .
+
+
+### https://example.org/TrinityCollegeDublin#CustomVariableUpdatedAt
+:CustomVariableUpdatedAt rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The timestamp of a custom variable was updated in the database"@en ;
+	rdfs:label "CustomVariableUpdatedAt"@en .
+
+
+### https://example.org/TrinityCollegeDublin#CustomVariableValue
+:CustomVariableValue rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The value of a custom variable"@en ;
+	rdfs:label "CustomVariableValue"@en .
+
+
+### https://example.org/TrinityCollegeDublin#DeferralTypeId
+:DeferralTypeId rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The identification of a deferral type"@en ;
+	rdfs:label "DeferralTypeId"@en .
+
+
+### https://example.org/TrinityCollegeDublin#DeferralTypeName
+:DeferralTypeName rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The name of a deferral type"@en ;
+	rdfs:label "DeferralTypeName"@en .
+
+
+### https://example.org/TrinityCollegeDublin#DeferralTypeDescription
+:DeferralTypeDescription rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The description of a deferral type"@en ;
+	rdfs:label "DeferralTypeDescription"@en .
+
+
+### https://example.org/TrinityCollegeDublin#DeferralTypeDurationSemesters
+:DeferralTypeDurationSemesters rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The duration semesters of a deferral type"@en ;
+	rdfs:label "DeferralTypeDurationSemesters"@en .
+
+
+### https://example.org/TrinityCollegeDublin#DeferralTypePhaseId
+:DeferralTypePhaseId rdf:type owl:Class ;
+	rdfs:subClassOf :IndirectPersonalData ;
+	rdf:comment "The phase identification of a deferral type"@en ;
+	rdfs:label "DeferralTypePhaseId"@en .
+
+
+### https://example.org/TrinityCollegeDublin#DeferralTypeCreatedAt
+:DeferralTypeCreatedAt rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The timestamp a deferral type was created in the database"@en ;
+	rdfs:label "DeferralTypeCreatedAt"@en .
+
+
+### https://example.org/TrinityCollegeDublin#DeferralTypeUpdatedAt
+:DeferralTypeUpdatedAt rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The timestamp of a deferral type was updated in the database"@en ;
+	rdfs:label "DeferralTypeUpdatedAt"@en .
+
+
+### https://example.org/TrinityCollegeDublin#DeferralTypeDurationMonths
+:DeferralTypeDurationMonths rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The duration months of a deferral type"@en ;
+	rdfs:label "DeferralTypeDurationMonths"@en .
+
+
+### https://example.org/TrinityCollegeDublin#DeferralTypeDurationDays
+:DeferralTypeDurationDays rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The duration days of a deferral type"@en ;
+	rdfs:label "DeferralTypeDurationDays"@en .
+
+
+### https://example.org/TrinityCollegeDublin#DeferralId
+:DeferralId rdf:type owl:Class ;
+	rdfs:subClassOf :IndirectPersonalData ;
+	rdf:comment "The identification of a deferral"@en ;
+	rdfs:label "DeferralId"@en .
+
+
+### https://example.org/TrinityCollegeDublin#DeferralApprovalDate
+:DeferralApprovalDate rdf:type owl:Class ;
+	rdfs:subClassOf :IndirectPersonalData ;
+	rdf:comment "The approval date of a deferral"@en ;
+	rdfs:label "DeferralApprovalDate"@en .
+
+
+### https://example.org/TrinityCollegeDublin#DeferralObs
+:DeferralObs rdf:type owl:Class ;
+	rdfs:subClassOf :IndirectPersonalData ;
+	rdf:comment "The obs of a deferral"@en ;
+	rdfs:label "DeferralObs"@en .
+
+
+### https://example.org/TrinityCollegeDublin#DeferralEnrollmentId
+:DeferralEnrollmentId rdf:type owl:Class ;
+	rdfs:subClassOf :PersonalData ;
+	rdf:comment "The enrollment identification of a deferral"@en ;
+	rdfs:label "DeferralEnrollmentId"@en .
+
+
+### https://example.org/TrinityCollegeDublin#DeferralDeferralTypeId
+:DeferralDeferralTypeId rdf:type owl:Class ;
+	rdfs:subClassOf :IndirectPersonalData ;
+	rdf:comment "The deferral type identification of a deferral"@en ;
+	rdfs:label "DeferralDeferralTypeId"@en .
+
+
+### https://example.org/TrinityCollegeDublin#DeferralCreatedAt
+:DeferralCreatedAt rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The timestamp a deferral was created in the database"@en ;
+	rdfs:label "DeferralCreatedAt"@en .
+
+
+### https://example.org/TrinityCollegeDublin#DeferralUpdatedAt
+:DeferralUpdatedAt rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The timestamp of a deferral was updated in the database"@en ;
+	rdfs:label "DeferralUpdatedAt"@en .
+
+
+### https://example.org/TrinityCollegeDublin#DismissalReasonId
+:DismissalReasonId rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The identification of a dismissal reason"@en ;
+	rdfs:label "DismissalReasonId"@en .
+
+
+### https://example.org/TrinityCollegeDublin#DismissalReasonName
+:DismissalReasonName rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The name of a dismissal reason"@en ;
+	rdfs:label "DismissalReasonName"@en .
+
+
+### https://example.org/TrinityCollegeDublin#DismissalReasonDescription
+:DismissalReasonDescription rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The description of a dismissal reason"@en ;
+	rdfs:label "DismissalReasonDescription"@en .
+
+
+### https://example.org/TrinityCollegeDublin#DismissalReasonCreatedAt
+:DismissalReasonCreatedAt rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The timestamp a dismissal reason was created in the database"@en ;
+	rdfs:label "DismissalReasonCreatedAt"@en .
+
+
+### https://example.org/TrinityCollegeDublin#DismissalReasonUpdatedAt
+:DismissalReasonUpdatedAt rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The timestamp of a dismissal reason was updated in the database"@en ;
+	rdfs:label "DismissalReasonUpdatedAt"@en .
+
+
+### https://example.org/TrinityCollegeDublin#DismissalReasonShowAdvisorName
+:DismissalReasonShowAdvisorName rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The show advisor name of a dismissal reason"@en ;
+	rdfs:label "DismissalReasonShowAdvisorName"@en .
+
+
+### https://example.org/TrinityCollegeDublin#DismissalReasonThesisJudgement
+:DismissalReasonThesisJudgement rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The thesis judgement of a dismissal reason"@en ;
+	rdfs:label "DismissalReasonThesisJudgement"@en .
+
+
+### https://example.org/TrinityCollegeDublin#DismissalId
+:DismissalId rdf:type owl:Class ;
+	rdfs:subClassOf :IndirectPersonalData ;
+	rdf:comment "The identification of a dismissal"@en ;
+	rdfs:label "DismissalId"@en .
+
+
+### https://example.org/TrinityCollegeDublin#DismissalDate
+:DismissalDate rdf:type owl:Class ;
+	rdfs:subClassOf :IndirectPersonalData ;
+	rdf:comment "The date of a dismissal"@en ;
+	rdfs:label "DismissalDate"@en .
+
+
+### https://example.org/TrinityCollegeDublin#DismissalEnrollmentId
+:DismissalEnrollmentId rdf:type owl:Class ;
+	rdfs:subClassOf :PersonalData ;
+	rdf:comment "The enrollment identification of a dismissal"@en ;
+	rdfs:label "DismissalEnrollmentId"@en .
+
+
+### https://example.org/TrinityCollegeDublin#DismissalDismissalReasonId
+:DismissalDismissalReasonId rdf:type owl:Class ;
+	rdfs:subClassOf :IndirectPersonalData ;
+	rdf:comment "The dismissal reason identification of a dismissal"@en ;
+	rdfs:label "DismissalDismissalReasonId"@en .
+
+
+### https://example.org/TrinityCollegeDublin#DismissalObs
+:DismissalObs rdf:type owl:Class ;
+	rdfs:subClassOf :IndirectPersonalData ;
+	rdf:comment "The obs of a dismissal"@en ;
+	rdfs:label "DismissalObs"@en .
+
+
+### https://example.org/TrinityCollegeDublin#DismissalCreatedAt
+:DismissalCreatedAt rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The timestamp a dismissal was created in the database"@en ;
+	rdfs:label "DismissalCreatedAt"@en .
+
+
+### https://example.org/TrinityCollegeDublin#DismissalUpdatedAt
+:DismissalUpdatedAt rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The timestamp of a dismissal was updated in the database"@en ;
+	rdfs:label "DismissalUpdatedAt"@en .
+
+
+### https://example.org/TrinityCollegeDublin#EmailTemplateId
+:EmailTemplateId rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The identification of an email template"@en ;
+	rdfs:label "EmailTemplateId"@en .
+
+
+### https://example.org/TrinityCollegeDublin#EmailTemplateName
+:EmailTemplateName rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The name of an email template"@en ;
+	rdfs:label "EmailTemplateName"@en .
+
+
+### https://example.org/TrinityCollegeDublin#EmailTemplateTo
+:EmailTemplateTo rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The to of an email template"@en ;
+	rdfs:label "EmailTemplateTo"@en .
+
+
+### https://example.org/TrinityCollegeDublin#EmailTemplateSubject
+:EmailTemplateSubject rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The subject of an email template"@en ;
+	rdfs:label "EmailTemplateSubject"@en .
+
+
+### https://example.org/TrinityCollegeDublin#EmailTemplateBody
+:EmailTemplateBody rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The body of an email template"@en ;
+	rdfs:label "EmailTemplateBody"@en .
+
+
+### https://example.org/TrinityCollegeDublin#EmailTemplateEnabled
+:EmailTemplateEnabled rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The enabled of an email template"@en ;
+	rdfs:label "EmailTemplateEnabled"@en .
+
+
+### https://example.org/TrinityCollegeDublin#EmailTemplateCreatedAt
+:EmailTemplateCreatedAt rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The timestamp an email template was created in the database"@en ;
+	rdfs:label "EmailTemplateCreatedAt"@en .
+
+
+### https://example.org/TrinityCollegeDublin#EmailTemplateUpdatedAt
+:EmailTemplateUpdatedAt rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The timestamp of an email template was updated in the database"@en ;
+	rdfs:label "EmailTemplateUpdatedAt"@en .
+
+
+### https://example.org/TrinityCollegeDublin#EnrollmentHoldId
+:EnrollmentHoldId rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The identification of an enrollment hold"@en ;
+	rdfs:label "EnrollmentHoldId"@en .
+
+
+### https://example.org/TrinityCollegeDublin#EnrollmentHoldEnrollmentId
+:EnrollmentHoldEnrollmentId rdf:type owl:Class ;
+	rdfs:subClassOf :PersonalData ;
+	rdf:comment "The enrollment identification of an enrollment hold"@en ;
+	rdfs:label "EnrollmentHoldEnrollmentId"@en .
+
+
+### https://example.org/TrinityCollegeDublin#EnrollmentHoldYear
+:EnrollmentHoldYear rdf:type owl:Class ;
+	rdfs:subClassOf :IndirectPersonalData ;
+	rdf:comment "The year of an enrollment hold"@en ;
+	rdfs:label "EnrollmentHoldYear"@en .
+
+
+### https://example.org/TrinityCollegeDublin#EnrollmentHoldSemester
+:EnrollmentHoldSemester rdf:type owl:Class ;
+	rdfs:subClassOf :IndirectPersonalData ;
+	rdf:comment "The semester of an enrollment hold"@en ;
+	rdfs:label "EnrollmentHoldSemester"@en .
+
+
+### https://example.org/TrinityCollegeDublin#EnrollmentHoldNumberOfSemesters
+:EnrollmentHoldNumberOfSemesters rdf:type owl:Class ;
+	rdfs:subClassOf :IndirectPersonalData ;
+	rdf:comment "The number of semesters of an enrollment hold"@en ;
+	rdfs:label "EnrollmentHoldNumberOfSemesters"@en .
+
+
+### https://example.org/TrinityCollegeDublin#EnrollmentHoldCreatedAt
+:EnrollmentHoldCreatedAt rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The timestamp an enrollment hold was created in the database"@en ;
+	rdfs:label "EnrollmentHoldCreatedAt"@en .
+
+
+### https://example.org/TrinityCollegeDublin#EnrollmentHoldUpdatedAt
+:EnrollmentHoldUpdatedAt rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The timestamp of an enrollment hold was updated in the database"@en ;
+	rdfs:label "EnrollmentHoldUpdatedAt"@en .
+
+
+### https://example.org/TrinityCollegeDublin#EnrollmentHoldActive
+:EnrollmentHoldActive rdf:type owl:Class ;
+	rdfs:subClassOf :IndirectPersonalData ;
+	rdf:comment "The active of an enrollment hold"@en ;
+	rdfs:label "EnrollmentHoldActive"@en .
+
+
+### https://example.org/TrinityCollegeDublin#EnrollmentRequestCommentId
+:EnrollmentRequestCommentId rdf:type owl:Class ;
+	rdfs:subClassOf :IndirectPersonalData ;
+	rdf:comment "The identification of an enrollment request comment"@en ;
+	rdfs:label "EnrollmentRequestCommentId"@en .
+
+
+### https://example.org/TrinityCollegeDublin#EnrollmentRequestCommentMessage
+:EnrollmentRequestCommentMessage rdf:type owl:Class ;
+	rdfs:subClassOf :IndirectPersonalData ;
+	rdf:comment "The message of an enrollment request comment"@en ;
+	rdfs:label "EnrollmentRequestCommentMessage"@en .
+
+
+### https://example.org/TrinityCollegeDublin#EnrollmentRequestCommentEnrollmentRequestId
+:EnrollmentRequestCommentEnrollmentRequestId rdf:type owl:Class ;
+	rdfs:subClassOf :IndirectPersonalData ;
+	rdf:comment "The enrollment request identification of an enrollment request comment"@en ;
+	rdfs:label "EnrollmentRequestCommentEnrollmentRequestId"@en .
+
+
+### https://example.org/TrinityCollegeDublin#EnrollmentRequestCommentUserId
+:EnrollmentRequestCommentUserId rdf:type owl:Class ;
+	rdfs:subClassOf :PersonalData ;
+	rdf:comment "The user identification of an enrollment request comment"@en ;
+	rdfs:label "EnrollmentRequestCommentUserId"@en .
+
+
+### https://example.org/TrinityCollegeDublin#EnrollmentRequestCommentCreatedAt
+:EnrollmentRequestCommentCreatedAt rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The timestamp an enrollment request comment was created in the database"@en ;
+	rdfs:label "EnrollmentRequestCommentCreatedAt"@en .
+
+
+### https://example.org/TrinityCollegeDublin#EnrollmentRequestCommentUpdatedAt
+:EnrollmentRequestCommentUpdatedAt rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The timestamp of an enrollment request comment was updated in the database"@en ;
+	rdfs:label "EnrollmentRequestCommentUpdatedAt"@en .
+
+
+### https://example.org/TrinityCollegeDublin#EnrollmentRequestId
+:EnrollmentRequestId rdf:type owl:Class ;
+	rdfs:subClassOf :IndirectPersonalData ;
+	rdf:comment "The identification of an enrollment request"@en ;
+	rdfs:label "EnrollmentRequestId"@en .
+
+
+### https://example.org/TrinityCollegeDublin#EnrollmentRequestYear
+:EnrollmentRequestYear rdf:type owl:Class ;
+	rdfs:subClassOf :IndirectPersonalData ;
+	rdf:comment "The year of an enrollment request"@en ;
+	rdfs:label "EnrollmentRequestYear"@en .
+
+
+### https://example.org/TrinityCollegeDublin#EnrollmentRequestSemester
+:EnrollmentRequestSemester rdf:type owl:Class ;
+	rdfs:subClassOf :IndirectPersonalData ;
+	rdf:comment "The semester of an enrollment request"@en ;
+	rdfs:label "EnrollmentRequestSemester"@en .
+
+
+### https://example.org/TrinityCollegeDublin#EnrollmentRequestEnrollmentId
+:EnrollmentRequestEnrollmentId rdf:type owl:Class ;
+	rdfs:subClassOf :PersonalData ;
+	rdf:comment "The enrollment identification of an enrollment request"@en ;
+	rdfs:label "EnrollmentRequestEnrollmentId"@en .
+
+
+### https://example.org/TrinityCollegeDublin#EnrollmentRequestLastStudentChangeAt
+:EnrollmentRequestLastStudentChangeAt rdf:type owl:Class ;
+	rdfs:subClassOf :IndirectPersonalData ;
+	rdf:comment "The last student change at of an enrollment request"@en ;
+	rdfs:label "EnrollmentRequestLastStudentChangeAt"@en .
+
+
+### https://example.org/TrinityCollegeDublin#EnrollmentRequestLastStaffChangeAt
+:EnrollmentRequestLastStaffChangeAt rdf:type owl:Class ;
+	rdfs:subClassOf :IndirectPersonalData ;
+	rdf:comment "The last staff change at of an enrollment request"@en ;
+	rdfs:label "EnrollmentRequestLastStaffChangeAt"@en .
+
+
+### https://example.org/TrinityCollegeDublin#EnrollmentRequestCreatedAt
+:EnrollmentRequestCreatedAt rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The timestamp an enrollment request was created in the database"@en ;
+	rdfs:label "EnrollmentRequestCreatedAt"@en .
+
+
+### https://example.org/TrinityCollegeDublin#EnrollmentRequestUpdatedAt
+:EnrollmentRequestUpdatedAt rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The timestamp of an enrollment request was updated in the database"@en ;
+	rdfs:label "EnrollmentRequestUpdatedAt"@en .
+
+
+### https://example.org/TrinityCollegeDublin#EnrollmentRequestStudentViewAt
+:EnrollmentRequestStudentViewAt rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The student view at of an enrollment request"@en ;
+	rdfs:label "EnrollmentRequestStudentViewAt"@en .
+
+
+### https://example.org/TrinityCollegeDublin#EnrollmentStatusId
+:EnrollmentStatusId rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The identification of an enrollment status"@en ;
+	rdfs:label "EnrollmentStatusId"@en .
+
+
+### https://example.org/TrinityCollegeDublin#EnrollmentStatusName
+:EnrollmentStatusName rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The name of an enrollment status"@en ;
+	rdfs:label "EnrollmentStatusName"@en .
+
+
+### https://example.org/TrinityCollegeDublin#EnrollmentStatusCreatedAt
+:EnrollmentStatusCreatedAt rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The timestamp an enrollment status was created in the database"@en ;
+	rdfs:label "EnrollmentStatusCreatedAt"@en .
+
+
+### https://example.org/TrinityCollegeDublin#EnrollmentStatusUpdatedAt
+:EnrollmentStatusUpdatedAt rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The timestamp of an enrollment status was updated in the database"@en ;
+	rdfs:label "EnrollmentStatusUpdatedAt"@en .
+
+
+### https://example.org/TrinityCollegeDublin#EnrollmentStatusUser
+:EnrollmentStatusUser rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The user of an enrollment status"@en ;
+	rdfs:label "EnrollmentStatusUser"@en .
+
+
+### https://example.org/TrinityCollegeDublin#EnrollmentId
+:EnrollmentId rdf:type owl:Class ;
+    rdfs:subClassOf :PersonalData ;
+    rdf:comment "The identifier of an enrollment."@en ;
+    rdfs:label "EnrollmentId"@en .
+
+
+### https://example.org/TrinityCollegeDublin#EnrollmentEnrollmentNumber
+:EnrollmentEnrollmentNumber rdf:type owl:Class ;
+    rdfs:subClassOf :PersonalData ;
+    rdf:comment "The enrollment number of an enrollment."@en ;
+    rdfs:label "EnrollmentEnrollmentNumber"@en .
+
+
+### https://example.org/TrinityCollegeDublin#EnrollmentStudentId
+:EnrollmentStudentId rdf:type owl:Class ;
+    rdfs:subClassOf :PersonalData ;
+    rdf:comment "The student identifier of an enrollment."@en ;
+    rdfs:label "EnrollmentStudentId"@en .
+
+
+### https://example.org/TrinityCollegeDublin#EnrollmentLevelId
+:EnrollmentLevelId rdf:type owl:Class ;
+    rdfs:subClassOf :PersonalData ;
+    rdf:comment "The level identifier of an enrollment."@en ;
+    rdfs:label "EnrollmentLevelId"@en .
+
+
+### https://example.org/TrinityCollegeDublin#EnrollmentEnrollmentStatusId
+:EnrollmentEnrollmentStatusId rdf:type owl:Class ;
+    rdfs:subClassOf :PersonalData ;
+    rdf:comment "The enrollment status identifier of an enrollment."@en ;
+    rdfs:label "EnrollmentEnrollmentStatusId"@en .
+
+
+### https://example.org/TrinityCollegeDublin#EnrollmentAdmissionDate
+:EnrollmentAdmissionDate rdf:type owl:Class ;
+    rdfs:subClassOf :PersonalData ;
+    rdf:comment "The admission date of an enrollment."@en ;
+    rdfs:label "EnrollmentAdmissionDate"@en .
+
+
+### https://example.org/TrinityCollegeDublin#EnrollmentObs
+:EnrollmentObs rdf:type owl:Class ;
+    rdfs:subClassOf :PersonalData ;
+    rdf:comment "The observation notes about an enrollment."@en ;
+    rdfs:label "EnrollmentObs"@en .
+
+
+### https://example.org/TrinityCollegeDublin#EnrollmentCreatedAt
+:EnrollmentCreatedAt rdf:type owl:Class ;
+    rdfs:subClassOf :NonPersonalData ;
+    rdf:comment "The timestamp an enrollment was created in the database."@en ;
+    rdfs:label "EnrollmentCreatedAt"@en .
+
+
+### https://example.org/TrinityCollegeDublin#EnrollmentUpdatedAt
+:EnrollmentUpdatedAt rdf:type owl:Class ;
+    rdfs:subClassOf :NonPersonalData ;
+    rdf:comment "The lastest timestamp an enrollment was updated in the database."@en ;
+    rdfs:label "EnrollmentUpdatedAt"@en .
+
+
+### https://example.org/TrinityCollegeDublin#EnrollmentThesisTitle
+:EnrollmentThesisTitle rdf:type owl:Class ;
+    rdfs:subClassOf :PersonalData ;
+    rdf:comment "The thesis title of an enrollment."@en ;
+    rdfs:label "EnrollmentThesisTitle"@en .
+
+
+### https://example.org/TrinityCollegeDublin#EnrollmentThesisDefenseDate
+:EnrollmentThesisDefenseDate rdf:type owl:Class ;
+    rdfs:subClassOf :PersonalData ;
+    rdf:comment "The thesis defense date of an enrollment."@en ;
+    rdfs:label "EnrollmentThesisDefenseDate"@en .
+
+
+### https://example.org/TrinityCollegeDublin#EnrollmentResearchAreaId
+:EnrollmentResearchAreaId rdf:type owl:Class ;
+    rdfs:subClassOf :PersonalData ;
+    rdf:comment "The research area identifier of an enrollment."@en ;
+    rdfs:label "EnrollmentResearchAreaId"@en .
+
+
+### https://example.org/TrinityCollegeDublin#InstitutionId
+:InstitutionId rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The identification of an institution"@en ;
+	rdfs:label "InstitutionId"@en .
+
+
+### https://example.org/TrinityCollegeDublin#InstitutionName
+:InstitutionName rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The name of an institution"@en ;
+	rdfs:label "InstitutionName"@en .
+
+
+### https://example.org/TrinityCollegeDublin#InstitutionCreatedAt
+:InstitutionCreatedAt rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The timestamp an institution was created in the database"@en ;
+	rdfs:label "InstitutionCreatedAt"@en .
+
+
+### https://example.org/TrinityCollegeDublin#InstitutionUpdatedAt
+:InstitutionUpdatedAt rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The timestamp of an institution was updated in the database"@en ;
+	rdfs:label "InstitutionUpdatedAt"@en .
+
+
+### https://example.org/TrinityCollegeDublin#InstitutionCode
+:InstitutionCode rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The code of an institution"@en ;
+	rdfs:label "InstitutionCode"@en .
+
+
+### https://example.org/TrinityCollegeDublin#LevelId
+:LevelId rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The identification of a level"@en ;
+	rdfs:label "LevelId"@en .
+
+
+### https://example.org/TrinityCollegeDublin#LevelName
+:LevelName rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The name of a level"@en ;
+	rdfs:label "LevelName"@en .
+
+
+### https://example.org/TrinityCollegeDublin#LevelCreatedAt
+:LevelCreatedAt rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The timestamp a level was created in the database"@en ;
+	rdfs:label "LevelCreatedAt"@en .
+
+
+### https://example.org/TrinityCollegeDublin#LevelUpdatedAt
+:LevelUpdatedAt rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The timestamp of a level was updated in the database"@en ;
+	rdfs:label "LevelUpdatedAt"@en .
+
+
+### https://example.org/TrinityCollegeDublin#LevelCourseName
+:LevelCourseName rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The course name of a level"@en ;
+	rdfs:label "LevelCourseName"@en .
+
+
+### https://example.org/TrinityCollegeDublin#LevelDefaultDuration
+:LevelDefaultDuration rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The default duration of a level"@en ;
+	rdfs:label "LevelDefaultDuration"@en .
+
+
+### https://example.org/TrinityCollegeDublin#LevelShowAdvisementsPointsInList
+:LevelShowAdvisementsPointsInList rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The show advisements points in list of a level"@en ;
+	rdfs:label "LevelShowAdvisementsPointsInList"@en .
+
+
+### https://example.org/TrinityCollegeDublin#LevelShortNameShowedInListHeader
+:LevelShortNameShowedInListHeader rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The short name showed in list header of a level"@en ;
+	rdfs:label "LevelShortNameShowedInListHeader"@en .
+
+
+### https://example.org/TrinityCollegeDublin#MajorId
+:MajorId rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The identification of a major"@en ;
+	rdfs:label "MajorId"@en .
+
+
+### https://example.org/TrinityCollegeDublin#MajorName
+:MajorName rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The name of a major"@en ;
+	rdfs:label "MajorName"@en .
+
+
+### https://example.org/TrinityCollegeDublin#MajorLevelId
+:MajorLevelId rdf:type owl:Class ;
+	rdfs:subClassOf :IndirectPersonalData ;
+	rdf:comment "The level identification of a major"@en ;
+	rdfs:label "MajorLevelId"@en .
+
+
+### https://example.org/TrinityCollegeDublin#MajorInstitutionId
+:MajorInstitutionId rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The institution identification of a major"@en ;
+	rdfs:label "MajorInstitutionId"@en .
+
+
+### https://example.org/TrinityCollegeDublin#MajorCreatedAt
+:MajorCreatedAt rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The timestamp a major was created in the database"@en ;
+	rdfs:label "MajorCreatedAt"@en .
+
+
+### https://example.org/TrinityCollegeDublin#MajorUpdatedAt
+:MajorUpdatedAt rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The timestamp of a major was updated in the database"@en ;
+	rdfs:label "MajorUpdatedAt"@en .
+
+
+### https://example.org/TrinityCollegeDublin#NotificationLogId
+:NotificationLogId rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The identification of a notification log"@en ;
+	rdfs:label "NotificationLogId"@en .
+
+
+### https://example.org/TrinityCollegeDublin#NotificationLogNotificationId
+:NotificationLogNotificationId rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The notification identification of a notification log"@en ;
+	rdfs:label "NotificationLogNotificationId"@en .
+
+
+### https://example.org/TrinityCollegeDublin#NotificationLogCreatedAt
+:NotificationLogCreatedAt rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The timestamp a notification log was created in the database"@en ;
+	rdfs:label "NotificationLogCreatedAt"@en .
+
+
+### https://example.org/TrinityCollegeDublin#NotificationLogUpdatedAt
+:NotificationLogUpdatedAt rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The timestamp of a notification log was updated in the database"@en ;
+	rdfs:label "NotificationLogUpdatedAt"@en .
+
+
+### https://example.org/TrinityCollegeDublin#NotificationLogTo
+:NotificationLogTo rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The to of a notification log"@en ;
+	rdfs:label "NotificationLogTo"@en .
+
+
+### https://example.org/TrinityCollegeDublin#NotificationLogSubject
+:NotificationLogSubject rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The subject of a notification log"@en ;
+	rdfs:label "NotificationLogSubject"@en .
+
+
+### https://example.org/TrinityCollegeDublin#NotificationLogBody
+:NotificationLogBody rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The body of a notification log"@en ;
+	rdfs:label "NotificationLogBody"@en .
+
+
+### https://example.org/TrinityCollegeDublin#NotificationLogAttachmentsFileNames
+:NotificationLogAttachmentsFileNames rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The attachments file names of a notification log"@en ;
+	rdfs:label "NotificationLogAttachmentsFileNames"@en .
+
+
+### https://example.org/TrinityCollegeDublin#NotificationId
+:NotificationId rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The identification of a notification"@en ;
+	rdfs:label "NotificationId"@en .
+
+
+### https://example.org/TrinityCollegeDublin#NotificationTitle
+:NotificationTitle rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The title of a notification"@en ;
+	rdfs:label "NotificationTitle"@en .
+
+
+### https://example.org/TrinityCollegeDublin#NotificationToTemplate
+:NotificationToTemplate rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The to template of a notification"@en ;
+	rdfs:label "NotificationToTemplate"@en .
+
+
+### https://example.org/TrinityCollegeDublin#NotificationSubjectTemplate
+:NotificationSubjectTemplate rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The subject template of a notification"@en ;
+	rdfs:label "NotificationSubjectTemplate"@en .
+
+
+### https://example.org/TrinityCollegeDublin#NotificationBodyTemplate
+:NotificationBodyTemplate rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The body template of a notification"@en ;
+	rdfs:label "NotificationBodyTemplate"@en .
+
+
+### https://example.org/TrinityCollegeDublin#NotificationNotificationOffset
+:NotificationNotificationOffset rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The notification offset of a notification"@en ;
+	rdfs:label "NotificationNotificationOffset"@en .
+
+
+### https://example.org/TrinityCollegeDublin#NotificationQueryOffset
+:NotificationQueryOffset rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The query offset of a notification"@en ;
+	rdfs:label "NotificationQueryOffset"@en .
+
+
+### https://example.org/TrinityCollegeDublin#NotificationFrequency
+:NotificationFrequency rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The frequency of a notification"@en ;
+	rdfs:label "NotificationFrequency"@en .
+
+
+### https://example.org/TrinityCollegeDublin#NotificationNextExecution
+:NotificationNextExecution rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The next execution of a notification"@en ;
+	rdfs:label "NotificationNextExecution"@en .
+
+
+### https://example.org/TrinityCollegeDublin#NotificationCreatedAt
+:NotificationCreatedAt rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The timestamp a notification was created in the database"@en ;
+	rdfs:label "NotificationCreatedAt"@en .
+
+
+### https://example.org/TrinityCollegeDublin#NotificationUpdatedAt
+:NotificationUpdatedAt rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The timestamp of a notification was updated in the database"@en ;
+	rdfs:label "NotificationUpdatedAt"@en .
+
+
+### https://example.org/TrinityCollegeDublin#NotificationIndividual
+:NotificationIndividual rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The individual of a notification"@en ;
+	rdfs:label "NotificationIndividual"@en .
+
+
+### https://example.org/TrinityCollegeDublin#NotificationQueryId
+:NotificationQueryId rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The query identification of a notification"@en ;
+	rdfs:label "NotificationQueryId"@en .
+
+
+### https://example.org/TrinityCollegeDublin#NotificationHasGradesReportPdfAttachment
+:NotificationHasGradesReportPdfAttachment rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The has grades report pdf attachment of a notification"@en ;
+	rdfs:label "NotificationHasGradesReportPdfAttachment"@en .
+
+
+### https://example.org/TrinityCollegeDublin#PhaseCompletionId
+:PhaseCompletionId rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The identification of a phase completion"@en ;
+	rdfs:label "PhaseCompletionId"@en .
+
+
+### https://example.org/TrinityCollegeDublin#PhaseCompletionEnrollmentId
+:PhaseCompletionEnrollmentId rdf:type owl:Class ;
+	rdfs:subClassOf :PersonalData ;
+	rdf:comment "The enrollment identification of a phase completion"@en ;
+	rdfs:label "PhaseCompletionEnrollmentId"@en .
+
+
+### https://example.org/TrinityCollegeDublin#PhaseCompletionPhaseId
+:PhaseCompletionPhaseId rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The phase identification of a phase completion"@en ;
+	rdfs:label "PhaseCompletionPhaseId"@en .
+
+
+### https://example.org/TrinityCollegeDublin#PhaseCompletionDueDate
+:PhaseCompletionDueDate rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The due date of a phase completion"@en ;
+	rdfs:label "PhaseCompletionDueDate"@en .
+
+
+### https://example.org/TrinityCollegeDublin#PhaseCompletionCompletionDate
+:PhaseCompletionCompletionDate rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The completion date of a phase completion"@en ;
+	rdfs:label "PhaseCompletionCompletionDate"@en .
+
+
+### https://example.org/TrinityCollegeDublin#PhaseCompletionCreatedAt
+:PhaseCompletionCreatedAt rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The timestamp a phase completion was created in the database"@en ;
+	rdfs:label "PhaseCompletionCreatedAt"@en .
+
+
+### https://example.org/TrinityCollegeDublin#PhaseCompletionUpdatedAt
+:PhaseCompletionUpdatedAt rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The timestamp of a phase completion was updated in the database"@en ;
+	rdfs:label "PhaseCompletionUpdatedAt"@en .
+
+
+### https://example.org/TrinityCollegeDublin#PhaseDurationId
+:PhaseDurationId rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The identification of a phase duration"@en ;
+	rdfs:label "PhaseDurationId"@en .
+
+
+### https://example.org/TrinityCollegeDublin#PhaseDurationPhaseId
+:PhaseDurationPhaseId rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The phase identification of a phase duration"@en ;
+	rdfs:label "PhaseDurationPhaseId"@en .
+
+
+### https://example.org/TrinityCollegeDublin#PhaseDurationLevelId
+:PhaseDurationLevelId rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The level identification of a phase duration"@en ;
+	rdfs:label "PhaseDurationLevelId"@en .
+
+
+### https://example.org/TrinityCollegeDublin#PhaseDurationDeadlineSemesters
+:PhaseDurationDeadlineSemesters rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The deadline semesters of a phase duration"@en ;
+	rdfs:label "PhaseDurationDeadlineSemesters"@en .
+
+
+### https://example.org/TrinityCollegeDublin#PhaseDurationCreatedAt
+:PhaseDurationCreatedAt rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The timestamp a phase duration was created in the database"@en ;
+	rdfs:label "PhaseDurationCreatedAt"@en .
+
+
+### https://example.org/TrinityCollegeDublin#PhaseDurationUpdatedAt
+:PhaseDurationUpdatedAt rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The timestamp of a phase duration was updated in the database"@en ;
+	rdfs:label "PhaseDurationUpdatedAt"@en .
+
+
+### https://example.org/TrinityCollegeDublin#PhaseDurationDeadlineMonths
+:PhaseDurationDeadlineMonths rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The deadline months of a phase duration"@en ;
+	rdfs:label "PhaseDurationDeadlineMonths"@en .
+
+
+### https://example.org/TrinityCollegeDublin#PhaseDurationDeadlineDays
+:PhaseDurationDeadlineDays rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The deadline days of a phase duration"@en ;
+	rdfs:label "PhaseDurationDeadlineDays"@en .
+
+
+### https://example.org/TrinityCollegeDublin#PhaseId
+:PhaseId rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The identification of a phase"@en ;
+	rdfs:label "PhaseId"@en .
+
+
+### https://example.org/TrinityCollegeDublin#PhaseName
+:PhaseName rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The name of a phase"@en ;
+	rdfs:label "PhaseName"@en .
+
+
+### https://example.org/TrinityCollegeDublin#PhaseDescription
+:PhaseDescription rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The description of a phase"@en ;
+	rdfs:label "PhaseDescription"@en .
+
+
+### https://example.org/TrinityCollegeDublin#PhaseCreatedAt
+:PhaseCreatedAt rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The timestamp a phase was created in the database"@en ;
+	rdfs:label "PhaseCreatedAt"@en .
+
+
+### https://example.org/TrinityCollegeDublin#PhaseUpdatedAt
+:PhaseUpdatedAt rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The timestamp of a phase was updated in the database"@en ;
+	rdfs:label "PhaseUpdatedAt"@en .
+
+
+### https://example.org/TrinityCollegeDublin#PhaseIsLanguage
+:PhaseIsLanguage rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The is language of a phase"@en ;
+	rdfs:label "PhaseIsLanguage"@en .
+
+
+### https://example.org/TrinityCollegeDublin#PhaseExtendOnHold
+:PhaseExtendOnHold rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The extend on hold of a phase"@en ;
+	rdfs:label "PhaseExtendOnHold"@en .
+
+
+### https://example.org/TrinityCollegeDublin#PhaseActive
+:PhaseActive rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The active of a phase"@en ;
+	rdfs:label "PhaseActive"@en .
+
+
+### https://example.org/TrinityCollegeDublin#ProfessorResearchAreaId
+:ProfessorResearchAreaId rdf:type owl:Class ;
+	rdfs:subClassOf :IndirectPersonalData ;
+	rdf:comment "The identification of a professor research area"@en ;
+	rdfs:label "ProfessorResearchAreaId"@en .
+
+
+### https://example.org/TrinityCollegeDublin#ProfessorResearchAreaProfessorId
+:ProfessorResearchAreaProfessorId rdf:type owl:Class ;
+	rdfs:subClassOf :PersonalData ;
+	rdf:comment "The professor identification of a professor research area"@en ;
+	rdfs:label "ProfessorResearchAreaProfessorId"@en .
+
+
+### https://example.org/TrinityCollegeDublin#ProfessorResearchAreaResearchAreaId
+:ProfessorResearchAreaResearchAreaId rdf:type owl:Class ;
+	rdfs:subClassOf :IndirectPersonalData ;
+	rdf:comment "The research area identification of a professor research area"@en ;
+	rdfs:label "ProfessorResearchAreaResearchAreaId"@en .
+
+
+### https://example.org/TrinityCollegeDublin#ProfessorResearchAreaCreatedAt
+:ProfessorResearchAreaCreatedAt rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The timestamp a professor research area was created in the database"@en ;
+	rdfs:label "ProfessorResearchAreaCreatedAt"@en .
+
+
+### https://example.org/TrinityCollegeDublin#ProfessorResearchAreaUpdatedAt
+:ProfessorResearchAreaUpdatedAt rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The timestamp of a professor research area was updated in the database"@en ;
+	rdfs:label "ProfessorResearchAreaUpdatedAt"@en .
+
+
+### https://example.org/TrinityCollegeDublin#ProfessorId
+:ProfessorId rdf:type owl:Class ;
+    rdfs:subClassOf :PersonalData ;
+    rdf:comment "The identifier of a professor."@en ;
+    rdfs:label "ProfessorId"@en .
+
+
+### https://example.org/TrinityCollegeDublin#ProfessorName
+:ProfessorName rdf:type owl:Class ;
+    rdfs:subClassOf :PersonalData ;
+    rdf:comment "The name of a professor."@en ;
+    rdfs:label "ProfessorName"@en .
+
+
+### https://example.org/TrinityCollegeDublin#ProfessorCPF
+:ProfessorCPF rdf:type owl:Class ;
+    rdfs:subClassOf :PersonalData ;
+    rdf:comment "The CPF of a professor."@en ;
+    rdfs:label "ProfessorCPF"@en .
+
+
+### https://example.org/TrinityCollegeDublin#ProfessorBirthdate
+:ProfessorBirthdate rdf:type owl:Class ;
+    rdfs:subClassOf :PersonalData ;
+    rdf:comment "The birthdate of a professor."@en ;
+    rdfs:label "ProfessorBirthdate"@en .
+
+
+### https://example.org/TrinityCollegeDublin#ProfessorCreatedAt
+:ProfessorCreatedAt rdf:type owl:Class ;
+    rdfs:subClassOf :NonPersonalData ;
+    rdf:comment "The timestamp a professor was created in the database."@en ;
+    rdfs:label "ProfessorCreatedAt"@en .
+
+
+### https://example.org/TrinityCollegeDublin#ProfessorUpdatedAt
+:ProfessorUpdatedAt rdf:type owl:Class ;
+    rdfs:subClassOf :NonPersonalData ;
+    rdf:comment "The lastest timestamp a professor was updated in the database."@en ;
+    rdfs:label "ProfessorUpdatedAt"@en .
+
+
+### https://example.org/TrinityCollegeDublin#ProfessorSex
+:Professorex rdf:type owl:Class ;
+    rdfs:subClassOf :PersonalData ;
+    rdf:comment "The sex of a professor."@en ;
+    rdfs:label "Professorex"@en .
+
+
+### https://example.org/TrinityCollegeDublin#ProfessorCivilStatus
+:ProfessorCivilStatus rdf:type owl:Class ;
+    rdfs:subClassOf :PersonalData ;
+    rdf:comment "The civil status of a professor."@en ;
+    rdfs:label "ProfessorCivilStatus"@en .
+
+
+### https://example.org/TrinityCollegeDublin#ProfessorIdentityNumber
+:ProfessorIdentityNumber rdf:type owl:Class ;
+    rdfs:subClassOf :PersonalData ;
+    rdf:comment "The identity number of a professor."@en ;
+    rdfs:label "ProfessorIdentityNumber"@en .
+
+
+### https://example.org/TrinityCollegeDublin#ProfessorIdentityIssuingBody
+:ProfessorIdentityIssuingBody rdf:type owl:Class ;
+    rdfs:subClassOf :PersonalData ;
+    rdf:comment "The identity issuing body of a professor."@en ;
+    rdfs:label "ProfessorIdentityIssuingBody"@en .
+
+
+### https://example.org/TrinityCollegeDublin#ProfessorIdentityExpeditionDate
+:ProfessorIdentityExpeditionDate rdf:type owl:Class ;
+    rdfs:subClassOf :PersonalData ;
+    rdf:comment "The identity expedition date of a professor."@en ;
+    rdfs:label "ProfessorIdentityExpeditionDate"@en .
+
+
+### https://example.org/TrinityCollegeDublin#ProfessorNeighborhood
+:ProfessorNeighborhood rdf:type owl:Class ;
+    rdfs:subClassOf :PersonalData ;
+    rdf:comment "The neighborhood of a professor."@en ;
+    rdfs:label "ProfessorNeighborhood"@en .
+
+
+### https://example.org/TrinityCollegeDublin#ProfessorAddress
+:ProfessorAddress rdf:type owl:Class ;
+    rdfs:subClassOf :PersonalData ;
+    rdf:comment "The address of a professor."@en ;
+    rdfs:label "ProfessorAddress"@en .
+
+
+### https://example.org/TrinityCollegeDublin#ProfessorCityId
+:ProfessorCityId rdf:type owl:Class ;
+    rdfs:subClassOf :PersonalData ;
+    rdf:comment "The city identifier of a professor."@en ;
+    rdfs:label "ProfessorCityId"@en .
+
+
+### https://example.org/TrinityCollegeDublin#ProfessorZipCode
+:ProfessorZipCode rdf:type owl:Class ;
+    rdfs:subClassOf :PersonalData ;
+    rdf:comment "The zip code of a professor."@en ;
+    rdfs:label "ProfessorZipCode"@en .
+
+
+### https://example.org/TrinityCollegeDublin#ProfessorTelephone1
+:ProfessorTelephone1 rdf:type owl:Class ;
+    rdfs:subClassOf :PersonalData ;
+    rdf:comment "The telephone1 of a professor."@en ;
+    rdfs:label "ProfessorTelephone1"@en .
+
+
+### https://example.org/TrinityCollegeDublin#ProfessorTelephone2
+:ProfessorTelephone2 rdf:type owl:Class ;
+    rdfs:subClassOf :PersonalData ;
+    rdf:comment "The telephone2 of a professor."@en ;
+    rdfs:label "ProfessorTelephone2"@en .
+
+
+### https://example.org/TrinityCollegeDublin#ProfessorSiape
+:Professoriape rdf:type owl:Class ;
+    rdfs:subClassOf :PersonalData ;
+    rdf:comment "The siape of a professor."@en ;
+    rdfs:label "Professoriape"@en .
+
+
+### https://example.org/TrinityCollegeDublin#ProfessorEnrollmentNumber
+:ProfessorEnrollmentNumber rdf:type owl:Class ;
+    rdfs:subClassOf :PersonalData ;
+    rdf:comment "The enrollment number of a professor."@en ;
+    rdfs:label "ProfessorEnrollmentNumber"@en .
+
+
+### https://example.org/TrinityCollegeDublin#ProfessorIdentityIssuingPlace
+:ProfessorIdentityIssuingPlace rdf:type owl:Class ;
+    rdfs:subClassOf :PersonalData ;
+    rdf:comment "The identity issuing place of a professor."@en ;
+    rdfs:label "ProfessorIdentityIssuingPlace"@en .
+
+
+### https://example.org/TrinityCollegeDublin#ProfessorInstitutionId
+:ProfessorInstitutionId rdf:type owl:Class ;
+    rdfs:subClassOf :PersonalData ;
+    rdf:comment "The institution identifier of a professor."@en ;
+    rdfs:label "ProfessorInstitutionId"@en .
+
+
+### https://example.org/TrinityCollegeDublin#ProfessorEmail
+:ProfessorEmail rdf:type owl:Class ;
+    rdfs:subClassOf :PersonalData ;
+    rdf:comment "The email of a professor."@en ;
+    rdfs:label "ProfessorEmail"@en .
+
+
+### https://example.org/TrinityCollegeDublin#ProfessorAcademicTitleDate
+:ProfessorAcademicTitleDate rdf:type owl:Class ;
+    rdfs:subClassOf :PersonalData ;
+    rdf:comment "The academic title date of a professor."@en ;
+    rdfs:label "ProfessorAcademicTitleDate"@en .
+
+
+### https://example.org/TrinityCollegeDublin#ProfessorAcademicTitleCountryId
+:ProfessorAcademicTitleCountryId rdf:type owl:Class ;
+    rdfs:subClassOf :PersonalData ;
+    rdf:comment "The academic title country identifier of a professor."@en ;
+    rdfs:label "ProfessorAcademicTitleCountryId"@en .
+
+
+### https://example.org/TrinityCollegeDublin#ProfessorAcademicTitleInstitutionId
+:ProfessorAcademicTitleInstitutionId rdf:type owl:Class ;
+    rdfs:subClassOf :PersonalData ;
+    rdf:comment "The academic title institution identifier of a professor."@en ;
+    rdfs:label "ProfessorAcademicTitleInstitutionId"@en .
+
+
+### https://example.org/TrinityCollegeDublin#ProfessorAcademicTitleLevelId
+:ProfessorAcademicTitleLevelId rdf:type owl:Class ;
+    rdfs:subClassOf :PersonalData ;
+    rdf:comment "The academic title level identifier of a professor."@en ;
+    rdfs:label "ProfessorAcademicTitleLevelId"@en .
+
+
+### https://example.org/TrinityCollegeDublin#ProfessorObs
+:ProfessorObs rdf:type owl:Class ;
+    rdfs:subClassOf :PersonalData ;
+    rdf:comment "The observation notes about a professor."@en ;
+    rdfs:label "ProfessorObs"@en .
+
+
+### https://example.org/TrinityCollegeDublin#ProfessorUserId
+:ProfessorUserId rdf:type owl:Class ;
+    rdfs:subClassOf :PersonalData ;
+    rdf:comment "The user identifier of a professor."@en ;
+    rdfs:label "ProfessorUserId"@en .
+
+
+### https://example.org/TrinityCollegeDublin#QueryId
+:QueryId rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The identification of a query"@en ;
+	rdfs:label "QueryId"@en .
+
+
+### https://example.org/TrinityCollegeDublin#QueryName
+:QueryName rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The name of a query"@en ;
+	rdfs:label "QueryName"@en .
+
+
+### https://example.org/TrinityCollegeDublin#QuerySql
+:QuerySql rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The sql of a query"@en ;
+	rdfs:label "QuerySql"@en .
+
+
+### https://example.org/TrinityCollegeDublin#QueryCreatedAt
+:QueryCreatedAt rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The timestamp a query was created in the database"@en ;
+	rdfs:label "QueryCreatedAt"@en .
+
+
+### https://example.org/TrinityCollegeDublin#QueryUpdatedAt
+:QueryUpdatedAt rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The timestamp of a query was updated in the database"@en ;
+	rdfs:label "QueryUpdatedAt"@en .
+
+
+### https://example.org/TrinityCollegeDublin#QueryDescription
+:QueryDescription rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The description of a query"@en ;
+	rdfs:label "QueryDescription"@en .
+
+
+### https://example.org/TrinityCollegeDublin#QueryParamId
+:QueryParamId rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The identification of a query param"@en ;
+	rdfs:label "QueryParamId"@en .
+
+
+### https://example.org/TrinityCollegeDublin#QueryParamQueryId
+:QueryParamQueryId rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The query identification of a query param"@en ;
+	rdfs:label "QueryParamQueryId"@en .
+
+
+### https://example.org/TrinityCollegeDublin#QueryParamName
+:QueryParamName rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The name of a query param"@en ;
+	rdfs:label "QueryParamName"@en .
+
+
+### https://example.org/TrinityCollegeDublin#QueryParamDefaultValue
+:QueryParamDefaultValue rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The default value of a query param"@en ;
+	rdfs:label "QueryParamDefaultValue"@en .
+
+
+### https://example.org/TrinityCollegeDublin#QueryParamValueType
+:QueryParamValueType rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The value type of a query param"@en ;
+	rdfs:label "QueryParamValueType"@en .
+
+
+### https://example.org/TrinityCollegeDublin#QueryParamCreatedAt
+:QueryParamCreatedAt rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The timestamp a query param was created in the database"@en ;
+	rdfs:label "QueryParamCreatedAt"@en .
+
+
+### https://example.org/TrinityCollegeDublin#QueryParamUpdatedAt
+:QueryParamUpdatedAt rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The timestamp of a query param was updated in the database"@en ;
+	rdfs:label "QueryParamUpdatedAt"@en .
+
+
+### https://example.org/TrinityCollegeDublin#ReportConfigurationId
+:ReportConfigurationId rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The identification of a report configuration"@en ;
+	rdfs:label "ReportConfigurationId"@en .
+
+
+### https://example.org/TrinityCollegeDublin#ReportConfigurationName
+:ReportConfigurationName rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The name of a report configuration"@en ;
+	rdfs:label "ReportConfigurationName"@en .
+
+
+### https://example.org/TrinityCollegeDublin#ReportConfigurationUseAtReport
+:ReportConfigurationUseAtReport rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The use at report of a report configuration"@en ;
+	rdfs:label "ReportConfigurationUseAtReport"@en .
+
+
+### https://example.org/TrinityCollegeDublin#ReportConfigurationUseAtTranscript
+:ReportConfigurationUseAtTranscript rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The use at transcript of a report configuration"@en ;
+	rdfs:label "ReportConfigurationUseAtTranscript"@en .
+
+
+### https://example.org/TrinityCollegeDublin#ReportConfigurationUseAtGradesReport
+:ReportConfigurationUseAtGradesReport rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The use at grades report of a report configuration"@en ;
+	rdfs:label "ReportConfigurationUseAtGradesReport"@en .
+
+
+### https://example.org/TrinityCollegeDublin#ReportConfigurationUseAtSchedule
+:ReportConfigurationUseAtSchedule rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The use at schedule of a report configuration"@en ;
+	rdfs:label "ReportConfigurationUseAtSchedule"@en .
+
+
+### https://example.org/TrinityCollegeDublin#ReportConfigurationText
+:ReportConfigurationText rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The text of a report configuration"@en ;
+	rdfs:label "ReportConfigurationText"@en .
+
+
+### https://example.org/TrinityCollegeDublin#ReportConfigurationImage
+:ReportConfigurationImage rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The image of a report configuration"@en ;
+	rdfs:label "ReportConfigurationImage"@en .
+
+
+### https://example.org/TrinityCollegeDublin#ReportConfigurationSignatureFooter
+:ReportConfigurationSignatureFooter rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The signature footer of a report configuration"@en ;
+	rdfs:label "ReportConfigurationSignatureFooter"@en .
+
+
+### https://example.org/TrinityCollegeDublin#ReportConfigurationOrder
+:ReportConfigurationOrder rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The order of a report configuration"@en ;
+	rdfs:label "ReportConfigurationOrder"@en .
+
+
+### https://example.org/TrinityCollegeDublin#ReportConfigurationScale
+:ReportConfigurationScale rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The scale of a report configuration"@en ;
+	rdfs:label "ReportConfigurationScale"@en .
+
+
+### https://example.org/TrinityCollegeDublin#ReportConfigurationX
+:ReportConfigurationX rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The x of a report configuration"@en ;
+	rdfs:label "ReportConfigurationX"@en .
+
+
+### https://example.org/TrinityCollegeDublin#ReportConfigurationY
+:ReportConfigurationY rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The y of a report configuration"@en ;
+	rdfs:label "ReportConfigurationY"@en .
+
+
+### https://example.org/TrinityCollegeDublin#ReportConfigurationCreatedAt
+:ReportConfigurationCreatedAt rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The timestamp a report configuration was created in the database"@en ;
+	rdfs:label "ReportConfigurationCreatedAt"@en .
+
+
+### https://example.org/TrinityCollegeDublin#ReportConfigurationUpdatedAt
+:ReportConfigurationUpdatedAt rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The timestamp of a report configuration was updated in the database"@en ;
+	rdfs:label "ReportConfigurationUpdatedAt"@en .
+
+
+### https://example.org/TrinityCollegeDublin#ResearchAreaId
+:ResearchAreaId rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The identification of a research area"@en ;
+	rdfs:label "ResearchAreaId"@en .
+
+
+### https://example.org/TrinityCollegeDublin#ResearchAreaName
+:ResearchAreaName rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The name of a research area"@en ;
+	rdfs:label "ResearchAreaName"@en .
+
+
+### https://example.org/TrinityCollegeDublin#ResearchAreaCode
+:ResearchAreaCode rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The code of a research area"@en ;
+	rdfs:label "ResearchAreaCode"@en .
+
+
+### https://example.org/TrinityCollegeDublin#ResearchAreaCreatedAt
+:ResearchAreaCreatedAt rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The timestamp a research area was created in the database"@en ;
+	rdfs:label "ResearchAreaCreatedAt"@en .
+
+
+### https://example.org/TrinityCollegeDublin#ResearchAreaUpdatedAt
+:ResearchAreaUpdatedAt rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The timestamp of a research area was updated in the database"@en ;
+	rdfs:label "ResearchAreaUpdatedAt"@en .
+
+
+### https://example.org/TrinityCollegeDublin#RoleId
+:RoleId rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The identification of a role"@en ;
+	rdfs:label "RoleId"@en .
+
+
+### https://example.org/TrinityCollegeDublin#RoleName
+:RoleName rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The name of a role"@en ;
+	rdfs:label "RoleName"@en .
+
+
+### https://example.org/TrinityCollegeDublin#RoleDescription
+:RoleDescription rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The description of a role"@en ;
+	rdfs:label "RoleDescription"@en .
+
+
+### https://example.org/TrinityCollegeDublin#RoleCreatedAt
+:RoleCreatedAt rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The timestamp a role was created in the database"@en ;
+	rdfs:label "RoleCreatedAt"@en .
+
+
+### https://example.org/TrinityCollegeDublin#RoleUpdatedAt
+:RoleUpdatedAt rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The timestamp of a role was updated in the database"@en ;
+	rdfs:label "RoleUpdatedAt"@en .
+
+
+### https://example.org/TrinityCollegeDublin#ScholarshipDurationId
+:ScholarshipDurationId rdf:type owl:Class ;
+	rdfs:subClassOf :IndirectPersonalData ;
+	rdf:comment "The identification of a scholarship duration"@en ;
+	rdfs:label "ScholarshipDurationId"@en .
+
+
+### https://example.org/TrinityCollegeDublin#ScholarshipDurationScholarshipId
+:ScholarshipDurationScholarshipId rdf:type owl:Class ;
+	rdfs:subClassOf :IndirectPersonalData ;
+	rdf:comment "The scholarship identification of a scholarship duration"@en ;
+	rdfs:label "ScholarshipDurationScholarshipId"@en .
+
+
+### https://example.org/TrinityCollegeDublin#ScholarshipDurationEnrollmentId
+:ScholarshipDurationEnrollmentId rdf:type owl:Class ;
+	rdfs:subClassOf :PersonalData ;
+	rdf:comment "The enrollment identification of a scholarship duration"@en ;
+	rdfs:label "ScholarshipDurationEnrollmentId"@en .
+
+
+### https://example.org/TrinityCollegeDublin#ScholarshipDurationStartDate
+:ScholarshipDurationStartDate rdf:type owl:Class ;
+	rdfs:subClassOf :IndirectPersonalData ;
+	rdf:comment "The start date of a scholarship duration"@en ;
+	rdfs:label "ScholarshipDurationStartDate"@en .
+
+
+### https://example.org/TrinityCollegeDublin#ScholarshipDurationEndDate
+:ScholarshipDurationEndDate rdf:type owl:Class ;
+	rdfs:subClassOf :IndirectPersonalData ;
+	rdf:comment "The end date of a scholarship duration"@en ;
+	rdfs:label "ScholarshipDurationEndDate"@en .
+
+
+### https://example.org/TrinityCollegeDublin#ScholarshipDurationObs
+:ScholarshipDurationObs rdf:type owl:Class ;
+	rdfs:subClassOf :IndirectPersonalData ;
+	rdf:comment "The obs of a scholarship duration"@en ;
+	rdfs:label "ScholarshipDurationObs"@en .
+
+
+### https://example.org/TrinityCollegeDublin#ScholarshipDurationCreatedAt
+:ScholarshipDurationCreatedAt rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The timestamp a scholarship duration was created in the database"@en ;
+	rdfs:label "ScholarshipDurationCreatedAt"@en .
+
+
+### https://example.org/TrinityCollegeDublin#ScholarshipDurationUpdatedAt
+:ScholarshipDurationUpdatedAt rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The timestamp of a scholarship duration was updated in the database"@en ;
+	rdfs:label "ScholarshipDurationUpdatedAt"@en .
+
+
+### https://example.org/TrinityCollegeDublin#ScholarshipDurationCancelDate
+:ScholarshipDurationCancelDate rdf:type owl:Class ;
+	rdfs:subClassOf :IndirectPersonalData ;
+	rdf:comment "The cancel date of a scholarship duration"@en ;
+	rdfs:label "ScholarshipDurationCancelDate"@en .
+
+
+### https://example.org/TrinityCollegeDublin#ScholarshipSuspensionId
+:ScholarshipSuspensionId rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The identification of a scholarship suspension"@en ;
+	rdfs:label "ScholarshipSuspensionId"@en .
+
+
+### https://example.org/TrinityCollegeDublin#ScholarshipSuspensionStartDate
+:ScholarshipSuspensionStartDate rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The start date of a scholarship suspension"@en ;
+	rdfs:label "ScholarshipSuspensionStartDate"@en .
+
+
+### https://example.org/TrinityCollegeDublin#ScholarshipSuspensionEndDate
+:ScholarshipSuspensionEndDate rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The end date of a scholarship suspension"@en ;
+	rdfs:label "ScholarshipSuspensionEndDate"@en .
+
+
+### https://example.org/TrinityCollegeDublin#ScholarshipSuspensionActive
+:ScholarshipSuspensionActive rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The active of a scholarship suspension"@en ;
+	rdfs:label "ScholarshipSuspensionActive"@en .
+
+
+### https://example.org/TrinityCollegeDublin#ScholarshipSuspensionScholarshipDurationId
+:ScholarshipSuspensionScholarshipDurationId rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The scholarship duration identification of a scholarship suspension"@en ;
+	rdfs:label "ScholarshipSuspensionScholarshipDurationId"@en .
+
+
+### https://example.org/TrinityCollegeDublin#ScholarshipSuspensionCreatedAt
+:ScholarshipSuspensionCreatedAt rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The timestamp a scholarship suspension was created in the database"@en ;
+	rdfs:label "ScholarshipSuspensionCreatedAt"@en .
+
+
+### https://example.org/TrinityCollegeDublin#ScholarshipSuspensionUpdatedAt
+:ScholarshipSuspensionUpdatedAt rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The timestamp of a scholarship suspension was updated in the database"@en ;
+	rdfs:label "ScholarshipSuspensionUpdatedAt"@en .
+
+
+### https://example.org/TrinityCollegeDublin#ScholarshipTypeId
+:ScholarshipTypeId rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The identification of a scholarship type"@en ;
+	rdfs:label "ScholarshipTypeId"@en .
+
+
+### https://example.org/TrinityCollegeDublin#ScholarshipTypeName
+:ScholarshipTypeName rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The name of a scholarship type"@en ;
+	rdfs:label "ScholarshipTypeName"@en .
+
+
+### https://example.org/TrinityCollegeDublin#ScholarshipTypeCreatedAt
+:ScholarshipTypeCreatedAt rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The timestamp a scholarship type was created in the database"@en ;
+	rdfs:label "ScholarshipTypeCreatedAt"@en .
+
+
+### https://example.org/TrinityCollegeDublin#ScholarshipTypeUpdatedAt
+:ScholarshipTypeUpdatedAt rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The timestamp of a scholarship type was updated in the database"@en ;
+	rdfs:label "ScholarshipTypeUpdatedAt"@en .
+
+
+### https://example.org/TrinityCollegeDublin#ScholarshipId
+:ScholarshipId rdf:type owl:Class ;
+	rdfs:subClassOf :IndirectPersonalData ;
+	rdf:comment "The identification of a scholarship"@en ;
+	rdfs:label "ScholarshipId"@en .
+
+
+### https://example.org/TrinityCollegeDublin#ScholarshipScholarshipNumber
+:ScholarshipScholarshipNumber rdf:type owl:Class ;
+	rdfs:subClassOf :IndirectPersonalData ;
+	rdf:comment "The scholarship number of a scholarship"@en ;
+	rdfs:label "ScholarshipScholarshipNumber"@en .
+
+
+### https://example.org/TrinityCollegeDublin#ScholarshipLevelId
+:ScholarshipLevelId rdf:type owl:Class ;
+	rdfs:subClassOf :IndirectPersonalData ;
+	rdf:comment "The level identification of a scholarship"@en ;
+	rdfs:label "ScholarshipLevelId"@en .
+
+
+### https://example.org/TrinityCollegeDublin#ScholarshipSponsorId
+:ScholarshipSponsorId rdf:type owl:Class ;
+	rdfs:subClassOf :IndirectPersonalData ;
+	rdf:comment "The sponsor identification of a scholarship"@en ;
+	rdfs:label "ScholarshipSponsorId"@en .
+
+
+### https://example.org/TrinityCollegeDublin#ScholarshipScholarshipTypeId
+:ScholarshipScholarshipTypeId rdf:type owl:Class ;
+	rdfs:subClassOf :IndirectPersonalData ;
+	rdf:comment "The scholarship type identification of a scholarship"@en ;
+	rdfs:label "ScholarshipScholarshipTypeId"@en .
+
+
+### https://example.org/TrinityCollegeDublin#ScholarshipStartDate
+:ScholarshipStartDate rdf:type owl:Class ;
+	rdfs:subClassOf :IndirectPersonalData ;
+	rdf:comment "The start date of a scholarship"@en ;
+	rdfs:label "ScholarshipStartDate"@en .
+
+
+### https://example.org/TrinityCollegeDublin#ScholarshipEndDate
+:ScholarshipEndDate rdf:type owl:Class ;
+	rdfs:subClassOf :IndirectPersonalData ;
+	rdf:comment "The end date of a scholarship"@en ;
+	rdfs:label "ScholarshipEndDate"@en .
+
+
+### https://example.org/TrinityCollegeDublin#ScholarshipObs
+:ScholarshipObs rdf:type owl:Class ;
+	rdfs:subClassOf :IndirectPersonalData ;
+	rdf:comment "The obs of a scholarship"@en ;
+	rdfs:label "ScholarshipObs"@en .
+
+
+### https://example.org/TrinityCollegeDublin#ScholarshipCreatedAt
+:ScholarshipCreatedAt rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The timestamp a scholarship was created in the database"@en ;
+	rdfs:label "ScholarshipCreatedAt"@en .
+
+
+### https://example.org/TrinityCollegeDublin#ScholarshipUpdatedAt
+:ScholarshipUpdatedAt rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The timestamp of a scholarship was updated in the database"@en ;
+	rdfs:label "ScholarshipUpdatedAt"@en .
+
+
+### https://example.org/TrinityCollegeDublin#ScholarshipProfessorId
+:ScholarshipProfessorId rdf:type owl:Class ;
+	rdfs:subClassOf :PersonalData ;
+	rdf:comment "The professor identification of a scholarship"@en ;
+	rdfs:label "ScholarshipProfessorId"@en .
+
+
+### https://example.org/TrinityCollegeDublin#SessionId
+:SessionId rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The identification of a session"@en ;
+	rdfs:label "SessionId"@en .
+
+
+### https://example.org/TrinityCollegeDublin#SessionSessionId
+:SessionSessionId rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The session identification of a session"@en ;
+	rdfs:label "SessionSessionId"@en .
+
+
+### https://example.org/TrinityCollegeDublin#SessionData
+:SessionData rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The data of a session"@en ;
+	rdfs:label "SessionData"@en .
+
+
+### https://example.org/TrinityCollegeDublin#SessionCreatedAt
+:SessionCreatedAt rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The timestamp a session was created in the database"@en ;
+	rdfs:label "SessionCreatedAt"@en .
+
+
+### https://example.org/TrinityCollegeDublin#SessionUpdatedAt
+:SessionUpdatedAt rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The timestamp of a session was updated in the database"@en ;
+	rdfs:label "SessionUpdatedAt"@en .
+
+
+### https://example.org/TrinityCollegeDublin#SponsorId
+:SponsorId rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The identification of a sponsor"@en ;
+	rdfs:label "SponsorId"@en .
+
+
+### https://example.org/TrinityCollegeDublin#SponsorName
+:SponsorName rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The name of a sponsor"@en ;
+	rdfs:label "SponsorName"@en .
+
+
+### https://example.org/TrinityCollegeDublin#SponsorCreatedAt
+:SponsorCreatedAt rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The timestamp a sponsor was created in the database"@en ;
+	rdfs:label "SponsorCreatedAt"@en .
+
+
+### https://example.org/TrinityCollegeDublin#SponsorUpdatedAt
+:SponsorUpdatedAt rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The timestamp of a sponsor was updated in the database"@en ;
+	rdfs:label "SponsorUpdatedAt"@en .
+
+
+### https://example.org/TrinityCollegeDublin#StateId
+:StateId rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The identification of a state"@en ;
+	rdfs:label "StateId"@en .
+
+
+### https://example.org/TrinityCollegeDublin#StateName
+:StateName rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The name of a state"@en ;
+	rdfs:label "StateName"@en .
+
+
+### https://example.org/TrinityCollegeDublin#StateCode
+:StateCode rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The code of a state"@en ;
+	rdfs:label "StateCode"@en .
+
+
+### https://example.org/TrinityCollegeDublin#StateCountryId
+:StateCountryId rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The country identification of a state"@en ;
+	rdfs:label "StateCountryId"@en .
+
+
+### https://example.org/TrinityCollegeDublin#StateCreatedAt
+:StateCreatedAt rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The timestamp a state was created in the database"@en ;
+	rdfs:label "StateCreatedAt"@en .
+
+
+### https://example.org/TrinityCollegeDublin#StateUpdatedAt
+:StateUpdatedAt rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The timestamp of a state was updated in the database"@en ;
+	rdfs:label "StateUpdatedAt"@en .
+
+
+### https://example.org/TrinityCollegeDublin#StudentMajorId
+:StudentMajorId rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The identification of a student major"@en ;
+	rdfs:label "StudentMajorId"@en .
+
+
+### https://example.org/TrinityCollegeDublin#StudentMajorMajorId
+:StudentMajorMajorId rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The major identification of a student major"@en ;
+	rdfs:label "StudentMajorMajorId"@en .
+
+
+### https://example.org/TrinityCollegeDublin#StudentMajorStudentId
+:StudentMajorStudentId rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The student identification of a student major"@en ;
+	rdfs:label "StudentMajorStudentId"@en .
+
+
+### https://example.org/TrinityCollegeDublin#StudentId
+:StudentId rdf:type owl:Class ;
+    rdfs:subClassOf :PersonalData ;
+    rdf:comment "The identifier of a student"@en ;
+    rdfs:label "Id"@en .
+
+
+### https://example.org/TrinityCollegeDublin#StudentName
+:StudentName rdf:type owl:Class ;
+    rdfs:subClassOf :PersonalData ;
+    rdf:comment "The name of a student"@en ;
+    rdfs:label "Name"@en .
+
+
+### https://example.org/TrinityCollegeDublin#StudentCPF
+:StudentCPF rdf:type owl:Class ;
+    rdfs:subClassOf :PersonalData ;
+    rdf:comment "The CPF of a student"@en ;
+    rdfs:label "CPF"@en .
+
+
+### https://example.org/TrinityCollegeDublin#StudentCreatedAt
+:StudentCreatedAt rdf:type owl:Class ;
+    rdfs:subClassOf :NonPersonalData ;
+    rdf:comment "The timestamp a student was created in the database"@en ;
+    rdfs:label "StudentCreatedAt"@en .
+
+
+### https://example.org/TrinityCollegeDublin#StudentUpdatedAt
+:StudentUpdatedAt rdf:type owl:Class ;
+    rdfs:subClassOf :NonPersonalData ;
+    rdf:comment "The lastest timestamp a student was updated in the database"@en ;
+    rdfs:label "StudentUpdatedAt"@en .
+
+
+### https://example.org/TrinityCollegeDublin#StudentObs
+:StudentObs rdf:type owl:Class ;
+    rdfs:subClassOf :PersonalData ;
+    rdf:comment "The observation notes about a student"@en ;
+    rdfs:label "ObsStudentObs"@en .
+
+
+### https://example.org/TrinityCollegeDublin#StudentBirthdate
+:StudentBirthdate rdf:type owl:Class ;
+    rdfs:subClassOf :PersonalData ;
+    rdf:comment "The birthdate of a student"@en ;
+    rdfs:label "StudentBirthdate"@en .
+
+
+### https://example.org/TrinityCollegeDublin#StudentSex
+:StudentSex rdf:type owl:Class ;
+    rdfs:subClassOf :PersonalData ;
+    rdf:comment "The sex of a student"@en ;
+    rdfs:label "StudentSex"@en .
+
+
+### https://example.org/TrinityCollegeDublin#StudentCivilStatus
+:StudentCivilStatus rdf:type owl:Class ;
+    rdfs:subClassOf :PersonalData ;
+    rdf:comment "The civil status of a student"@en ;
+    rdfs:label "StudentCivilStatus"@en .
+
+
+### https://example.org/TrinityCollegeDublin#StudentFatherName
+:StudentFatherName rdf:type owl:Class ;
+    rdfs:subClassOf :PersonalData ;
+    rdf:comment "The father name of a student"@en ;
+    rdfs:label "StudentFatherName"@en .
+
+
+### https://example.org/TrinityCollegeDublin#StudentMotherName
+:StudentMotherName rdf:type owl:Class ;
+    rdfs:subClassOf :PersonalData ;
+    rdf:comment "The mother name of a student"@en ;
+    rdfs:label "StudentMotherName"@en .
+
+
+### https://example.org/TrinityCollegeDublin#StudentIdentityNumber
+:StudentIdentityNumber rdf:type owl:Class ;
+    rdfs:subClassOf :PersonalData ;
+    rdf:comment "The identity number of a student"@en ;
+    rdfs:label "StudentIdentityNumber"@en .
+
+
+### https://example.org/TrinityCollegeDublin#StudentIdentityIssuingBody
+:StudentIdentityIssuingBody rdf:type owl:Class ;
+    rdfs:subClassOf :PersonalData ;
+    rdf:comment "The identity issuing body of a student"@en ;
+    rdfs:label "StudentIdentityIssuingBody"@en .
+
+
+### https://example.org/TrinityCollegeDublin#StudentIdentityExpeditionDate
+:StudentIdentityExpeditionDate rdf:type owl:Class ;
+    rdfs:subClassOf :PersonalData ;
+    rdf:comment "The identity expedition date of a student"@en ;
+    rdfs:label "StudentIdentityExpeditionDate"@en .
+
+
+### https://example.org/TrinityCollegeDublin#StudentEmployer
+:StudentEmployer rdf:type owl:Class ;
+    rdfs:subClassOf :PersonalData ;
+    rdf:comment "The employer information of a student"@en ;
+    rdfs:label "StudentEmployer"@en .
+
+
+### https://example.org/TrinityCollegeDublin#StudentJobPosition
+:StudentJobPosition rdf:type owl:Class ;
+    rdfs:subClassOf :PersonalData ;
+    rdf:comment "The job position of a student"@en ;
+    rdfs:label "StudentJobPosition"@en .
+
+
+### https://example.org/TrinityCollegeDublin#StudentBirthStateId
+:StudentBirthStateId rdf:type owl:Class ;
+    rdfs:subClassOf :PersonalData ;
+    rdf:comment "The birth state identifier of a student"@en ;
+    rdfs:label "StudentBirthStateId"@en .
+
+
+### https://example.org/TrinityCollegeDublin#StudentCityId
+:StudentCityId rdf:type owl:Class ;
+    rdfs:subClassOf :PersonalData ;
+    rdf:comment "The city identifier of a student"@en ;
+    rdfs:label "StudentCityId"@en .
+
+
+### https://example.org/TrinityCollegeDublin#StudentNeighborhood
+:StudentNeighborhood rdf:type owl:Class ;
+    rdfs:subClassOf :PersonalData ;
+    rdf:comment "The neighborhood information of a student"@en ;
+    rdfs:label "StudentNeighborhood"@en .
+
+
+### https://example.org/TrinityCollegeDublin#StudentZipCode
+:StudentZipCode rdf:type owl:Class ;
+    rdfs:subClassOf :PersonalData ;
+    rdf:comment "The zip code of a student"@en ;
+    rdfs:label "StudentZipCode"@en .
+
+
+### https://example.org/TrinityCollegeDublin#StudentAddress
+:StudentAddress rdf:type owl:Class ;
+    rdfs:subClassOf :PersonalData ;
+    rdf:comment "The address information of a student"@en ;
+    rdfs:label "StudentAddress"@en .
+
+
+### https://example.org/TrinityCollegeDublin#StudentTelephone1
+:StudentTelephone1 rdf:type owl:Class ;
+    rdfs:subClassOf :PersonalData ;
+    rdf:comment "A first telephone number related to a student"@en ;
+    rdfs:label "StudentTelephone1"@en .
+
+
+### https://example.org/TrinityCollegeDublin#StudentTelephone2
+:StudentTelephone2 rdf:type owl:Class ;
+    rdfs:subClassOf :PersonalData ;
+    rdf:comment "A second telephone number related to a student"@en ;
+    rdfs:label "StudentTelephone2"@en .
+
+
+### https://example.org/TrinityCollegeDublin#StudentEmail
+:StudentEmail rdf:type owl:Class ;
+    rdfs:subClassOf :PersonalData ;
+    rdf:comment "The email of a student"@en ;
+    rdfs:label "StudentEmail"@en .
+
+
+### https://example.org/TrinityCollegeDublin#StudentBirthCityId
+:StudentBirthCityId rdf:type owl:Class ;
+    rdfs:subClassOf :PersonalData ;
+    rdf:comment "The birth city identifier of a student"@en ;
+    rdfs:label "StudentBirthCityId"@en .
+
+
+### https://example.org/TrinityCollegeDublin#StudentIdentityIssuingPlace
+:StudentIdentityIssuingPlace rdf:type owl:Class ;
+    rdfs:subClassOf :PersonalData ;
+    rdf:comment "The identity issuing place of a student"@en ;
+    rdfs:label "StudentIdentityIssuingPlace"@en .
+
+
+### https://example.org/TrinityCollegeDublin#StudentPhoto
+:StudentPhoto rdf:type owl:Class ;
+    rdfs:subClassOf :PersonalData ;
+    rdf:comment "The photo of a student"@en ;
+    rdfs:label "StudentPhoto"@en .
+
+
+### https://example.org/TrinityCollegeDublin#StudentBirthCountryId
+:StudentBirthCountryId rdf:type owl:Class ;
+    rdfs:subClassOf :PersonalData ;
+    rdf:comment "The birth country identifier of a student"@en ;
+    rdfs:label "StudentBirthCountryId"@en .
+
+
+### https://example.org/TrinityCollegeDublin#StudentUserId
+:StudentUserId rdf:type owl:Class ;
+    rdfs:subClassOf :PersonalData ;
+    rdf:comment "The user identifier of a student"@en ;
+    rdfs:label "StudentUserId"@en .
+
+
+### https://example.org/TrinityCollegeDublin#ThesisDefenseCommitteeParticipationId
+:ThesisDefenseCommitteeParticipationId rdf:type owl:Class ;
+	rdfs:subClassOf :IndirectPersonalData ;
+	rdf:comment "The identification of a thesis defense committee participation"@en ;
+	rdfs:label "ThesisDefenseCommitteeParticipationId"@en .
+
+
+### https://example.org/TrinityCollegeDublin#ThesisDefenseCommitteeParticipationProfessorId
+:ThesisDefenseCommitteeParticipationProfessorId rdf:type owl:Class ;
+	rdfs:subClassOf :PersonalData ;
+	rdf:comment "The professor identification of a thesis defense committee participation"@en ;
+	rdfs:label "ThesisDefenseCommitteeParticipationProfessorId"@en .
+
+
+### https://example.org/TrinityCollegeDublin#ThesisDefenseCommitteeParticipationEnrollmentId
+:ThesisDefenseCommitteeParticipationEnrollmentId rdf:type owl:Class ;
+	rdfs:subClassOf :PersonalData ;
+	rdf:comment "The enrollment identification of a thesis defense committee participation"@en ;
+	rdfs:label "ThesisDefenseCommitteeParticipationEnrollmentId"@en .
+
+
+### https://example.org/TrinityCollegeDublin#ThesisDefenseCommitteeParticipationCreatedAt
+:ThesisDefenseCommitteeParticipationCreatedAt rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The timestamp a thesis defense committee participation was created in the database"@en ;
+	rdfs:label "ThesisDefenseCommitteeParticipationCreatedAt"@en .
+
+
+### https://example.org/TrinityCollegeDublin#ThesisDefenseCommitteeParticipationUpdatedAt
+:ThesisDefenseCommitteeParticipationUpdatedAt rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The timestamp of a thesis defense committee participation was updated in the database"@en ;
+	rdfs:label "ThesisDefenseCommitteeParticipationUpdatedAt"@en .
+
+
+# ### https://example.org/TrinityCollegeDublin#UserId
+:UserId rdf:type owl:Class ;
+    rdf:subClassOf :PersonalData ;
+    rdfs:comment "The identifier information of an user"@en ;
+    rdfs:label "UserId"@en .
+
+
+# ### https://example.org/TrinityCollegeDublin#UserName
+:UserName rdf:type owl:Class ;
+    rdf:subClassOf :PersonalData ;
+    rdfs:comment "The name of an user"@en ;
+    rdfs:label "UserName"@en .
+
+
+# ### https://example.org/TrinityCollegeDublin#UserCreatedAt
+:UserCreatedAt rdf:type owl:Class ;
+    rdf:subClassOf :NonPersonalData ;
+    rdfs:comment "The timestamp an user was created in the datebase"@en ;
+    rdfs:label "UserCreatedAt"@en .
+
+
+# ### https://example.org/TrinityCollegeDublin#UserUpdatedAt
+:UserUpdatedAt rdf:type owl:Class ;
+    rdf:subClassOf :NonPersonalData ;
+    rdfs:comment "The latest timestamp an user was updated in the datebase"@en ;
+    rdfs:label "UserUpdatedAt"@en .
+
+
+# ### https://example.org/TrinityCollegeDublin#UserEmail
+:UserEmail rdf:type owl:Class ;
+    rdf:subClassOf :PersonalData ;
+    rdfs:comment "The email of an user"@en ;
+    rdfs:label "UserEmail"@en .
+
+
+# ### https://example.org/TrinityCollegeDublin#UserEncryptedPassword
+:UserEncryptedPassword rdf:type owl:Class ;
+    rdf:subClassOf :NonPersonalData ;
+    rdfs:comment "The encrypted password of an user"@en ;
+    rdfs:label "UserEncryptedPassword"@en .
+
+
+# ### https://example.org/TrinityCollegeDublin#UserResetPasswordToken
+:UserResetPasswordToken rdf:type owl:Class ;
+    rdf:subClassOf :NonPersonalData ;
+    rdfs:comment "The reset password token of an user"@en ;
+    rdfs:label "UserResetPasswordToken"@en .
+
+
+# ### https://example.org/TrinityCollegeDublin#UserResetPasswordSentAt
+:UserResetPasswordSentAt rdf:type owl:Class ;
+    rdf:subClassOf :NonPersonalData ;
+    rdfs:comment "The reset password sent at of an user"@en ;
+    rdfs:label "UserResetPasswordSentAt"@en .
+
+
+# ### https://example.org/TrinityCollegeDublin#UserRememberCreatedAt
+:UserRememberCreatedAt rdf:type owl:Class ;
+    rdf:subClassOf :NonPersonalData ;
+    rdfs:comment "The timestamp, registered in the database, an user was remembered"@en ;
+    rdfs:label "UserRememberCreatedAt"@en .
+
+
+# ### https://example.org/TrinityCollegeDublin#UserSignInCount
+:UserSignInCount rdf:type owl:Class ;
+    rdf:subClassOf :NonPersonalData ;
+    rdfs:comment "The sign in count of an user"@en ;
+    rdfs:label "UserSignInCount"@en .
+
+
+# ### https://example.org/TrinityCollegeDublin#UserCurrentSignInAt
+:UserCurrentSignInAt rdf:type owl:Class ;
+    rdf:subClassOf :NonPersonalData ;
+    rdfs:comment "The current sign in at of an user"@en ;
+    rdfs:label "UserCurrentSignInAt"@en .
+
+
+# ### https://example.org/TrinityCollegeDublin#UserLastSignInAt
+:UserLastSignInAt rdf:type owl:Class ;
+    rdf:subClassOf :NonPersonalData ;
+    rdfs:comment "The last sign in at of an user"@en ;
+    rdfs:label "UserLastSignInAt"@en .
+
+
+# ### https://example.org/TrinityCollegeDublin#UserCurrentSignInIp
+:UserCurrentSignInIp rdf:type owl:Class ;
+    rdf:subClassOf :NonPersonalData ;
+    rdfs:comment "The current sign in ip of an user"@en ;
+    rdfs:label "UserCurrentSignInIp"@en .
+
+
+# ### https://example.org/TrinityCollegeDublin#UserLastSignInIp
+:UserLastSignInIp rdf:type owl:Class ;
+    rdf:subClassOf :NonPersonalData ;
+    rdfs:comment "The last sign in ip of an user"@en ;
+    rdfs:label "UserLastSignInIp"@en .
+
+
+# ### https://example.org/TrinityCollegeDublin#UserConfirmationToken
+:UserConfirmationToken rdf:type owl:Class ;
+    rdf:subClassOf :NonPersonalData ;
+    rdfs:comment "The confirmation token of an user"@en ;
+    rdfs:label "UserConfirmationToken"@en .
+
+
+# ### https://example.org/TrinityCollegeDublin#UserConfirmedAt
+:UserConfirmedAt rdf:type owl:Class ;
+    rdf:subClassOf :NonPersonalData ;
+    rdfs:comment "The confirmed at of an user"@en ;
+    rdfs:label "UserConfirmedAt"@en .
+
+
+# ### https://example.org/TrinityCollegeDublin#UserConfirmationSentAt
+:UserConfirmationSentAt rdf:type owl:Class ;
+    rdf:subClassOf :NonPersonalData ;
+    rdfs:comment "The confirmation sent at of an user"@en ;
+    rdfs:label "UserConfirmationSentAt"@en .
+
+
+# ### https://example.org/TrinityCollegeDublin#UserFailedAttempts
+:UserFailedAttempts rdf:type owl:Class ;
+    rdf:subClassOf :NonPersonalData ;
+    rdfs:comment "The failed attempts of an user"@en ;
+    rdfs:label "UserFailedAttempts"@en .
+
+
+# ### https://example.org/TrinityCollegeDublin#UserUnlockToken
+:UserUnlockToken rdf:type owl:Class ;
+    rdf:subClassOf :NonPersonalData ;
+    rdfs:comment "The unlock token of an user"@en ;
+    rdfs:label "UserUnlockToken"@en .
+
+
+# ### https://example.org/TrinityCollegeDublin#UserLockedAt
+:UserLockedAt rdf:type owl:Class ;
+    rdf:subClassOf :NonPersonalData ;
+    rdfs:comment "The locked at of an user"@en ;
+    rdfs:label "UserLockedAt"@en .
+
+
+# ### https://example.org/TrinityCollegeDublin#UserRoleId
+:UserRoleId rdf:type owl:Class ;
+    rdf:subClassOf :NonPersonalData ;
+    rdfs:comment "The role identification of an user"@en ;
+    rdfs:label "UserRoleId"@en .
+
+
+# ### https://example.org/TrinityCollegeDublin#UserUnconfirmedEmail
+:UserUnconfirmedEmail rdf:type owl:Class ;
+    rdf:subClassOf :NonPersonalData ;
+    rdfs:comment "The unconfirmed email of an user"@en ;
+    rdfs:label "UserUnconfirmedEmail"@en .
+
+
+# ### https://example.org/TrinityCollegeDublin#UserInvitationToken
+:UserInvitationToken rdf:type owl:Class ;
+    rdf:subClassOf :NonPersonalData ;
+    rdfs:comment "The invitation token of an user"@en ;
+    rdfs:label "UserInvitationToken"@en .
+
+
+# ### https://example.org/TrinityCollegeDublin#UserInvitationCreatedAt
+:UserInvitationCreatedAt rdf:type owl:Class ;
+    rdf:subClassOf :NonPersonalData ;
+    rdfs:comment "The timestap of the registration in the database an invitation was sent to an user"@en ;
+    rdfs:label "UserInvitationCreatedAt"@en .
+
+
+# ### https://example.org/TrinityCollegeDublin#UserInvitationSentAt
+:UserInvitationSentAt rdf:type owl:Class ;
+    rdf:subClassOf :NonPersonalData ;
+    rdfs:comment "The invitation sent at of an user"@en ;
+    rdfs:label "UserInvitationSentAt"@en .
+
+
+# ### https://example.org/TrinityCollegeDublin#UserInvitationAcceptedAt
+:UserInvitationAcceptedAt rdf:type owl:Class ;
+    rdf:subClassOf :NonPersonalData ;
+    rdfs:comment "The invitation accepted at of an user"@en ;
+    rdfs:label "UserInvitationAcceptedAt"@en .
+
+
+# ### https://example.org/TrinityCollegeDublin#UserInvitationLimit
+:UserInvitationLimit rdf:type owl:Class ;
+    rdf:subClassOf :NonPersonalData ;
+    rdfs:comment "The invitation limit of an user"@en ;
+    rdfs:label "UserInvitationLimit"@en .
+
+
+# ### https://example.org/TrinityCollegeDublin#UserInvitedByType
+:UserInvitedByType rdf:type owl:Class ;
+    rdf:subClassOf :NonPersonalData ;
+    rdfs:comment "The invited by type of an user"@en ;
+    rdfs:label "UserInvitedByType"@en .
+
+
+# ### https://example.org/TrinityCollegeDublin#UserInvitedById
+:UserInvitedById rdf:type owl:Class ;
+    rdf:subClassOf :NonPersonalData ;
+    rdfs:comment "The invited by identification of an user"@en ;
+    rdfs:label "UserInvitedById"@en .
+
+
+# ### https://example.org/TrinityCollegeDublin#UserInvitationsCount
+:UserInvitationsCount rdf:type owl:Class ;
+    rdf:subClassOf :NonPersonalData ;
+    rdfs:comment "The invitations count of an user"@en ;
+    rdfs:label "UserInvitationsCount"@en .
+
+
+### https://example.org/TrinityCollegeDublin#VersionId
+:VersionId rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The identification of a version"@en ;
+	rdfs:label "VersionId"@en .
+
+
+### https://example.org/TrinityCollegeDublin#VersionItemType
+:VersionItemType rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The item type of a version"@en ;
+	rdfs:label "VersionItemType"@en .
+
+
+### https://example.org/TrinityCollegeDublin#VersionItemId
+:VersionItemId rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The item identification of a version"@en ;
+	rdfs:label "VersionItemId"@en .
+
+
+### https://example.org/TrinityCollegeDublin#VersionEvent
+:VersionEvent rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The event of a version"@en ;
+	rdfs:label "VersionEvent"@en .
+
+
+### https://example.org/TrinityCollegeDublin#VersionWhodunnit
+:VersionWhodunnit rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The whodunnit of a version"@en ;
+	rdfs:label "VersionWhodunnit"@en .
+
+
+### https://example.org/TrinityCollegeDublin#VersionObject
+:VersionObject rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The object of a version"@en ;
+	rdfs:label "VersionObject"@en .
+
+
+### https://example.org/TrinityCollegeDublin#VersionCreatedAt
+:VersionCreatedAt rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The timestamp a version was created in the database"@en ;
+	rdfs:label "VersionCreatedAt"@en .
+
+
+### https://example.org/TrinityCollegeDublin#SchemaMigrationVersion
+:SchemaMigrationVersion rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The version of a schema migration"@en ;
+	rdfs:label "SchemaMigrationVersion"@en .
+
+
+### https://example.org/TrinityCollegeDublin#ArInternalMetadatumKey
+:ArInternalMetadatumKey rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The key of an ar internal metadatum"@en ;
+	rdfs:label "ArInternalMetadatumKey"@en .
+
+
+### https://example.org/TrinityCollegeDublin#ArInternalMetadatumValue
+:ArInternalMetadatumValue rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The value of an ar internal metadatum"@en ;
+	rdfs:label "ArInternalMetadatumValue"@en .
+
+
+### https://example.org/TrinityCollegeDublin#ArInternalMetadatumCreatedAt
+:ArInternalMetadatumCreatedAt rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The timestamp an ar internal metadatum was created in the database"@en ;
+	rdfs:label "ArInternalMetadatumCreatedAt"@en .
+
+
+### https://example.org/TrinityCollegeDublin#ArInternalMetadatumUpdatedAt
+:ArInternalMetadatumUpdatedAt rdf:type owl:Class ;
+	rdfs:subClassOf :NonPersonalData ;
+	rdf:comment "The timestamp of an ar internal metadatum was updated in the database"@en ;
+	rdfs:label "ArInternalMetadatumUpdatedAt"@en .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+
+# # ??? ## https://example.org/TrinityCollegeDublin#DurationOfStudies
+# :DurationOfStudies rdf:type owl:NamedIndividual, :RetentionPeriod ;
+# 				   rdfs:comment "The period between the student's academic journey, while the student is enrolled"@en ;
+# 				   rdfs:label "DurationOfStudies"@en .
+# 				   gdprov:hasDuration gdprov:UntilEventDuration.
+
+
+# # ??? ## https://example.org/TrinityCollegeDublin#DurationOfStudiesPlusN
+# :DurationOfStudiesPlusN rdf:type owl:NamedIndividual, :RetentionPeriod ;
+# 						rdfs:comment "A period including the student's academic journey, when the student is enrolled, until N years after that"@en ;
+# 						gdprov:hasDuration gdprov:UntilEventDuration ;
+# 						rdfs:label "DurationOfStudiesPlusN"@en .
+
+
+### https://example.org/TrinityCollegeDublin#RetainIndefinitely
+:RetainIndefinitely rdf:type owl:NamedIndividual, :RetentionPeriod ;
+					owl:sameAs :PermanentArchiving ;
+					gdprov:hasDuration gdprov:EndlessDuration ;
+					rdfs:label "RetainIndefinitely"@en .
+
+
+### https://example.org/TrinityCollegeDublin#PermanentArchiving
+:PermanentArchiving rdf:type owl:NamedIndividual, :RetentionPeriod ;
+					rdf:comment "Records, including Inactive Records, that have been identified as Permanently Valuable Records are subject to permanent archiving procedures. In nearly all cases, these records should eventually be transferred to the University Archives."@en ;
+					rdfs:isDefinedBy <https://www.tcd.ie/about/policies/160713%20Records%20Management%20Policy_website.pdf#page=6&search=7.18> ;
+					owl:sameAs :RetainIndefinitely ;
+					gdprov:hasDuration gdprov:EndlessDuration ;
+					rdfs:label "PermanentArchiving"@en .
+
+
+### https://example.org/TrinityCollegeDublin#RetainUntilSuperseded
+:RetainUntilSuperseded rdf:type owl:NamedIndividual, :RetentionPeriod ;
+					   rdf:comment "Records are retained until new ones take place."@en ;
+					   gdprov:hasDuration gdprov:UntilEventDuration ;
+					   rdfs:label "RetainUntilSuperseded"@en .
+
+
+###  Generated by the OWL API (version 4.2.8.20170104-2310) https://github.com/owlcs/owlapi
