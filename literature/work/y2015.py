@@ -1,0 +1,132 @@
+# coding: utf-8
+from datetime import datetime
+from snowballing.models import *
+from ..places import *
+
+akhigbe2015a = DB(Work(
+    2015, "Information technology artifacts in the regulatory compliance of business processes: a meta-analysis",
+    due="unrelated to proveance",
+    display="akhigbe",
+    authors="Akhigbe, Okhaide and Amyot, Daniel and Richards, Gregory",
+    place=MCETECH,
+    ID='akhigbe2015information',
+    category='unrelated',
+    cluster_id='11731554401727367651',
+    entrytype='inproceedings',
+    link='https://www.researchgate.net/profile/Gregory-Richards-2/publication/283103090_Information_Technology_Artifacts_in_the_Regulatory_Compliance_of_Business_Processes_A_Meta-Analysis/links/5aa804be458515b024fb00b7/Information-Technology-Artifacts-in-the-Regulatory-Compliance-of-Business-Processes-A-Meta-Analysis.pdf',
+    organization='Springer',
+    pp='89--104',
+    scholar='https://scholar.google.com/scholar?cites=11731554401727367651&as_sdt=2005&sciodt=0,5&hl=en',
+    scholar_id='40khapLazqIJ',
+    scholar_ok=True,
+    backward_steps=1,
+))
+
+bartolini2015a = DB(Work(
+    2015, "Reconciling data protection rights and obligations: an ontology of the forthcoming EU regulation",
+    due="The goals of this ontology are out of the scope of our work. The authors aim to represent the concepts of the law instead of provenance information about activities related to the GDPR obligation. Although the ontology is not made public, we have contacted the author requesting access to the ontology. It proposes a total of 146 classes elicited by utilizing methodologies the authors found in the literature, which consists of (1) defining the scope of the ontology; and (2) determining the hierarchy that the ontology will take. This methodology is guided by a set of competency questions to lead the authors to reach their goals. They also inherit classes from prior ontologies. The concerns about scopes, this ontology seeks to represent the rights and obligations of the GDPR. This ontology identify seven rights, namely: RightToObject, RightToRectification, RightOfAccess, RightToErasure, RightToInformation, RightToNoProfiling, RightToPortability.",
+    display="bartolini",
+    authors="Bartolini, Cesare and Muthuri, Robert",
+    place=LST4LD,
+    ID='bartolini2015reconciling',
+    category='nofile',
+    cluster_id='5773811276492389824',
+    entrytype='article',
+    link='https://orbilu.uni.lu/bitstream/10993/21969/1/main.pdf',
+    scholar='https://scholar.google.com.br/scholar?cites=5773811276492389824&as_sdt=2005&sciodt=0,5&hl=en',
+    scholar_id='wD1518OyIFAJ',
+    scholar_ok=True,
+    start_set=True,
+))
+
+bartolini2015b = DB(Work(
+    2015, "Using ontologies to model data protection requirements in workflows",
+    due="This work represents the first effort toward representing concepts of the GDPR as an ontology. However, such an approach has no direct relation to provenance. Additionally, the proposed ontology is not publicly available.",
+    display="bartolini",
+    authors="Bartolini, Cesare and Muthuri, Robert and Santos, Cristiana",
+    place=JSAI,
+    ID='bartolini2015using',
+    category='ok',
+    cluster_id='12787841822425963859',
+    entrytype='inproceedings',
+    link='https://orbilu.uni.lu/bitstream/10993/33856/1/main.pdf',
+    organization='Springer',
+    pp='233--248',
+    scholar='https://scholar.google.com/scholar?cites=12787841822425963859&as_sdt=2005&sciodt=0,5&hl=en',
+    scholar_id='U12VdWKKd7EJ',
+    scholar_ok=True,
+    useful=True,
+    not_directly_related_to_provenance=True,
+    backward_steps=1,
+))
+
+bates2015a = DB(Work(
+    2015, "Trustworthy $\$Whole-System$\$ Provenance for the Linux Kernel",
+    due="unrelated to GDPR",
+    display="bates",
+    authors="Bates, Adam and Tian, Dave Jing and Butler, Kevin RB and Moyer, Thomas",
+    place=USENIX,
+    ID='bates2015trustworthy',
+    category='unrelated',
+    cluster_id='14633765960424456584',
+    entrytype='inproceedings',
+    link='https://www.usenix.org/system/files/conference/usenixsecurity15/sec15-paper-bates.pdf',
+    pp='319--334',
+    scholar='https://scholar.google.com/scholar?cites=14633765960424456584&as_sdt=2005&sciodt=0,5&hl=en',
+    scholar_id='iIFNpZuUFcsJ',
+    scholar_ok=True,
+    backward_steps=1,
+))
+
+belaazi2015a = DB(Work(
+    2015, "An ontology regulating privacy oriented access controls",
+    due="Paper not available.",
+    display="belaazi",
+    authors="Belaazi, Maherzia and Rahmouni, Hanen Boussi and Bouhoula, Adel",
+    place=CRiSIS,
+    ID='belaazi2015ontology',
+    category='nofile',
+    cluster_id='7364824888726530090',
+    entrytype='inproceedings',
+    link='https://link.springer.com/chapter/10.1007/978-3-319-31811-0_2',
+    organization='Springer',
+    pp='17--35',
+    scholar='https://scholar.google.com/scholar?cites=7364824888726530090&as_sdt=2005&sciodt=0,5&hl=en',
+    scholar_id='KiiAPTcdNWYJ',
+    scholar_ok=True,
+    backward_steps=1,
+))
+
+pasquier2015a = DB(Work(
+    2015, "CamFlow: Managed data-sharing for cloud services",
+    due="unrelated to GDPR",
+    display="pasquier",
+    authors="Pasquier, Thomas FJ-M and Singh, Jatinder and Eyers, David and Bacon, Jean",
+    place=IEEETCC,
+    ID='pasquier2015camflow',
+    category='unrelated',
+    cluster_id='4110409280967718329',
+    entrytype='article',
+    link='https://arxiv.org/pdf/1506.04391',
+    number='3',
+    organization='IEEE',
+    pp='472--484',
+    scholar='https://scholar.google.com/scholar?cites=4110409280967718329&as_sdt=2005&sciodt=0,5&hl=en',
+    scholar_id='ubWMkXYbCzkJ',
+    scholar_ok=True,
+    volume='5',
+    backward_steps=1,
+))
+
+w3c2015a = DB(Work(
+    2015, "Semantic Web - W3C",
+    due="Unrelated to GDPR",
+    display="w3c",
+    authors="Semantic Web - W3C",
+    place=Web,
+    ID='Semantic38:online',
+    category='unrelated',
+    entrytype='misc',
+    scholar_ok='@misc{Semantic38:online,\nauthor = {Semantic Web - W3C},\ntitle = {Semantic Web - W3C},\nhowpublished = {https://www.w3.org/standards/semanticweb/},\nyear = {2015},\n}',
+    backward_steps=1,
+))

@@ -1,0 +1,161 @@
+# coding: utf-8
+from datetime import datetime
+from snowballing.models import *
+from ..places import *
+
+belhajjame2013a = DB(Work(
+    2013, "PROV-O: The PROV ontology: W3C recommendation 30 April 2013",
+    due="This paper belongs to our background section",
+    display="belhajjame",
+    authors="Belhajjame, Khalid and Cheney, James and Corsar, David and Garijo, Daniel and Soiland-Reyes, Stian and Zednik, Stephan and Zhao, Jun",
+    place=Web,
+    ID='belhajjame2013prov',
+    category='unrelated',
+    cluster_id='14969873069348522298',
+    entrytype='article',
+    link='https://eprints.lancs.ac.uk/id/eprint/70541/',
+    scholar='https://scholar.google.com/scholar?cites=14969873069348522298&as_sdt=2005&sciodt=0,5&hl=en',
+    scholar_id='Ook0Jz6sv88J',
+    scholar_ok=True,
+    backward_steps=1,
+))
+
+bier2013a = DB(Work(
+    2013, "How usage control and provenance tracking get together-a data protection perspective",
+    due="unrelated to GDPR",
+    display="bier",
+    authors="Bier, Christoph",
+    place=IEEESPW,
+    ID='bier2013usage',
+    category='unrelated',
+    cluster_id='15075888842304855221',
+    entrytype='inproceedings',
+    link='https://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.679.432&rep=rep1&type=pdf',
+    organization='IEEE',
+    pp='13--17',
+    scholar='https://scholar.google.com/scholar?cites=15075888842304855221&as_sdt=2005&sciodt=0,5&hl=en',
+    scholar_id='tRzbzgZRONEJ',
+    scholar_ok=True,
+    backward_steps=1,
+))
+
+fatema2013a = DB(Work(
+    2013, "Adding Privacy Protection to Policy Based Authorisation Systems",
+    due="unrelated to GDPR",
+    display="fatema",
+    authors="Fatema, Kaniz",
+    place=Thesis,
+    ID='fatema2013adding',
+    category='unrelated',
+    cluster_id='6674459040596685181',
+    entrytype='phdthesis',
+    link='https://kar.kent.ac.uk/47905/1/60PhD%20ThesisProofreadCorrectedFinalSubmitted.pdf',
+    scholar='https://scholar.google.com/scholar?cites=6674459040596685181&as_sdt=2005&sciodt=0,5&hl=en',
+    scholar_id='ffGodiJxoFwJ',
+    scholar_ok=True,
+    backward_steps=1,
+))
+
+grando2013a = DB(Work(
+    2013, "Building and evaluating an ontology-based tool for reasoning about consent permission",
+    due="unrelated to GDPR",
+    display="grando",
+    authors="Grando, Adela and Schwab, Richard",
+    place=AMIA,
+    ID='grando2013building',
+    category='unrelated',
+    cluster_id='7008788639119976063',
+    entrytype='inproceedings',
+    link='https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3900195/',
+    organization='American Medical Informatics Association',
+    pp='514',
+    scholar='https://scholar.google.com/scholar?cites=7008788639119976063&as_sdt=2005&sciodt=0,5&hl=en',
+    scholar_id='fyaKFCI4RGEJ',
+    scholar_ok=True,
+    volume='2013',
+    backward_steps=1,
+))
+
+harris2013a = DB(Work(
+    2013, "SPARQL 1.1 query language",
+    due="Unrelated to GDPR",
+    display="harris",
+    authors="Harris, Steve and Seaborne, Andy and Prud’hommeaux, Eric",
+    place=Web,
+    ID='harris2013sparql',
+    category='unrelated',
+    entrytype='article',
+    number='10',
+    pp='778',
+    scholar='https://scholar.google.com/scholar?cites=6030723719708848322&as_sdt=2005&sciodt=0,5&hl=pt-BR',
+    scholar_ok='@article{harris2013sparql,\n  title={SPARQL 1.1 query language},\n  author={Harris, Steve and Seaborne, Andy and Prud’hommeaux, Eric},\n  journal={W3C recommendation},\n  volume={21},\n  number={10},\n  pages={778},\n  year={2013}\n}\n',
+    volume='21',
+    backward_steps=1,
+))
+
+lebo2013a = DB(Work(
+    2013, "Prov-o: The prov ontology",
+    due="unrelated to GDPR",
+    display="lebo",
+    authors="Lebo, Timothy and Sahoo, Satya and McGuinness, Deborah and Belhajjame, Khalid and Cheney, James and Corsar, David and Garijo, Daniel and Soiland-Reyes, Stian and Zednik, Stephan and Zhao, Jun",
+    place=Web,
+    ID='lebo2013prov',
+    category='unrelated',
+    cluster_id='10865476685257256134',
+    entrytype='article',
+    link='https://www.research.manchester.ac.uk/portal/files/31956469/FULL_TEXT.PDF',
+    organization='World Wide Web Consortium',
+    scholar='https://scholar.google.com/scholar?cites=10865476685257256134&as_sdt=2005&sciodt=0,5&hl=en',
+    scholar_id='xiwMPHrtyZYJ',
+    scholar_ok=True,
+    backward_steps=1,
+))
+
+moreau2013a = DB(Work(
+    2013, "PROV-DM: The PROV Data Model",
+    due="Unrelated to GDPR",
+    display="moreau",
+    authors="Luc Moreau, Paolo Missier",
+    place=Web,
+    ID='PROVDMTh61:online',
+    entrytype='misc',
+    howpublished='https://www.w3.org/TR/prov-dm/',
+    month='4',
+    category='unrelated',
+    backward_steps=1,
+))
+
+peroni2013a = DB(Work(
+    2013, "Tools for the automatic generation of ontology documentation: A task-based evaluation",
+    due="unrelated to GDPR",
+    display="peroni",
+    authors="Peroni, Silvio and Shotton, David and Vitali, Fabio",
+    place=IJSWIS,
+    ID='peroni2013tools',
+    category='unrelated',
+    cluster_id='12504003312088808476',
+    entrytype='article',
+    link='http://speroni.web.cs.unibo.it/publications/peroni-2013-tools-automatic-generation.pdf',
+    number='1',
+    organization='IGI Global',
+    pp='21--44',
+    scholar='https://scholar.google.com/scholar?cites=12504003312088808476&as_sdt=2005&sciodt=0,5&hl=en',
+    scholar_id='HHxcZ8Mkh60J',
+    scholar_ok=True,
+    volume='9',
+    backward_steps=1,
+))
+
+sadeh2013a = DB(Work(
+    2013, "The usable privacy policy project",
+    due="Unrelated to GDPR",
+    display="sadeh",
+    authors="Sadeh, Norman and Acquisti, Alessandro and Breaux, Travis D and Cranor, Lorrie Faith and McDonald, Aleecia M and Reidenberg, Joel R and Smith, Noah A and Liu, Fei and Russell, N Cameron and Schaub, Florian and others",
+    place=TechReport,
+    ID='sadeh2013usable',
+    category='unrelated',
+    entrytype='incollection',
+    organization='Carnegie Mellon University',
+    scholar_ok='@incollection{sadeh2013usable,\n  title={The usable privacy policy project},\n  author={Sadeh, Norman and Acquisti, Alessandro and Breaux, Travis D and Cranor, Lorrie Faith and McDonald, Aleecia M and Reidenberg, Joel R and Smith, Noah A and Liu, Fei and Russell, N Cameron and Schaub, Florian and others},\n  booktitle={Technical report, Technical Report, CMU-ISR-13-119},\n  year={2013},\n  publisher={Carnegie Mellon University}\n}\n',
+    backward_steps=1,
+))
