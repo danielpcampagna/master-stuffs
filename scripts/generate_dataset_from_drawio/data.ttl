@@ -1,0 +1,389 @@
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix tcd: <http://example.org/TrinityCollegeDublin#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdf: <https://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix gdprov: <http://example.org/GDPRov#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix tcu: <http://example.org/TrinityCollegeDublin#> .
+@prefix p-plan: <http://purl.org/net/p-plan#> .
+@prefix : <http://example.org/SAPOS#> .
+
+
+#################################################################
+#    Annotation properties
+#################################################################
+
+
+
+
+
+#################################################################
+#    Object properties
+#################################################################
+
+
+
+
+
+#################################################################
+#    Classes
+#################################################################
+
+
+### http://example.org/GDPRov#Process
+gdprov:Process rdf:type owl:Class ;
+                gdprov:StorageCondition .
+
+
+### http://example.org/GDPRov#PersonalData
+gdprov:PersonalData rdf:type owl:Class ;
+                    rdfs:subClassOf gdprov:Data .
+
+
+### http://example.org/GDPRov#StorageCondition
+gdprov:StorageCondition rdf:type owl:Class ;
+                         gdprov:Duration .
+
+
+### http://example.org/GDPRov#Duration
+gdprov:Duration rdf:type owl:Class .
+
+
+### http://example.org/GDPRov#DataErasureProcess
+gdprov:DataErasureProcess rdf:type owl:Class ;
+                          rdfs:subClassOf gdprov:Process .
+
+
+### http://example.org/GDPRov#Data
+gdprov:Data rdf:type owl:Class .
+
+
+### http://example.org/GDPRov#DataStep
+gdprov:DataStep rdf:type owl:Class ;
+                 gdprov:Data ;
+                 gdprov:Process .
+
+
+### http://example.org/GDPRov#DataCollectionStep
+gdprov:DataCollectionStep rdf:type owl:Class ;
+                          None gdprov:DataStep .
+
+
+### http://example.org/GDPRov#PersonalDataEntity
+gdprov:PersonalDataEntity rdf:type owl:Class .
+
+
+### http://example.org/GDPRov#DataCollectionActivity
+gdprov:DataCollectionActivity rdf:type owl:Class .
+
+
+### http://example.org/GDPRov#UntilEventDuration
+gdprov:UntilEventDuration rdf:type owl:Class ;
+                          rdfs:subClassOf gdprov:Duration .
+
+
+### http://example.org/GDPRov#UntilTimeDuration
+gdprov:UntilTimeDuration rdf:type owl:Class ;
+                         rdfs:subClassOf gdprov:Duration .
+
+
+### http://example.org/GDPRov#TemporalDuration
+gdprov:TemporalDuration rdf:type owl:Class ;
+                        rdfs:subClassOf gdprov:Duration .
+
+
+### http://example.org/GDPRov#FixedOccurencesDuration
+gdprov:FixedOccurencesDuration rdf:type owl:Class ;
+                               rdfs:subClassOf gdprov:Duration .
+
+
+### http://purl.org/net/p-plan#Step
+p-plan:Step rdf:type owl:Class .
+
+
+### http://purl.org/net/p-plan#Variable
+p-plan:Variable rdf:type owl:Class .
+
+
+### http://www.w3.org/ns/prov#Entity
+prov:Entity rdf:type owl:Class .
+
+
+### http://www.w3.org/ns/prov#Activity
+prov:Activity rdf:type owl:Class .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+
+### http://example.org/SAPOS#Alice
+:Alice rdf:type owl:NamedIndividual, gdprov:DataSubject .
+
+
+### http://example.org/SAPOS#Admin
+:Admin rdf:type owl:NamedIndividual, prov:Agent .
+
+
+### http://example.org/SAPOS#AlicesNewNeighborhood
+:AlicesNewNeighborhood rdf:type owl:NamedIndividual, tcu:StudentNeighborhood ;
+                       prov:wasAttributedTo :Alice .
+
+
+### http://example.org/SAPOS#AlicesNewCity
+:AlicesNewCity rdf:type owl:NamedIndividual, gdprov:PersonalDataEntity, tcu:CityName ;
+               prov:wasAttributedTo :Alice .
+
+
+### http://example.org/SAPOS#AlicesNewZipCode
+:AlicesNewZipCode rdf:type owl:NamedIndividual, tcu:StudentZipCode ;
+                  prov:wasAttributedTo :Alice .
+
+
+### http://example.org/SAPOS#AlicesNewAddress
+:AlicesNewAddress rdf:type owl:NamedIndividual, tcu:StudentAddress ;
+                  prov:wasAttributedTo :Alice .
+
+
+### http://example.org/SAPOS#AdminCollectedDataFromAlicesEmail
+:AdminCollectedDataFromAlicesEmail rdf:type owl:NamedIndividual, gdprov:DataCollectionActivity ;
+                                   prov:endedAtTime "2020-05-30T09:02:00Z"^^xsd:dateTime ;
+                                   prov:startedAtTime "2020-05-30T09:00:00Z"^^xsd:dateTime ;
+                                   prov:wasInformedBy :AliceSendedEmailToSaposAdmin ;
+                                   p-plan:correspondsToStep :DataCollectionStepForRectification ;
+                                   prov:wasAssociatedWith :Admin .
+
+
+### http://example.org/SAPOS#AliceSendedEmailToSaposAdmin
+:AliceSendedEmailToSaposAdmin rdf:type owl:NamedIndividual, prov:Activity ;
+                              prov:startedAtTime "2020-05-29T22:00:00Z"^^xsd:dateTime ;
+                              prov:wasAssociatedWith :Alice ;
+                              prov:used :AlicesNewAddress ;
+                              prov:used :AlicesNewZipCode ;
+                              prov:used :AlicesNewNeighborhood ;
+                              prov:used :AlicesNewCity ;
+                              prov:endedAtTime "2020-05-29T22:01:00Z"^^xsd:dateTime .
+
+
+### http://example.org/SAPOS#StoredAlicesCityId
+:StoredAlicesCityId rdf:type owl:NamedIndividual, tcu:StudentCityId ;
+                    p-plan:correspondsToVariable :StoredPersonalData .
+
+
+### http://example.org/SAPOS#AdminComparedAlicesNeighborhoods
+:AdminComparedAlicesNeighborhoods rdf:type owl:NamedIndividual, gdprov:DataComparisonActivity ;
+                                  prov:used :CollectedAlicesNewNeighborhood ;
+                                  prov:wasInformedBy :AdminCollectedDataFromAlicesEmail ;
+                                  prov:used :StoredAlicesNeighborhood ;
+                                  gdprov:hadDataDiscrepancy "false"^^xsd:boolean ;
+                                  prov:startedAtTime "2020-05-30T09:05:00Z"^^xsd:dateTime ;
+                                  prov:endedAtTime "2020-05-30T09:06:00Z"^^xsd:dateTime ;
+                                  p-plan:correspondsToStep :DataComparisonStepWhereCorrectionIsNeeded ;
+                                  prov:wasAssociatedWith :Sapos .
+
+
+### http://example.org/SAPOS#NewStoredAlicesNeighborhood
+:NewStoredAlicesNeighborhood rdf:type owl:NamedIndividual, tcu:StudentNeighborhood ;
+                             owl:differentFrom :StoredAlicesNeighborhood ;
+                             prov:wasGeneratedBy :AdminRectifiedAlicesNeighborhood ;
+                             p-plan:correspondsToVariable :RectifiedPersonalData .
+
+
+### http://example.org/SAPOS#CollectedAlicesNewNeighborhood
+:CollectedAlicesNewNeighborhood rdf:type owl:NamedIndividual, tcu:StudentNeighborhood ;
+                                prov:wasGeneratedBy :AdminCollectedDataFromAlicesEmail ;
+                                prov:wasDerivedFrom :AlicesNewNeighborhood ;
+                                p-plan:correspondsToVariable :CollectedPersonalData .
+
+
+### http://example.org/SAPOS#StoredAlicesNeighborhood
+:StoredAlicesNeighborhood rdf:type owl:NamedIndividual, tcu:StudentNeighborhood ;
+                          p-plan:correspondsToVariable :StoredPersonalData ;
+                          prov:wasInvalidatedBy :AdminRectifiedAlicesNeighborhood .
+
+
+### http://example.org/SAPOS#CollectedAlicesNewCity
+:CollectedAlicesNewCity rdf:type owl:NamedIndividual, gdprov:PersonalDataEntity, tcu:CityName ;
+                        prov:wasDerivedFrom :AlicesNewCity ;
+                        prov:wasGeneratedBy :AdminCollectedDataFromAlicesEmail ;
+                        p-plan:correspondsToVariable :CollectedPersonalData .
+
+
+### http://example.org/SAPOS#AdminSelectedCityNameById
+:AdminSelectedCityNameById rdf:type owl:NamedIndividual, prov:Activity ;
+                           prov:used :StoredAlicesCityId ;
+                           prov:startedAtTime "2020-05-30T09:02:15Z"^^xsd:dateTime ;
+                           prov:endedAtTime "2020-05-30T09:02:450Z"^^xsd:dateTime ;
+                           prov:wasInformedBy :AdminCollectedDataFromAlicesEmail ;
+                           prov:wasAssociatedWith :Sapos .
+
+
+### http://example.org/SAPOS#StoredAlicesCityName
+:StoredAlicesCityName rdf:type owl:NamedIndividual, gdprov:PersonalDataEntity, tcu:CityName ;
+                      prov:wasGeneratedBy :AdminSelectedCityNameById ;
+                      prov:wasDerivedFrom :StoredAlicesCityId .
+
+
+### http://example.org/SAPOS#RectificationProcess
+:RectificationProcess rdf:type owl:NamedIndividual, gdprov:RectificationProcess .
+
+
+### http://example.org/SAPOS#DataCollectionStepForRectification
+:DataCollectionStepForRectification rdf:type owl:NamedIndividual, gdprov:DataCollectionStep ;
+                                    gdprov:isPartOfProcess :RectificationProcess ;
+                                    p-plan:isPrecededBy :DataComparisonStepWhereCorrectionIsNotNeeded ;
+                                    gdprov:generatesData :CollectedPersonalData ;
+                                    p-plan:isPrecededBy :DataComparisonStepWhereCorrectionIsNeeded .
+
+
+### http://example.org/SAPOS#StoredPersonalData
+:StoredPersonalData rdf:type owl:NamedIndividual, gdprov:PersonalData .
+
+
+### http://example.org/SAPOS#CollectedPersonalData
+:CollectedPersonalData rdf:type owl:NamedIndividual, gdprov:PersonalData .
+
+
+### http://example.org/SAPOS#DataRectificationStep
+:DataRectificationStep rdf:type owl:NamedIndividual, gdprov:RectifyData ;
+                       gdprov:invalidatesData :StoredPersonalData ;
+                       gdprov:generatesData :RectifiedPersonalData ;
+                       gdprov:isPartOfProcess :RectificationProcess .
+
+
+### http://example.org/SAPOS#RectifiedPersonalData
+:RectifiedPersonalData rdf:type owl:NamedIndividual, gdprov:PersonalData ;
+                       owl:differentFrom :StoredPersonalData .
+
+
+### http://example.org/SAPOS#DataComparisonStepWhereCorrectionIsNeeded
+:DataComparisonStepWhereCorrectionIsNeeded rdf:type owl:NamedIndividual, gdprov:DataComparisonStep ;
+                                           gdprov:usesData :StoredPersonalData ;
+                                           gdprov:hasDataDiscrepancy "false"^^xsd:boolean ;
+                                           gdprov:usesData :CollectedPersonalData ;
+                                           p-plan:isPrecededBy :DataRectificationStep ;
+                                           gdprov:isPartOfProcess :RectificationProcess .
+
+
+### http://example.org/SAPOS#AdminComparedAlicesCities
+:AdminComparedAlicesCities rdf:type owl:NamedIndividual, gdprov:DataComparisonActivity ;
+                           prov:used :CollectedAlicesNewCity ;
+                           gdprov:hadDataDiscrepancy "true"^^xsd:boolean ;
+                           prov:startedAtTime "2020-05-30T09:03:00Z"^^xsd:dateTime ;
+                           prov:endedAtTime "2020-05-30T09:04:00Z"^^xsd:dateTime ;
+                           prov:wasInformedBy :AdminSelectedCityNameById ;
+                           prov:used :StoredAlicesCityName ;
+                           p-plan:correspondsToStep :DataComparisonStepWhereCorrectionIsNotNeeded ;
+                           prov:wasAssociatedWith :Sapos .
+
+
+### http://example.org/SAPOS#Sapos
+:Sapos rdf:type owl:NamedIndividual, prov:Agent .
+
+
+### http://example.org/SAPOS#DataComparisonStepWhereCorrectionIsNotNeeded
+:DataComparisonStepWhereCorrectionIsNotNeeded rdf:type owl:NamedIndividual, gdprov:DataComparisonStep ;
+                                              gdprov:isPartOfProcess :RectificationProcess ;
+                                              gdprov:usesData :CollectedPersonalData ;
+                                              gdprov:usesData :StoredPersonalData ;
+                                              gdprov:hasDataDiscrepancy "true"^^xsd:boolean .
+
+
+### http://example.org/SAPOS#CollectedAlicesNewZipCode
+:CollectedAlicesNewZipCode rdf:type owl:NamedIndividual, tcu:StudentZipCode ;
+                           prov:wasGeneratedBy :AdminCollectedDataFromAlicesEmail ;
+                           prov:wasDerivedFrom :AlicesNewZipCode ;
+                           p-plan:correspondsToVariable :CollectedPersonalData ;
+                           prov:used :AdminRectifiedAlicesZipCode .
+
+
+### http://example.org/SAPOS#StoredAlicesZipCode
+:StoredAlicesZipCode rdf:type owl:NamedIndividual, tcu:StudentZipCode ;
+                     p-plan:correspondsToVariable :StoredPersonalData ;
+                     prov:wasInvalidatedBy :AdminRectifiedAlicesZipCode .
+
+
+### http://example.org/SAPOS#NewStoredAlicesZipCode
+:NewStoredAlicesZipCode rdf:type owl:NamedIndividual, tcu:StudentZipCode ;
+                        p-plan:correspondsToVariable :RectifiedPersonalData ;
+                        owl:differentFrom :StoredAlicesZipCode ;
+                        prov:wasGeneratedBy :AdminRectifiedAlicesZipCode .
+
+
+### http://example.org/SAPOS#AdminComparedAlicesZipCodes
+:AdminComparedAlicesZipCodes rdf:type owl:NamedIndividual, gdprov:DataComparisonActivity ;
+                             prov:wasInformedBy :AdminCollectedDataFromAlicesEmail ;
+                             gdprov:hadDataDiscrepancy "true"^^xsd:boolean ;
+                             prov:startedAtTime "2020-05-30T09:07:00Z"^^xsd:dateTime ;
+                             prov:endedAtTime "2020-05-30T09:08:00Z"^^xsd:dateTime ;
+                             p-plan:correspondsToStep :DataComparisonStepWhereCorrectionIsNeeded ;
+                             prov:used :CollectedAlicesNewZipCode ;
+                             prov:used :StoredAlicesZipCode ;
+                             prov:wasAssociatedWith :Sapos .
+
+
+### http://example.org/SAPOS#AdminRectifiedAlicesNeighborhood
+:AdminRectifiedAlicesNeighborhood rdf:type owl:NamedIndividual, gdprov:RectifyDataActivity ;
+                                  prov:used :CollectedAlicesNewNeighborhood ;
+                                  prov:wasInformedBy :AdminComparedAlicesNeighborhoods ;
+                                  prov:startedAtTime "2020-05-30T09:06:15Z"^^xsd:dateTime ;
+                                  prov:endedAtTime "2020-05-30T09:06:45Z"^^xsd:dateTime ;
+                                  p-plan:correspondsToStep :DataRectificationStep ;
+                                  prov:wasAssociatedWith :Sapos .
+
+
+### http://example.org/SAPOS#AdminRectifiedAlicesZipCode
+:AdminRectifiedAlicesZipCode rdf:type owl:NamedIndividual, gdprov:RectifyDataActivity ;
+                             p-plan:correspondsToStep :DataRectificationStep ;
+                             prov:startedAtTime "2020-05-30T09:08:15Z"^^xsd:dateTime ;
+                             prov:endedAtTime "2020-05-30T09:08:45Z"^^xsd:dateTime ;
+                             prov:wasInformedBy :AdminComparedAlicesZipCodes ;
+                             prov:wasAssociatedWith :Sapos .
+
+
+### http://example.org/SAPOS#NewStoredAlicesAddress
+:NewStoredAlicesAddress rdf:type owl:NamedIndividual, tcu:StudentAddress ;
+                        p-plan:correspondsToVariable :RectifiedPersonalData ;
+                        owl:differentFrom :StoredAlicesAddress ;
+                        prov:wasGeneratedBy :AdminRectifiedAlicesAddress .
+
+
+### http://example.org/SAPOS#StoredAlicesAddress
+:StoredAlicesAddress rdf:type owl:NamedIndividual, tcu:StudentAddress ;
+                     p-plan:correspondsToVariable :StoredPersonalData ;
+                     prov:wasInvalidatedBy :AdminRectifiedAlicesAddress .
+
+
+### http://example.org/SAPOS#CollectedAlicesNewAddress
+:CollectedAlicesNewAddress rdf:type owl:NamedIndividual, tcu:StudentAddress ;
+                           prov:wasGeneratedBy :AdminCollectedDataFromAlicesEmail ;
+                           p-plan:correspondsToVariable :CollectedPersonalData ;
+                           prov:wasDerivedFrom :AlicesNewAddress .
+
+
+### http://example.org/SAPOS#AdminComparedAlicesAddresses
+:AdminComparedAlicesAddresses rdf:type owl:NamedIndividual, gdprov:DataComparisonActivity ;
+                              prov:startedAtTime "2020-05-30T09:09:00Z"^^xsd:dateTime ;
+                              prov:used :StoredAlicesAddress ;
+                              prov:wasAssociatedWith :Sapos ;
+                              p-plan:correspondsToStep :DataComparisonStepWhereCorrectionIsNeeded ;
+                              prov:wasInformedBy :AdminCollectedDataFromAlicesEmail ;
+                              prov:used :CollectedAlicesNewAddress ;
+                              gdprov:hadDataDiscrepancy "true"^^xsd:boolean ;
+                              prov:endedAtTime "2020-05-30T09:10:00Z"^^xsd:dateTime .
+
+
+### http://example.org/SAPOS#AdminRectifiedAlicesAddress
+:AdminRectifiedAlicesAddress rdf:type owl:NamedIndividual, gdprov:RectifyDataActivity ;
+                             prov:startedAtTime "2020-05-30T09:11:00Z"^^xsd:dateTime ;
+                             prov:endedAtTime "2020-05-30T09:12:00Z"^^xsd:dateTime ;
+                             prov:wasAssociatedWith :Sapos ;
+                             p-plan:correspondsToStep :DataRectificationStep ;
+                             prov:wasInformedBy :AdminComparedAlicesAddresses .
+
+
+### http://example.org/GDPRov#EndlessDuration
+gdprov:EndlessDuration rdf:type owl:NamedIndividual ;
+                       rdf:type gdprov:Duration .
