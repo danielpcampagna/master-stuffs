@@ -3,41 +3,44 @@ PREFIX rdf: <https://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX gdprov: <https://w3id.org/GDPRov#>
 PREFIX dpv: <https://w3c.github.io/dpv/dpv/#>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
-PREFIX gdprove: <http://example.org/GDPRovExtension#>
 
 SELECT 
-    ?process
-    (
-        (
-            SUM(?seconds)
-            + ( SUM(?minutes) * 60 )
-            + ( SUM(?hours) * 60 * 60 )
-            + ( SUM(?days) * 24 * 60 * 60 )
-            + ( SUM(?months) * 30 * 24 * 60 * 60 )
-            + ( SUM(?years) * 365 * 24 * 60 * 60 )
-        ) <= 3 * 24 * 60 * 60
-        AS ?withoutDelay
-    )
+    ?process, ?collectedData, ?resultComparison, ?startedAt, ?comparisonEndedAt, ?rectificationEndedAt
 WHERE {
-    SELECT
-        ?process
-        ?step
-        ( YEAR(now()    + ?reactiveDuration) - YEAR(now())    AS ?years   )
-        ( MONTH(now()   + ?reactiveDuration) - MONTH(now())   AS ?months  )
-        ( DAY(now()     + ?reactiveDuration) - DAY(now())     AS ?days    )
-        ( HOURS(now()   + ?reactiveDuration) - HOURS(now())   AS ?hours   )
-        ( MINUTES(now() + ?reactiveDuration) - MINUTES(now()) AS ?minutes )
-        ( SECONDS(now() + ?reactiveDuration) - SECONDS(now()) AS ?seconds )
-    WHERE {
-        ?step gdprov:isPartOfProcess  [rdf:type*/rdfs:subClassOf* ?process ] ;
-            dpv:hasDuration/owl:sameAs* ?reactiveDuration .
+    # Prospective Graph
+    ?process rdf:type/rdfs:subClassOf* gdprov:RectificationProcess .
+    ?dataCollection rdf:type/rdfs:subClassOf* gdprov:DataCollectionStep .
+    ?dataComparison rdf:type/rdfs:subClassOf* gdprov:DataComparisonStep .
+    ?collectedData rdf:type/rdfs:subClassOf* gdprov:PersonalData .
 
-        VALUES ?process
-        {
-            gdprove:DataRectificationReactiveProcess
-            gdprove:DataRectificationProactiveProcess
-        }
+    ?dataCollection gdprov:isPartOfProcess ?process .
+    ?dataComparison gdprov:isPartOfProcess ?process .
 
-        FILTER (DATATYPE(?reactiveDuration) = xsd:duration)
+    ?dataCollection p-plan:isPrecededBy ?dataComparison .
+
+    ?dataCollection gdprov:generatesData ?collectedData .
+    ?dataComparison gdprov:usesData ?collectedData .
+
+    # Retrospective Graph
+
+
+    OPTIONAL {
+        # Prospective Graph
+        ?dataRectification rdf:type/rdfs:subClassOf* gdprov:DataComparisonStep .
+        ?dataComparison p-plan:isPrecededBy ?dataRectification .
+        ?dataRectification gdprov:isPartOfProcess ?process .
+
+        # Retrospective Graph
+        ?dataCollectionActivity rdf:type/rdfs:subClassOf* gdprov:DataCollectionActivity .
+        ?comparisonActivity rdf:type/rdfs:subClassOf* gdprov:DataComparisonActivity .
+        ?rectificationActivity rdf:type/rdfs:subClassOf* gdprov:RectifyDataActivity .
+
+        ?dataCollectionActivity prov:startedAtTime ?startedAt .
+        ?comparisonActivity prov:endedAtTime ?comparisonEndedAt .
+        ?rectificationActivity prov:endedAtTime ?rectificationEndedAt.
+
+        ?comparisonActivity gdprov:hadDataDiscrepancy ?resultComparison .
     }
-} GROUP BY ?process
+}
+GROUP BY ?process
+ORDER BY ?process, ?collectedData, ?resultComparison, ?startedAt, ?comparisonEndedAt, ?rectificationEndedAt
