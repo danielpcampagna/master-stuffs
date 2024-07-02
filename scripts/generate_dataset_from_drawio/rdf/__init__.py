@@ -207,7 +207,7 @@ class RDFConstructorFromGraffoo(ConstructorFromDrawIOLibrary):
     # TODO: define a structure for these components
     def _construct_components(self, elements: list[Element]):
         components = self.library.generate_components_from_elements(elements)
-        logger.info(set(c["category"].category for c in components))
+        logger.info(f"Found components in this library: {', '.join(set(c['category'].category for c in components))}")
 
         # Create namespaces and bind them
         namespaces = list()

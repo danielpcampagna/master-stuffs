@@ -11,9 +11,7 @@ logger = logging.getLogger(__name__)
 
 @use_params
 def create_diagram(diagram_path: str, diagram_name: str, library_path: str, **_):
-    logger.info("Initializing graph")
     graph = RDFConstructorFromGraffoo(library_path)
-    logger.info("Constructing diagram")
     graph.construct(diagram_path, diagram_name)
     return graph
 
@@ -22,7 +20,6 @@ def create_diagram(diagram_path: str, diagram_name: str, library_path: str, **_)
 def serialize_graph(
     graph: RDFConstructorFromGraffoo, output_path: str, format: str, **_
 ):
-    logger.info("Serializing diagram")
     graph.serialize(output_path, format=format)
 
 
@@ -34,14 +31,13 @@ def config(**options):
     #     raise Exception(f"Parametros inválidos: {params}")
 
     params = dict(
-        format="%(asctime)s [%(levelname)s]: %(pathname)s:%(levelno)s %(message)s",
+        format="%(asctime)s [%(levelname)s]: %(pathname)s:%(lineno)d - %(message)s",
         datefmt="%m/%d/%Y %I:%M:%S %p",
     )
     if verbose:
         params["level"] = logging.DEBUG
 
     logging.basicConfig(**params)
-    logger.info("Configuratio: DONE!")
 
 
 @click.command()
