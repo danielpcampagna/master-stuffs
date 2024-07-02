@@ -1,0 +1,46 @@
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX rdf: <https://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX gdprov: <https://w3id.org/GDPRov#>
+PREFIX dpv: <https://w3c.github.io/dpv/dpv/#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+SELECT 
+    ?process, ?collectedData, ?resultComparison, ?startedAt, ?comparisonEndedAt, ?rectificationEndedAt
+WHERE {
+    # Prospective Graph
+    ?process rdf:type/rdfs:subClassOf* gdprov:RectificationProcess .
+    ?dataCollection rdf:type/rdfs:subClassOf* gdprov:DataCollectionStep .
+    ?dataComparison rdf:type/rdfs:subClassOf* gdprov:DataComparisonStep .
+    ?collectedData rdf:type/rdfs:subClassOf* gdprov:PersonalData .
+
+    ?dataCollection gdprov:isPartOfProcess ?process .
+    ?dataComparison gdprov:isPartOfProcess ?process .
+
+    ?dataCollection p-plan:isPrecededBy ?dataComparison .
+
+    ?dataCollection gdprov:generatesData ?collectedData .
+    ?dataComparison gdprov:usesData ?collectedData .
+
+    # Retrospective Graph
+
+
+    OPTIONAL {
+        # Prospective Graph
+        ?dataRectification rdf:type/rdfs:subClassOf* gdprov:DataComparisonStep .
+        ?dataComparison p-plan:isPrecededBy ?dataRectification .
+        ?dataRectification gdprov:isPartOfProcess ?process .
+
+        # Retrospective Graph
+        ?dataCollectionActivity rdf:type/rdfs:subClassOf* gdprov:DataCollectionActivity .
+        ?comparisonActivity rdf:type/rdfs:subClassOf* gdprov:DataComparisonActivity .
+        ?rectificationActivity rdf:type/rdfs:subClassOf* gdprov:RectifyDataActivity .
+
+        ?dataCollectionActivity prov:startedAtTime ?startedAt .
+        ?comparisonActivity prov:endedAtTime ?comparisonEndedAt .
+        ?rectificationActivity prov:endedAtTime ?rectificationEndedAt.
+
+        ?comparisonActivity gdprov:hadDataDiscrepancy ?resultComparison .
+    }
+}
+GROUP BY ?process
+ORDER BY ?process, ?collectedData, ?resultComparison, ?startedAt, ?comparisonEndedAt, ?rectificationEndedAt
