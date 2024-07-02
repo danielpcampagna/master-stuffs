@@ -1,14 +1,21 @@
+import re
+import uuid
+from enum import Enum
+from typing import Literal as TLiteral, cast
 from abc import ABC, abstractmethod
 from dataclasses import dataclass, field
 from xml.etree.ElementTree import Element
-import re
+from pathlib import Path
+import logging
 
-from rdflib import Graph, Namespace, Literal, namespace as ns
-from rdflib.term import IdentifiedNode
+from rdflib import Graph, Literal, namespace as ns
 
 from library import Library
 from diagrams.base import Diagram
 
+
+ValidFormat = TLiteral["json-ld", "hext", "n3", "nquads", "nt", "trix", "turtle", "xml"]
+logger = logging.getLogger(__name__)
 
 def is_builtin_namespace(prefix: str = None, url: str = None):
     if prefix is not None:
@@ -58,13 +65,7 @@ class RDFLibPredicate:
         triple = ", ".join(triple)
         triple = f"({triple})"
         variables = ", ".join(variables)
-        try:
-            exec(f"g.add({triple})")
-        except:
-            import pdb; pdb.set_trace()
-        # exec(f"global {variables}; g.add({triple})")
-        # print()
-        # exec(f"global {global_vars}; g.add(({id_var}.{id_label}, rdf.type, {sc_prefix_var}.{sc_id}))")
+        exec(f"g.add({triple})")
 
 @dataclass
 class RDFLibNamespace:
@@ -81,6 +82,7 @@ class RDFLibNamespace:
     #     return re.sub("-", "_", self.prefix)
 
     def create(self, g: Graph):
+        exec("from rdflib.namespace import Namespace")
         exec(f'global {self.prefix_var}; {self.prefix_var} = Namespace("{self.url}")')
         exec(f'g.bind("{self.prefix}", {self.prefix_var})')
 
@@ -113,13 +115,11 @@ class RDFLibClass:
         id_var, id_label = get_var_label(id, namespace)
 
         # from rdflib.namespace import RDF
-        try:
-            if is_builtin_namespace(id_var):
-                exec(f"g.add(({id_var}.{id_label}, ns.RDF.type, ns.OWL.Class))")
-            else:
-                exec(f"global {id_var}; g.add(({id_var}.{id_label}, ns.RDF.type, ns.OWL.Class))")
-        except:
-            import pdb; pdb.set_trace()
+        if is_builtin_namespace(id_var):
+            exec(f"g.add(({id_var}.{id_label}, ns.RDF.type, ns.OWL.Class))")
+        else:
+            exec(f"global {id_var}; g.add(({id_var}.{id_label}, ns.RDF.type, ns.OWL.Class))")
+
         for superclasse in superclasses:
             sc_prefix, sc_id = superclasse.split(":")
             sc_prefix_var = use_namespace(to_camel_case(as_var(sc_prefix)).upper())
@@ -150,13 +150,7 @@ class RDFLibInstance:
             sc_prefix, sc_id = superclasse.split(":")
             sc_prefix_var = use_namespace(to_camel_case(as_var(sc_prefix)))
             global_vars = ", ".join([id_var])
-            try:
-                exec(f"global {global_vars}; g.add(({id_var}.{id_label}, ns.RDF.type, {sc_prefix_var}.{sc_id}))")
-            except:
-                import pdb; pdb.set_trace()
-
-
-
+            exec(f"global {global_vars}; g.add(({id_var}.{id_label}, ns.RDF.type, {sc_prefix_var}.{sc_id}))")
 
 
 @dataclass
@@ -179,17 +173,14 @@ class ConstructorFromDrawIOLibrary(ABC):
     def construct(self, path: str, diagram_name: str = None):
         diagram = Diagram.from_drawio(path, diagram_name)
         elements = diagram.all_nodes
-        g = Graph()
-        return self._construct_components(elements, g)
-        # components = self.library.generate_components_from_elements(diagram.all_nodes)
-        # return self._construct_components(components)
+        self.g = Graph()
+        return self._construct_components(elements)
 
     # TODO: How to define the return type?
     @abstractmethod
-    def _construct_components(self, elements: list[Element], g: Graph):
+    def _construct_components(self, elements: list[Element]):
         pass
 
-from enum import Enum
 
 class GraffooEnum(Enum):
     CLASS = "Class"
@@ -214,9 +205,9 @@ class GraffooEnum(Enum):
 class RDFConstructorFromGraffoo(ConstructorFromDrawIOLibrary):
 
     # TODO: define a structure for these components
-    def _construct_components(self, elements: list[Element], g: Graph, default_prefix: str = None):
+    def _construct_components(self, elements: list[Element]):
         components = self.library.generate_components_from_elements(elements)
-        print(set(c["category"].category for c in components))
+        logger.info(set(c["category"].category for c in components))
 
         # Create namespaces and bind them
         namespaces = list()
@@ -236,7 +227,7 @@ class RDFConstructorFromGraffoo(ConstructorFromDrawIOLibrary):
                     if is_builtin_namespace(p):
                         p = to_camel_case(p)
                         namespace = RDFLibNamespace(p, u)
-                        namespace.create(g)
+                        namespace.create(self.g)
                         namespaces.append(namespace)
         for p, u in get_builtin_namespaces():
             namespaces.append(RDFLibNamespace(p, str(u)))
@@ -247,13 +238,12 @@ class RDFConstructorFromGraffoo(ConstructorFromDrawIOLibrary):
                 # TODO: Refactor this block
                 ontol_components = self.get_ontology_components_from_ontology_component(component)
                 onto_namespace = get_component_namespace_from_onto(component, namespaces)
-                # print(f">>> {onto_namespace.prefix}", set(c["category"].category for c in ontology_components))
                 
                 for onto_component in ontol_components:
                     if onto_component["category"].category == GraffooEnum.INSTANCE.value:
-                        RDFLibInstance(onto_component).create(g, onto_namespace)
+                        RDFLibInstance(onto_component).create(self.g, onto_namespace)
                     elif onto_component["category"].category == GraffooEnum.CLASS.value:
-                        RDFLibClass(onto_component).create(g, onto_namespace)
+                        RDFLibClass(onto_component).create(self.g, onto_namespace)
 
         for component in components:
             # TODO: Improve this checking
@@ -270,7 +260,7 @@ class RDFConstructorFromGraffoo(ConstructorFromDrawIOLibrary):
                         source_namespace = get_component_namespace_from_element_id(source_component, namespaces, ontol_components)
                         target_namespace = get_component_namespace_from_element_id(target_component, namespaces, ontol_components)
                         predicate_namespace = get_component_namespace_from_element_id(onto_component, namespaces, ontol_components)
-                        RDFLibPredicate(source_component, onto_component, target_component, source_namespace, predicate_namespace, target_namespace).create(g)
+                        RDFLibPredicate(source_component, onto_component, target_component, source_namespace, predicate_namespace, target_namespace).create(self.g)
             if component["category"].category == GraffooEnum.PREDICATE.value:
                 source_element = [e for e in elements if e.get("id") == component["element"].get("source")][0]
                 target_element = [e for e in elements if e.get("id") == component["element"].get("target")][0]
@@ -279,26 +269,23 @@ class RDFConstructorFromGraffoo(ConstructorFromDrawIOLibrary):
                 source_namespace = get_component_namespace_from_element_id(source_component, namespaces, components)
                 target_namespace = get_component_namespace_from_element_id(target_component, namespaces, components)
                 predicate_namespace = get_component_namespace_from_element_id(component, namespaces, components)
-                RDFLibPredicate(source_component, component, target_component, source_namespace, predicate_namespace, target_namespace).create(g)
-
-        g.serialize("./data.ttl", format="turtle")
+                RDFLibPredicate(source_component, component, target_component, source_namespace, predicate_namespace, target_namespace).create(self.g)
 
     def get_ontology_components_from_ontology_component(self, component: dict):
         elements = component["children"]
         ontology_components = self.library.generate_components_from_elements(elements)
         return ontology_components
 
+    def serialize(self, output: str | Path, format: ValidFormat = "turtle"):
+        format = cast(ValidFormat, format)
+        self.g.serialize(output, format=format)
 
-import re
 def extract_pattern(pattern: str, text: str):
     return [prefix[:-1] for prefix in re.findall(pattern, re.sub("<.*?>", "", text))]
 
 def get_component_namespace_from_onto(component: dict, namespaces: list):
     onto_url = component["label"]
-    try:
-        namespace: RDFLibNamespace = [n for n in namespaces if re.search(n.url, onto_url)][0]
-    except:
-        import pdb; pdb.set_trace()
+    namespace: RDFLibNamespace = [n for n in namespaces if re.search(n.url, onto_url)][0]
     return namespace
 
 def get_component_namespace_from_element_id(element_id: str, namespaces: list, components: list):
@@ -358,8 +345,6 @@ def create_var_for_literal(literal: Literal):
     var = generate_var_name_for(literal)
     exec(f"global {var}; {var} = literal")
     return var
-
-import uuid
 
 def generate_var_name_for(text: str):
     return f'LITERAL_{str(uuid.uuid3(uuid.NAMESPACE_DNS, text)).replace("-", "_")}'
