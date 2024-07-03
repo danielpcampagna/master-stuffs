@@ -54,5 +54,4 @@ WHERE {
         }
     }
 }
-# GROUP BY ?process
 ORDER BY ?process ?collectedData ?startedAt ?comparisonEndedAt ?rectificationEndedAt

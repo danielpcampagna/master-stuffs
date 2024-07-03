@@ -1,3 +1,5 @@
+# CQ28
+
 Are procedures in place to ensure personal data is kept up to date and accurate and where a correction is required, the necessary changes are made without delay?
 
 ## Discussion
@@ -52,7 +54,7 @@ Article 12 [[eugdpr2016a]] lays down the rules about the communication between t
 
 As far we understand, this 'without delay' is used to prevent a lazy controller. However, it does not serve as an objective parameter to establish the boundaries between a complaint and a non-compliant scenario. Thus, we consider the period of one month to answer this question. Since it is concerned with the time spent in performing the procedures, we are interested in the retrospective graph. This can be obtained by querying the period between the time the first activity took place and the time the last activity ended. PROV ontology sets up `prov:startedAtTime` and `prov:endedAtTime` to represent these period.
 
-### Related Work Comparison
+## Related Work Comparison
 
 <!-- [TODO: Improve this section] -->
 
@@ -64,7 +66,7 @@ Beyond the common terms (i.e., the data subject, the controller), the related wo
 <!-- Ok. -->
 <!-- We need to represent the request. Thus, how does Pandit represent a request? It does not represet it. -->
 
-### Extending the model
+## Extending the model
 
 Considering the prior analysis, we summarize in Table X the terms we identify in this question and the derived classes to represent them in the GDPRov ontology.
 
@@ -88,7 +90,7 @@ Considering the prior analysis, we summarize in Table X the terms we identify in
 
 <!-- [TODO: Is it indeed no necessary to represent an activity that made the checking whether there are differences between the current and stored data?] -->
 
-### The Query
+## The Query
 
 The process of building SPARQL queries from natural language is an in-process task in the literature[^5]. Since our objective here is solely to demonstrate the feasibility of employing provenance techniques to address the remaining question elicited in the [[TODO: Nome do documento que trás as perguntas de conformidade]], We are comfortable proposing a generical SPARQL query at the GDPRov level, capable of answer the question at hand. We will also bring some highlights about the decisions we made during the process of building this query. The query we propose is depicted in the [[#^Figure01|Figure 1]]. We use Graffoo to graphically represent the classes and properties in the query.
 
