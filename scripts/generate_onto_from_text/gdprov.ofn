@@ -1,0 +1,1538 @@
+Prefix(:=<https://w3id.org/GDPRov#>)
+Prefix(dpv:=<https://w3id.org/dpv#>)
+Prefix(owl:=<http://www.w3.org/2002/07/owl#>)
+Prefix(rdf:=<http://www.w3.org/1999/02/22-rdf-syntax-ns#>)
+Prefix(xml:=<http://www.w3.org/XML/1998/namespace>)
+Prefix(xsd:=<http://www.w3.org/2001/XMLSchema#>)
+Prefix(prov:=<http://www.w3.org/ns/prov#>)
+Prefix(rdfs:=<http://www.w3.org/2000/01/rdf-schema#>)
+Prefix(time:=<https://www.w3.org/TR/owl-time/>)
+Prefix(vann:=<http://purl.org/vocab/vann/>)
+Prefix(terms:=<http://purl.org/dc/terms/>)
+Prefix(p-plan:=<https://www.opmw.org/p-plan.owl>)
+Prefix(gdprtext:=<https://w3id.org/GDPRtEXT#>)
+
+
+Ontology(<https://w3id.org/GDPRov>
+<https://openscience.adaptcentre.ie/ontologies/gdprov/v/gdprov_v0.8.owl>
+Import(<http://www.w3.org/ns/prov-o-20130430>)
+Import(<https://www.opmw.org/p-plan.owl>)
+Annotation(terms:abstract "The General Data Protection Regulation (GDPR) is an European law governing the use of consent and personal data. Some of its obligations involve concepts related to the lifecycles of consent and personal data. Such obligations are concerned with how the collection, use, processing, sharing, and storing of consent and personal data takes place and provides the motivation for a form of documentation that can demonstrate the required information towards compliance. GDPRov is an OWL2 ontology for representing this information as provenance metadata using terms relevant to the GDPR. It extends PROV-O and P-Plan to represent the lifecyles as an abstract model of how things should happen or will happen (future) as well as instance of what has happened (past). The ontology is being developed as part of contributions towards PhD research by its primary author.")
+Annotation(terms:contributor "Daniel Prett Campagna")
+Annotation(terms:created "2017-08-01"^^xsd:date)
+Annotation(terms:creator "http://purl.org/adaptcentre/people/dave_lewis"^^xsd:anyURI)
+Annotation(terms:creator "http://purl.org/adaptcentre/people/harshvardhan_pandit"^^xsd:anyURI)
+Annotation(terms:description "GDPRov is an OWL2 ontology to express provenance metadata of consent and data lifecycles towards documenting compliance for GDPR.")
+Annotation(terms:license "https://creativecommons.org/licenses/by/4.0/")
+Annotation(terms:modified "2023-05-06")
+Annotation(terms:title "The GDPR Provenance ontology")
+Annotation(vann:preferredNamespacePrefix "gdprov")
+Annotation(vann:preferredNamespaceUri "https://w3id.org/GDPRov#"^^xsd:anyURI)
+Annotation(rdfs:comment "GDPRov is an ontology for expressing provenance metadata in the context of the General Data Protection Regulation (GDPR) and its compliance. It extends PROV-O and P-Plan. PROV-O is the ontology based on the PROV model, a W3C recommendation, while P-Plan is an extension of PROV-O. PROV is used to define terms or 'instances' of what has happened in the past, while P-Plan is used to define the abstract model or 'Plan' of things to happen. GDPRov uses P-Plan to create a template/model/plan as an abstract or model representation of a system which is then recorded using PROV-O instances to show something has happened. The aim of the ontology is to enable representation of consent and personal data lifecycles using terms relevant to GDPR and to facilitate expression of this information towards documentation related to compliance."@en)
+Annotation(owl:versionIRI "https://openscience.adaptcentre.ie/ontologies/gdprov/v/gdprov.0.8.owl")
+Annotation(owl:versionInfo "0.8")
+
+Declaration(Class(xsd:duration))
+Declaration(Class(prov:Agent))
+Declaration(Class(prov:Location))
+Declaration(Class(:AcquireConsentActivity))
+Declaration(Class(:AnonymisationActivity))
+Declaration(Class(:AnonymisedData))
+Declaration(Class(:AnonymisedDataEntity))
+Declaration(Class(:AnonymityLevel))
+Declaration(Class(:AppointProcessor))
+Declaration(Class(:ArchiveConsentActivity))
+Declaration(Class(:AutomatedStep))
+Declaration(Class(:ConsentAcquisitionStep))
+Declaration(Class(:ConsentActivity))
+Declaration(Class(:ConsentAgreement))
+Declaration(Class(:ConsentAgreementTemplate))
+Declaration(Class(:ConsentArchivalStep))
+Declaration(Class(:ConsentModificationStep))
+Declaration(Class(:ConsentStep))
+Declaration(Class(:ConsentWithdrawalProcess))
+Declaration(Class(:ConsentWithdrawalStep))
+Declaration(Class(:Controller))
+Declaration(Class(:ControllerRepresentative))
+Declaration(Class(:CrossBorderDataTransfer))
+Declaration(Class(:CrossBorderTransferActivity))
+Declaration(Class(:DPO))
+Declaration(Class(:Data))
+Declaration(Class(:DataAccessProcess))
+Declaration(Class(:DataActivity))
+Declaration(Class(:DataAnonymisationStep))
+Declaration(Class(:DataArchivalActivity))
+Declaration(Class(:DataArchivalProcess))
+Declaration(Class(:DataArchivalStep))
+Declaration(Class(:DataBreachActivity))
+Declaration(Class(:DataBreachRecord))
+Declaration(Class(:DataBreachStep))
+Declaration(Class(:DataCollectionActivity))
+Declaration(Class(:DataCollectionStep))
+Declaration(Class(:DataDeanonymisationStep))
+Declaration(Class(:DataDeletionActivity))
+Declaration(Class(:DataDeletionStep))
+Declaration(Class(:DataEntity))
+Declaration(Class(:DataErasureProcess))
+Declaration(Class(:DataRectificationProactiveProcess))
+Declaration(Class(:DataRectificationProcess))
+Declaration(Class(:DataRectificationReactiveProcess))
+Declaration(Class(:DataSharingActivity))
+Declaration(Class(:DataSharingStep))
+Declaration(Class(:DataStep))
+Declaration(Class(:DataStepWithoutProvenance))
+Declaration(Class(:DataStorageActivity))
+Declaration(Class(:DataStorageStep))
+Declaration(Class(:DataSubject))
+Declaration(Class(:DataTransferActivity))
+Declaration(Class(:DataTransferStep))
+Declaration(Class(:DataTransformationActivity))
+Declaration(Class(:DataTransformationStep))
+Declaration(Class(:DataUsageActivity))
+Declaration(Class(:DataUsageStep))
+Declaration(Class(:DeAnonymisationActivity))
+Declaration(Class(:DirectMarketing))
+Declaration(Class(:DocumentData))
+Declaration(Class(:DocumentEntity))
+Declaration(Class(:Duration))
+Declaration(Class(:FixedOccurencesDuration))
+Declaration(Class(:Frequency))
+Declaration(Class(:GivenConsent))
+Declaration(Class(:GivenConsentTemplate))
+Declaration(Class(:HandleCrossBorderTransferingProcess))
+Declaration(Class(:HandleDataBreachProcess))
+Declaration(Class(:HandleRightOfDataPortability))
+Declaration(Class(:HandleRightOfErasure))
+Declaration(Class(:HandleRightToAccessPersonalData))
+Declaration(Class(:HandleRightToBasicInfoAboutProcessing))
+Declaration(Class(:HandleRightToNoAutomatedProcessing))
+Declaration(Class(:HandleRightToObjectDirectMarketing))
+Declaration(Class(:HandleRightToObjectProcessing))
+Declaration(Class(:HandleRightToRectification))
+Declaration(Class(:HandleRightToRestrictProcessing))
+Declaration(Class(:HandleRightToTransparency))
+Declaration(Class(:HandleSAR))
+Declaration(Class(:ImpactAssessment))
+Declaration(Class(:JointController))
+Declaration(Class(:Marketing))
+Declaration(Class(:MaxDuration))
+Declaration(Class(:ModifyConsentActivity))
+Declaration(Class(:MonitorCompliance))
+Declaration(Class(:NotifyController))
+Declaration(Class(:NotifyControllerActivity))
+Declaration(Class(:NotifyDPA))
+Declaration(Class(:NotifyDPAActivity))
+Declaration(Class(:NotifyDataSubject))
+Declaration(Class(:NotifyDataSubjectActivity))
+Declaration(Class(:PersonalData))
+Declaration(Class(:PersonalDataEntity))
+Declaration(Class(:Process))
+Declaration(Class(:Processor))
+Declaration(Class(:ProcessorRepresentative))
+Declaration(Class(:ProvideCopyOfPersonalData))
+Declaration(Class(:RectifyData))
+Declaration(Class(:RectifyDataActivity))
+Declaration(Class(:Region))
+Declaration(Class(:ReportDataBreach))
+Declaration(Class(:SensitiveData))
+Declaration(Class(:SensitiveDataEntity))
+Declaration(Class(:StorageCondition))
+Declaration(Class(:SubProcessor))
+Declaration(Class(:TemporalDuration))
+Declaration(Class(:TermsAndConditions))
+Declaration(Class(:TermsAndConditionsEntity))
+Declaration(Class(:ThirdParty))
+Declaration(Class(:UntilEventDuration))
+Declaration(Class(:UntilTimeDuration))
+Declaration(Class(:UserIdentifier))
+Declaration(Class(:UserIdentifierEntity))
+Declaration(Class(:UserInputStep))
+Declaration(Class(:UserInteractionStep))
+Declaration(Class(:UserOutputStep))
+Declaration(Class(:WithdrawConsentActivity))
+Declaration(Class(gdprtext:AdequacyDecision))
+Declaration(Class(gdprtext:AppropriateSafeguards))
+Declaration(Class(gdprtext:BindingCorporateRules))
+Declaration(Class(gdprtext:Derogation))
+Declaration(Class(gdprtext:ExplicitConsentToTransfer))
+Declaration(Class(gdprtext:LawfulBasisForProcessing))
+Declaration(Class(gdprtext:LegalBasisForInternationalDataTransfer))
+Declaration(Class(gdprtext:LegalClaimsToTransfer))
+Declaration(Class(gdprtext:OpenConsultationToTransfer))
+Declaration(Class(gdprtext:PerformeContractToTransfer))
+Declaration(Class(gdprtext:PublicInterestToTransfer))
+Declaration(Class(gdprtext:VitalInterestToTransfer))
+Declaration(Class(dpv:PersonalDataHandling))
+Declaration(Class(p-plan:Activity))
+Declaration(Class(p-plan:Entity))
+Declaration(Class(p-plan:Plan))
+Declaration(Class(p-plan:Step))
+Declaration(Class(p-plan:Variable))
+Declaration(Class(time:Duration))
+Declaration(ObjectProperty(owl:topObjectProper))
+Declaration(ObjectProperty(prov:atLocation))
+Declaration(ObjectProperty(prov:invalidated))
+Declaration(ObjectProperty(prov:used))
+Declaration(ObjectProperty(prov:wasAttributedTo))
+Declaration(ObjectProperty(:anonymityLevel))
+Declaration(ObjectProperty(:archivesConsentAs))
+Declaration(ObjectProperty(:collectedConsentFromAgent))
+Declaration(ObjectProperty(:collectedDataFromAgent))
+Declaration(ObjectProperty(:collectsConsentFromAgent))
+Declaration(ObjectProperty(:collectsData))
+Declaration(ObjectProperty(:collectsDataFromAgent))
+Declaration(ObjectProperty(:generatesAnonymisedData))
+Declaration(ObjectProperty(:generatesConsentAgreement))
+Declaration(ObjectProperty(:generatesData))
+Declaration(ObjectProperty(:hasAnonymityLevel))
+Declaration(ObjectProperty(:hasDuration))
+Declaration(ObjectProperty(:hasFrequency))
+Declaration(ObjectProperty(:hasLegalBasis))
+Declaration(ObjectProperty(:hasLegalJustification))
+Declaration(ObjectProperty(:hasMaxDuration))
+Declaration(ObjectProperty(:hasSharedDataWith))
+Declaration(ObjectProperty(:hasStorageCondition))
+Declaration(ObjectProperty(:invalidatesData))
+Declaration(ObjectProperty(:involvesAgent))
+Declaration(ObjectProperty(:isAnonymisedByStep))
+Declaration(ObjectProperty(:isConsentAgreementTemplateForStep))
+Declaration(ObjectProperty(:isDataCollectedByStep))
+Declaration(ObjectProperty(:isDataGeneratedBy))
+Declaration(ObjectProperty(:isGeneratedByStep))
+Declaration(ObjectProperty(:isJustificationForDataStep))
+Declaration(ObjectProperty(:isJustifiedUsingConsentAgreement))
+Declaration(ObjectProperty(:isPartOfProcess))
+Declaration(ObjectProperty(:isSharedWithThirdParty))
+Declaration(ObjectProperty(:isTermsAndConditionsForStep))
+Declaration(ObjectProperty(:isUsedByStep))
+Declaration(ObjectProperty(:refersToProcess))
+Declaration(ObjectProperty(:sharedDataEntity))
+Declaration(ObjectProperty(:sharesData))
+Declaration(ObjectProperty(:sharesDataWith))
+Declaration(ObjectProperty(:sharesDataWithThirdParty))
+Declaration(ObjectProperty(:transferredDataToRegion))
+Declaration(ObjectProperty(:transfersDataToRegion))
+Declaration(ObjectProperty(:usedDataEntity))
+Declaration(ObjectProperty(:usesConsentAgreement))
+Declaration(ObjectProperty(:usesConsentAgreementTemplate))
+Declaration(ObjectProperty(:usesData))
+Declaration(ObjectProperty(:usesRecipeintLegalBasisURI))
+Declaration(ObjectProperty(:usesRecipientLegalBasis))
+Declaration(ObjectProperty(:usesTermsAndConditions))
+Declaration(ObjectProperty(:wasSharedBy))
+Declaration(ObjectProperty(:wasSharedWithThirdParty))
+Declaration(ObjectProperty(p-plan:hasInputVar))
+Declaration(ObjectProperty(p-plan:hasOutputVar))
+Declaration(ObjectProperty(p-plan:isInputVarOf))
+Declaration(ObjectProperty(p-plan:isOutputVarOf))
+Declaration(ObjectProperty(p-plan:isStepOfPlan))
+Declaration(DataProperty(:isNecessary))
+Declaration(DataProperty(:reviewedAtTime))
+Declaration(NamedIndividual(<http://www.w3.org/ns/prov-o>))
+Declaration(NamedIndividual(<http://www.w3.org/ns/prov-o-20120312>))
+Declaration(NamedIndividual(<http://www.w3.org/ns/prov-o#>))
+Declaration(NamedIndividual(:Anonymised))
+Declaration(NamedIndividual(:DeAnonymised))
+Declaration(NamedIndividual(:EndlessDuration))
+Declaration(NamedIndividual(:PseudoAnonymised))
+Declaration(NamedIndividual(:PseudoOrganisationalAnonymised))
+Declaration(AnnotationProperty(terms:abstract))
+Declaration(AnnotationProperty(terms:contributor))
+Declaration(AnnotationProperty(terms:created))
+Declaration(AnnotationProperty(terms:creator))
+Declaration(AnnotationProperty(terms:description))
+Declaration(AnnotationProperty(terms:license))
+Declaration(AnnotationProperty(terms:modified))
+Declaration(AnnotationProperty(terms:title))
+Declaration(AnnotationProperty(vann:preferredNamespacePrefix))
+Declaration(AnnotationProperty(vann:preferredNamespaceUri))
+Declaration(AnnotationProperty(owl:versionIRI))
+Declaration(Datatype(xsd:date))
+
+############################
+#   Object Properties
+############################
+
+# Object Property: :anonymityLevel (anonymity level)
+
+AnnotationAssertion(rdfs:label :anonymityLevel "anonymity level")
+AnnotationAssertion(owl:deprecated :anonymityLevel "true"^^xsd:boolean)
+ObjectPropertyDomain(:anonymityLevel :DataEntity)
+ObjectPropertyRange(:anonymityLevel :AnonymityLevel)
+
+# Object Property: :archivesConsentAs (archives consent as)
+
+AnnotationAssertion(rdfs:comment :archivesConsentAs "Archives the consent into some entity"@en)
+AnnotationAssertion(rdfs:label :archivesConsentAs "archives consent as")
+SubObjectPropertyOf(:archivesConsentAs p-plan:hasOutputVar)
+ObjectPropertyDomain(:archivesConsentAs :ConsentArchivalStep)
+ObjectPropertyRange(:archivesConsentAs :ConsentAgreement)
+
+# Object Property: :collectedConsentFromAgent (collected Consent From Agent)
+
+AnnotationAssertion(rdfs:label :collectedConsentFromAgent "collected Consent From Agent")
+SubObjectPropertyOf(:collectedConsentFromAgent :involvesAgent)
+ObjectPropertyDomain(:collectedConsentFromAgent :AcquireConsentActivity)
+ObjectPropertyRange(:collectedConsentFromAgent prov:Agent)
+
+# Object Property: :collectedDataFromAgent (collected Data From Agent)
+
+AnnotationAssertion(rdfs:label :collectedDataFromAgent "collected Data From Agent")
+SubObjectPropertyOf(:collectedDataFromAgent :involvesAgent)
+ObjectPropertyDomain(:collectedDataFromAgent :DataCollectionActivity)
+ObjectPropertyRange(:collectedDataFromAgent prov:Agent)
+
+# Object Property: :collectsConsentFromAgent (collects Consent From Agent)
+
+AnnotationAssertion(rdfs:label :collectsConsentFromAgent "collects Consent From Agent")
+SubObjectPropertyOf(:collectsConsentFromAgent :involvesAgent)
+ObjectPropertyDomain(:collectsConsentFromAgent :ConsentAcquisitionStep)
+ObjectPropertyRange(:collectsConsentFromAgent prov:Agent)
+
+# Object Property: :collectsData (collectsData)
+
+AnnotationAssertion(rdfs:comment :collectsData "Links data obtained (collected) by the step/activity that acquired it"@en)
+AnnotationAssertion(rdfs:label :collectsData "collectsData")
+SubObjectPropertyOf(:collectsData p-plan:hasOutputVar)
+InverseObjectProperties(:collectsData :isDataCollectedByStep)
+ObjectPropertyDomain(:collectsData :DataStep)
+ObjectPropertyRange(:collectsData :Data)
+
+# Object Property: :collectsDataFromAgent (collects Data From Agent)
+
+AnnotationAssertion(rdfs:label :collectsDataFromAgent "collects Data From Agent")
+SubObjectPropertyOf(:collectsDataFromAgent :involvesAgent)
+ObjectPropertyDomain(:collectsDataFromAgent :DataCollectionStep)
+ObjectPropertyRange(:collectsDataFromAgent prov:Agent)
+
+# Object Property: :generatesAnonymisedData (generatesAnonymisedData)
+
+AnnotationAssertion(rdfs:comment :generatesAnonymisedData "Indicates that an DataAnonymisationStep transforms a Data object into AnonymisedData"@en)
+AnnotationAssertion(rdfs:label :generatesAnonymisedData "generatesAnonymisedData")
+SubObjectPropertyOf(:generatesAnonymisedData :generatesData)
+InverseObjectProperties(:generatesAnonymisedData :isAnonymisedByStep)
+ObjectPropertyDomain(:generatesAnonymisedData :DataAnonymisationStep)
+ObjectPropertyRange(:generatesAnonymisedData :AnonymisedData)
+
+# Object Property: :generatesConsentAgreement (generatesConsentAgreement)
+
+AnnotationAssertion(rdfs:comment :generatesConsentAgreement "Generates ConsentAgreement which is a the consent granted by the user based on the ConsentAgreementTemplate through a ConsentAcquisitionStep"@en)
+AnnotationAssertion(rdfs:label :generatesConsentAgreement "generatesConsentAgreement")
+SubObjectPropertyOf(:generatesConsentAgreement p-plan:hasOutputVar)
+InverseObjectProperties(:generatesConsentAgreement :isGeneratedByStep)
+ObjectPropertyDomain(:generatesConsentAgreement :ConsentStep)
+ObjectPropertyRange(:generatesConsentAgreement :ConsentAgreement)
+
+# Object Property: :generatesData (generatesData)
+
+AnnotationAssertion(rdfs:comment :generatesData "produces data"@en)
+AnnotationAssertion(rdfs:label :generatesData "generatesData")
+SubObjectPropertyOf(:generatesData p-plan:hasOutputVar)
+InverseObjectProperties(:generatesData :isDataGeneratedBy)
+ObjectPropertyDomain(:generatesData :DataStep)
+ObjectPropertyRange(:generatesData :Data)
+
+# Object Property: :hasAnonymityLevel (hasAnonymityLevel)
+
+AnnotationAssertion(rdfs:comment :hasAnonymityLevel "Indicates the anonymity level of an AnonymisedData object using instances of the AnonymityLevel class"@en)
+AnnotationAssertion(rdfs:label :hasAnonymityLevel "hasAnonymityLevel")
+ObjectPropertyDomain(:hasAnonymityLevel :PersonalData)
+ObjectPropertyRange(:hasAnonymityLevel :AnonymityLevel)
+
+# Object Property: :hasDuration (has Duration)
+
+AnnotationAssertion(rdfs:comment :hasDuration "Duration of a temporal entity, expressed as a scaled value or nominal value"@en)
+AnnotationAssertion(rdfs:comment :hasDuration "Indicates information about duration"@en)
+AnnotationAssertion(rdfs:isDefinedBy :hasDuration dpv:hasDuration)
+AnnotationAssertion(rdfs:label :hasDuration "has Duration")
+SubObjectPropertyOf(:hasDuration owl:topObjectProper)
+ObjectPropertyDomain(:hasDuration :StorageCondition)
+ObjectPropertyRange(:hasDuration :Duration)
+
+# Object Property: :hasFrequency (has Frequency)
+
+AnnotationAssertion(rdfs:comment :hasFrequency "Indicates the frequency with which something takes place"@en)
+AnnotationAssertion(rdfs:isDefinedBy :hasFrequency dpv:hasFrequency)
+AnnotationAssertion(rdfs:label :hasFrequency "has Frequency")
+SubObjectPropertyOf(:hasFrequency owl:topObjectProperty)
+ObjectPropertyDomain(:hasFrequency ObjectUnionOf(:DataStep :Process))
+ObjectPropertyRange(:hasFrequency :Frequency)
+
+# Object Property: :hasLegalBasis (hasLegalBasis)
+
+AnnotationAssertion(rdfs:label :hasLegalBasis "hasLegalBasis"^^rdfs:Literal)
+ObjectPropertyDomain(:hasLegalBasis ObjectUnionOf(:DataActivity :DataStep :Process))
+ObjectPropertyRange(:hasLegalBasis gdprtext:LawfulBasisForProcessing)
+
+# Object Property: :hasLegalJustification (has legal justification)
+
+AnnotationAssertion(rdfs:label :hasLegalJustification "has legal justification")
+AnnotationAssertion(owl:deprecated :hasLegalJustification "true"^^xsd:boolean)
+ObjectPropertyDomain(:hasLegalJustification p-plan:Activity)
+ObjectPropertyRange(:hasLegalJustification gdprtext:LawfulBasisForProcessing)
+
+# Object Property: :hasMaxDuration (has Max Duration)
+
+AnnotationAssertion(rdfs:comment :hasMaxDuration "Indicates information about duration"@en)
+AnnotationAssertion(rdfs:isDefinedBy :hasMaxDuration dpv:hasDuration)
+AnnotationAssertion(rdfs:label :hasMaxDuration "has Max Duration")
+SubObjectPropertyOf(:hasMaxDuration owl:topObjectProperty)
+ObjectPropertyDomain(:hasMaxDuration ObjectUnionOf(:DataStep :Process))
+ObjectPropertyRange(:hasMaxDuration :Duration)
+
+# Object Property: :hasSharedDataWith (hasSharedDataWith)
+
+AnnotationAssertion(rdfs:label :hasSharedDataWith "hasSharedDataWith"^^rdfs:Literal)
+ObjectPropertyDomain(:hasSharedDataWith :DataSharingActivity)
+ObjectPropertyRange(:hasSharedDataWith prov:Agent)
+
+# Object Property: :hasStorageCondition (has Storage Condition)
+
+AnnotationAssertion(rdfs:comment :hasStorageCondition "Indicates the conditions required or followed regarding storage of data"@en)
+AnnotationAssertion(rdfs:isDefinedBy :hasStorageCondition dpv:hasStorageCondition)
+AnnotationAssertion(rdfs:label :hasStorageCondition "has Storage Condition")
+SubObjectPropertyOf(:hasStorageCondition owl:topObjectProperty)
+ObjectPropertyDomain(:hasStorageCondition :Process)
+ObjectPropertyRange(:hasStorageCondition :StorageCondition)
+
+# Object Property: :invalidatesData (invalidates Data)
+
+AnnotationAssertion(rdfs:label :invalidatesData "invalidates Data")
+ObjectPropertyDomain(:invalidatesData ObjectUnionOf(:DataDeletionActivity :DataDeletionStep))
+ObjectPropertyRange(:invalidatesData :Data)
+
+# Object Property: :involvesAgent (involves Agent)
+
+AnnotationAssertion(rdfs:label :involvesAgent "involves Agent")
+ObjectPropertyDomain(:involvesAgent ObjectUnionOf(:DataActivity :DataStep :Process))
+ObjectPropertyRange(:involvesAgent prov:Agent)
+
+# Object Property: :isAnonymisedByStep (isAnonymisedByStep)
+
+AnnotationAssertion(rdfs:label :isAnonymisedByStep "isAnonymisedByStep")
+SubObjectPropertyOf(:isAnonymisedByStep :isDataGeneratedBy)
+ObjectPropertyDomain(:isAnonymisedByStep :AnonymisedData)
+ObjectPropertyRange(:isAnonymisedByStep :DataAnonymisationStep)
+
+# Object Property: :isConsentAgreementTemplateForStep (isConsentAgreementTemplateForStep)
+
+AnnotationAssertion(rdfs:label :isConsentAgreementTemplateForStep "isConsentAgreementTemplateForStep")
+SubObjectPropertyOf(:isConsentAgreementTemplateForStep p-plan:isInputVarOf)
+InverseObjectProperties(:isConsentAgreementTemplateForStep :usesConsentAgreementTemplate)
+ObjectPropertyDomain(:isConsentAgreementTemplateForStep :ConsentAgreementTemplate)
+ObjectPropertyRange(:isConsentAgreementTemplateForStep :ConsentAcquisitionStep)
+
+# Object Property: :isDataCollectedByStep (isDataCollectedByStep)
+
+AnnotationAssertion(rdfs:label :isDataCollectedByStep "isDataCollectedByStep")
+SubObjectPropertyOf(:isDataCollectedByStep p-plan:isOutputVarOf)
+ObjectPropertyDomain(:isDataCollectedByStep :Data)
+ObjectPropertyRange(:isDataCollectedByStep :DataStep)
+
+# Object Property: :isDataGeneratedBy (isDataGeneratedByStep)
+
+AnnotationAssertion(rdfs:label :isDataGeneratedBy "isDataGeneratedByStep")
+SubObjectPropertyOf(:isDataGeneratedBy p-plan:isOutputVarOf)
+ObjectPropertyDomain(:isDataGeneratedBy :Data)
+ObjectPropertyRange(:isDataGeneratedBy :DataStep)
+
+# Object Property: :isGeneratedByStep (isGeneratedByStep)
+
+AnnotationAssertion(rdfs:label :isGeneratedByStep "isGeneratedByStep")
+SubObjectPropertyOf(:isGeneratedByStep p-plan:isOutputVarOf)
+ObjectPropertyDomain(:isGeneratedByStep :ConsentAgreement)
+ObjectPropertyRange(:isGeneratedByStep :ConsentStep)
+
+# Object Property: :isJustificationForDataStep (isJustificationForDataStep)
+
+AnnotationAssertion(rdfs:label :isJustificationForDataStep "isJustificationForDataStep")
+SubObjectPropertyOf(:isJustificationForDataStep p-plan:isInputVarOf)
+InverseObjectProperties(:isJustificationForDataStep :isJustifiedUsingConsentAgreement)
+ObjectPropertyDomain(:isJustificationForDataStep :ConsentAgreement)
+ObjectPropertyRange(:isJustificationForDataStep :DataStep)
+
+# Object Property: :isJustifiedUsingConsentAgreement (isJustifiedUsingConsentAgreement)
+
+AnnotationAssertion(rdfs:comment :isJustifiedUsingConsentAgreement "justifies use of data by step through specified consent agreement"@en)
+AnnotationAssertion(rdfs:label :isJustifiedUsingConsentAgreement "isJustifiedUsingConsentAgreement")
+SubObjectPropertyOf(:isJustifiedUsingConsentAgreement p-plan:hasInputVar)
+ObjectPropertyDomain(:isJustifiedUsingConsentAgreement :DataStep)
+ObjectPropertyRange(:isJustifiedUsingConsentAgreement :ConsentAgreement)
+
+# Object Property: :isNecessary (is Necessary)
+
+AnnotationAssertion(rdfs:comment :isNecessary "Describe whether the corresponding DataActivity to this DataStep must occur. The lack of execution of an activity that the step is necessary to correspond to a lack of compliance."@en)
+AnnotationAssertion(rdfs:label :isNecessary "is Necessary")
+SubObjectPropertyOf(:isNecessary owl:topObjectProperty)
+ObjectPropertyDomain(:isNecessary :DataStep)
+
+# Object Property: :isPartOfProcess (isPartOfProcess)
+
+AnnotationAssertion(rdfs:label :isPartOfProcess "isPartOfProcess"^^rdfs:Literal)
+SubObjectPropertyOf(:isPartOfProcess p-plan:isStepOfPlan)
+ObjectPropertyDomain(:isPartOfProcess :DataStep)
+ObjectPropertyRange(:isPartOfProcess :Process)
+
+# Object Property: :isSharedWithThirdParty (is Shared With Third Party)
+
+AnnotationAssertion(rdfs:comment :isSharedWithThirdParty "An association indicating that the agent participated in the sharing activity"@en)
+AnnotationAssertion(rdfs:label :isSharedWithThirdParty "is Shared With Third Party")
+SubObjectPropertyOf(:isSharedWithThirdParty p-plan:isInputVarOf)
+ObjectPropertyDomain(:isSharedWithThirdParty :Data)
+ObjectPropertyRange(:isSharedWithThirdParty :ThirdParty)
+
+# Object Property: :isTermsAndConditionsForStep (isTermsAndConditionsForStep)
+
+AnnotationAssertion(rdfs:label :isTermsAndConditionsForStep "isTermsAndConditionsForStep")
+SubObjectPropertyOf(:isTermsAndConditionsForStep p-plan:isInputVarOf)
+InverseObjectProperties(:isTermsAndConditionsForStep :usesTermsAndConditions)
+ObjectPropertyDomain(:isTermsAndConditionsForStep :TermsAndConditions)
+ObjectPropertyRange(:isTermsAndConditionsForStep :ConsentAcquisitionStep)
+
+# Object Property: :isUsedByStep (isUsedByStep)
+
+AnnotationAssertion(rdfs:label :isUsedByStep "isUsedByStep")
+SubObjectPropertyOf(:isUsedByStep p-plan:isInputVarOf)
+InverseObjectProperties(:isUsedByStep :usesData)
+ObjectPropertyDomain(:isUsedByStep :Data)
+ObjectPropertyRange(:isUsedByStep :DataStep)
+
+# Object Property: :refersToProcess (:refersToProcess)
+
+AnnotationAssertion(owl:deprecated :refersToProcess "true"^^xsd:boolean)
+ObjectPropertyRange(:refersToProcess :Process)
+
+# Object Property: :reviewedAtTime (is Necessary)
+
+AnnotationAssertion(rdfs:comment :reviewedAtTime "The time at which a plan or a procedure was reviewed."@en)
+AnnotationAssertion(rdfs:label :reviewedAtTime "is Necessary")
+SubObjectPropertyOf(:reviewedAtTime owl:topObjectProperty)
+ObjectPropertyDomain(:reviewedAtTime ObjectUnionOf(:DataStep :Process))
+
+# Object Property: :sharedDataEntity (shared Data Entity)
+
+AnnotationAssertion(rdfs:comment :sharedDataEntity "The beginning of transferring an entity."@en)
+AnnotationAssertion(rdfs:label :sharedDataEntity "shared Data Entity")
+SubObjectPropertyOf(:sharedDataEntity prov:used)
+ObjectPropertyDomain(:sharedDataEntity :CrossBorderTransferActivity)
+ObjectPropertyRange(:sharedDataEntity :DataEntity)
+
+# Object Property: :sharesData (sharesData)
+
+AnnotationAssertion(rdfs:comment :sharesData "Indicates sharing of Data through a DataStep"@en)
+AnnotationAssertion(rdfs:label :sharesData "sharesData")
+SubObjectPropertyOf(:sharesData p-plan:hasInputVar)
+InverseObjectProperties(:sharesData :wasSharedBy)
+ObjectPropertyDomain(:sharesData ObjectUnionOf(:CrossBorderDataTransfer :DataSharingStep))
+ObjectPropertyRange(:sharesData :Data)
+
+# Object Property: :sharesDataWith (sharesDataWith)
+
+AnnotationAssertion(rdfs:comment :sharesDataWith "Describe an intended data transferring"@en)
+AnnotationAssertion(rdfs:label :sharesDataWith "sharesDataWith")
+ObjectPropertyDomain(:sharesDataWith ObjectUnionOf(:CrossBorderDataTransfer :DataSharingStep))
+ObjectPropertyRange(:sharesDataWith prov:Agent)
+
+# Object Property: :sharesDataWithThirdParty (sharesDataWithThirdParty)
+
+AnnotationAssertion(rdfs:comment :sharesDataWithThirdParty "Shares data with a third party"@en)
+AnnotationAssertion(rdfs:label :sharesDataWithThirdParty "sharesDataWithThirdParty")
+AnnotationAssertion(owl:deprecated :sharesDataWithThirdParty "true"^^xsd:boolean)
+SubObjectPropertyOf(:sharesDataWithThirdParty owl:topObjectProperty)
+ObjectPropertyDomain(:sharesDataWithThirdParty :DataSharingStep)
+ObjectPropertyRange(:sharesDataWithThirdParty :ThirdParty)
+
+# Object Property: :transferredDataToRegion (transferredDataToRegion)
+
+AnnotationAssertion(rdfs:comment :transferredDataToRegion "The Location of any resource."@en)
+AnnotationAssertion(rdfs:isDefinedBy :transferredDataToRegion prov:atLocation)
+AnnotationAssertion(rdfs:label :transferredDataToRegion "transferredDataToRegion"^^rdfs:Literal)
+ObjectPropertyDomain(:transferredDataToRegion :CrossBorderTransferActivity)
+ObjectPropertyRange(:transferredDataToRegion :Region)
+
+# Object Property: :transfersDataToRegion (transfersDataToRegion)
+
+AnnotationAssertion(rdfs:label :transfersDataToRegion "transfersDataToRegion"^^rdfs:Literal)
+ObjectPropertyDomain(:transfersDataToRegion :CrossBorderDataTransfer)
+ObjectPropertyRange(:transfersDataToRegion :Region)
+
+# Object Property: :usedDataEntity (used Data Entity)
+
+AnnotationAssertion(rdfs:comment :usedDataEntity "A DataEntity that was used by this DataActivity."@en)
+AnnotationAssertion(rdfs:isDefinedBy :usedDataEntity prov:used)
+AnnotationAssertion(rdfs:label :usedDataEntity "used Data Entity")
+SubObjectPropertyOf(:usedDataEntity prov:used)
+ObjectPropertyDomain(:usedDataEntity :DataActivity)
+ObjectPropertyRange(:usedDataEntity :DataEntity)
+
+# Object Property: :usesConsentAgreement (uses Consent Agreement)
+
+AnnotationAssertion(rdfs:comment :usesConsentAgreement "uses Consent Agreement entity"@en)
+AnnotationAssertion(rdfs:label :usesConsentAgreement "uses Consent Agreement")
+SubObjectPropertyOf(:usesConsentAgreement p-plan:hasInputVar)
+ObjectPropertyDomain(:usesConsentAgreement :ConsentStep)
+ObjectPropertyRange(:usesConsentAgreement :ConsentAgreement)
+
+# Object Property: :usesConsentAgreementTemplate (usesConsentAgreementTemplate)
+
+AnnotationAssertion(rdfs:comment :usesConsentAgreementTemplate "links a Consent Acquisition Step with the Consent Agreement Template used to acquire consent"@en)
+AnnotationAssertion(rdfs:label :usesConsentAgreementTemplate "usesConsentAgreementTemplate")
+SubObjectPropertyOf(:usesConsentAgreementTemplate p-plan:hasInputVar)
+ObjectPropertyDomain(:usesConsentAgreementTemplate :ConsentAcquisitionStep)
+ObjectPropertyRange(:usesConsentAgreementTemplate :ConsentAgreementTemplate)
+
+# Object Property: :usesData (usesData)
+
+AnnotationAssertion(rdfs:comment :usesData "links step with data used"@en)
+AnnotationAssertion(rdfs:label :usesData "usesData")
+SubObjectPropertyOf(:usesData p-plan:hasInputVar)
+ObjectPropertyDomain(:usesData :DataStep)
+ObjectPropertyRange(:usesData :Data)
+
+# Object Property: :usesRecipeintLegalBasisURI (uses Recipeint Legal Basis URI)
+
+AnnotationAssertion(rdfs:comment :usesRecipeintLegalBasisURI "The URI for the document that describes this legal basis can be found"@en)
+AnnotationAssertion(rdfs:label :usesRecipeintLegalBasisURI "uses Recipeint Legal Basis URI")
+SubObjectPropertyOf(:usesRecipeintLegalBasisURI owl:topObjectProperty)
+ObjectPropertyDomain(:usesRecipeintLegalBasisURI ObjectUnionOf(:CrossBorderDataTransfer :CrossBorderTransferActivity))
+
+# Object Property: :usesRecipientLegalBasis (uses Recipient Legal Basis)
+
+AnnotationAssertion(rdfs:comment :usesRecipientLegalBasis "Provides the legal basis for a given data step"@en)
+AnnotationAssertion(rdfs:label :usesRecipientLegalBasis "uses Recipient Legal Basis")
+SubObjectPropertyOf(:usesRecipientLegalBasis owl:topObjectProperty)
+ObjectPropertyDomain(:usesRecipientLegalBasis ObjectUnionOf(:CrossBorderDataTransfer :CrossBorderTransferActivity))
+ObjectPropertyRange(:usesRecipientLegalBasis ObjectUnionOf(gdprtext:AdequacyDecision gdprtext:AppropriateSafeguards gdprtext:BindingCorporateRules gdprtext:Derogation))
+
+# Object Property: :usesTermsAndConditions (usesTermsAndConditions)
+
+AnnotationAssertion(rdfs:comment :usesTermsAndConditions "Links a Consent Acquisition Step with the Terms and Conditions presented to the user when acquiring Consent"@en)
+AnnotationAssertion(rdfs:label :usesTermsAndConditions "usesTermsAndConditions")
+SubObjectPropertyOf(:usesTermsAndConditions p-plan:hasInputVar)
+ObjectPropertyDomain(:usesTermsAndConditions :ConsentAcquisitionStep)
+ObjectPropertyRange(:usesTermsAndConditions :TermsAndConditions)
+
+# Object Property: :wasSharedBy (was Shared By)
+
+AnnotationAssertion(rdfs:label :wasSharedBy "was Shared By")
+SubObjectPropertyOf(:wasSharedBy p-plan:isInputVarOf)
+ObjectPropertyDomain(:wasSharedBy :Data)
+ObjectPropertyRange(:wasSharedBy ObjectUnionOf(:CrossBorderDataTransfer :DataSharingStep))
+
+# Object Property: :wasSharedWithThirdParty (was Shared With Third Party)
+
+AnnotationAssertion(rdfs:comment :wasSharedWithThirdParty "An association indicating that the agent participated in the sharing activity"@en)
+AnnotationAssertion(rdfs:label :wasSharedWithThirdParty "was Shared With Third Party")
+SubObjectPropertyOf(:wasSharedWithThirdParty prov:wasAttributedTo)
+ObjectPropertyDomain(:wasSharedWithThirdParty :DataEntity)
+ObjectPropertyRange(:wasSharedWithThirdParty :ThirdParty)
+
+
+############################
+#   Data Properties
+############################
+
+# Data Property: :isNecessary (is Necessary)
+
+DataPropertyRange(:isNecessary xsd:boolean)
+
+# Data Property: :reviewedAtTime (is Necessary)
+
+DataPropertyRange(:reviewedAtTime xsd:dateTime)
+
+# Data Property: :usesRecipeintLegalBasisURI (uses Recipeint Legal Basis URI)
+
+DataPropertyRange(:usesRecipeintLegalBasisURI xsd:anyURI)
+
+
+
+############################
+#   Classes
+############################
+
+# Class: :AcquireConsentActivity (Acquire Consent Activity)
+
+AnnotationAssertion(rdfs:comment :AcquireConsentActivity "Is an activity that acquires consent."@en)
+AnnotationAssertion(rdfs:isDefinedBy :AcquireConsentActivity gdprtext:ObtainingConsent)
+AnnotationAssertion(rdfs:label :AcquireConsentActivity "Acquire Consent Activity")
+AnnotationAssertion(rdfs:seeAlso :AcquireConsentActivity :ConsentAcquisitionStep)
+SubClassOf(:AcquireConsentActivity :ConsentActivity)
+
+# Class: :AnonymisationActivity (Anonymisation Activity)
+
+AnnotationAssertion(rdfs:comment :AnonymisationActivity "Is an activity that anonymises data."@en)
+AnnotationAssertion(rdfs:label :AnonymisationActivity "Anonymisation Activity")
+AnnotationAssertion(rdfs:seeAlso :AnonymisationActivity :DataAnonymisationStep)
+SubClassOf(:AnonymisationActivity :DataTransformationActivity)
+
+# Class: :AnonymisedData (AnonymisedData)
+
+AnnotationAssertion(rdfs:comment :AnonymisedData "Represents data that has been Anonymised at some level reflected by the hasAnonymityLevel object property"@en)
+AnnotationAssertion(rdfs:isDefinedBy :AnonymisedData gdprtext:AnonymousData)
+AnnotationAssertion(rdfs:isDefinedBy :AnonymisedData gdprtext:PseudoAnonymousData)
+AnnotationAssertion(rdfs:label :AnonymisedData "AnonymisedData")
+AnnotationAssertion(rdfs:seeAlso :AnonymisedData :AnonymisedDataEntity)
+SubClassOf(:AnonymisedData :PersonalData)
+SubClassOf(:AnonymisedData ObjectSomeValuesFrom(:hasAnonymityLevel :AnonymityLevel))
+
+# Class: :AnonymisedDataEntity (Anonymised Data Entity)
+
+AnnotationAssertion(rdfs:comment :AnonymisedDataEntity "Is an entity where personal data has been anonymised to some extent."@en)
+AnnotationAssertion(rdfs:isDefinedBy :AnonymisedDataEntity gdprtext:AnonymousData)
+AnnotationAssertion(rdfs:isDefinedBy :AnonymisedDataEntity gdprtext:PseudoAnonymousData)
+AnnotationAssertion(rdfs:label :AnonymisedDataEntity "Anonymised Data Entity")
+AnnotationAssertion(rdfs:seeAlso :AnonymisedDataEntity :AnonymisedData)
+SubClassOf(:AnonymisedDataEntity :PersonalDataEntity)
+
+# Class: :AnonymityLevel (AnonymityLevel)
+
+AnnotationAssertion(rdfs:comment :AnonymityLevel "Provides a way to express the Anonymity Level of AnonymisedData objects through the object property hasAnonymityLevel"@en)
+AnnotationAssertion(rdfs:isDefinedBy :AnonymityLevel gdprtext:AnonymousData)
+AnnotationAssertion(rdfs:isDefinedBy :AnonymityLevel gdprtext:PseudoAnonymousData)
+AnnotationAssertion(rdfs:label :AnonymityLevel "AnonymityLevel")
+
+# Class: :AppointProcessor (Appoint Processor)
+
+AnnotationAssertion(rdfs:comment :AppointProcessor "Reflects the process(es) used to appoint processors"@en)
+AnnotationAssertion(rdfs:isDefinedBy :AppointProcessor gdprtext:AppointmentOfProcessors)
+AnnotationAssertion(rdfs:label :AppointProcessor "Appoint Processor")
+SubClassOf(:AppointProcessor :Process)
+
+# Class: :ArchiveConsentActivity (Archive Consent Activity)
+
+AnnotationAssertion(rdfs:comment :ArchiveConsentActivity "An activity that archives given/acquired consent for storage."@en)
+AnnotationAssertion(rdfs:label :ArchiveConsentActivity "Archive Consent Activity")
+AnnotationAssertion(rdfs:seeAlso :ArchiveConsentActivity :ConsentArchivalStep)
+SubClassOf(:ArchiveConsentActivity :ConsentActivity)
+
+# Class: :AutomatedStep (AutomatedStep)
+
+AnnotationAssertion(rdfs:label :AutomatedStep "AutomatedStep"^^rdfs:Literal)
+SubClassOf(:AutomatedStep p-plan:Step)
+
+# Class: :ConsentAcquisitionStep (Consent Acquisition Step)
+
+AnnotationAssertion(rdfs:comment :ConsentAcquisitionStep "ConsentAcquisitionStep deals with acquiring consent from the user. It uses Terms and Conditions along with the appropriate Consent Model as the basis of obtaining consent from the user. The output of this step is the consent object agreed upon by the user."@en)
+AnnotationAssertion(rdfs:isDefinedBy :ConsentAcquisitionStep gdprtext:ObtainingConsent)
+AnnotationAssertion(rdfs:label :ConsentAcquisitionStep "Consent Acquisition Step"@en)
+AnnotationAssertion(rdfs:seeAlso :ConsentAcquisitionStep :AcquireConsentActivity)
+SubClassOf(:ConsentAcquisitionStep :ConsentStep)
+
+# Class: :ConsentActivity (Consent Activity)
+
+AnnotationAssertion(rdfs:comment :ConsentActivity "Is an activity dealing with consent."@en)
+AnnotationAssertion(rdfs:isDefinedBy :ConsentActivity gdprtext:ConsentActivity)
+AnnotationAssertion(rdfs:label :ConsentActivity "Consent Activity")
+AnnotationAssertion(rdfs:seeAlso :ConsentActivity :ConsentStep)
+SubClassOf(:ConsentActivity p-plan:Activity)
+
+# Class: :ConsentAgreement (ConsentAgreement)
+
+AnnotationAssertion(rdfs:comment :ConsentAgreement "ConsentAgreement reflects the consent provided by the user based on the provided Terms and Conditions and Consent Agreement Templates. It is the set of permissions the user has specifically provided or refused to provide. This consent is useful to provide justification of activities that use user data."@en)
+AnnotationAssertion(rdfs:isDefinedBy :ConsentAgreement gdprtext:GivenConsent)
+AnnotationAssertion(rdfs:label :ConsentAgreement "ConsentAgreement"@en)
+AnnotationAssertion(rdfs:seeAlso :ConsentAgreement :GivenConsent)
+SubClassOf(:ConsentAgreement p-plan:Variable)
+DisjointClasses(:ConsentAgreement :ConsentAgreementTemplate)
+DisjointClasses(:ConsentAgreement :Data)
+DisjointClasses(:ConsentAgreement :TermsAndConditions)
+
+# Class: :ConsentAgreementTemplate (ConsentAgreementTemplate)
+
+AnnotationAssertion(rdfs:comment :ConsentAgreementTemplate "This is a template for consent requested from the user."@en)
+AnnotationAssertion(rdfs:isDefinedBy :ConsentAgreementTemplate gdprtext:Consent)
+AnnotationAssertion(rdfs:isDefinedBy :ConsentAgreementTemplate gdprtext:ObligationForObtainingConsent)
+AnnotationAssertion(rdfs:isDefinedBy :ConsentAgreementTemplate gdprtext:ValidConsent)
+AnnotationAssertion(rdfs:label :ConsentAgreementTemplate "ConsentAgreementTemplate"@en)
+AnnotationAssertion(rdfs:seeAlso :ConsentAgreementTemplate :GivenConsentTemplate)
+SubClassOf(:ConsentAgreementTemplate p-plan:Variable)
+DisjointClasses(:ConsentAgreementTemplate :Data)
+DisjointClasses(:ConsentAgreementTemplate :TermsAndConditions)
+
+# Class: :ConsentArchivalStep (Consent Archival Step)
+
+AnnotationAssertion(rdfs:comment :ConsentArchivalStep "ConsentArchivalStep archives acquired consent to form a record of the consent given by the user."@en)
+AnnotationAssertion(rdfs:isDefinedBy :ConsentArchivalStep gdprtext:DemonstratingConsent)
+AnnotationAssertion(rdfs:label :ConsentArchivalStep "Consent Archival Step"@en)
+AnnotationAssertion(rdfs:seeAlso :ConsentArchivalStep :ArchiveConsentActivity)
+SubClassOf(:ConsentArchivalStep :ConsentStep)
+
+# Class: :ConsentModificationStep (Consent Modification Step)
+
+AnnotationAssertion(rdfs:comment :ConsentModificationStep "ConsentModificationStep deals with modifications to the consent by the user. It invalidates the previous consent object and produces a new updated consent object that represents the modified consent."@en)
+AnnotationAssertion(rdfs:isDefinedBy :ConsentModificationStep gdprtext:ObligationForObtainingConsent)
+AnnotationAssertion(rdfs:label :ConsentModificationStep "Consent Modification Step"@en)
+AnnotationAssertion(rdfs:seeAlso :ConsentModificationStep :ModifyConsentActivity)
+SubClassOf(:ConsentModificationStep :ConsentStep)
+
+# Class: :ConsentStep (Consent Step)
+
+AnnotationAssertion(rdfs:comment :ConsentStep "A ConsentStep acts/interacts with/uses Consent"@en)
+AnnotationAssertion(rdfs:isDefinedBy :ConsentStep gdprtext:ConsentActivity)
+AnnotationAssertion(rdfs:label :ConsentStep "Consent Step"@en)
+AnnotationAssertion(rdfs:seeAlso :ConsentStep :ConsentActivity)
+SubClassOf(:ConsentStep p-plan:Step)
+
+# Class: :ConsentWithdrawalProcess (Consent Withdrawal Process)
+
+AnnotationAssertion(rdfs:comment :ConsentWithdrawalProcess "A ConsentWithdrawalProcess deals with the withdrawal of consent by the user and the corresponding activity carried out within the system"@en)
+AnnotationAssertion(rdfs:isDefinedBy :ConsentWithdrawalProcess gdprtext:WithdrawingConsent)
+AnnotationAssertion(rdfs:label :ConsentWithdrawalProcess "Consent Withdrawal Process"@en)
+AnnotationAssertion(rdfs:seeAlso :ConsentWithdrawalProcess :ConsentWithdrawalStep)
+SubClassOf(:ConsentWithdrawalProcess :Process)
+
+# Class: :ConsentWithdrawalStep (Consent Withdrawal Step)
+
+AnnotationAssertion(rdfs:comment :ConsentWithdrawalStep "ConsentWithdrawalStep deals with withdrawal of consent"@en)
+AnnotationAssertion(rdfs:isDefinedBy :ConsentWithdrawalStep gdprtext:CanBeWithdrawnEasilyConsentObligation)
+AnnotationAssertion(rdfs:isDefinedBy :ConsentWithdrawalStep gdprtext:WithdrawingConsent)
+AnnotationAssertion(rdfs:label :ConsentWithdrawalStep "Consent Withdrawal Step"@en)
+AnnotationAssertion(rdfs:seeAlso :ConsentWithdrawalStep :WithdrawConsentActivity)
+SubClassOf(:ConsentWithdrawalStep :ConsentModificationStep)
+
+# Class: :Controller (Controller)
+
+AnnotationAssertion(rdfs:comment :Controller "A ThirdPartyDataController is a Third Party entity that acts as a Data Controller"@en)
+AnnotationAssertion(rdfs:isDefinedBy :Controller gdprtext:Controller)
+AnnotationAssertion(rdfs:label :Controller "Controller"@en)
+SubClassOf(:Controller :ThirdParty)
+
+# Class: :ControllerRepresentative (Controller Representative)
+
+AnnotationAssertion(rdfs:comment :ControllerRepresentative "A Representative of the Controller"@en)
+AnnotationAssertion(rdfs:isDefinedBy :ControllerRepresentative gdprtext:ControllerRepresentative)
+AnnotationAssertion(rdfs:label :ControllerRepresentative "Controller Representative")
+SubClassOf(:ControllerRepresentative prov:Agent)
+
+# Class: :CrossBorderDataTransfer (Cross-border Data Transfer)
+
+AnnotationAssertion(rdfs:comment :CrossBorderDataTransfer "Reflects cross-border transfer of data"@en)
+AnnotationAssertion(rdfs:isDefinedBy :CrossBorderDataTransfer gdprtext:CrossBorderTransfer)
+AnnotationAssertion(rdfs:label :CrossBorderDataTransfer "Cross-border Data Transfer")
+AnnotationAssertion(rdfs:seeAlso :CrossBorderDataTransfer :CrossBorderTransferActivity)
+SubClassOf(:CrossBorderDataTransfer :DataStep)
+
+# Class: :CrossBorderTransferActivity (Cross Border Transfer Activity)
+
+AnnotationAssertion(rdfs:comment :CrossBorderTransferActivity "Is an activity that transfer data across borders (as defined in the GDPR)."@en)
+AnnotationAssertion(rdfs:isDefinedBy :CrossBorderTransferActivity gdprtext:CrossBorderTransfer)
+AnnotationAssertion(rdfs:label :CrossBorderTransferActivity "Cross Border Transfer Activity")
+AnnotationAssertion(rdfs:seeAlso :CrossBorderTransferActivity :CrossBorderDataTransfer)
+SubClassOf(:CrossBorderTransferActivity :DataActivity)
+
+# Class: :DPO (Data Protection Officer (DPO))
+
+AnnotationAssertion(rdfs:comment :DPO "The Data Protection Officer appointed to an organisation."@en)
+AnnotationAssertion(rdfs:isDefinedBy :DPO gdprtext:DPO)
+AnnotationAssertion(rdfs:label :DPO "Data Protection Officer (DPO)")
+SubClassOf(:DPO prov:Agent)
+
+# Class: :Data (Data)
+
+AnnotationAssertion(rdfs:comment :Data "Represents class of data collected or generated through various activities"@en)
+AnnotationAssertion(rdfs:isDefinedBy :Data gdprtext:Data)
+AnnotationAssertion(rdfs:label :Data "Data"@en)
+AnnotationAssertion(rdfs:seeAlso :Data :DataEntity)
+SubClassOf(:Data p-plan:Variable)
+DisjointClasses(:Data :TermsAndConditions)
+
+# Class: :DataAccessProcess (Data Access Process)
+
+AnnotationAssertion(rdfs:comment :DataAccessProcess "A DataAccessProcess corresponds to the request made by an user for access to their data within the system. This process is responsible for handling the request process and providing the appropriate data to the end user."@en)
+AnnotationAssertion(rdfs:isDefinedBy :DataAccessProcess gdprtext:ProvideCopyOfPersonalData)
+AnnotationAssertion(rdfs:label :DataAccessProcess "Data Access Process"@en)
+SubClassOf(:DataAccessProcess :Process)
+
+# Class: :DataActivity (Data Activity)
+
+AnnotationAssertion(rdfs:comment :DataActivity "Is an activity involving data."@en)
+AnnotationAssertion(rdfs:isDefinedBy :DataActivity gdprtext:DataActivity)
+AnnotationAssertion(rdfs:label :DataActivity "Data Activity")
+AnnotationAssertion(rdfs:seeAlso :DataActivity :DataStep)
+SubClassOf(:DataActivity p-plan:Activity)
+
+# Class: :DataAnonymisationStep (Data Anonymisation Step)
+
+AnnotationAssertion(rdfs:comment :DataAnonymisationStep "DataAnonymisationStep anonymises data by transforming it from one form to another along the anonymisation chain.
+Anonymisation can be represented as a spectrum going from raw user data to pseudo-anonymised data that can be de-anonymised by the same agent/organisation to pseudo-anonymous data that cannot be deanonymised internally, but may be done by external agents who have access to other data, and finally to completely anonymised data."@en)
+AnnotationAssertion(rdfs:label :DataAnonymisationStep "Data Anonymisation Step"@en)
+AnnotationAssertion(rdfs:seeAlso :DataAnonymisationStep :AnonymisationActivity)
+SubClassOf(:DataAnonymisationStep :DataTransformationStep)
+
+# Class: :DataArchivalActivity (Data Archival Activity)
+
+AnnotationAssertion(rdfs:comment :DataArchivalActivity "Is an activity that archives data. Archival is transformation of data into some form for storage."@en)
+AnnotationAssertion(rdfs:isDefinedBy :DataArchivalActivity gdprtext:ArchiveData)
+AnnotationAssertion(rdfs:label :DataArchivalActivity "Data Archival Activity")
+AnnotationAssertion(rdfs:seeAlso :DataArchivalActivity :DataArchivalStep)
+SubClassOf(:DataArchivalActivity :DataStorageActivity)
+SubClassOf(:DataArchivalActivity :DataTransformationActivity)
+
+# Class: :DataArchivalProcess (Data Archival Process)
+
+AnnotationAssertion(rdfs:comment :DataArchivalProcess "A DataArchivalProcess describes the process of data archival"@en)
+AnnotationAssertion(rdfs:isDefinedBy :DataArchivalProcess gdprtext:ArchiveData)
+AnnotationAssertion(rdfs:label :DataArchivalProcess "Data Archival Process"@en)
+SubClassOf(:DataArchivalProcess :Process)
+
+# Class: :DataArchivalStep (Data Archival Step)
+
+AnnotationAssertion(rdfs:comment :DataArchivalStep "DataArchivalStep archives data by transforming it and storing it"@en)
+AnnotationAssertion(rdfs:isDefinedBy :DataArchivalStep gdprtext:ArchiveData)
+AnnotationAssertion(rdfs:label :DataArchivalStep "Data Archival Step"@en)
+AnnotationAssertion(rdfs:seeAlso :DataArchivalStep :DataArchivalActivity)
+SubClassOf(:DataArchivalStep :DataStorageStep)
+SubClassOf(:DataArchivalStep :DataTransformationStep)
+
+# Class: :DataBreachActivity (Data Breach Activity)
+
+AnnotationAssertion(rdfs:comment :DataBreachActivity "Is an activity dealing with data breach."@en)
+AnnotationAssertion(rdfs:isDefinedBy :DataBreachActivity gdprtext:ReportDataBreach)
+AnnotationAssertion(rdfs:label :DataBreachActivity "Data Breach Activity")
+AnnotationAssertion(rdfs:seeAlso :DataBreachActivity :DataBreachStep)
+SubClassOf(:DataBreachActivity p-plan:Activity)
+
+# Class: :DataBreachRecord (Data Breach Record)
+
+AnnotationAssertion(rdfs:comment :DataBreachRecord "A record of a data breach."@en)
+AnnotationAssertion(rdfs:isDefinedBy :DataBreachRecord gdprtext:MaintainRecordOfBreach)
+AnnotationAssertion(rdfs:label :DataBreachRecord "Data Breach Record")
+SubClassOf(:DataBreachRecord p-plan:Variable)
+
+# Class: :DataBreachStep (Data Breach Step)
+
+AnnotationAssertion(rdfs:comment :DataBreachStep "Step representing an action associated with data breach."@en)
+AnnotationAssertion(rdfs:isDefinedBy :DataBreachStep gdprtext:ReportDataBreach)
+AnnotationAssertion(rdfs:label :DataBreachStep "Data Breach Step")
+AnnotationAssertion(rdfs:seeAlso :DataBreachStep :DataBreachActivity)
+SubClassOf(:DataBreachStep p-plan:Step)
+
+# Class: :DataCollectionActivity (Data Collection Activity)
+
+AnnotationAssertion(rdfs:comment :DataCollectionActivity "Is an activity that collects or acquires data."@en)
+AnnotationAssertion(rdfs:isDefinedBy :DataCollectionActivity gdprtext:CollectionOfPersonalData)
+AnnotationAssertion(rdfs:label :DataCollectionActivity "Data Collection Activity")
+AnnotationAssertion(rdfs:seeAlso :DataCollectionActivity :DataCollectionStep)
+SubClassOf(:DataCollectionActivity :DataActivity)
+
+# Class: :DataCollectionStep (Data Collection Step)
+
+AnnotationAssertion(rdfs:comment :DataCollectionStep "DataCollectionStep collects data from the user"@en)
+AnnotationAssertion(rdfs:isDefinedBy :DataCollectionStep gdprtext:CollectionOfPersonalData)
+AnnotationAssertion(rdfs:label :DataCollectionStep "Data Collection Step"@en)
+AnnotationAssertion(rdfs:seeAlso :DataCollectionStep :DataCollectionActivity)
+SubClassOf(:DataCollectionStep :DataStep)
+
+# Class: :DataDeanonymisationStep (Data Deanonymisation Step)
+
+AnnotationAssertion(rdfs:comment :DataDeanonymisationStep "DataDeanonymisationStep deanonymises data by transforming it from one form to another along the anonymisation chain."@en)
+AnnotationAssertion(rdfs:label :DataDeanonymisationStep "Data Deanonymisation Step"@en)
+AnnotationAssertion(rdfs:seeAlso :DataDeanonymisationStep :DeAnonymisationActivity)
+SubClassOf(:DataDeanonymisationStep :DataTransformationStep)
+
+# Class: :DataDeletionActivity (Data Deletion Activity)
+
+AnnotationAssertion(rdfs:comment :DataDeletionActivity "Is an activity that deletes or erases data."@en)
+AnnotationAssertion(rdfs:isDefinedBy :DataDeletionActivity gdprtext:EraseData)
+AnnotationAssertion(rdfs:label :DataDeletionActivity "Data Deletion Activity")
+AnnotationAssertion(rdfs:seeAlso :DataDeletionActivity :DataDeletionStep)
+SubClassOf(:DataDeletionActivity :DataActivity)
+
+# Class: :DataDeletionStep (Data Deletion Step)
+
+AnnotationAssertion(rdfs:comment :DataDeletionStep "DataDeletionStep deletes data from within the system; The deletion is expressed as prov:invalidated over the dataset."@en)
+AnnotationAssertion(rdfs:isDefinedBy :DataDeletionStep gdprtext:EraseData)
+AnnotationAssertion(rdfs:label :DataDeletionStep "Data Deletion Step"@en)
+AnnotationAssertion(rdfs:seeAlso :DataDeletionStep :DataDeletionActivity)
+SubClassOf(:DataDeletionStep :DataStep)
+
+# Class: :DataEntity (Data Entity)
+
+AnnotationAssertion(rdfs:comment :DataEntity "Represents a data entity."@en)
+AnnotationAssertion(rdfs:isDefinedBy :DataEntity gdprtext:Data)
+AnnotationAssertion(rdfs:label :DataEntity "Data Entity")
+AnnotationAssertion(rdfs:seeAlso :DataEntity :Data)
+SubClassOf(:DataEntity p-plan:Entity)
+
+# Class: :DataErasureProcess (Data Erasure Process)
+
+AnnotationAssertion(rdfs:comment :DataErasureProcess "A DataErasureProcess is responsible for handling the data erasure of a data subject."@en)
+AnnotationAssertion(rdfs:isDefinedBy :DataErasureProcess :DataErasureProcess)
+AnnotationAssertion(rdfs:isDefinedBy :DataErasureProcess gdprtext:DataNoLongerNeededForOriginalPurpose)
+AnnotationAssertion(rdfs:isDefinedBy :DataErasureProcess gdprtext:EraseData)
+AnnotationAssertion(rdfs:isDefinedBy :DataErasureProcess gdprtext:EraseWhenDataIsNoLongerNeededForOriginalPurpose)
+AnnotationAssertion(rdfs:isDefinedBy :DataErasureProcess gdprtext:ReturnOrDestroyPersonalDataAtEndTerm)
+AnnotationAssertion(rdfs:label :DataErasureProcess "Data Erasure Process"@en)
+SubClassOf(:DataErasureProcess :Process)
+
+# Class: :DataRectificationProactiveProcess (Data Rectification Proactive Process)
+
+AnnotationAssertion(rdfs:comment :DataRectificationProactiveProcess "A DataRectificationProactiveProcess describes the process of data rectification initiated by the controller, which is the correction of data already present within the system"@en)
+AnnotationAssertion(rdfs:label :DataRectificationProactiveProcess "Data Rectification Proactive Process")
+SubClassOf(:DataRectificationProactiveProcess :DataRectificationProcess)
+
+# Class: :DataRectificationProcess (Data Rectification Process)
+
+AnnotationAssertion(rdfs:comment :DataRectificationProcess "A DataRectificationProcess describes the process of data rectification, which is the correction of data already present within the system"@en)
+AnnotationAssertion(rdfs:isDefinedBy :DataRectificationProcess gdprtext:RectifyData)
+AnnotationAssertion(rdfs:label :DataRectificationProcess "Data Rectification Process"@en)
+SubClassOf(:DataRectificationProcess :Process)
+
+# Class: :DataRectificationReactiveProcess (Data Rectification Reactive Process)
+
+AnnotationAssertion(rdfs:comment :DataRectificationReactiveProcess "A ReactiveDataRectificationProcess describes the process of data rectification started by another agent then the controller, which is the correction of data already present within the system"@en)
+AnnotationAssertion(rdfs:label :DataRectificationReactiveProcess "Data Rectification Reactive Process")
+SubClassOf(:DataRectificationReactiveProcess :DataRectificationProcess)
+
+# Class: :DataSharingActivity (Data Sharing Activity)
+
+AnnotationAssertion(rdfs:comment :DataSharingActivity "Is an activity that shares data."@en)
+AnnotationAssertion(rdfs:isDefinedBy :DataSharingActivity gdprtext:ShareDataWithThirdParty)
+AnnotationAssertion(rdfs:label :DataSharingActivity "Data Sharing Activity")
+AnnotationAssertion(rdfs:seeAlso :DataSharingActivity :DataSharingStep)
+SubClassOf(:DataSharingActivity :DataActivity)
+
+# Class: :DataSharingStep (Data Sharing Step)
+
+AnnotationAssertion(rdfs:comment :DataSharingStep "DataSharingStep shares data with another agent/organisation. These may be internal or external entities."@en)
+AnnotationAssertion(rdfs:isDefinedBy :DataSharingStep gdprtext:ShareDataWithThirdParty)
+AnnotationAssertion(rdfs:label :DataSharingStep "Data Sharing Step"@en)
+AnnotationAssertion(rdfs:seeAlso :DataSharingStep :DataSharingActivity)
+SubClassOf(:DataSharingStep :DataStep)
+
+# Class: :DataStep (Data Step)
+
+AnnotationAssertion(rdfs:comment :DataStep "A DataStep deals with data"@en)
+AnnotationAssertion(rdfs:isDefinedBy :DataStep gdprtext:DataActivity)
+AnnotationAssertion(rdfs:label :DataStep "Data Step"@en)
+AnnotationAssertion(rdfs:seeAlso :DataStep :DataActivity)
+SubClassOf(:DataStep p-plan:Step)
+
+# Class: :DataStepWithoutProvenance (Data Step without Provenance)
+
+AnnotationAssertion(rdfs:label :DataStepWithoutProvenance "Data Step without Provenance")
+SubClassOf(:DataStepWithoutProvenance :DataStep)
+
+# Class: :DataStorageActivity (Data Storage Activity)
+
+AnnotationAssertion(rdfs:comment :DataStorageActivity "Is an activity that stores data."@en)
+AnnotationAssertion(rdfs:isDefinedBy :DataStorageActivity gdprtext:StoreData)
+AnnotationAssertion(rdfs:label :DataStorageActivity "Data Storage Activity")
+AnnotationAssertion(rdfs:seeAlso :DataStorageActivity :DataStorageStep)
+SubClassOf(:DataStorageActivity :DataActivity)
+
+# Class: :DataStorageStep (Data Storage Step)
+
+AnnotationAssertion(rdfs:comment :DataStorageStep "DataStorageStep stores data within the system"@en)
+AnnotationAssertion(rdfs:isDefinedBy :DataStorageStep gdprtext:StoreData)
+AnnotationAssertion(rdfs:label :DataStorageStep "Data Storage Step"@en)
+AnnotationAssertion(rdfs:seeAlso :DataStorageStep :DataStorageActivity)
+SubClassOf(:DataStorageStep :DataStep)
+
+# Class: :DataSubject (Data Subject)
+
+AnnotationAssertion(rdfs:comment :DataSubject "An individual or entity"@en)
+AnnotationAssertion(rdfs:isDefinedBy :DataSubject gdprtext:DataSubject)
+AnnotationAssertion(rdfs:label :DataSubject "Data Subject")
+SubClassOf(:DataSubject prov:Agent)
+
+# Class: :DataTransferActivity (Data Transfer Activity)
+
+AnnotationAssertion(rdfs:label :DataTransferActivity "Data Transfer Activity")
+SubClassOf(:DataTransferActivity :DataActivity)
+
+# Class: :DataTransferStep (DataTransferStep)
+
+AnnotationAssertion(rdfs:label :DataTransferStep "DataTransferStep"^^rdfs:Literal)
+SubClassOf(:DataTransferStep :DataStep)
+
+# Class: :DataTransformationActivity (Data Transformation Activity)
+
+AnnotationAssertion(rdfs:comment :DataTransformationActivity "Is an activity that transforms data."@en)
+AnnotationAssertion(rdfs:label :DataTransformationActivity "Data Transformation Activity")
+AnnotationAssertion(rdfs:seeAlso :DataTransformationActivity :DataTransformationStep)
+SubClassOf(:DataTransformationActivity :DataActivity)
+
+# Class: :DataTransformationStep (Data Transformation Step)
+
+AnnotationAssertion(rdfs:comment :DataTransformationStep "DataTransformationStep transforms data from one form into another."@en)
+AnnotationAssertion(rdfs:label :DataTransformationStep "Data Transformation Step"@en)
+AnnotationAssertion(rdfs:seeAlso :DataTransformationStep :DataTransformationActivity)
+SubClassOf(:DataTransformationStep :DataStep)
+
+# Class: :DataUsageActivity (Data Usage Activity)
+
+AnnotationAssertion(rdfs:comment :DataUsageActivity "Is an activity that uses data. Can also be termed as 'Processing' of data."@en)
+AnnotationAssertion(rdfs:isDefinedBy :DataUsageActivity gdprtext:UseData)
+AnnotationAssertion(rdfs:label :DataUsageActivity "Data Usage Activity")
+AnnotationAssertion(rdfs:seeAlso :DataUsageActivity :DataUsageStep)
+SubClassOf(:DataUsageActivity :DataActivity)
+
+# Class: :DataUsageStep (Data Usage Step)
+
+AnnotationAssertion(rdfs:comment :DataUsageStep "A DataUsageStep is a DataStep that uses existing data present within the system"@en)
+AnnotationAssertion(rdfs:isDefinedBy :DataUsageStep gdprtext:Processing)
+AnnotationAssertion(rdfs:label :DataUsageStep "Data Usage Step"@en)
+AnnotationAssertion(rdfs:seeAlso :DataUsageStep :DataUsageActivity)
+SubClassOf(:DataUsageStep :DataStep)
+
+# Class: :DeAnonymisationActivity (DeAnonymisation Activity)
+
+AnnotationAssertion(rdfs:comment :DeAnonymisationActivity "Is an activity that deanonymises data."@en)
+AnnotationAssertion(rdfs:label :DeAnonymisationActivity "DeAnonymisation Activity")
+AnnotationAssertion(rdfs:seeAlso :DeAnonymisationActivity :DataDeanonymisationStep)
+SubClassOf(:DeAnonymisationActivity :DataTransformationActivity)
+
+# Class: :DirectMarketing (Direct Marketing)
+
+AnnotationAssertion(rdfs:comment :DirectMarketing "Direct Marketing where the marketing is done directly to the data subject."@en)
+AnnotationAssertion(rdfs:isDefinedBy :DirectMarketing gdprtext:DirectMarketing)
+AnnotationAssertion(rdfs:label :DirectMarketing "Direct Marketing")
+SubClassOf(:DirectMarketing :Marketing)
+
+# Class: :DocumentData (PersonalData)
+
+AnnotationAssertion(rdfs:comment :DocumentData "Describes an abstract document that contains references to the law (e.g., documentation of the circumstances in which an individual's data protection rights may be lawfully restricted)."@en)
+AnnotationAssertion(rdfs:label :DocumentData "PersonalData"@en)
+SubClassOf(:DocumentData :Data)
+
+# Class: :DocumentEntity (DocumentEntity)
+
+AnnotationAssertion(rdfs:comment :DocumentEntity "A document that contains references to the law (e.g., documentation of the circumstances in which an individual's data protection rights may be lawfully restricted)."@en)
+AnnotationAssertion(rdfs:label :DocumentEntity "DocumentEntity")
+SubClassOf(:DocumentEntity :DataEntity)
+
+# Class: :Duration (Duration)
+
+AnnotationAssertion(rdfs:comment :Duration "The duration or temporal limitation"@en)
+AnnotationAssertion(rdfs:isDefinedBy :Duration dpv:Duration)
+AnnotationAssertion(rdfs:isDefinedBy :Duration time:Duration)
+AnnotationAssertion(rdfs:label :Duration "Duration")
+SubClassOf(:Duration time:Duration)
+
+# Class: :FixedOccurencesDuration (Fixed Occurences Duration)
+
+AnnotationAssertion(rdfs:comment :FixedOccurencesDuration "The duration that takes place a fixed number of times, e.g. 3 times"@en)
+AnnotationAssertion(rdfs:isDefinedBy :FixedOccurencesDuration dpv:FixedOccurencesDuration)
+AnnotationAssertion(rdfs:label :FixedOccurencesDuration "Fixed Occurences Duration")
+SubClassOf(:FixedOccurencesDuration :Duration)
+
+# Class: :Frequency (Frequency)
+
+AnnotationAssertion(rdfs:comment :Frequency "The frequency or information about periods and repetitions in terms of recurrence."@en)
+AnnotationAssertion(rdfs:isDefinedBy :Frequency dpv:Frequency)
+AnnotationAssertion(rdfs:label :Frequency "Frequency")
+SubClassOf(:Frequency xsd:duration)
+
+# Class: :GivenConsent (Given Consent)
+
+AnnotationAssertion(rdfs:comment :GivenConsent "Represents the given consent by the data subject."@en)
+AnnotationAssertion(rdfs:isDefinedBy :GivenConsent gdprtext:GivenConsent)
+AnnotationAssertion(rdfs:label :GivenConsent "Given Consent")
+AnnotationAssertion(rdfs:seeAlso :GivenConsent :ConsentAgreement)
+SubClassOf(:GivenConsent p-plan:Entity)
+
+# Class: :GivenConsentTemplate (Given Consent Template)
+
+AnnotationAssertion(rdfs:comment :GivenConsentTemplate "Is the template used to obtain the given consent."@en)
+AnnotationAssertion(rdfs:label :GivenConsentTemplate "Given Consent Template")
+AnnotationAssertion(rdfs:seeAlso :GivenConsentTemplate :ConsentAgreementTemplate)
+SubClassOf(:GivenConsentTemplate p-plan:Entity)
+
+# Class: :HandleCrossBorderTransferingProcess (Handle Cross Border Transfering Process)
+
+AnnotationAssertion(rdfs:comment :HandleCrossBorderTransferingProcess "Describe the process of handling a cross-border transferring"@en)
+AnnotationAssertion(rdfs:isDefinedBy :HandleCrossBorderTransferingProcess gdprtext:CrossBorderTransfer)
+AnnotationAssertion(rdfs:isDefinedBy :HandleCrossBorderTransferingProcess gdprtext:ShareDataWithThirdParty)
+AnnotationAssertion(rdfs:label :HandleCrossBorderTransferingProcess "Handle Cross Border Transfering Process")
+SubClassOf(:HandleCrossBorderTransferingProcess :Process)
+
+# Class: :HandleDataBreachProcess (HandleDataBreachProcess)
+
+AnnotationAssertion(rdfs:comment :HandleDataBreachProcess "A process that defines the actions that should be undertaken in event of a data breach"@en)
+AnnotationAssertion(rdfs:isDefinedBy :HandleDataBreachProcess gdprtext:DataBreach)
+AnnotationAssertion(rdfs:label :HandleDataBreachProcess "HandleDataBreachProcess")
+SubClassOf(:HandleDataBreachProcess :Process)
+
+# Class: :HandleRightOfDataPortability (Handle Right of Data Portability)
+
+AnnotationAssertion(rdfs:comment :HandleRightOfDataPortability "The process or series of steps that handle the right of data portability."@en)
+AnnotationAssertion(rdfs:isDefinedBy :HandleRightOfDataPortability gdprtext:RightOfDataPortability)
+AnnotationAssertion(rdfs:label :HandleRightOfDataPortability "Handle Right of Data Portability")
+SubClassOf(:HandleRightOfDataPortability :Process)
+
+# Class: :HandleRightOfErasure (Handle Right of Erasure)
+
+AnnotationAssertion(rdfs:comment :HandleRightOfErasure "The process or series of steps that handle the right of erasure."@en)
+AnnotationAssertion(rdfs:isDefinedBy :HandleRightOfErasure gdprtext:RightOfErasure)
+AnnotationAssertion(rdfs:label :HandleRightOfErasure "Handle Right of Erasure")
+SubClassOf(:HandleRightOfErasure :Process)
+
+# Class: :HandleRightToAccessPersonalData (Handle Right to access Personal Data)
+
+AnnotationAssertion(rdfs:comment :HandleRightToAccessPersonalData "The process or series of steps that handle the right to access personal data."@en)
+AnnotationAssertion(rdfs:isDefinedBy :HandleRightToAccessPersonalData gdprtext:RightOfErasure)
+AnnotationAssertion(rdfs:label :HandleRightToAccessPersonalData "Handle Right to access Personal Data")
+SubClassOf(:HandleRightToAccessPersonalData :Process)
+
+# Class: :HandleRightToBasicInfoAboutProcessing (Handle Right to basic information about Processing)
+
+AnnotationAssertion(rdfs:comment :HandleRightToBasicInfoAboutProcessing "The process or series of steps that handle the right to basic information about processing."@en)
+AnnotationAssertion(rdfs:isDefinedBy :HandleRightToBasicInfoAboutProcessing gdprtext:RightToBasicInformationAboutProcessing)
+AnnotationAssertion(rdfs:label :HandleRightToBasicInfoAboutProcessing "Handle Right to basic information about Processing")
+SubClassOf(:HandleRightToBasicInfoAboutProcessing :Process)
+
+# Class: :HandleRightToNoAutomatedProcessing (Handle Right to not be evaluated through Automated Processing)
+
+AnnotationAssertion(rdfs:comment :HandleRightToNoAutomatedProcessing "The process or series of steps that handle the right to not be processed automatically."@en)
+AnnotationAssertion(rdfs:isDefinedBy :HandleRightToNoAutomatedProcessing gdprtext:RightToNotBeEvaluatedThroughAutomatedProcessing)
+AnnotationAssertion(rdfs:label :HandleRightToNoAutomatedProcessing "Handle Right to not be evaluated through Automated Processing")
+SubClassOf(:HandleRightToNoAutomatedProcessing :Process)
+
+# Class: :HandleRightToObjectDirectMarketing (Handle Right to Object to Direct Marketing)
+
+AnnotationAssertion(rdfs:comment :HandleRightToObjectDirectMarketing "The process or series of steps that handle the right to object to direct marketing."@en)
+AnnotationAssertion(rdfs:isDefinedBy :HandleRightToObjectDirectMarketing gdprtext:RightToObjectForDirectMarketting)
+AnnotationAssertion(rdfs:label :HandleRightToObjectDirectMarketing "Handle Right to Object to Direct Marketing")
+SubClassOf(:HandleRightToObjectDirectMarketing :Process)
+
+# Class: :HandleRightToObjectProcessing (Handle Right to Object to Processing)
+
+AnnotationAssertion(rdfs:comment :HandleRightToObjectProcessing "The process or series of steps that handle the right to object to processing."@en)
+AnnotationAssertion(rdfs:isDefinedBy :HandleRightToObjectProcessing gdprtext:RightToObjectToProcessing)
+AnnotationAssertion(rdfs:label :HandleRightToObjectProcessing "Handle Right to Object to Processing")
+SubClassOf(:HandleRightToObjectProcessing :Process)
+
+# Class: :HandleRightToRectification (Handle Right to Rectification)
+
+AnnotationAssertion(rdfs:comment :HandleRightToRectification "The process or series of steps that handle the right to rectification of personal data."@en)
+AnnotationAssertion(rdfs:isDefinedBy :HandleRightToRectification gdprtext:RightToRectification)
+AnnotationAssertion(rdfs:label :HandleRightToRectification "Handle Right to Rectification")
+SubClassOf(:HandleRightToRectification :Process)
+
+# Class: :HandleRightToRestrictProcessing (Handle Right to restrict Processing)
+
+AnnotationAssertion(rdfs:comment :HandleRightToRestrictProcessing "The process or series of steps that handle the right to restrict processing."@en)
+AnnotationAssertion(rdfs:isDefinedBy :HandleRightToRestrictProcessing gdprtext:RightToRestrictProcessing)
+AnnotationAssertion(rdfs:label :HandleRightToRestrictProcessing "Handle Right to restrict Processing")
+SubClassOf(:HandleRightToRestrictProcessing :Process)
+
+# Class: :HandleRightToTransparency (Handle Right to Transparency)
+
+AnnotationAssertion(rdfs:comment :HandleRightToTransparency "The process or series of steps that handle the right to transparency."@en)
+AnnotationAssertion(rdfs:isDefinedBy :HandleRightToTransparency gdprtext:RightToTransparency)
+AnnotationAssertion(rdfs:label :HandleRightToTransparency "Handle Right to Transparency")
+SubClassOf(:HandleRightToTransparency :Process)
+
+# Class: :HandleSAR (HandleSAR)
+
+AnnotationAssertion(rdfs:label :HandleSAR "HandleSAR"^^rdfs:Literal)
+SubClassOf(:HandleSAR :Process)
+
+# Class: :ImpactAssessment (Impact Assessment)
+
+AnnotationAssertion(rdfs:comment :ImpactAssessment "Represents the process or collection of steps representing the Impact Assessment."@en)
+AnnotationAssertion(rdfs:isDefinedBy :ImpactAssessment gdprtext:ImpactAssessment)
+AnnotationAssertion(rdfs:label :ImpactAssessment "Impact Assessment")
+SubClassOf(:ImpactAssessment :Process)
+
+# Class: :JointController (Joint Controller(s))
+
+AnnotationAssertion(rdfs:comment :JointController "A Joint Controller is where two or more controllers jointly determine the purposes and means of processing."@en)
+AnnotationAssertion(rdfs:isDefinedBy :JointController gdprtext:JointController)
+AnnotationAssertion(rdfs:label :JointController "Joint Controller(s)")
+SubClassOf(:JointController :Controller)
+
+# Class: :Marketing (Marketing)
+
+AnnotationAssertion(rdfs:comment :Marketing "Marketing as a process or collection of steps."@en)
+AnnotationAssertion(rdfs:isDefinedBy :Marketing gdprtext:Marketing)
+AnnotationAssertion(rdfs:label :Marketing "Marketing")
+SubClassOf(:Marketing :Process)
+
+# Class: :MaxDuration (Max Duration)
+
+AnnotationAssertion(rdfs:comment :MaxDuration "The estimated maximum duration that activities related to this step can take without being seen as a delayed activity"@en)
+AnnotationAssertion(rdfs:isDefinedBy :MaxDuration dpv:Duration)
+AnnotationAssertion(rdfs:isDefinedBy :MaxDuration time:Duration)
+AnnotationAssertion(rdfs:label :MaxDuration "Max Duration")
+SubClassOf(:MaxDuration xsd:duration)
+
+# Class: :ModifyConsentActivity (Modify Consent Activity)
+
+AnnotationAssertion(rdfs:comment :ModifyConsentActivity "Is an activity that modifies given consent."@en)
+AnnotationAssertion(rdfs:label :ModifyConsentActivity "Modify Consent Activity")
+AnnotationAssertion(rdfs:seeAlso :ModifyConsentActivity :ConsentModificationStep)
+SubClassOf(:ModifyConsentActivity :ConsentActivity)
+
+# Class: :MonitorCompliance (Monitor Compliance)
+
+AnnotationAssertion(rdfs:comment :MonitorCompliance "The process of monitoring compliance as mandated by the GDPR."@en)
+AnnotationAssertion(rdfs:isDefinedBy :MonitorCompliance gdprtext:MonitorCompliance)
+AnnotationAssertion(rdfs:label :MonitorCompliance "Monitor Compliance")
+SubClassOf(:MonitorCompliance :Process)
+
+# Class: :NotifyController (Notify Controller)
+
+AnnotationAssertion(rdfs:comment :NotifyController "Step that notifies the controller of data breach."@en)
+AnnotationAssertion(rdfs:isDefinedBy :NotifyController gdprtext:ReportDataBreachToController)
+AnnotationAssertion(rdfs:label :NotifyController "Notify Controller")
+AnnotationAssertion(rdfs:seeAlso :NotifyController :NotifyControllerActivity)
+SubClassOf(:NotifyController :DataBreachStep)
+
+# Class: :NotifyControllerActivity (Notify Controller Activity)
+
+AnnotationAssertion(rdfs:comment :NotifyControllerActivity "Is an activity that notifies controller about data breach"@en)
+AnnotationAssertion(rdfs:isDefinedBy :NotifyControllerActivity gdprtext:ReportDataBreachToController)
+AnnotationAssertion(rdfs:label :NotifyControllerActivity "Notify Controller Activity")
+AnnotationAssertion(rdfs:seeAlso :NotifyControllerActivity :NotifyController)
+SubClassOf(:NotifyControllerActivity :DataBreachActivity)
+
+# Class: :NotifyDPA (Notify Data Protection Authority)
+
+AnnotationAssertion(rdfs:comment :NotifyDPA "Step that notifies the Data Protection Authorities of a data breach."@en)
+AnnotationAssertion(rdfs:isDefinedBy :NotifyDPA gdprtext:ReportDataBreachToDPAWithin72Hours)
+AnnotationAssertion(rdfs:label :NotifyDPA "Notify Data Protection Authority")
+AnnotationAssertion(rdfs:seeAlso :NotifyDPA :NotifyDPAActivity)
+SubClassOf(:NotifyDPA :DataBreachStep)
+
+# Class: :NotifyDPAActivity (Notify DPA Activity)
+
+AnnotationAssertion(rdfs:comment :NotifyDPAActivity "Is an activity that notifies data protection authorities about data breach"@en)
+AnnotationAssertion(rdfs:isDefinedBy :NotifyDPAActivity gdprtext:ReportDataBreachToDPAWithin72Hours)
+AnnotationAssertion(rdfs:label :NotifyDPAActivity "Notify DPA Activity")
+AnnotationAssertion(rdfs:seeAlso :NotifyDPAActivity :NotifyDPA)
+SubClassOf(:NotifyDPAActivity :DataBreachActivity)
+
+# Class: :NotifyDataSubject (Notify Data Subject)
+
+AnnotationAssertion(rdfs:comment :NotifyDataSubject "Step that notifies the data subject of data breach."@en)
+AnnotationAssertion(rdfs:isDefinedBy :NotifyDataSubject gdprtext:NotifyDataSubjectOfBreach)
+AnnotationAssertion(rdfs:label :NotifyDataSubject "Notify Data Subject")
+AnnotationAssertion(rdfs:seeAlso :NotifyDataSubject :NotifyDataSubjectActivity)
+SubClassOf(:NotifyDataSubject :DataBreachStep)
+
+# Class: :NotifyDataSubjectActivity (Notify Data Subject Activity)
+
+AnnotationAssertion(rdfs:comment :NotifyDataSubjectActivity "Is an activity that notifies data subjects about data breach"@en)
+AnnotationAssertion(rdfs:isDefinedBy :NotifyDataSubjectActivity gdprtext:NotifyDataSubjectOfBreach)
+AnnotationAssertion(rdfs:label :NotifyDataSubjectActivity "Notify Data Subject Activity")
+AnnotationAssertion(rdfs:seeAlso :NotifyDataSubjectActivity :NotifyDataSubject)
+SubClassOf(:NotifyDataSubjectActivity :DataBreachActivity)
+
+# Class: :PersonalData (PersonalData)
+
+AnnotationAssertion(rdfs:comment :PersonalData "PersonalData is any data pertaining to the user which can contain personally identifiable information or a data set generated by the system using personally identifiable information acquired through direct or indirect means"@en)
+AnnotationAssertion(rdfs:isDefinedBy :PersonalData gdprtext:PersonalData)
+AnnotationAssertion(rdfs:label :PersonalData "PersonalData"@en)
+AnnotationAssertion(rdfs:seeAlso :PersonalData :PersonalDataEntity)
+SubClassOf(:PersonalData :Data)
+
+# Class: :PersonalDataEntity (Personal Data Entity)
+
+AnnotationAssertion(rdfs:comment :PersonalDataEntity "Represents a personal data entity."@en)
+AnnotationAssertion(rdfs:isDefinedBy :PersonalDataEntity gdprtext:PersonalData)
+AnnotationAssertion(rdfs:label :PersonalDataEntity "Personal Data Entity")
+AnnotationAssertion(rdfs:seeAlso :PersonalDataEntity :PersonalData)
+SubClassOf(:PersonalDataEntity :DataEntity)
+
+# Class: :Process (Process)
+
+AnnotationAssertion(rdfs:comment :Process "A Process describes a 'Plan' of action for carrying out a particular activity that uses or is related to Data or Consent"@en)
+AnnotationAssertion(rdfs:label :Process "Process"@en)
+SubClassOf(:Process dpv:PersonalDataHandling)
+SubClassOf(:Process p-plan:Plan)
+
+# Class: :Processor (Processor)
+
+AnnotationAssertion(rdfs:comment :Processor "A ThirdPartyDataProcessor is a Third Party entity that acts as a Data Processor"@en)
+AnnotationAssertion(rdfs:label :Processor gdprtext:Processor)
+AnnotationAssertion(rdfs:label :Processor "Processor"@en)
+SubClassOf(:Processor :ThirdParty)
+
+# Class: :ProcessorRepresentative (Processor Representative)
+
+AnnotationAssertion(rdfs:comment :ProcessorRepresentative "A representative of the Processor."@en)
+AnnotationAssertion(rdfs:isDefinedBy :ProcessorRepresentative gdprtext:ProcessorRepresentative)
+AnnotationAssertion(rdfs:label :ProcessorRepresentative "Processor Representative")
+SubClassOf(:ProcessorRepresentative prov:Agent)
+
+# Class: :ProvideCopyOfPersonalData (Provide copy of Personal Data)
+
+AnnotationAssertion(rdfs:comment :ProvideCopyOfPersonalData "A step that provides the data subject with a copy of their personal data."@en)
+AnnotationAssertion(rdfs:isDefinedBy :ProvideCopyOfPersonalData gdprtext:ProvideCopyOfPersonalData)
+AnnotationAssertion(rdfs:label :ProvideCopyOfPersonalData "Provide copy of Personal Data")
+SubClassOf(:ProvideCopyOfPersonalData :DataStep)
+
+# Class: :RectifyData (Rectify Data)
+
+AnnotationAssertion(rdfs:comment :RectifyData "Rectifies existing data"@en)
+AnnotationAssertion(rdfs:isDefinedBy :RectifyData gdprtext:RectifyData)
+AnnotationAssertion(rdfs:label :RectifyData "Rectify Data")
+AnnotationAssertion(rdfs:seeAlso :RectifyData :RectifyDataActivity)
+SubClassOf(:RectifyData :DataStep)
+
+# Class: :RectifyDataActivity (Rectify Data Activity)
+
+AnnotationAssertion(rdfs:comment :RectifyDataActivity "Is an activity that recitifies data."@en)
+AnnotationAssertion(rdfs:label :RectifyDataActivity "Rectify Data Activity")
+AnnotationAssertion(rdfs:seeAlso :RectifyDataActivity :RectifyData)
+SubClassOf(:RectifyDataActivity :DataActivity)
+
+# Class: :Region (Region)
+
+AnnotationAssertion(rdfs:comment :Region "A location can be an identifiable geographic place (ISO 19112), but it can also be a non-geographic place such as a directory, row, or column. As such, there are numerous ways in which location can be expressed, such as by a coordinate, address, landmark, and so forth."@en)
+AnnotationAssertion(rdfs:isDefinedBy :Region prov:Location)
+AnnotationAssertion(rdfs:label :Region "Region")
+SubClassOf(:Region prov:Location)
+
+# Class: :ReportDataBreach (Report Data Breach)
+
+AnnotationAssertion(rdfs:comment :ReportDataBreach "The process of reporting after a data breach has taken place."@en)
+AnnotationAssertion(rdfs:isDefinedBy :ReportDataBreach gdprtext:ReportDataBreach)
+AnnotationAssertion(rdfs:label :ReportDataBreach "Report Data Breach")
+SubClassOf(:ReportDataBreach :HandleDataBreachProcess)
+
+# Class: :SensitiveData (Sensitive Personal Data)
+
+AnnotationAssertion(rdfs:comment :SensitiveData "Personal data revealing racial or ethnic origin, political opinions, religious or philosophical beliefs, or trade union membership, and the processing of genetic data, biometric data for the purpose of uniquely identifying a natural person, data concerning health or data concerning a natural person's sex life or sexual orientation."@en)
+AnnotationAssertion(rdfs:isDefinedBy :SensitiveData gdprtext:SensitivePersonalData)
+AnnotationAssertion(rdfs:label :SensitiveData "Sensitive Personal Data")
+AnnotationAssertion(rdfs:seeAlso :SensitiveData :SensitiveDataEntity)
+SubClassOf(:SensitiveData :PersonalData)
+
+# Class: :SensitiveDataEntity (Sensitive Data Entity)
+
+AnnotationAssertion(rdfs:comment :SensitiveDataEntity "Is an entity containing sensitive personal information."@en)
+AnnotationAssertion(rdfs:isDefinedBy :SensitiveDataEntity gdprtext:SensitivePersonalData)
+AnnotationAssertion(rdfs:label :SensitiveDataEntity "Sensitive Data Entity")
+AnnotationAssertion(rdfs:seeAlso :SensitiveDataEntity :SensitiveData)
+SubClassOf(:SensitiveDataEntity :PersonalDataEntity)
+
+# Class: :StorageCondition (Storage Condition)
+
+AnnotationAssertion(rdfs:comment :StorageCondition "The conditions required or followed regarding the storage of data"@en)
+AnnotationAssertion(rdfs:isDefinedBy :StorageCondition gdprtext:ContextOfDataCollection)
+AnnotationAssertion(rdfs:isDefinedBy :StorageCondition gdprtext:InfoAboutStoragePeriod)
+AnnotationAssertion(rdfs:isDefinedBy :StorageCondition gdprtext:StorageLimitation)
+AnnotationAssertion(rdfs:isDefinedBy :StorageCondition dpv:StorageCondition)
+AnnotationAssertion(rdfs:label :StorageCondition "Storage Condition")
+
+# Class: :SubProcessor (Sub-Processor)
+
+AnnotationAssertion(rdfs:comment :SubProcessor "A Processor appointed under or by another Processor is a Sub-Processor."@en)
+AnnotationAssertion(rdfs:isDefinedBy :SubProcessor gdprtext:SubProcessor)
+AnnotationAssertion(rdfs:label :SubProcessor "Sub-Processor")
+SubClassOf(:SubProcessor :Processor)
+
+# Class: :TemporalDuration (Temporal Duration)
+
+AnnotationAssertion(rdfs:comment :TemporalDuration "The duration that has a fixed temporal duration, e.g. 6 months"@en)
+AnnotationAssertion(rdfs:isDefinedBy :TemporalDuration dpv:TemporalDuration)
+AnnotationAssertion(rdfs:label :TemporalDuration "Temporal Duration")
+SubClassOf(:TemporalDuration :Duration)
+
+# Class: :TermsAndConditions (TermsAndConditions)
+
+AnnotationAssertion(rdfs:comment :TermsAndConditions "Terms and Conditions of usage as provided to the user in agreement of provided service"@en)
+AnnotationAssertion(rdfs:label :TermsAndConditions "TermsAndConditions"@en)
+SubClassOf(:TermsAndConditions p-plan:Variable)
+
+# Class: :TermsAndConditionsEntity (Terms and Conditions Entity)
+
+AnnotationAssertion(rdfs:comment :TermsAndConditionsEntity "Represents the Terms and Conditions entity."@en)
+AnnotationAssertion(rdfs:label :TermsAndConditionsEntity "Terms and Conditions Entity")
+SubClassOf(:TermsAndConditionsEntity p-plan:Entity)
+
+# Class: :ThirdParty (ThirdParty)
+
+AnnotationAssertion(rdfs:comment :ThirdParty "A ThirdParty is any external entitiy associated with some internal activity"@en)
+AnnotationAssertion(rdfs:isDefinedBy :ThirdParty gdprtext:Entity)
+AnnotationAssertion(rdfs:label :ThirdParty "ThirdParty"@en)
+SubClassOf(:ThirdParty prov:Agent)
+
+# Class: :UntilEventDuration (Until Event Duration)
+
+AnnotationAssertion(rdfs:comment :UntilEventDuration "The duration that ends when a specific event occurs, e.g. data is no longer needed for original purpose"@en)
+AnnotationAssertion(rdfs:isDefinedBy :UntilEventDuration dpv:UntilEventDuration)
+AnnotationAssertion(rdfs:label :UntilEventDuration "Until Event Duration")
+SubClassOf(:UntilEventDuration :Duration)
+
+# Class: :UntilTimeDuration (Until Time Duration)
+
+AnnotationAssertion(rdfs:comment :UntilTimeDuration "The duration that has a fixed end date, e.g. 2022-12-31"@en)
+AnnotationAssertion(rdfs:isDefinedBy :UntilTimeDuration dpv:UntilTimeDuration)
+AnnotationAssertion(rdfs:label :UntilTimeDuration "Until Time Duration")
+SubClassOf(:UntilTimeDuration :Duration)
+
+# Class: :UserIdentifier (UserIdentifier)
+
+AnnotationAssertion(rdfs:comment :UserIdentifier "An UserIdentifier is a specific way to identify the user through a unique ID or a combination of other attributes"@en)
+AnnotationAssertion(rdfs:label :UserIdentifier "UserIdentifier"@en)
+AnnotationAssertion(rdfs:seeAlso :UserIdentifier :UserIdentifierEntity)
+SubClassOf(:UserIdentifier :PersonalData)
+
+# Class: :UserIdentifierEntity (User Identifier Entity)
+
+AnnotationAssertion(rdfs:comment :UserIdentifierEntity "Is an entity acting as the user identifier. Or contains an identifier."@en)
+AnnotationAssertion(rdfs:label :UserIdentifierEntity "User Identifier Entity")
+AnnotationAssertion(rdfs:seeAlso :UserIdentifierEntity :UserIdentifier)
+SubClassOf(:UserIdentifierEntity :PersonalDataEntity)
+
+# Class: :UserInputStep (User Input Step)
+
+AnnotationAssertion(rdfs:label :UserInputStep "User Input Step")
+SubClassOf(:UserInputStep :UserInteractionStep)
+
+# Class: :UserInteractionStep (User Interaction Step)
+
+AnnotationAssertion(rdfs:label :UserInteractionStep "User Interaction Step")
+SubClassOf(:UserInteractionStep p-plan:Step)
+
+# Class: :UserOutputStep (User Output Step)
+
+AnnotationAssertion(rdfs:label :UserOutputStep "User Output Step")
+SubClassOf(:UserOutputStep :UserInteractionStep)
+
+# Class: :WithdrawConsentActivity (Withdraw Consent Activity)
+
+AnnotationAssertion(rdfs:comment :WithdrawConsentActivity "Is an activity that withdraws given consent. Can also term it so as to depict withdrawal as a modification of consent."@en)
+AnnotationAssertion(rdfs:isDefinedBy :WithdrawConsentActivity gdprtext:WithdrawingConsent)
+AnnotationAssertion(rdfs:label :WithdrawConsentActivity "Withdraw Consent Activity")
+AnnotationAssertion(rdfs:seeAlso :WithdrawConsentActivity :ConsentWithdrawalStep)
+SubClassOf(:WithdrawConsentActivity :ModifyConsentActivity)
+
+
+############################
+#   Named Individuals
+############################
+
+# Individual: :Anonymised (Anonymised)
+
+AnnotationAssertion(rdfs:comment :Anonymised "Anonymised represents the Anonymisation level where the data cannot be de-anonymised to retrieve personally identifiable information."@en)
+AnnotationAssertion(rdfs:label :Anonymised "Anonymised")
+
+# Individual: :DeAnonymised (DeAnonymised)
+
+AnnotationAssertion(rdfs:comment :DeAnonymised "DeAnonymised represents the Anonymisation level where the data is completely de-anonymised and contains directly accessible personally identifiable information."@en)
+AnnotationAssertion(rdfs:label :DeAnonymised "DeAnonymised")
+
+# Individual: :EndlessDuration (Endless Duration)
+
+AnnotationAssertion(rdfs:comment :EndlessDuration "The duration that is (known or intended to be) open-ended or without an end"@en)
+AnnotationAssertion(rdfs:isDefinedBy :EndlessDuration dpv:EndlessDuration)
+AnnotationAssertion(rdfs:label :EndlessDuration "Endless Duration")
+ClassAssertion(:Duration :EndlessDuration)
+
+# Individual: :PseudoAnonymised (PseudoAnonymised)
+
+AnnotationAssertion(rdfs:comment :PseudoAnonymised "PseudoAnonymised represents the Anonymisation level where the data is anonymised but cannot be de-anonymised without additional data which is NOT accessible to the data-holding organisation to retrieve personally identifiable information."@en)
+AnnotationAssertion(rdfs:label :PseudoAnonymised "PseudoAnonymised")
+
+# Individual: :PseudoOrganisationalAnonymised (PseudoOrganisationalOrganised)
+
+AnnotationAssertion(rdfs:comment :PseudoOrganisationalAnonymised "PseudoOrganisationalAnonymised represents the Anonymisation level where the data is anonymised but cannot be de-anonymised without additional data which is accessible to the data-holding organisation to recreate the de-anonymised information."@en)
+AnnotationAssertion(rdfs:label :PseudoOrganisationalAnonymised "PseudoOrganisationalOrganised")
+
+
+)

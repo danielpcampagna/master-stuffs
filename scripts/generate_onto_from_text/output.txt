@@ -1,0 +1,29 @@
+---
+input_text: |
+  One treatment for high blood pressure is carvedilol.
+raw_completion_output: |-
+  disease: high blood pressure
+  drug: carvedilol
+  mechanism_links: 
+prompt: |+
+  From the text below, extract the following entities in the following format:
+
+  disease: <the name of the disease that is treated>
+  drug: <the name of the drug that treats the disease>
+  mechanism_links: <semicolon-separated list of links, where each link is a triple connecting two entities via a relationship type>
+
+
+  Text:
+  One treatment for high blood pressure is carvedilol.
+
+
+  ===
+
+extracted_object:
+  disease: MONDO:0005044
+  drug: drugbank:DB01136
+named_entities:
+  - id: MONDO:0005044
+    label: high blood pressure
+  - id: drugbank:DB01136
+    label: carvedilol

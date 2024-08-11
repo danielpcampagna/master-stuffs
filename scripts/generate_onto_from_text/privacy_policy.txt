@@ -1,0 +1,144 @@
+# Introduction
+
+The information that University records contain serves as evidence of functions executed and activities performed. University records comprise a valuable source of knowledge as to how and why decisions are taken.
+
+Given that good quality records are of value to any organisation, their effective management is necessary to ensure that the records retained:
+- are authentic, reliable and complete;
+- are protected and preserved as evidence to support future actions;
+- ensure current and future accountability.
+
+The University is proud of its history and traditions and shall, in so far as practicable, preserve and promote its treasures and heritage.
+
+# Associated Documentation
+
+This policy should be read in conjunction with the Records Retention Schedule.
+
+# Purpose and Objectives
+
+The purpose of this Records Management Policy is to ensure the creation, management, retention and destruction of records result in complete, usable and reliable records, which are capable of supporting the University's functions and activities and which ensure accountability for as long as is required.
+
+The objectives of this policy are to:
+- support records management within the University;
+- support the University’s administrative and operational requirements, including adherence to University policies and compliance with relevant legislation;
+- ensure the preservation of Permanently Valuable Records;
+- promote day-to-day efficiency and good records management;
+- ensure timely destruction of records that no longer need to be retained.
+
+This policy applies equally to records created and preserved in electronic and paper formats.
+
+# Definitions and Terminology
+
+For the purposes of this policy, a record is defined as recorded information, in any form, created or received and maintained by the University in the course of its official business.
+
+Permanently Valuable Records are defined as records with permanent legal, operational, administrative, historical, scientific, cultural or social significance. Permanently Valuable Records are subject to permanent archiving procedures.
+
+
+Records occur in all types of recording media, including.
+- paper documents (written or printed matter);
+- electronic records (e.g. word processing files, databases, spreadsheet files, emails, CCTV footage, electronic data on any media etc.);
+- books, drawings and photographs;
+- anything on which information is recorded or stored by graphic, electronic or mechanical means.
+
+Records must be retained for as long as required to meet the legal, administrative, financial, operational or historic needs of the University.
+
+Record Series are groups of related records, which are created and used with a common purpose, for example, financial records; personnel records; examination results, committee minutes etc.
+
+A Records Retention Schedule is a control document that describes the University's corporate records at a series level, and:
+- specifies the length of time each Record Series should be retained prior to final disposition;
+- specifies the final disposition route of each Record Series;
+- serves as the legal authorisation for the disposition of records.
+
+Disposition is the action taken in regard to the disposal of active records, which can involve physical destruction by means of security shredding or recycling; transfer to archival storage for selective or full retention; or special disposition though a formal act of alienation from the custody of the University.
+
+# Ownership of Records
+
+All records (including emails, images, photographs, databases etc.) that are created by University employees in the course of their duties are the property of the University. All records received are in the care of the University and are also subject to the University’s overall control and to the provisions of this policy.
+
+# Responsibilities of University Employees
+
+This policy applies to all areas and locations of the University and includes all staff located in all divisions, schools, offices, units, research centres and areas of work which form part of the University structure. To note: all those assuming the role of a Principal Investigator on a research project should ensure this policy and the Records Retention Schedule are adhered to. The policy also applies to all agents acting for, or on behalf of, the University.
+
+Operational responsibility for the implementation of this policy rests with the Head of each Academic/Administrative area.
+
+Where records are used by more than one area/office/unit, clarity about which office has primary/final responsibility for management of the records should be established between the relevant offices.
+
+Where records are jointly created with other organisations, those sharing ownership should agree how records are to be stored, managed and final disposition. In such instances where Trinity is deemed to have record management responsibility, employees are obliged to follow this policy.
+
+# Records Management 
+
+Records Management is the application of controls and procedures to the creation, maintenance, use and disposition of records. 
+
+Records Management includes inter alia: records classification; management of filing systems, retention scheduling; the administration of inactive records storage; management of record conversion programmes; disaster planning; Permanently Valuable Records protection; archival preservation activities; permanent archiving and appropriate destruction of records. 
+
+The nature of records requires that consideration be given to security, privacy, authenticity, accessibility, version control, handling, preservation and the disposition of such records.
+
+**Records classification**
+
+It is the responsibility of the data owner to classify all records. 
+
+University records must be identified and categorised for filing on the basis of their subject, and assigned a file name that allows for efficient retrieval. 
+
+Active records are records which are required and referred to regularly for current use, and should be retained and maintained in office space and equipment which is readily accessible to users. 
+
+Semi-active records are records which are referred to infrequently and are not required regularly for current use. Semi-active records can be removed from the office space to off-site storage until they are no longer needed. 
+
+Inactive records are records for which the active and semi-active retention periods have lapsed and which are no longer required to carry out the functions for which they were created. Inactive records can be disposed of/archived as per the Records Retention Schedule appended to this document. 
+
+Electronic records should be classified using the system provided in the Cloud Computing Policy: https://www.tcd.ie/about/policies/cloud-policy.php.
+
+**Management of filing systems**
+
+7.10 Staff must employ the following good housekeeping practices in the management of records:
+- systematic indexing / classification of records;
+- sensible and consistent naming of files and folders;
+- backup of appropriate files on a regular basis;
+- review records regularly and delete records regularly in accordance with the Records Retention Schedule;
+- restrict access to record systems (use of passwords, timed lock out of PCs, locked cabinets etc.);
+- particularly sensitive records transferred to external bodies should be appropriately secured;
+- produce paper copies if required to maintain the integrity of manual files, etc.
+
+7.11 Where electronic records are stored in systems computer equipment maintained by the University’s IT Services Department, the office which creates/maintains these records must formally agree backup and recovery procedures with IT Services. This is to ensure that there is no ambiguity as to which office is responsible for records in the event of hardware failure or accidental deletion of records. In the absence of an agreed Service Level Agreement between the academic/administrative area and IT Services, the head of academic/administrative area which creates/maintains these records formally retains responsibility for the management of these records.
+
+7.12 Where electronic records are kept on systems not maintained by IT Services, a formal inventory of such records must be maintained by the head of academic/administrative area. The academic/administrative area which creates/maintains these records must document and implement backup and recovery procedures for these records. All records stored in cloud services must be done so in adherence with the University’s Cloud Computing Policy: https://www.tcd.ie/about/policies/cloud-policy.php. Retention scheduling
+
+7.13 Records should be retained for as long as they are required to meet the legal, administrative, financial and operational requirements of the University during which time, they should be filed appropriately. Following a period of time, as set out in the Records Retention Schedule, they are either archived or disposed of.
+
+7.14 The Records Retention Schedule prescribes the retention period for a range of records held by the University.
+
+7.15 The Records Retention Schedule is based on a determination of legal retention requirements as defined in relevant legislation including the Universities Act, 1997; Health, Safety and Welfare at Work Acts 2001 & 2005; the Data Protection Acts, 1988 and 2003; as well as University statutes, policies and procedures, administrative and operational requirements, historical value and general best practice. The schedule will be reviewed and updated on a yearly basis to reflect organisational or operational changes as appropriate.
+
+7.16 Records containing personal information should be stored in accordance with the College’s Data Protection Policy and in line with national and European Data Protection legislation (see Information Compliance webpage for further information https://www.tcd.ie/info_compliance/). Any area which considers that such records should be retained for a longer period than that set down in the Records Retention Schedule is required to consult the Information Compliance webpage:
+- to ensure that reasonable justification exists for their retention; and
+- to ensure compliance with the Data Protection Acts 1988 and 2003.
+
+7.17 Compliance with the Policy on Good Research Practice (https://www.tcd.ie/business/assets/ethics/TCDGoodResearchPractice.pdf) should also be ensured.
+
+**Permanent archiving**
+
+7.18 Records, including Inactive Records, that have been identified as Permanently Valuable Records are subject to permanent archiving procedures. In nearly all cases, these records should eventually be transferred to the University Archives (add reference to archiving policies here).
+
+7.19 Assistance with permanent archiving preservation activities will be provided by the Assistant Librarian (College Archives), who provides advice regarding College Archives procedures.
+
+7.20 Archiving of records is to be carried out in accordance with the Records Retention Schedule.
+
+**Appropriate destruction of records**
+
+7.21 When scheduled for destruction, the manner of destruction of records must be appropriate to the level of confidentiality of the records.
+
+7.22 In the case of in-house destruction, the area must document and retain the date and manner of destruction of records.
+
+7.23 In the case of third-party destruction, a certificate or docket confirming destruction must be received and retained as proof of destruction.
+
+7.24 Destruction of records is to be carried out in accordance with the Records Retention Schedule.
+
+# Further Information
+
+Specific queries on this policy or requests for amendments to the Records Retention Schedule should be directed to the Secretary to the College (email: secretary@tcd.ie), who will progress as appropriate.
+
+Training for staff members will be scoped in liaison with Human Resources and communicated to all staff as appropriate.
+
+# Policy Review
+
+The Records Management Policy will be reviewed by the Secretary to the College within 12 months of implementation and every two years thereafter. Any amendments would be considered by the Library and Information Policy Committee (LIPC) and then by Board.
+
+The Records Retention Schedule will be updated by the Secretary to the College in response to queries received and developments in best practice and, in any case, will be reviewed annually for noting at LIPC.

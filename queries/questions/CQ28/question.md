@@ -6,7 +6,7 @@ Are procedures in place to ensure personal data is kept up to date and accurate 
 
 This question may suggest to burden the controller the guarantee that the personal data is kept up-to-date and accurate through the use of procedures. However, what do these terms mean in this context? In addition, how do we certify that a correction is required, that the necessary changes were made, and that they were done without undue delay?
 
-### The Analysis of the Terminologies in Question
+### Analysis: The Terminology in Question
 
 #### Up-to-data and Accurate Data
 
@@ -80,7 +80,7 @@ Considering the prior analysis, we summarize in Table X the terms we identify in
 | `:DataComparisonStep`                            | The prospective comparison of the collected data against the stored one. (subclass of `:DataStep`) | ✓ |
 | `:DataComparisonActivity`                        | The retrospective comparison of the collected data against the stored one. (subclass of `:DataActivity`) | ✓ |
 
-| Properties            | Domain                                 | Target                                 | Desscription                                                                                                              | Extending? |
+| Properties            | Domain                                 | Target                                 | Description                                                                                                              | Extending? |
 |-----------------------|----------------------------------------|----------------------------------------|---------------------------------------------------------------------------------------------------------------------------|------------|
 | `:collectsData`       | `:DataStep`                            | `:Data`                                | Links data obtained (collected) by the step/activity that acquired it                                                     |            |
 | `:hadDataDiscrepancy` | `:DataComparisonActivity`              | `xsd:boolean`                          | The comparison activity result. It is "true" in case of collected and stored data are the same; otherwise, it is "false". | ✓          |

@@ -14,15 +14,15 @@ WHERE {
     ?process rdf:type/rdfs:subClassOf* gdprov:RectificationProcess .
     ?dataCollection rdf:type/rdfs:subClassOf* gdprov:DataCollectionStep .
     ?dataComparison rdf:type/rdfs:subClassOf* gdprov:DataComparisonStep .
-    ?collectedData rdf:type/rdfs:subClassOf* gdprov:PersonalData .
+    ?collectedData rdf:type/rdfs:subClassOf* gdprov:PersonalData . # TODO: Deve ser opcional e representar a instancia do PersonalData (trazer os dados da ALce)
 
     ?dataCollection gdprov:isPartOfProcess ?process .
     ?dataComparison gdprov:isPartOfProcess ?process .
 
     ?dataCollection pPlan:isPrecededBy+ ?dataComparison .
 
-    ?dataCollection gdprov:generatesData ?collectedData .
-    ?dataComparison gdprov:usesData ?collectedData .
+    OPTIONAL { ?dataCollection gdprov:generatesData ?collectedData . }
+    OPTIONAL { ?dataComparison gdprov:usesData ?collectedData . }
 
     OPTIONAL {
         ?dataRectification rdf:type/rdfs:subClassOf* gdprov:RectifyData .

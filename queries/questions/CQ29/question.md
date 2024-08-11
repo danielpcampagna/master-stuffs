@@ -16,7 +16,7 @@ By approaching this question, Pandit highlights the difficult of verifying progr
 
 It seems to me his position lies in the detection of whether the purpose for which the data was collected is no longer necessary. However, we can argue that such an event must occur at the same time as the expiry of the legal basis for which the data was initially collected. In other words, we can unite purpose and legal basis.
 
-Does it make sense to separate these two concepts in this context? See how the literature treats this discussion. See also the DPV. The definitions there.
+Does it make sense to separate these two concepts in this context? See how the literature approach this discussion. See also the DPV. The definitions in DPV.
 
 
 ## Extending the model

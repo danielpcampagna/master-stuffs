@@ -547,7 +547,7 @@ prov:invalidated rdf:type owl:ObjectProperty .
                     rdfs:subPropertyOf owl:topObjectProper  ;
                     rdfs:domain :StorageCondition ;
                     rdfs:range :Duration ;
-                    rdfs:comment "Indicates information about duration"@en, "Duration of a temporal entity, expressed as a scaled value or nominal value"@en ;
+                    rdfs:comment "Indicates information about duration, a temporal entity, expressed as a scaled value or nominal value"@en ;
                     rdfs:label "has Duration" ;
                     rdfs:isDefinedBy dpv:hasDuration .
 

@@ -1,0 +1,1131 @@
+id: https://w3id.org/GDPRov
+name: GDPRov
+description: GDPRov
+imports:
+- linkml:types
+prefixes:
+  linkml: https://w3id.org/linkml/
+  GDPRov: https://w3id.org/None/
+default_prefix: GDPRov
+slots:
+  topObjectProper:
+    slot_uri: owl:topObjectProper
+    multivalued: true
+  atLocation:
+    slot_uri: prov:atLocation
+    multivalued: true
+  invalidated:
+    slot_uri: prov:invalidated
+    multivalued: true
+  used:
+    slot_uri: prov:used
+    multivalued: true
+  wasAttributedTo:
+    slot_uri: prov:wasAttributedTo
+    multivalued: true
+  anonymityLevel:
+    slot_uri: GDPRov:anonymityLevel
+    range: AnonymityLevel
+    multivalued: true
+  archivesConsentAs:
+    comments:
+    - Archives the consent into some entity@en
+    is_a: hasOutputVar
+    slot_uri: GDPRov:archivesConsentAs
+    range: ConsentAgreement
+    multivalued: true
+  collectedConsentFromAgent:
+    is_a: involvesAgent
+    slot_uri: GDPRov:collectedConsentFromAgent
+    range: Agent
+    multivalued: true
+  collectedDataFromAgent:
+    is_a: involvesAgent
+    slot_uri: GDPRov:collectedDataFromAgent
+    range: Agent
+    multivalued: true
+  collectsConsentFromAgent:
+    is_a: involvesAgent
+    slot_uri: GDPRov:collectsConsentFromAgent
+    range: Agent
+    multivalued: true
+  collectsData:
+    comments:
+    - Links data obtained (collected) by the step/activity that acquired it@en
+    is_a: hasOutputVar
+    slot_uri: GDPRov:collectsData
+    range: Data
+    multivalued: true
+  collectsDataFromAgent:
+    is_a: involvesAgent
+    slot_uri: GDPRov:collectsDataFromAgent
+    range: Agent
+    multivalued: true
+  generatesAnonymisedData:
+    comments:
+    - Indicates that an DataAnonymisationStep transforms a Data object into AnonymisedData@en
+    is_a: generatesData
+    slot_uri: GDPRov:generatesAnonymisedData
+    range: AnonymisedData
+    multivalued: true
+  generatesConsentAgreement:
+    comments:
+    - Generates ConsentAgreement which is a the consent granted by the user based
+      on the ConsentAgreementTemplate through a ConsentAcquisitionStep@en
+    is_a: hasOutputVar
+    slot_uri: GDPRov:generatesConsentAgreement
+    range: ConsentAgreement
+    multivalued: true
+  generatesData:
+    comments:
+    - produces data@en
+    is_a: hasOutputVar
+    slot_uri: GDPRov:generatesData
+    range: Data
+    multivalued: true
+  hasAnonymityLevel:
+    comments:
+    - Indicates the anonymity level of an AnonymisedData object using instances of
+      the AnonymityLevel class@en
+    slot_uri: GDPRov:hasAnonymityLevel
+    range: AnonymityLevel
+    multivalued: true
+  hasDuration:
+    comments:
+    - Duration of a temporal entity, expressed as a scaled value or nominal value@en
+    - Indicates information about duration@en
+    is_a: topObjectProper
+    slot_uri: GDPRov:hasDuration
+    range: Duration
+    multivalued: true
+  hasFrequency:
+    comments:
+    - Indicates the frequency with which something takes place@en
+    is_a: topObjectProperty
+    slot_uri: GDPRov:hasFrequency
+    range: Frequency
+    multivalued: true
+  hasLegalBasis:
+    slot_uri: GDPRov:hasLegalBasis
+    range: LawfulBasisForProcessing
+    multivalued: true
+  hasLegalJustification:
+    slot_uri: GDPRov:hasLegalJustification
+    range: LawfulBasisForProcessing
+    multivalued: true
+  hasMaxDuration:
+    comments:
+    - Indicates information about duration@en
+    is_a: topObjectProperty
+    slot_uri: GDPRov:hasMaxDuration
+    range: Duration
+    multivalued: true
+  hasSharedDataWith:
+    slot_uri: GDPRov:hasSharedDataWith
+    range: Agent
+    multivalued: true
+  hasStorageCondition:
+    comments:
+    - Indicates the conditions required or followed regarding storage of data@en
+    is_a: topObjectProperty
+    slot_uri: GDPRov:hasStorageCondition
+    range: StorageCondition
+    multivalued: true
+  invalidatesData:
+    slot_uri: GDPRov:invalidatesData
+    range: Data
+    multivalued: true
+  involvesAgent:
+    slot_uri: GDPRov:involvesAgent
+    range: Agent
+    multivalued: true
+  isAnonymisedByStep:
+    is_a: isDataGeneratedBy
+    slot_uri: GDPRov:isAnonymisedByStep
+    range: DataAnonymisationStep
+    multivalued: true
+  isConsentAgreementTemplateForStep:
+    is_a: isInputVarOf
+    slot_uri: GDPRov:isConsentAgreementTemplateForStep
+    range: ConsentAcquisitionStep
+    multivalued: true
+  isDataCollectedByStep:
+    is_a: isOutputVarOf
+    slot_uri: GDPRov:isDataCollectedByStep
+    range: DataStep
+    multivalued: true
+  isDataGeneratedBy:
+    is_a: isOutputVarOf
+    slot_uri: GDPRov:isDataGeneratedBy
+    range: DataStep
+    multivalued: true
+  isGeneratedByStep:
+    is_a: isOutputVarOf
+    slot_uri: GDPRov:isGeneratedByStep
+    range: ConsentStep
+    multivalued: true
+  isJustificationForDataStep:
+    is_a: isInputVarOf
+    slot_uri: GDPRov:isJustificationForDataStep
+    range: DataStep
+    multivalued: true
+  isJustifiedUsingConsentAgreement:
+    comments:
+    - justifies use of data by step through specified consent agreement@en
+    is_a: hasInputVar
+    slot_uri: GDPRov:isJustifiedUsingConsentAgreement
+    range: ConsentAgreement
+    multivalued: true
+  isPartOfProcess:
+    is_a: isStepOfPlan
+    slot_uri: GDPRov:isPartOfProcess
+    range: Process
+    multivalued: true
+  isSharedWithThirdParty:
+    comments:
+    - An association indicating that the agent participated in the sharing activity@en
+    is_a: isInputVarOf
+    slot_uri: GDPRov:isSharedWithThirdParty
+    range: ThirdParty
+    multivalued: true
+  isTermsAndConditionsForStep:
+    is_a: isInputVarOf
+    slot_uri: GDPRov:isTermsAndConditionsForStep
+    range: ConsentAcquisitionStep
+    multivalued: true
+  isUsedByStep:
+    is_a: isInputVarOf
+    slot_uri: GDPRov:isUsedByStep
+    range: DataStep
+    multivalued: true
+  refersToProcess:
+    slot_uri: GDPRov:refersToProcess
+    range: Process
+    multivalued: true
+  sharedDataEntity:
+    comments:
+    - The beginning of transferring an entity.@en
+    is_a: used
+    slot_uri: GDPRov:sharedDataEntity
+    range: DataEntity
+    multivalued: true
+  sharesData:
+    comments:
+    - Indicates sharing of Data through a DataStep@en
+    is_a: hasInputVar
+    slot_uri: GDPRov:sharesData
+    range: Data
+    multivalued: true
+  sharesDataWith:
+    comments:
+    - Describe an intended data transferring@en
+    slot_uri: GDPRov:sharesDataWith
+    range: Agent
+    multivalued: true
+  sharesDataWithThirdParty:
+    comments:
+    - Shares data with a third party@en
+    is_a: topObjectProperty
+    slot_uri: GDPRov:sharesDataWithThirdParty
+    range: ThirdParty
+    multivalued: true
+  transferredDataToRegion:
+    comments:
+    - The Location of any resource.@en
+    slot_uri: GDPRov:transferredDataToRegion
+    range: Region
+    multivalued: true
+  transfersDataToRegion:
+    slot_uri: GDPRov:transfersDataToRegion
+    range: Region
+    multivalued: true
+  usedDataEntity:
+    comments:
+    - A DataEntity that was used by this DataActivity.@en
+    is_a: used
+    slot_uri: GDPRov:usedDataEntity
+    range: DataEntity
+    multivalued: true
+  usesConsentAgreement:
+    comments:
+    - uses Consent Agreement entity@en
+    is_a: hasInputVar
+    slot_uri: GDPRov:usesConsentAgreement
+    range: ConsentAgreement
+    multivalued: true
+  usesConsentAgreementTemplate:
+    comments:
+    - links a Consent Acquisition Step with the Consent Agreement Template used to
+      acquire consent@en
+    is_a: hasInputVar
+    slot_uri: GDPRov:usesConsentAgreementTemplate
+    range: ConsentAgreementTemplate
+    multivalued: true
+  usesData:
+    comments:
+    - links step with data used@en
+    is_a: hasInputVar
+    slot_uri: GDPRov:usesData
+    range: Data
+    multivalued: true
+  usesRecipeintLegalBasisURI:
+    comments:
+    - The URI for the document that describes this legal basis can be found@en
+    is_a: topObjectProperty
+    slot_uri: GDPRov:usesRecipeintLegalBasisURI
+    multivalued: true
+  usesRecipientLegalBasis:
+    comments:
+    - Provides the legal basis for a given data step@en
+    is_a: topObjectProperty
+    slot_uri: GDPRov:usesRecipientLegalBasis
+    multivalued: true
+  usesTermsAndConditions:
+    comments:
+    - Links a Consent Acquisition Step with the Terms and Conditions presented to
+      the user when acquiring Consent@en
+    is_a: hasInputVar
+    slot_uri: GDPRov:usesTermsAndConditions
+    range: TermsAndConditions
+    multivalued: true
+  wasSharedBy:
+    is_a: isInputVarOf
+    slot_uri: GDPRov:wasSharedBy
+    multivalued: true
+  wasSharedWithThirdParty:
+    comments:
+    - An association indicating that the agent participated in the sharing activity@en
+    is_a: wasAttributedTo
+    slot_uri: GDPRov:wasSharedWithThirdParty
+    range: ThirdParty
+    multivalued: true
+  hasInputVar:
+    slot_uri: p-plan:hasInputVar
+    multivalued: true
+  hasOutputVar:
+    slot_uri: p-plan:hasOutputVar
+    multivalued: true
+  isInputVarOf:
+    slot_uri: p-plan:isInputVarOf
+    multivalued: true
+  isOutputVarOf:
+    slot_uri: p-plan:isOutputVarOf
+    multivalued: true
+  isStepOfPlan:
+    slot_uri: p-plan:isStepOfPlan
+    multivalued: true
+  isNecessary:
+    comments:
+    - Describe whether the corresponding DataActivity to this DataStep must occur.
+      The lack of execution of an activity that the step is necessary to correspond
+      to a lack of compliance.@en
+    is_a: topObjectProperty
+    slot_uri: GDPRov:isNecessary
+    multivalued: true
+  reviewedAtTime:
+    comments:
+    - The time at which a plan or a procedure was reviewed.@en
+    is_a: topObjectProperty
+    slot_uri: GDPRov:reviewedAtTime
+    multivalued: true
+  abstract:
+    slot_uri: terms:abstract
+    multivalued: true
+  contributor:
+    slot_uri: terms:contributor
+    multivalued: true
+  created:
+    slot_uri: terms:created
+    multivalued: true
+  creator:
+    slot_uri: terms:creator
+    multivalued: true
+  description:
+    slot_uri: terms:description
+    multivalued: true
+  license:
+    slot_uri: terms:license
+    multivalued: true
+  modified:
+    slot_uri: terms:modified
+    multivalued: true
+  title:
+    slot_uri: terms:title
+    multivalued: true
+  preferredNamespacePrefix:
+    slot_uri: vann:preferredNamespacePrefix
+    multivalued: true
+  preferredNamespaceUri:
+    slot_uri: vann:preferredNamespaceUri
+    multivalued: true
+  versionIRI:
+    slot_uri: owl:versionIRI
+    multivalued: true
+classes:
+  duration:
+    class_uri: xsd:duration
+  Agent:
+    class_uri: prov:Agent
+  Location:
+    class_uri: prov:Location
+  AcquireConsentActivity:
+    comments:
+    - Is an activity that acquires consent.@en
+    is_a: ConsentActivity
+    slots:
+    - collectedConsentFromAgent
+    class_uri: GDPRov:AcquireConsentActivity
+  AnonymisationActivity:
+    comments:
+    - Is an activity that anonymises data.@en
+    is_a: DataTransformationActivity
+    class_uri: GDPRov:AnonymisationActivity
+  AnonymisedData:
+    comments:
+    - Represents data that has been Anonymised at some level reflected by the hasAnonymityLevel
+      object property@en
+    is_a: PersonalData
+    slots:
+    - isAnonymisedByStep
+    slot_usage:
+      hasAnonymityLevel:
+        required: true
+    class_uri: GDPRov:AnonymisedData
+  AnonymisedDataEntity:
+    comments:
+    - Is an entity where personal data has been anonymised to some extent.@en
+    is_a: PersonalDataEntity
+    class_uri: GDPRov:AnonymisedDataEntity
+  AnonymityLevel:
+    comments:
+    - Provides a way to express the Anonymity Level of AnonymisedData objects through
+      the object property hasAnonymityLevel@en
+    class_uri: GDPRov:AnonymityLevel
+  AppointProcessor:
+    comments:
+    - Reflects the process(es) used to appoint processors@en
+    is_a: Process
+    class_uri: GDPRov:AppointProcessor
+  ArchiveConsentActivity:
+    comments:
+    - An activity that archives given/acquired consent for storage.@en
+    is_a: ConsentActivity
+    class_uri: GDPRov:ArchiveConsentActivity
+  AutomatedStep:
+    is_a: Step
+    class_uri: GDPRov:AutomatedStep
+  ConsentAcquisitionStep:
+    comments:
+    - ConsentAcquisitionStep deals with acquiring consent from the user. It uses Terms
+      and Conditions along with the appropriate Consent Model as the basis of obtaining
+      consent from the user. The output of this step is the consent object agreed
+      upon by the user.@en
+    is_a: ConsentStep
+    slots:
+    - collectsConsentFromAgent
+    - usesConsentAgreementTemplate
+    - usesTermsAndConditions
+    class_uri: GDPRov:ConsentAcquisitionStep
+  ConsentActivity:
+    comments:
+    - Is an activity dealing with consent.@en
+    is_a: Activity
+    class_uri: GDPRov:ConsentActivity
+  ConsentAgreement:
+    comments:
+    - ConsentAgreement reflects the consent provided by the user based on the provided
+      Terms and Conditions and Consent Agreement Templates. It is the set of permissions
+      the user has specifically provided or refused to provide. This consent is useful
+      to provide justification of activities that use user data.@en
+    is_a: Variable
+    slots:
+    - isGeneratedByStep
+    - isJustificationForDataStep
+    class_uri: GDPRov:ConsentAgreement
+  ConsentAgreementTemplate:
+    comments:
+    - This is a template for consent requested from the user.@en
+    is_a: Variable
+    slots:
+    - isConsentAgreementTemplateForStep
+    class_uri: GDPRov:ConsentAgreementTemplate
+  ConsentArchivalStep:
+    comments:
+    - ConsentArchivalStep archives acquired consent to form a record of the consent
+      given by the user.@en
+    is_a: ConsentStep
+    slots:
+    - archivesConsentAs
+    class_uri: GDPRov:ConsentArchivalStep
+  ConsentModificationStep:
+    comments:
+    - ConsentModificationStep deals with modifications to the consent by the user.
+      It invalidates the previous consent object and produces a new updated consent
+      object that represents the modified consent.@en
+    is_a: ConsentStep
+    class_uri: GDPRov:ConsentModificationStep
+  ConsentStep:
+    comments:
+    - A ConsentStep acts/interacts with/uses Consent@en
+    is_a: Step
+    slots:
+    - generatesConsentAgreement
+    - usesConsentAgreement
+    class_uri: GDPRov:ConsentStep
+  ConsentWithdrawalProcess:
+    comments:
+    - A ConsentWithdrawalProcess deals with the withdrawal of consent by the user
+      and the corresponding activity carried out within the system@en
+    is_a: Process
+    class_uri: GDPRov:ConsentWithdrawalProcess
+  ConsentWithdrawalStep:
+    comments:
+    - ConsentWithdrawalStep deals with withdrawal of consent@en
+    is_a: ConsentModificationStep
+    class_uri: GDPRov:ConsentWithdrawalStep
+  Controller:
+    comments:
+    - A ThirdPartyDataController is a Third Party entity that acts as a Data Controller@en
+    is_a: ThirdParty
+    class_uri: GDPRov:Controller
+  ControllerRepresentative:
+    comments:
+    - A Representative of the Controller@en
+    is_a: Agent
+    class_uri: GDPRov:ControllerRepresentative
+  CrossBorderDataTransfer:
+    comments:
+    - Reflects cross-border transfer of data@en
+    is_a: DataStep
+    slots:
+    - sharesData
+    - sharesDataWith
+    - transfersDataToRegion
+    - usesRecipeintLegalBasisURI
+    - usesRecipientLegalBasis
+    class_uri: GDPRov:CrossBorderDataTransfer
+  CrossBorderTransferActivity:
+    comments:
+    - Is an activity that transfer data across borders (as defined in the GDPR).@en
+    is_a: DataActivity
+    slots:
+    - sharedDataEntity
+    - transferredDataToRegion
+    - usesRecipeintLegalBasisURI
+    - usesRecipientLegalBasis
+    class_uri: GDPRov:CrossBorderTransferActivity
+  DPO:
+    comments:
+    - The Data Protection Officer appointed to an organisation.@en
+    is_a: Agent
+    class_uri: GDPRov:DPO
+  Data:
+    comments:
+    - Represents class of data collected or generated through various activities@en
+    is_a: Variable
+    slots:
+    - isDataCollectedByStep
+    - isDataGeneratedBy
+    - isSharedWithThirdParty
+    - isUsedByStep
+    - wasSharedBy
+    class_uri: GDPRov:Data
+  DataAccessProcess:
+    comments:
+    - A DataAccessProcess corresponds to the request made by an user for access to
+      their data within the system. This process is responsible for handling the request
+      process and providing the appropriate data to the end user.@en
+    is_a: Process
+    class_uri: GDPRov:DataAccessProcess
+  DataActivity:
+    comments:
+    - Is an activity involving data.@en
+    is_a: Activity
+    slots:
+    - hasLegalBasis
+    - involvesAgent
+    - usedDataEntity
+    class_uri: GDPRov:DataActivity
+  DataAnonymisationStep:
+    comments:
+    - 'DataAnonymisationStep anonymises data by transforming it from one form to another
+      along the anonymisation chain.
+
+      Anonymisation can be represented as a spectrum going from raw user data to pseudo-anonymised
+      data that can be de-anonymised by the same agent/organisation to pseudo-anonymous
+      data that cannot be deanonymised internally, but may be done by external agents
+      who have access to other data, and finally to completely anonymised data.@en'
+    is_a: DataTransformationStep
+    slots:
+    - generatesAnonymisedData
+    class_uri: GDPRov:DataAnonymisationStep
+  DataArchivalActivity:
+    comments:
+    - Is an activity that archives data. Archival is transformation of data into some
+      form for storage.@en
+    is_a: DataTransformationActivity
+    mixins:
+    - DataStorageActivity
+    class_uri: GDPRov:DataArchivalActivity
+  DataArchivalProcess:
+    comments:
+    - A DataArchivalProcess describes the process of data archival@en
+    is_a: Process
+    class_uri: GDPRov:DataArchivalProcess
+  DataArchivalStep:
+    comments:
+    - DataArchivalStep archives data by transforming it and storing it@en
+    is_a: DataTransformationStep
+    mixins:
+    - DataStorageStep
+    class_uri: GDPRov:DataArchivalStep
+  DataBreachActivity:
+    comments:
+    - Is an activity dealing with data breach.@en
+    is_a: Activity
+    class_uri: GDPRov:DataBreachActivity
+  DataBreachRecord:
+    comments:
+    - A record of a data breach.@en
+    is_a: Variable
+    class_uri: GDPRov:DataBreachRecord
+  DataBreachStep:
+    comments:
+    - Step representing an action associated with data breach.@en
+    is_a: Step
+    class_uri: GDPRov:DataBreachStep
+  DataCollectionActivity:
+    comments:
+    - Is an activity that collects or acquires data.@en
+    is_a: DataActivity
+    slots:
+    - collectedDataFromAgent
+    class_uri: GDPRov:DataCollectionActivity
+  DataCollectionStep:
+    comments:
+    - DataCollectionStep collects data from the user@en
+    is_a: DataStep
+    slots:
+    - collectsDataFromAgent
+    class_uri: GDPRov:DataCollectionStep
+  DataDeanonymisationStep:
+    comments:
+    - DataDeanonymisationStep deanonymises data by transforming it from one form to
+      another along the anonymisation chain.@en
+    is_a: DataTransformationStep
+    class_uri: GDPRov:DataDeanonymisationStep
+  DataDeletionActivity:
+    comments:
+    - Is an activity that deletes or erases data.@en
+    is_a: DataActivity
+    slots:
+    - invalidatesData
+    class_uri: GDPRov:DataDeletionActivity
+  DataDeletionStep:
+    comments:
+    - DataDeletionStep deletes data from within the system; The deletion is expressed
+      as prov:invalidated over the dataset.@en
+    is_a: DataStep
+    slots:
+    - invalidatesData
+    class_uri: GDPRov:DataDeletionStep
+  DataEntity:
+    comments:
+    - Represents a data entity.@en
+    is_a: Entity
+    slots:
+    - anonymityLevel
+    - wasSharedWithThirdParty
+    class_uri: GDPRov:DataEntity
+  DataErasureProcess:
+    comments:
+    - A DataErasureProcess is responsible for handling the data erasure of a data
+      subject.@en
+    is_a: Process
+    class_uri: GDPRov:DataErasureProcess
+  DataRectificationProactiveProcess:
+    comments:
+    - A DataRectificationProactiveProcess describes the process of data rectification
+      initiated by the controller, which is the correction of data already present
+      within the system@en
+    is_a: DataRectificationProcess
+    class_uri: GDPRov:DataRectificationProactiveProcess
+  DataRectificationProcess:
+    comments:
+    - A DataRectificationProcess describes the process of data rectification, which
+      is the correction of data already present within the system@en
+    is_a: Process
+    class_uri: GDPRov:DataRectificationProcess
+  DataRectificationReactiveProcess:
+    comments:
+    - A ReactiveDataRectificationProcess describes the process of data rectification
+      started by another agent then the controller, which is the correction of data
+      already present within the system@en
+    is_a: DataRectificationProcess
+    class_uri: GDPRov:DataRectificationReactiveProcess
+  DataSharingActivity:
+    comments:
+    - Is an activity that shares data.@en
+    is_a: DataActivity
+    slots:
+    - hasSharedDataWith
+    class_uri: GDPRov:DataSharingActivity
+  DataSharingStep:
+    comments:
+    - DataSharingStep shares data with another agent/organisation. These may be internal
+      or external entities.@en
+    is_a: DataStep
+    slots:
+    - sharesData
+    - sharesDataWith
+    - sharesDataWithThirdParty
+    class_uri: GDPRov:DataSharingStep
+  DataStep:
+    comments:
+    - A DataStep deals with data@en
+    is_a: Step
+    slots:
+    - collectsData
+    - generatesData
+    - hasFrequency
+    - hasLegalBasis
+    - hasMaxDuration
+    - involvesAgent
+    - isJustifiedUsingConsentAgreement
+    - isNecessary
+    - isPartOfProcess
+    - reviewedAtTime
+    - usesData
+    class_uri: GDPRov:DataStep
+  DataStepWithoutProvenance:
+    is_a: DataStep
+    class_uri: GDPRov:DataStepWithoutProvenance
+  DataStorageActivity:
+    comments:
+    - Is an activity that stores data.@en
+    is_a: DataActivity
+    class_uri: GDPRov:DataStorageActivity
+  DataStorageStep:
+    comments:
+    - DataStorageStep stores data within the system@en
+    is_a: DataStep
+    class_uri: GDPRov:DataStorageStep
+  DataSubject:
+    comments:
+    - An individual or entity@en
+    is_a: Agent
+    class_uri: GDPRov:DataSubject
+  DataTransferActivity:
+    is_a: DataActivity
+    class_uri: GDPRov:DataTransferActivity
+  DataTransferStep:
+    is_a: DataStep
+    class_uri: GDPRov:DataTransferStep
+  DataTransformationActivity:
+    comments:
+    - Is an activity that transforms data.@en
+    is_a: DataActivity
+    class_uri: GDPRov:DataTransformationActivity
+  DataTransformationStep:
+    comments:
+    - DataTransformationStep transforms data from one form into another.@en
+    is_a: DataStep
+    class_uri: GDPRov:DataTransformationStep
+  DataUsageActivity:
+    comments:
+    - Is an activity that uses data. Can also be termed as 'Processing' of data.@en
+    is_a: DataActivity
+    class_uri: GDPRov:DataUsageActivity
+  DataUsageStep:
+    comments:
+    - A DataUsageStep is a DataStep that uses existing data present within the system@en
+    is_a: DataStep
+    class_uri: GDPRov:DataUsageStep
+  DeAnonymisationActivity:
+    comments:
+    - Is an activity that deanonymises data.@en
+    is_a: DataTransformationActivity
+    class_uri: GDPRov:DeAnonymisationActivity
+  DirectMarketing:
+    comments:
+    - Direct Marketing where the marketing is done directly to the data subject.@en
+    is_a: Marketing
+    class_uri: GDPRov:DirectMarketing
+  DocumentData:
+    comments:
+    - Describes an abstract document that contains references to the law (e.g., documentation
+      of the circumstances in which an individual's data protection rights may be
+      lawfully restricted).@en
+    is_a: Data
+    class_uri: GDPRov:DocumentData
+  DocumentEntity:
+    comments:
+    - A document that contains references to the law (e.g., documentation of the circumstances
+      in which an individual's data protection rights may be lawfully restricted).@en
+    is_a: DataEntity
+    class_uri: GDPRov:DocumentEntity
+  Duration:
+    comments:
+    - The duration or temporal limitation@en
+    is_a: Duration
+    class_uri: time:Duration
+  FixedOccurencesDuration:
+    comments:
+    - The duration that takes place a fixed number of times, e.g. 3 times@en
+    is_a: Duration
+    class_uri: GDPRov:FixedOccurencesDuration
+  Frequency:
+    comments:
+    - The frequency or information about periods and repetitions in terms of recurrence.@en
+    is_a: duration
+    class_uri: GDPRov:Frequency
+  GivenConsent:
+    comments:
+    - Represents the given consent by the data subject.@en
+    is_a: Entity
+    class_uri: GDPRov:GivenConsent
+  GivenConsentTemplate:
+    comments:
+    - Is the template used to obtain the given consent.@en
+    is_a: Entity
+    class_uri: GDPRov:GivenConsentTemplate
+  HandleCrossBorderTransferingProcess:
+    comments:
+    - Describe the process of handling a cross-border transferring@en
+    is_a: Process
+    class_uri: GDPRov:HandleCrossBorderTransferingProcess
+  HandleDataBreachProcess:
+    comments:
+    - A process that defines the actions that should be undertaken in event of a data
+      breach@en
+    is_a: Process
+    class_uri: GDPRov:HandleDataBreachProcess
+  HandleRightOfDataPortability:
+    comments:
+    - The process or series of steps that handle the right of data portability.@en
+    is_a: Process
+    class_uri: GDPRov:HandleRightOfDataPortability
+  HandleRightOfErasure:
+    comments:
+    - The process or series of steps that handle the right of erasure.@en
+    is_a: Process
+    class_uri: GDPRov:HandleRightOfErasure
+  HandleRightToAccessPersonalData:
+    comments:
+    - The process or series of steps that handle the right to access personal data.@en
+    is_a: Process
+    class_uri: GDPRov:HandleRightToAccessPersonalData
+  HandleRightToBasicInfoAboutProcessing:
+    comments:
+    - The process or series of steps that handle the right to basic information about
+      processing.@en
+    is_a: Process
+    class_uri: GDPRov:HandleRightToBasicInfoAboutProcessing
+  HandleRightToNoAutomatedProcessing:
+    comments:
+    - The process or series of steps that handle the right to not be processed automatically.@en
+    is_a: Process
+    class_uri: GDPRov:HandleRightToNoAutomatedProcessing
+  HandleRightToObjectDirectMarketing:
+    comments:
+    - The process or series of steps that handle the right to object to direct marketing.@en
+    is_a: Process
+    class_uri: GDPRov:HandleRightToObjectDirectMarketing
+  HandleRightToObjectProcessing:
+    comments:
+    - The process or series of steps that handle the right to object to processing.@en
+    is_a: Process
+    class_uri: GDPRov:HandleRightToObjectProcessing
+  HandleRightToRectification:
+    comments:
+    - The process or series of steps that handle the right to rectification of personal
+      data.@en
+    is_a: Process
+    class_uri: GDPRov:HandleRightToRectification
+  HandleRightToRestrictProcessing:
+    comments:
+    - The process or series of steps that handle the right to restrict processing.@en
+    is_a: Process
+    class_uri: GDPRov:HandleRightToRestrictProcessing
+  HandleRightToTransparency:
+    comments:
+    - The process or series of steps that handle the right to transparency.@en
+    is_a: Process
+    class_uri: GDPRov:HandleRightToTransparency
+  HandleSAR:
+    is_a: Process
+    class_uri: GDPRov:HandleSAR
+  ImpactAssessment:
+    comments:
+    - Represents the process or collection of steps representing the Impact Assessment.@en
+    is_a: Process
+    class_uri: GDPRov:ImpactAssessment
+  JointController:
+    comments:
+    - A Joint Controller is where two or more controllers jointly determine the purposes
+      and means of processing.@en
+    is_a: Controller
+    class_uri: GDPRov:JointController
+  Marketing:
+    comments:
+    - Marketing as a process or collection of steps.@en
+    is_a: Process
+    class_uri: GDPRov:Marketing
+  MaxDuration:
+    comments:
+    - The estimated maximum duration that activities related to this step can take
+      without being seen as a delayed activity@en
+    is_a: duration
+    class_uri: GDPRov:MaxDuration
+  ModifyConsentActivity:
+    comments:
+    - Is an activity that modifies given consent.@en
+    is_a: ConsentActivity
+    class_uri: GDPRov:ModifyConsentActivity
+  MonitorCompliance:
+    comments:
+    - The process of monitoring compliance as mandated by the GDPR.@en
+    is_a: Process
+    class_uri: GDPRov:MonitorCompliance
+  NotifyController:
+    comments:
+    - Step that notifies the controller of data breach.@en
+    is_a: DataBreachStep
+    class_uri: GDPRov:NotifyController
+  NotifyControllerActivity:
+    comments:
+    - Is an activity that notifies controller about data breach@en
+    is_a: DataBreachActivity
+    class_uri: GDPRov:NotifyControllerActivity
+  NotifyDPA:
+    comments:
+    - Step that notifies the Data Protection Authorities of a data breach.@en
+    is_a: DataBreachStep
+    class_uri: GDPRov:NotifyDPA
+  NotifyDPAActivity:
+    comments:
+    - Is an activity that notifies data protection authorities about data breach@en
+    is_a: DataBreachActivity
+    class_uri: GDPRov:NotifyDPAActivity
+  NotifyDataSubject:
+    comments:
+    - Step that notifies the data subject of data breach.@en
+    is_a: DataBreachStep
+    class_uri: GDPRov:NotifyDataSubject
+  NotifyDataSubjectActivity:
+    comments:
+    - Is an activity that notifies data subjects about data breach@en
+    is_a: DataBreachActivity
+    class_uri: GDPRov:NotifyDataSubjectActivity
+  PersonalData:
+    comments:
+    - PersonalData is any data pertaining to the user which can contain personally
+      identifiable information or a data set generated by the system using personally
+      identifiable information acquired through direct or indirect means@en
+    is_a: Data
+    slots:
+    - hasAnonymityLevel
+    class_uri: GDPRov:PersonalData
+  PersonalDataEntity:
+    comments:
+    - Represents a personal data entity.@en
+    is_a: DataEntity
+    class_uri: GDPRov:PersonalDataEntity
+  Process:
+    comments:
+    - A Process describes a 'Plan' of action for carrying out a particular activity
+      that uses or is related to Data or Consent@en
+    is_a: PersonalDataHandling
+    mixins:
+    - Plan
+    slots:
+    - hasFrequency
+    - hasLegalBasis
+    - hasMaxDuration
+    - hasStorageCondition
+    - involvesAgent
+    - reviewedAtTime
+    class_uri: GDPRov:Process
+  Processor:
+    comments:
+    - A ThirdPartyDataProcessor is a Third Party entity that acts as a Data Processor@en
+    is_a: ThirdParty
+    class_uri: GDPRov:Processor
+  ProcessorRepresentative:
+    comments:
+    - A representative of the Processor.@en
+    is_a: Agent
+    class_uri: GDPRov:ProcessorRepresentative
+  ProvideCopyOfPersonalData:
+    comments:
+    - A step that provides the data subject with a copy of their personal data.@en
+    is_a: DataStep
+    class_uri: GDPRov:ProvideCopyOfPersonalData
+  RectifyData:
+    comments:
+    - Rectifies existing data@en
+    is_a: DataStep
+    class_uri: GDPRov:RectifyData
+  RectifyDataActivity:
+    comments:
+    - Is an activity that recitifies data.@en
+    is_a: DataActivity
+    class_uri: GDPRov:RectifyDataActivity
+  Region:
+    comments:
+    - A location can be an identifiable geographic place (ISO 19112), but it can also
+      be a non-geographic place such as a directory, row, or column. As such, there
+      are numerous ways in which location can be expressed, such as by a coordinate,
+      address, landmark, and so forth.@en
+    is_a: Location
+    class_uri: GDPRov:Region
+  ReportDataBreach:
+    comments:
+    - The process of reporting after a data breach has taken place.@en
+    is_a: HandleDataBreachProcess
+    class_uri: GDPRov:ReportDataBreach
+  SensitiveData:
+    comments:
+    - Personal data revealing racial or ethnic origin, political opinions, religious
+      or philosophical beliefs, or trade union membership, and the processing of genetic
+      data, biometric data for the purpose of uniquely identifying a natural person,
+      data concerning health or data concerning a natural person's sex life or sexual
+      orientation.@en
+    is_a: PersonalData
+    class_uri: GDPRov:SensitiveData
+  SensitiveDataEntity:
+    comments:
+    - Is an entity containing sensitive personal information.@en
+    is_a: PersonalDataEntity
+    class_uri: GDPRov:SensitiveDataEntity
+  StorageCondition:
+    comments:
+    - The conditions required or followed regarding the storage of data@en
+    slots:
+    - hasDuration
+    class_uri: GDPRov:StorageCondition
+  SubProcessor:
+    comments:
+    - A Processor appointed under or by another Processor is a Sub-Processor.@en
+    is_a: Processor
+    class_uri: GDPRov:SubProcessor
+  TemporalDuration:
+    comments:
+    - The duration that has a fixed temporal duration, e.g. 6 months@en
+    is_a: Duration
+    class_uri: GDPRov:TemporalDuration
+  TermsAndConditions:
+    comments:
+    - Terms and Conditions of usage as provided to the user in agreement of provided
+      service@en
+    is_a: Variable
+    slots:
+    - isTermsAndConditionsForStep
+    class_uri: GDPRov:TermsAndConditions
+  TermsAndConditionsEntity:
+    comments:
+    - Represents the Terms and Conditions entity.@en
+    is_a: Entity
+    class_uri: GDPRov:TermsAndConditionsEntity
+  ThirdParty:
+    comments:
+    - A ThirdParty is any external entitiy associated with some internal activity@en
+    is_a: Agent
+    class_uri: GDPRov:ThirdParty
+  UntilEventDuration:
+    comments:
+    - The duration that ends when a specific event occurs, e.g. data is no longer
+      needed for original purpose@en
+    is_a: Duration
+    class_uri: GDPRov:UntilEventDuration
+  UntilTimeDuration:
+    comments:
+    - The duration that has a fixed end date, e.g. 2022-12-31@en
+    is_a: Duration
+    class_uri: GDPRov:UntilTimeDuration
+  UserIdentifier:
+    comments:
+    - An UserIdentifier is a specific way to identify the user through a unique ID
+      or a combination of other attributes@en
+    is_a: PersonalData
+    class_uri: GDPRov:UserIdentifier
+  UserIdentifierEntity:
+    comments:
+    - Is an entity acting as the user identifier. Or contains an identifier.@en
+    is_a: PersonalDataEntity
+    class_uri: GDPRov:UserIdentifierEntity
+  UserInputStep:
+    is_a: UserInteractionStep
+    class_uri: GDPRov:UserInputStep
+  UserInteractionStep:
+    is_a: Step
+    class_uri: GDPRov:UserInteractionStep
+  UserOutputStep:
+    is_a: UserInteractionStep
+    class_uri: GDPRov:UserOutputStep
+  WithdrawConsentActivity:
+    comments:
+    - Is an activity that withdraws given consent. Can also term it so as to depict
+      withdrawal as a modification of consent.@en
+    is_a: ModifyConsentActivity
+    class_uri: GDPRov:WithdrawConsentActivity
+  AdequacyDecision:
+    class_uri: gdprtext:AdequacyDecision
+  AppropriateSafeguards:
+    class_uri: gdprtext:AppropriateSafeguards
+  BindingCorporateRules:
+    class_uri: gdprtext:BindingCorporateRules
+  Derogation:
+    class_uri: gdprtext:Derogation
+  ExplicitConsentToTransfer:
+    class_uri: gdprtext:ExplicitConsentToTransfer
+  LawfulBasisForProcessing:
+    class_uri: gdprtext:LawfulBasisForProcessing
+  LegalBasisForInternationalDataTransfer:
+    class_uri: gdprtext:LegalBasisForInternationalDataTransfer
+  LegalClaimsToTransfer:
+    class_uri: gdprtext:LegalClaimsToTransfer
+  OpenConsultationToTransfer:
+    class_uri: gdprtext:OpenConsultationToTransfer
+  PerformeContractToTransfer:
+    class_uri: gdprtext:PerformeContractToTransfer
+  PublicInterestToTransfer:
+    class_uri: gdprtext:PublicInterestToTransfer
+  VitalInterestToTransfer:
+    class_uri: gdprtext:VitalInterestToTransfer
+  PersonalDataHandling:
+    class_uri: dpv:PersonalDataHandling
+  Activity:
+    slots:
+    - hasLegalJustification
+    class_uri: p-plan:Activity
+  Entity:
+    class_uri: p-plan:Entity
+  Plan:
+    class_uri: p-plan:Plan
+  Step:
+    class_uri: p-plan:Step
+  Variable:
+    class_uri: p-plan:Variable
+  Anonymised:
+    comments:
+    - Anonymised represents the Anonymisation level where the data cannot be de-anonymised
+      to retrieve personally identifiable information.@en
+  DeAnonymised:
+    comments:
+    - DeAnonymised represents the Anonymisation level where the data is completely
+      de-anonymised and contains directly accessible personally identifiable information.@en
+  EndlessDuration:
+    comments:
+    - The duration that is (known or intended to be) open-ended or without an end@en
+  PseudoAnonymised:
+    comments:
+    - PseudoAnonymised represents the Anonymisation level where the data is anonymised
+      but cannot be de-anonymised without additional data which is NOT accessible
+      to the data-holding organisation to retrieve personally identifiable information.@en
+  PseudoOrganisationalAnonymised:
+    comments:
+    - PseudoOrganisationalAnonymised represents the Anonymisation level where the
+      data is anonymised but cannot be de-anonymised without additional data which
+      is accessible to the data-holding organisation to recreate the de-anonymised
+      information.@en
