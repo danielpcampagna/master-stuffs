@@ -1,0 +1,32 @@
+@prefix : <http://example.org/SAPOS#> .
+@prefix gdprov: <https://w3id.org/GDPRov#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix tcu: <http://example.org/TrinityCollegeDublin#> .
+
+:RetainForDurationOfStudiesPlus3Years a tcu:RetentionPeriod,
+        owl:Class .
+
+:RetainIndefinitely a tcu:RetentionPeriod,
+        owl:NamedIndividual .
+
+:RetainScholarshipProfessorIdForDurationOfStudiesPlus3Years a tcu:RetainForDurationOfStudiesPlus3Years,
+        owl:NamedIndividual .
+
+:ScholarshipProfessorId a tcu:ScholarshipProfessorId,
+        owl:NamedIndividual,
+        gdprov:PersonalDataEntity .
+
+:StudentBirthdateDataStep a tcu:StudentBirthdate,
+        owl:NamedIndividual,
+        gdprov:PersonalDataEntity .
+
+:StudentEnrollmentRecord a tcu:RecordSeries,
+        owl:NamedIndividual .
+
+:StudentNameDataStep a tcu:StudentName,
+        owl:NamedIndividual,
+        gdprov:PersonalDataEntity .
+
+:UndergraduateAndPostgraduateUniversityRecordsMaintainedBySAA a tcu:RecordSeries,
+        owl:NamedIndividual .
+

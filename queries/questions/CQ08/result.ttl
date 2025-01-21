@@ -1,4 +1,4 @@
-'http://example.org/TrinityCollegeDublin#StudentBirthdateDataStep', 'http://example.org/TrinityCollegeDublin#RetainIndefinitely', 'https://w3id.org/GDPRov#EndlessDuration', 'None', 'None', 'None'
-'http://example.org/TrinityCollegeDublin#StudentNameDataStep', 'http://example.org/TrinityCollegeDublin#RetainIndefinitely', 'https://w3id.org/GDPRov#EndlessDuration', 'None', 'None', 'None'
-'http://example.org/TrinityCollegeDublin#StudentBirthdateDataStep', 'http://example.org/TrinityCollegeDublin#RetainIndefinitely', 'https://w3id.org/GDPRov#EndlessDuration', 'None', 'None', 'None'
-'http://example.org/TrinityCollegeDublin#StudentNameDataStep', 'http://example.org/TrinityCollegeDublin#RetainIndefinitely', 'https://w3id.org/GDPRov#EndlessDuration', 'None', 'None', 'None'
+'http://example.org/SAPOS#ScholarshipDurationEnrollmentId', 'http://example.org/SAPOS#RetainScholarshipForDurationOfStudiesPlus3Years', 'https://w3id.org/GDPRov#UntilEventDuration'
+'http://example.org/SAPOS#EnrollmentId', 'http://example.org/SAPOS#RetainScholarshipForDurationOfStudiesPlus3Years', 'https://w3id.org/GDPRov#UntilEventDuration'
+'http://example.org/SAPOS#StudentBirthdate', 'http://example.org/TrinityCollegeDublin#RetainIndefinitely', 'https://w3id.org/GDPRov#EndlessDuration'
+'http://example.org/SAPOS#StudentName', 'http://example.org/TrinityCollegeDublin#RetainIndefinitely', 'https://w3id.org/GDPRov#EndlessDuration'

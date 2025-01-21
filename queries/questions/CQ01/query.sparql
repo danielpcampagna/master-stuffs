@@ -1,0 +1,19 @@
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX dct: <http://purl.org/dc/terms/>
+PREFIX gdprov: <http://purl.org/adaptcentre/openscience/ontologies/gdprov#>
+PREFIX gdprtext: <http://purl.org/adaptcentre/openscience/ontologies/GDPRtEXT#>
+PREFIX p-plan: <http://purl.org/net/p-plan#>
+PREFIX prov: <http://www.w3.org/ns/prov#>
+PREFIX this: <http://example.com/ontology/shoppingapp#>
+
+# G1a. Categories of Personal Data
+SELECT DISTINCT ?category where {
+  ?category rdfs:subClassOf gdprov:PersonalData .
+    FILTER(regex(str(?category), "http://example.com/ontology/shoppingapp#")) .
+} ORDER BY ?category
+
+# G1b. Categories of Data Subjects
+# SELECT DISTINCT ?category where {
+#   ?category rdfs:subClassOf gdprov:DataSubject .
+#   FILTER(regex(str(?category), "http://example.com/ontology/shoppingapp#")) .
+# } ORDER BY ?category

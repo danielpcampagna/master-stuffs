@@ -1,19 +1,20 @@
+PREFIX rdf: <https://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX owl: <http://www.w3.org/2002/07/owl#>
-PREFIX time: <https://www.w3.org/TR/owl-time/>
+PREFIX time: <http://www.w3.org/2006/time#>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 PREFIX gdprov: <https://w3id.org/GDPRov#>
+PREFIX : <http://example.org/SAPOS#>
 
 
-SELECT ?dataCategory ?storageCondition ?duration ?durationTime ?durationUnit ?durationComment
+SELECT ?dataCategory ?storageCondition ?gdprov_duration
 WHERE {
     ?dataCategory rdf:type/rdfs:subClassOf+ gdprov:Data .
-    ?step gdprov:collectsData ?dataCategory ;
-        gdprov:isPartOfProcess/gdprov:hasStorageCondition ?storageCondition .
-
+    OPTIONAL { ?step gdprov:generatesData ?dataCategory . }
+    ?step gdprov:isPartOfProcess/gdprov:hasStorageCondition ?storageCondition .
     ?storageCondition gdprov:hasDuration ?duration .
 
-    OPTIONAL { ?duration time:numericDuration ?durationTime . }
-    OPTIONAL { ?duration time:unitType ?durationUnit . }
-    OPTIONAL { ?duration rdf:comment ?durationComment . }
+    ?duration rdf:type?|rdfs:subClassOf* ?gdprov_duration .
+    ?gdprov_duration rdf:type|rdfs:subClassOf time:Duration .
 }
+GROUP BY ?dataCategory

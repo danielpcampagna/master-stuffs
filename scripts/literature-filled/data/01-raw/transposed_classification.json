@@ -1,0 +1,374 @@
+{
+    "Question 8": {
+        "ryan2021a": {
+            "score": 90,
+            "justification": "The approach documents data processing activities in terms of their temporal period, aiding in the list of the retention period for each category of personal data. The use of DCAT-AP and DPV facilitates specifying retention periods within the metadata."
+        },
+        "pandit2018f": {
+            "score": 0,
+            "justification": "The approach lacks components to record and query the retention period for each category of personal data. The focus is on consent changes and workflow provenance, not on retention periods."
+        },
+        "campagna2020a": {
+            "score": 90,
+            "justification": "The approach addresses the need to inform data subjects about the period for which their data will be stored using the `startedAtTime` and `endedAtTime` relations in the provenance graph. This allows for specifying the duration for which each category of personal data will be retained, directly contributing to answering Question 8."
+        },
+        "ujcich2018a": {
+            "score": 60,
+            "justification": "The model includes temporal notions and timestamps for data activities, helping to track when data were collected and processed. However, it does not explicitly provide mechanisms for specifying data retention periods for different categories of personal data. Additional components may be needed to define and enforce retention policies."
+        },
+        "bonatti2018d": {
+            "score": 0,
+            "justification": "The SPECIAL Policy Log Vocabulary does not explicitly include components for documenting data retention periods. While it captures detailed information about data processing activities, the model lacks a dedicated mechanism to specify and manage the retention periods for different categories of personal data."
+        },
+        "matulevicius2020a": {
+            "score": 30,
+            "justification": "The approach involves the 'GDPR model' and 'Method for achieving compliance' components, which can be used to outline retention periods for different categories of personal data. However, it does not specify retention periods for each category, leading to a lower score."
+        },
+        "besik2019a": {
+            "score": 80,
+            "justification": "The PaCW Ontology includes the 'Limited Retention Period' principle, which mandates that data must be erased when it is no longer necessary. This principle ensures that personal data is retained only for the period necessary for its specified purpose."
+        },
+        "tom2018a": {
+            "score": 40,
+            "justification": "The conceptual model addresses data retention by mapping GDPR provisions and highlights the general rule that data must be retained no longer than necessary. However, it lacks a specific component (`RetentionPeriod`) to list the exact periods for different categories of personal data, limiting its ability to fully specify retention periods."
+        },
+        "bartolini2015b": {
+            "score": 10,
+            "justification": "The current approach does not specifically address the categorization of personal data and the retention periods required for compliance. The ontology's granularity is too coarse, and it lacks specific provisions to list data retention periods explicitly."
+        },
+        "bonatti2020a": {
+            "score": 90,
+            "justification": "The approach uses the SPECIAL policy language to encode the envisaged time limits for erasure of different categories of data, which directly addresses Article 30's requirement. This capability is well-aligned with the question regarding retention periods."
+        },
+        "fatema2017a": {
+            "score": 80,
+            "justification": "The Consent and Data Management Model (CDMM) incorporates the lifecycle of consent and data, including the retention period for each category of personal data. The Provenance component tracks the retention period, ensuring data is not retained longer than necessary. However, the model might not fully cover the granularity required for all possible retention scenarios."
+        },
+        "pandit2020a": {
+            "score": 10,
+            "justification": "The GDPRov model does not currently include components for specifying retention periods for different categories of personal data. This would require additional properties or extensions to represent data retention schedules explicitly."
+        },
+        "torre2021a": {
+            "score": 0,
+            "justification": "The approach does not explicitly address retention periods for personal data categories. While it provides a general framework for GDPR compliance, specific components or rules related to data retention periods are not included."
+        },
+        "pandit2018g": {
+            "score": 0,
+            "justification": "The approach does not specifically address the retention period for each category of personal data. The focus is on extracting and representing provenance metadata related to data collection, usage, processing, sharing, and storage, rather than the retention periods."
+        },
+        "kirrane2018a": {
+            "score": 90,
+            "justification": "The SPECIAL system can record and express usage constraints, including data retention periods, using RDF vocabularies. This ensures the system can document how long each category of personal data will be retained, aligning with GDPR requirements. Thus, it contributes significantly to answering this compliance question."
+        }
+    },
+    "Question 28": {
+        "ryan2021a": {
+            "score": 85,
+            "justification": "Procedures for ensuring data accuracy and updates can be documented within the catalog. The design of the catalog, which includes assigning contact points and limiting the scope to organizational units, supports the maintenance of up-to-date and accurate data."
+        },
+        "pandit2018f": {
+            "score": 90,
+            "justification": "The approach can contribute to ensuring that personal data is kept up to date and accurate by using P-Plan to track the provenance of activities. When a correction is made, the changes can be recorded and linked to the original activities, ensuring that updates are made without delay."
+        },
+        "campagna2020a": {
+            "score": 10,
+            "justification": "The model lacks components to ensure personal data is kept up to date and accurate, and to handle corrections without delay. This means it provides minimal contribution towards answering Question 28."
+        },
+        "ujcich2018a": {
+            "score": 70,
+            "justification": "The model's design patterns for data collection and consent can help track when corrections to personal data are made. By capturing timestamps and the provenance of data changes, the model supports the requirement to keep data up to date and accurate. However, it does not provide specific mechanisms for ensuring data accuracy and making necessary corrections without delay. Integration with other data quality management systems may be required."
+        },
+        "bonatti2018d": {
+            "score": 0,
+            "justification": "The vocabulary does not provide specific components or procedures for ensuring data accuracy and timely correction. Although it can log processing activities and consent, it does not directly address the mechanisms required to maintain data accuracy and facilitate prompt corrections."
+        },
+        "matulevicius2020a": {
+            "score": 40,
+            "justification": "The 'GDPR model' and 'Method for achieving compliance' could help ensure data accuracy and timely corrections by defining processes and responsibilities. However, the approach does not provide detailed procedures for maintaining data accuracy, hence the moderate score."
+        },
+        "besik2019a": {
+            "score": 70,
+            "justification": "The approach includes a 'Consent Check' component that ensures the processing of personal data is lawful and that necessary changes are made when consent is updated. This is related to keeping data up to date and accurate."
+        },
+        "tom2018a": {
+            "score": 20,
+            "justification": "The model provides a high-level understanding of GDPR requirements but does not include a specific component (`DataAccuracyProcedure`) to track or enforce procedures for ensuring data accuracy and timely corrections. This gap indicates that the model does not provide mechanisms for ongoing data accuracy and maintenance."
+        },
+        "bartolini2015b": {
+            "score": 40,
+            "justification": "The ontology helps data controllers understand their obligations and can be queried to clarify functions and ensure data accuracy and timely updates. However, it does not provide a direct mechanism to ensure that personal data is kept up to date and accurately corrected without delay."
+        },
+        "bonatti2020a": {
+            "score": 20,
+            "justification": "The approach mentions encoding policies to ensure data accuracy and prompt corrections but does not provide specific mechanisms or procedures for keeping data up-to-date and making necessary corrections without delay. Therefore, it only partially addresses this question."
+        },
+        "fatema2017a": {
+            "score": 70,
+            "justification": "The model focuses on the lifecycle of consent and data, with Processes and Obligations components defining procedures for data correction and updates. This ensures that necessary changes are made without delay. Yet, it might lack detailed mechanisms to automatically ensure all data remains up to date across multiple databases, especially in complex environments."
+        },
+        "pandit2020a": {
+            "score": 30,
+            "justification": "While GDPRov can document activities, it lacks specific components to ensure that data is kept up to date and accurate. This would require additional properties or mechanisms to track data updates and corrections systematically. The approach described in the publication indirectly contributes to answering this question but is not sufficient on its own."
+        },
+        "torre2021a": {
+            "score": 0,
+            "justification": "The model does not include components that ensure personal data is kept up to date and accurate. The focus is more on the structural representation of GDPR requirements rather than operational procedures for data accuracy and updates."
+        },
+        "pandit2018g": {
+            "score": 0,
+            "justification": "The approach does not cover procedures for ensuring personal data is kept up to date and accurate. The extraction of provenance metadata is centered around the activities over personal data rather than the accuracy and updating procedures."
+        },
+        "kirrane2018a": {
+            "score": 85,
+            "justification": "The compliance dashboard helps ensure data accuracy and updates by recording and monitoring data processing events. The system's transparency features can be employed to verify that procedures for keeping personal data up-to-date and accurate are in place, which aligns well with this compliance requirement."
+        }
+    },
+    "Question 29": {
+        "ryan2021a": {
+            "score": 90,
+            "justification": "The approach supports the documentation of retention policies by using DCAT-AP and DPV, ensuring that data are held no longer than necessary for the purposes for which they were collected."
+        },
+        "pandit2018f": {
+            "score": 50,
+            "justification": "The approach can somewhat address this question by using P-Plan to model changes in workflows and ODRL to represent consent changes. However, it does not specifically address retention policies and procedures for ensuring data is held no longer than necessary."
+        },
+        "campagna2020a": {
+            "score": 10,
+            "justification": "There are no specific elements in the model to enforce retention policies and procedures that ensure data is held no longer than necessary, resulting in a low contribution to answering Question 29."
+        },
+        "ujcich2018a": {
+            "score": 65,
+            "justification": "The model's emphasis on temporal reasoning and data retention periods can contribute to establishing retention policies by tracking the lifecycle of data. However, it does not include explicit retention policies or procedures. Organizations may need to develop additional policies and integrate them with the model to ensure compliance."
+        },
+        "bonatti2018d": {
+            "score": 0,
+            "justification": "Similar to Question 8, the model does not encompass retention policies and procedures. The focus is primarily on logging and documenting data processing activities and legal bases, without extending to the management of data retention durations and policies."
+        },
+        "matulevicius2020a": {
+            "score": 35,
+            "justification": "The 'GDPR model' and 'Method for achieving compliance' may assist in developing retention policies but do not explicitly address the procedures for ensuring data is held for no longer than necessary. This results in a relatively low score."
+        },
+        "besik2019a": {
+            "score": 80,
+            "justification": "Similar to Question 8, the 'Limited Retention Period' principle within the PaCW Ontology helps ensure that data is not held longer than necessary, aligning with retention policies and procedures."
+        },
+        "tom2018a": {
+            "score": 25,
+            "justification": "While the model outlines the need for retention policies, it does not detail specific procedures. The absence of a dedicated component (`RetentionPolicy`) means that the model does not offer specific procedures to enforce data retention policies, limiting its effectiveness in ensuring data is held only as long as necessary."
+        },
+        "bartolini2015b": {
+            "score": 20,
+            "justification": "The ontology does not include specific retention policies or procedures to ensure data is held no longer than necessary. It focuses more on identifying duties and rights rather than implementing retention strategies."
+        },
+        "bonatti2020a": {
+            "score": 85,
+            "justification": "The SPECIAL policy language can encode retention policies and procedures, aiding in ensuring data is held no longer than necessary. This directly aligns with the requirement to describe the envisaged time limits for data erasure, as specified in Article 30."
+        },
+        "fatema2017a": {
+            "score": 75,
+            "justification": "Retention policies are managed using the Permission and Provenance components of the CDMM, ensuring data is held only as long as necessary and providing a clear audit trail. However, the approach may need more detailed guidelines and enforcement mechanisms to cover all possible scenarios."
+        },
+        "pandit2020a": {
+            "score": 20,
+            "justification": "The model does not explicitly cover retention policies and procedures. Extending the ontology to include these aspects would be necessary to fully address this compliance question. GDPRov can be adapted to include specific processes for data retention and deletion, but this is not covered in the current model."
+        },
+        "torre2021a": {
+            "score": 0,
+            "justification": "Similar to Question 8, the approach lacks specific components to address data retention policies and procedures. It provides a high-level framework but does not delve into the operational details required for managing data retention."
+        },
+        "pandit2018g": {
+            "score": 0,
+            "justification": "Similar to Question 8, the approach does not address retention policies and procedures. It is focused on the identification, extraction, and representation of provenance metadata related to the handling of personal data."
+        },
+        "kirrane2018a": {
+            "score": 90,
+            "justification": "The SPECIAL usage policy language includes provisions for defining retention policies. By recording and verifying these policies, the system supports ensuring that data is retained only as long as necessary. The compliance dashboard provides transparency regarding these policies, aiding in adherence to this requirement."
+        }
+    },
+    "Question 51": {
+        "ryan2021a": {
+            "score": 80,
+            "justification": "By documenting the lifecycle of data processing activities, the catalog can include metadata about the destruction, erasure, or anonymization of personal data. This supports systematic handling of data when it is no longer required."
+        },
+        "pandit2018f": {
+            "score": 80,
+            "justification": "The approach can contribute to this question by using P-Plan to track the provenance of data destruction activities. When personal data is no longer required, the corresponding workflow changes can be recorded and linked to demonstrate compliance with data destruction requirements."
+        },
+        "campagna2020a": {
+            "score": 5,
+            "justification": "The model does not cover systematic destruction, erasing, or anonymization of data when it is no longer legally required, offering very little towards addressing Question 51."
+        },
+        "ujcich2018a": {
+            "score": 75,
+            "justification": "The model's provenance tracking can help document when data are destroyed, erased, or anonymized by maintaining a record of these actions. However, it does not include specific procedures for systematically handling data when it is no longer required. Additional processes and controls may be needed to ensure compliance."
+        },
+        "bonatti2018d": {
+            "score": 0,
+            "justification": "While the vocabulary supports logging of data processing activities, it does not include specific components for documenting the systematic destruction, erasure, or anonymization of personal data. This aspect of data lifecycle management is not covered by the current model."
+        },
+        "matulevicius2020a": {
+            "score": 25,
+            "justification": "While the method includes components that could help in managing data retention and destruction, such as 'Defining compliance issues' and 'Changing business process model', it does not explicitly ensure that data is systematically destroyed when no longer needed, leading to a lower score."
+        },
+        "besik2019a": {
+            "score": 80,
+            "justification": "The 'Limited Retention Period' principle addresses the requirement for systematic destruction, erasure, or anonymization of data when it is no longer legally required, contributing to compliance with this question."
+        },
+        "tom2018a": {
+            "score": 15,
+            "justification": "The model lacks a `DataDestructionProcedure` component to ensure the systematic destruction, erasure, or anonymization of data when it is no longer legally required. This gap is critical for ensuring compliance with GDPR\u2019s data minimization and retention principles."
+        },
+        "bartolini2015b": {
+            "score": 5,
+            "justification": "The model does not cover the systematic destruction, erasure, or anonymisation of personal data when no longer required. It lacks the components to manage data lifecycle and enforce such actions."
+        },
+        "bonatti2020a": {
+            "score": 10,
+            "justification": "The paper does not explicitly address systematic destruction, erasure, or anonymization of personal data when no longer required. Therefore, the approach does not contribute significantly to answering this question."
+        },
+        "fatema2017a": {
+            "score": 65,
+            "justification": "The Obligations component defines rules for the systematic destruction, erasure, or anonymization of personal data, with the Provenance component tracking compliance. Yet, the processes might require more specific implementation details to ensure consistent execution across different systems."
+        },
+        "pandit2020a": {
+            "score": 5,
+            "justification": "GDPRov does not include specific components for systematically destroying, erasing, or anonymizing personal data. This would require additional extensions to represent these actions within the ontology."
+        },
+        "torre2021a": {
+            "score": 0,
+            "justification": "The approach does not cover the systematic destruction, erasure, or anonymization of personal data. These operational aspects are not part of the conceptual model or the compliance rules provided."
+        },
+        "pandit2018g": {
+            "score": 0,
+            "justification": "The approach does not provide mechanisms for ensuring the systematic destruction, erasure, or anonymization of personal data. The extracted metadata deals with the collection and usage activities rather than the end-of-life processes for personal data."
+        },
+        "kirrane2018a": {
+            "score": 50,
+            "justification": "The SPECIAL system documents policies and events related to data processing but does not explicitly handle the destruction, erasure, or anonymization of data. This means the system cannot fully address this compliance question, as it lacks components to enforce or automate data destruction processes."
+        }
+    },
+    "Question 63": {
+        "ryan2021a": {
+            "score": 40,
+            "justification": "The paper does not specify if the catalog can comprehensively list all data transfers, including details such as the nature of the data, processing purposes, and recipient information. Additional components may be needed for this."
+        },
+        "pandit2018f": {
+            "score": 0,
+            "justification": "The current model does not cover the detailed tracking of data transfers, including the nature of the data, the purpose of processing, and the recipient information. The focus is primarily on consent changes and activity provenance."
+        },
+        "campagna2020a": {
+            "score": 20,
+            "justification": "Comprehensive tracking of data transfers, including the nature, purpose, origin, destination, and recipients of the data, is not fully represented, which means the approach provides limited help in answering Question 63."
+        },
+        "ujcich2018a": {
+            "score": 80,
+            "justification": "The model includes components for tracking data transfers, including the origins and destinations of data. This can help list all transfers and answer questions about the nature and purpose of data processing. The model effectively supports the requirement to document data transfers."
+        },
+        "bonatti2018d": {
+            "score": 100,
+            "justification": "The SPECIAL Policy Log Vocabulary can contribute significantly to answering this question through its `ProcessingActivity` and `DataTransfer` components. These components allow the documentation of the nature of the data, the purpose of processing, and details about cross-border data transfers, including the countries involved and the recipients. This structured information can be used to generate comprehensive reports on data transfers, ensuring that all relevant details are captured and easily accessible."
+        },
+        "matulevicius2020a": {
+            "score": 10,
+            "justification": "The approach does not specifically address listing all transfers of data, including the nature of the data, purpose of processing, and details of the transfer. This significant gap results in a very low score."
+        },
+        "besik2019a": {
+            "score": 10,
+            "justification": "The approach does not explicitly cover the listing of all data transfers, including details such as the nature of the data, the purpose of processing, and the countries involved. This lack of detailed tracking and documentation of data transfers means the ontology cannot fully address this question."
+        },
+        "tom2018a": {
+            "score": 10,
+            "justification": "The model does not include a comprehensive listing of data transfers or details about the nature, purpose, source, and recipient of data transfers. The absence of a `DataTransferList` component makes it difficult to track and document data transfers comprehensively."
+        },
+        "bartolini2015b": {
+            "score": 10,
+            "justification": "The ontology does not specifically list all data transfers, including the nature of the data, processing purposes, and details of the transfers. It also does not document the legal basis for these transfers."
+        },
+        "bonatti2020a": {
+            "score": 60,
+            "justification": "The approach can partially address this question by using the SPECIAL policy language to encode the categories of recipients and transfers of personal data to third countries or international organizations. However, it does not fully cover all aspects needed."
+        },
+        "fatema2017a": {
+            "score": 85,
+            "justification": "The Provenance component documents all data transfers, including data nature, processing purpose, and transfer details, ensuring comprehensive tracking of data flows and compliance with GDPR. However, the model might not cover all complexities involved in international data transfers."
+        },
+        "pandit2020a": {
+            "score": 40,
+            "justification": "GDPRov's use of GDPRtEXT to define the origin and relevance of concepts within GDPR can be employed to list all transfers, including the nature of the data, purpose of processing, and transfer details. However, the model would need to be extended to fully capture and represent all aspects of data transfers comprehensively."
+        },
+        "torre2021a": {
+            "score": 20,
+            "justification": "The model includes components related to data transfer, such as adequacy decisions and safeguards, but it does not comprehensively list all aspects of data transfers, such as the nature of the data and specific recipients."
+        },
+        "pandit2018g": {
+            "score": 0,
+            "justification": "The current approach does not list all transfers of personal data, including details about the nature of the data, purpose of processing, and details of cross-border transfers. It is primarily aimed at extracting provenance metadata related to data handling activities within privacy policies."
+        },
+        "kirrane2018a": {
+            "score": 80,
+            "justification": "The transparency dashboard records data processing and sharing events, including the nature of the data and its transfer details. This documentation can be used to answer questions about data transfers, including the purpose, origin, destination, and recipient of the data, contributing positively to this compliance question."
+        }
+    },
+    "Question 64": {
+        "ryan2021a": {
+            "score": 30,
+            "justification": "The current model does not explicitly cover documenting the legal basis for data transfers, such as EU Commission adequacy decisions or standard contractual clauses. Additional metadata or extensions might be required to capture this information."
+        },
+        "pandit2018f": {
+            "score": 0,
+            "justification": "The approach does not address the legal basis for data transfers or the documentation of such bases. Additional components would be required to track and document the legal justifications for data transfers."
+        },
+        "campagna2020a": {
+            "score": 5,
+            "justification": "The model does not document the legal basis for data transfers, such as EU Commission adequacy decisions or standard contractual clauses, contributing minimally to answering Question 64."
+        },
+        "ujcich2018a": {
+            "score": 30,
+            "justification": "The model does not explicitly address the legal basis for data transfers. While it can track data origins and destinations, it lacks components to document the legal justifications for these transfers. This information is crucial for GDPR compliance but is not covered by the current model."
+        },
+        "bonatti2018d": {
+            "score": 100,
+            "justification": "The vocabulary includes the `LegalBasis` component, which can be used to document the legal basis for data transfers, such as EU Commission adequacy decisions or standard contractual clauses. By associating each data transfer with its corresponding legal basis, the model ensures that data controllers can demonstrate compliance with GDPR requirements regarding international data transfers."
+        },
+        "matulevicius2020a": {
+            "score": 20,
+            "justification": "While the 'GDPR model' and 'Method for achieving compliance' cover aspects of legal bases for processing, they do not explicitly document the legal bases for data transfers. This partial coverage results in a low score."
+        },
+        "besik2019a": {
+            "score": 10,
+            "justification": "The PaCW Ontology does not provide mechanisms to document the legal basis for data transfers, such as EU Commission adequacy decisions or standard contractual clauses. This limitation makes it insufficient to fully answer this question."
+        },
+        "tom2018a": {
+            "score": 10,
+            "justification": "Legal bases for data transfers, such as EU Commission adequacy decisions or standard contractual clauses, are not covered in detail. The model lacks a specific component (`LegalBasisForTransfer`) to document and verify these legal bases, making it incomplete for verifying compliance with GDPR\u2019s data transfer requirements."
+        },
+        "bartolini2015b": {
+            "score": 15,
+            "justification": "Although the model helps identify compliance with GDPR, it does not explicitly document the legal basis for data transfers, such as EU Commission adequacy decisions or standard contractual clauses."
+        },
+        "bonatti2020a": {
+            "score": 5,
+            "justification": "The approach does not discuss the legal basis for data transfers or the documentation of such bases. Hence, it does not contribute significantly to answering this question."
+        },
+        "fatema2017a": {
+            "score": 80,
+            "justification": "The Permission component records the legal basis for data transfers, such as EU Commission adequacy decisions or standard contractual clauses, and manages this information within the CDMM. Nonetheless, additional components might be required to ensure proper documentation and management across different jurisdictions."
+        },
+        "pandit2020a": {
+            "score": 30,
+            "justification": "The legal basis for data transfers is not currently documented within GDPRov. Extending the model to represent these legal bases and their documentation would be necessary to answer this question fully. The current model's ability to document planned and executed activities could be extended to include the legal basis for data transfers."
+        },
+        "torre2021a": {
+            "score": 80,
+            "justification": "The approach provides a detailed model that includes the concept of adequacy decisions and appropriate safeguards, such as binding corporate rules or EU model clauses. These aspects are captured in the GDPR conceptual model and the compliance rules, which can be tailored to document and verify the legal basis for data transfer."
+        },
+        "pandit2018g": {
+            "score": 0,
+            "justification": "The approach does not address the legal basis for data transfers. It focuses on representing the data flows and activities involving personal data rather than the legal justifications for data transfers."
+        },
+        "kirrane2018a": {
+            "score": 85,
+            "justification": "The system can document the legal basis for data transfers using the SPECIAL usage policy language. This ensures that all transfers are recorded, and their legal bases are documented, aiding in compliance with this requirement."
+        }
+    }
+}

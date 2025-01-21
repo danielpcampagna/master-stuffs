@@ -1,0 +1,58 @@
+prefix : <http://example.org/SAPOS#>
+prefix rdf: <https://www.w3.org/1999/02/22-rdf-syntax-ns#>
+prefix gdprov: <https://w3id.org/GDPRov#>
+prefix owl: <http://www.w3.org/2002/07/owl#>
+prefix pPlan: <http://purl.org/net/pPlan#>
+prefix prov: <http://www.w3.org/ns/prov#>
+prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+prefix tcu: <http://example.org/TrinityCollegeDublin#>
+prefix xsd: <http://www.w3.org/2001/XMLSchema#>
+prefix ssn: <http://www.w3.org/ns/ssn/#>
+prefix sosa: <http://www.w3.org/ns/sosa/#>
+
+
+SELECT 
+    ?process ?dataStep ?personalData ?storageCondition ?anonymizationDataStep ?anonymizedData ?instantOfEnd ?deletionDataStep
+WHERE {
+    # Prospective Graph
+    ?process rdf:type/rdfs:subClassOf* gdprov:EnsureExpiredDataIsNotHeldProcess .
+    ?dataStep rdf:type/rdfs:subClassOf* gdprov:ExpiredDataObservationStep .
+    ?personalData rdf:type/rdfs:subClassOf* gdprov:PersonalData .
+    ?registrationDataStep rdf:type/rdfs:subClassOf* gdprov:DataStep .
+    ?registrationProcess rdf:type/rdfs:subClassOf* gdprov:Process .
+    ?storageCondition rdf:type/rdfs:subClassOf* gdprov:StorageCondition .
+    ?duration rdf:type/rdfs:subClassOf* gdprov:Duration .
+
+    ?dataStep gdprov:isPartOfProcess ?process .
+    ?dataStep gdprov:usesData ?personalData .
+    ?registrationDataStep gdprov:generatesData ?personalData .
+    ?registrationDataStep gdprov:isPartOfProcess ?registrationProcess .
+    ?registrationProcess gdprov:hasStorageCondition ?storageCondition .
+    ?storageCondition gdprov:hasDuration ?duration .
+
+    OPTIONAL {
+        ?anonymizationDataStep rdf:type/rdfs:subClassOf* gdprov:DataAnonymisationStep .
+        ?anonymizedData rdf:type/rdfs:subClassOf* gdprov:AnonymisedData .
+        
+        ?anonymizationDataStep gdprov:generatesAnonymisedData ?anonymizedData .
+        ?dataStep pPlan:isPrecededBy ?anonymizationDataStep .
+        ?anonymizationDataStep gdprov:usesData ?personalData .
+    }
+
+    OPTIONAL {
+        ?instantOfEnd rdf:type/rdfs:subClassOf* time:Instant .
+        ?instantOfEnd rdf:type/rdfs:subClassOf* sosa:Stimulus .
+        
+        ?instantOfEnd ssn:isProxyFor ?storageCondition .
+        ?dataStep ssn:detects ?instantOfEnd .
+        ?duration time:hasEnd ?instantOfEnd .
+    }
+
+    OPTIONAL {
+        ?deletionDataStep rdf:type/rdfs:subClassOf* gdprov:DataDeletionStep .
+
+        ?dataStep pPlan:isPrecededBy ?deletionDataStep .
+        ?deletionDataStep gdprov:invalidatesData ?personalData .
+    }
+    
+}

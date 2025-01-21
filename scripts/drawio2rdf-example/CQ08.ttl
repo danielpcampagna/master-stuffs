@@ -1,0 +1,153 @@
+@prefix : <http://example.org/SAPOS#> .
+@prefix gdprov: <https://w3id.org/GDPRov#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix pPlan: <http://purl.org/net/p-plan#> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix tcu: <http://example.org/TrinityCollegeDublin#> .
+
+:AliceDataCollectionActivity a owl:NamedIndividual,
+        gdprov:DataCollectionActivity ;
+    :TEMP tcu:StudentRegistration ;
+    prov:used :AliceBirthdate,
+        :AliceName .
+
+tcu:ActiveRecord a owl:Class ;
+    rdfs:subClassOf tcu:Record .
+
+tcu:ConfidencialShreddingSecureDeletion a tcu:Disposition,
+        owl:NamedIndividual,
+        gdprov:DataErasureProcess .
+
+tcu:InactiveRecord a owl:Class ;
+    rdfs:subClassOf tcu:Record .
+
+tcu:IndirectPersonalData a owl:Class ;
+    rdfs:subClassOf tcu:Record .
+
+tcu:NonPersonalData a owl:Class ;
+    rdfs:subClassOf tcu:Record .
+
+tcu:PermanentArchiving a tcu:RetentionPeriod,
+        owl:NamedIndividual ;
+    rdfs:comment "\"Records, including Inactive Records, that have been identified as Permanently Valuable Records are subject to permanent archiving procedures. In nearly all cases, these records should eventually be transferred to the University Archives.\"@en" ;
+    owl:sameAs tcu:RetainIndefinitely ;
+    gdprov:hasDuration gdprov:EndlessDuration .
+
+tcu:PermanentlyValuableRecord a owl:Class ;
+    rdfs:subClassOf tcu:Record .
+
+tcu:RetainForDurationOfStudies a owl:Class ;
+    rdfs:subClassOf tcu:RetentionPeriod .
+
+tcu:RetainForDurationOfStudiesPlus3Years a owl:Class ;
+    rdfs:subClassOf tcu:RetentionPeriod .
+
+tcu:RetainUntilSuperseded a owl:Class ;
+    rdfs:subClassOf tcu:RetentionPeriod .
+
+tcu:SemiActiveRecord a owl:Class ;
+    rdfs:subClassOf tcu:Record .
+
+tcu:StudentDataCollectionStep a owl:NamedIndividual,
+        gdprov:DataCollectionStep ;
+    gdprov:collectsData tcu:StudentBirthdateDataStep,
+        tcu:StudentNameDataStep ;
+    gdprov:isPartOfProcess tcu:StudentRegistration .
+
+tcu:TeachingAllocationsSemesterSchedules a tcu:RecordSeries,
+        owl:NamedIndividual ;
+    rdfs:comment "\"Teaching allocations / semester schedules.\"@en" .
+
+tcu:UndergraduateAndPostgraduateFilesNotHeldCentrally a tcu:RecordSeries,
+        owl:NamedIndividual ;
+    tcu:hasRetentionPeriod tcu:RetainIndefinitely .
+
+:AliceBirthdate a tcu:StudentBirthdate,
+        owl:NamedIndividual,
+        gdprov:PersonalDataEntity ;
+    tcu:belongToRecordSeries tcu:StudentEnrollmentRecord .
+
+:AliceName a tcu:StudentName,
+        owl:NamedIndividual,
+        gdprov:PersonalDataEntity ;
+    :TEMP tcu:StudentEnrollmentRecord .
+
+tcu:Disposition a owl:Class ;
+    rdfs:subClassOf gdprov:Process .
+
+tcu:StudentBirthdateDataStep a tcu:StudentBirthdate,
+        owl:NamedIndividual,
+        gdprov:PersonalData .
+
+tcu:StudentNameDataStep a tcu:StudentName,
+        owl:NamedIndividual,
+        gdprov:PersonalData .
+
+pPlan:Step a owl:Class .
+
+pPlan:Variable a owl:Class .
+
+prov:Activity a owl:Class .
+
+prov:Entity a owl:Class .
+
+gdprov:DataCollectionActivity a owl:Class ;
+    rdfs:subClassOf prov:Activity .
+
+gdprov:DataCollectionStep a owl:Class ;
+    rdfs:subClassOf gdprov:DataStep .
+
+gdprov:DataErasureProcess a owl:Class ;
+    rdfs:subClassOf gdprov:Process .
+
+gdprov:DataStep a owl:Class ;
+    rdfs:subClassOf pPlan:Step .
+
+gdprov:Duration a owl:Class .
+
+gdprov:StorageCondition a owl:Class .
+
+tcu:PersonalData a owl:Class ;
+    rdfs:subClassOf tcu:Record .
+
+tcu:StudentBirthdate a owl:Class ;
+    rdfs:subClassOf tcu:PersonalData .
+
+tcu:StudentEnrollmentRecord a tcu:RecordSeries,
+        owl:NamedIndividual ;
+    gdprov:hasRetentionPeriod tcu:RetainIndefinitely .
+
+tcu:StudentName a owl:Class ;
+    rdfs:subClassOf tcu:PersonalData .
+
+tcu:StudentRegistration a owl:NamedIndividual,
+        gdprov:Process ;
+    gdprov:hasStorageCondition tcu:RetainIndefinitely .
+
+gdprov:Data a owl:Class ;
+    rdfs:subClassOf pPlan:Variable .
+
+gdprov:EndlessDuration a owl:NamedIndividual,
+        gdprov:Duration .
+
+gdprov:PersonalData a owl:Class ;
+    rdfs:subClassOf gdprov:Data .
+
+gdprov:PersonalDataEntity a owl:Class ;
+    rdfs:subClassOf prov:Entity .
+
+tcu:RecordSeries a owl:Class .
+
+gdprov:Process a owl:Class .
+
+tcu:RetainIndefinitely a tcu:RetentionPeriod,
+        owl:NamedIndividual ;
+    gdprov:hasDuration gdprov:EndlessDuration .
+
+tcu:RetentionPeriod a owl:Class ;
+    rdfs:subClassOf gdprov:StorageCondition .
+
+tcu:Record a owl:Class ;
+    rdfs:subClassOf gdprov:Data .
+

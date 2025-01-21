@@ -1,0 +1,198 @@
+@prefix : <http://example.org/SAPOS#> .
+@prefix gdprov: <https://w3id.org/GDPRov#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix pPlan: <http://purl.org/net/p-plan#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sosa: <http://www.w3.org/ns/sosa/> .
+@prefix ssn: <http://www.w3.org/ns/ssn/> .
+@prefix tcu: <http://example.org/TrinityCollegeDublin#> .
+@prefix time: <http://www.w3.org/2006/time#> .
+
+:CheckStorageCondition a owl:NamedIndividual,
+        gdprov:StorageConditionFulfillmentObservationStep ;
+    pPlan:isPrecededBy :AnonymizeScholarshiptDurationDataStep ;
+    sosa:observes :RetainScholarshipForDurationOfStudiesPlus3Years ;
+    ssn:detects :EndInstantForDataRetaintion ;
+    gdprov:isPartOfProcess :EnsureScholarshipDurationDataIsNotHeldProcess ;
+    gdprov:usesData :ScholarshipDurationEnrollmentId .
+
+:CollectEnrollmentIdFromStudentInformationForGrantingScholarshipToStudent a owl:NamedIndividual,
+        gdprov:DataUsageStep ;
+    pPlan:isPrecededBy :GrantScholarshipForStudent ;
+    gdprov:generatesData :EnrollmentId ;
+    gdprov:isPartOfProcess :GrantScholarshipToStudentProcess ;
+    gdprov:usesData :StudentName .
+
+:CollectStudentInformationForRegistering a owl:NamedIndividual,
+        gdprov:DataCollectionStep ;
+    gdprov:generatesData :StudentBirthdate,
+        :StudentName ;
+    gdprov:isPartOfProcess :RegisterStudentProcess .
+
+:DeleteStudentScholarshipDataStep a owl:NamedIndividual,
+        gdprov:DataDeletionStep ;
+    gdprov:invalidatesData :ScholarshipDurationEnrollmentId ;
+    gdprov:isPartOfProcess :DeteleStudantScholarshipDataProcess .
+
+tcu:PermanentArchiving a tcu:RetentionPeriod,
+        owl:NamedIndividual ;
+    owl:sameAs tcu:RetainIndefinitely .
+
+tcu:RetainForDurationOfStudies a owl:Class ;
+    rdfs:subClassOf tcu:RetentionPeriod .
+
+tcu:RetainUntilSuperseded a owl:Class ;
+    rdfs:subClassOf tcu:RetentionPeriod .
+
+tcu:ScholarshipProfessorId a owl:Class ;
+    rdfs:subClassOf tcu:PersonallyIdentifiableInformation .
+
+tcu:StudentEnrollmentRecord a tcu:RecordSeries,
+        owl:NamedIndividual ;
+    tcu:hasRetentionPeriod tcu:RetainIndefinitely .
+
+tcu:TeachingAllocationsSemesterSchedules a tcu:RecordSeries,
+        owl:NamedIndividual .
+
+tcu:UndergraduateAndPostgraduateFilesNotHeldCentrally a tcu:RecordSeries,
+        owl:NamedIndividual ;
+    tcu:hasRetentionPeriod tcu:RetainIndefinitely .
+
+gdprov:DataCollectionActivity a owl:Class .
+
+gdprov:FixedOccurencesDuration a owl:Class ;
+    rdfs:subClassOf time:Duration .
+
+gdprov:PersonalDataEntity a owl:Class .
+
+gdprov:UntilTimeDuration a owl:Class ;
+    rdfs:subClassOf time:Duration .
+
+:AnonymizeScholarshiptDurationDataStep a owl:NamedIndividual,
+        gdprov:DataAnonymisationStep ;
+    gdprov:generatesAnonymisedData :AnonymizedScholarshipDurationData ;
+    gdprov:usesData :RetainScholarshipForDurationOfStudiesPlus3Years .
+
+:AnonymizedScholarshipDurationData a owl:NamedIndividual,
+        gdprov:AnonymisedData .
+
+:DeteleStudantScholarshipDataProcess a owl:NamedIndividual,
+        gdprov:DataErasureProcess ;
+    :TEMP :EndInstantForDataRetaintion,
+        :RetainStudentsDataForPlus3Years .
+
+:EnsureScholarshipDurationDataIsNotHeldProcess a owl:NamedIndividual,
+        gdprov:EnsureExpiredDataIsNotHeldProcess .
+
+:GrantScholarshipForStudent a owl:NamedIndividual,
+        gdprov:DataUsageStep ;
+    gdprov:generatesData :ScholarshipDurationEnrollmentId ;
+    gdprov:isPartOfProcess :GrantScholarshipToStudentProcess ;
+    gdprov:usesData :EnrollmentId .
+
+:RegisterStudentProcess a owl:NamedIndividual,
+        gdprov:Process ;
+    gdprov:hasStorageCondition tcu:RetainIndefinitely .
+
+:RetainStudentsDataForPlus3Years a owl:NamedIndividual,
+        gdprov:TemporalDuration ;
+    time:hasEnd :EndInstantForDataRetaintion ;
+    time:intervalAfter :RetainForDurationOfStudies .
+
+:StudentBirthdate a tcu:StudentBirthdate,
+        owl:NamedIndividual,
+        gdprov:PersonalData ;
+    tcu:belongsToRecordSeries :StudentEnrollmentRecord .
+
+:TEMP :TEMP :TEMP .
+
+:UndergraduateAndPostgraduateUniversityRecordsMaintainedBySAA a tcu:RecordSeries,
+        owl:NamedIndividual ;
+    tcu:hasRetentionPeriod :RetainScholarshipForDurationOfStudiesPlus3Years .
+
+tcu:Record a owl:Class .
+
+tcu:RetainForDurationOfStudiesPlus3Years a owl:Class ;
+    rdfs:subClassOf tcu:RetentionPeriod .
+
+tcu:StudentBirthdate a owl:Class ;
+    rdfs:subClassOf tcu:PersonallyIdentifiableInformation .
+
+tcu:StudentName a owl:Class ;
+    rdfs:subClassOf tcu:PersonallyIdentifiableInformation .
+
+sosa:ObservableProperty a owl:Class .
+
+gdprov:Data a owl:Class .
+
+gdprov:DataCollectionStep a owl:Class ;
+    rdfs:subClassOf gdprov:DataStep .
+
+gdprov:DataErasureProcess a owl:Class ;
+    rdfs:subClassOf gdprov:Process .
+
+gdprov:DataStep a owl:Class .
+
+gdprov:EndlessDuration a owl:NamedIndividual,
+        time:Duration .
+
+gdprov:StorageCondition a owl:Class .
+
+gdprov:TemporalDuration a owl:Class ;
+    rdfs:subClassOf time:Duration .
+
+gdprov:UntilEventDuration a owl:Class ;
+    rdfs:subClassOf time:Duration .
+
+:EnrollmentId a tcu:EnrollmentId,
+        owl:NamedIndividual,
+        gdprov:PersonalData .
+
+:GrantScholarshipToStudentProcess a owl:NamedIndividual,
+        gdprov:Process ;
+    gdprov:hasStorageCondition :RetainScholarshipForDurationOfStudiesPlus3Years .
+
+:RetainForDurationOfStudies a owl:NamedIndividual,
+        gdprov:UntilEventDuration .
+
+:StudentEnrollmentRecord a tcu:RecordSeries,
+        owl:NamedIndividual ;
+    tcu:hasRetentionPeriod tcu:RetainIndefinitely .
+
+:StudentName a tcu:StudentName,
+        owl:NamedIndividual,
+        gdprov:PersonalData ;
+    tcu:belongsToRecordSeries :StudentEnrollmentRecord .
+
+:EndInstantForDataRetaintion a owl:NamedIndividual,
+        time:Instant ;
+    rdfs:subClassOf sosa:ObservableProperty .
+
+:ScholarshipDurationEnrollmentId a tcu:ScholarshipDurationEnrollmentId,
+        owl:NamedIndividual,
+        gdprov:PersonalData ;
+    tcu:belongsToRecordSeries :UndergraduateAndPostgraduateUniversityRecordsMaintainedBySAA .
+
+tcu:PersonallyIdentifiableInformation a owl:Class ;
+    rdfs:subClassOf tcu:Record .
+
+gdprov:Process a owl:Class .
+
+:RetainScholarshipForDurationOfStudiesPlus3Years a tcu:RetainForDurationOfStudiesPlus3Years,
+        owl:NamedIndividual ;
+    gdprov:hasDuration :RetainForDurationOfStudies .
+
+gdprov:PersonalData a owl:Class ;
+    rdfs:subClassOf gdprov:Data .
+
+tcu:RecordSeries a owl:Class .
+
+tcu:RetainIndefinitely a tcu:RetentionPeriod,
+        owl:NamedIndividual ;
+    gdprov:hasDuration gdprov:EndlessDuration .
+
+tcu:RetentionPeriod a owl:Class,
+        gdprov:StorageCondition .
+
+time:Duration a owl:Class .
+

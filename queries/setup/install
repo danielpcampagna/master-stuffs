@@ -6,4 +6,5 @@ then
 fi
 
 chmod +x setup/bin/*
+chmod +755 setup/bin/*
 cp setup/bin/* .venv/bin/

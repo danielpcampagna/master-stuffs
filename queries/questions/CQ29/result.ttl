@@ -1,0 +1,1 @@
+'http://example.org/SAPOS#EnsureScholarshipDurationDataIsNotHeldProcess', 'http://example.org/SAPOS#CheckStorageCondition', 'http://example.org/SAPOS#ScholarshipDurationEnrollmentId', 'http://example.org/SAPOS#RetainScholarshipForDurationOfStudiesPlus3Years', 'None', 'None', 'None', 'None'

@@ -1,0 +1,331 @@
+```yaml
+Ryan2021:
+  - GDPR
+  - DCAT-AP
+  - DPV
+  - compliance
+  - metadata
+  - Register of Processing Activities (ROPA)
+  - data processing
+  - organizational units
+  - external processors
+  - SPARQL
+  - Data Protection Officers (DPOs)
+  - temporal documentation
+  - catalogs
+  - data retention
+  - data accuracy
+  - retention policies
+  - data lifecycle
+  - data destruction
+  - data erasure
+  - data anonymization
+
+Pandit2018:
+  - GDPR
+  - compliance
+  - consent
+  - metadata
+  - P-Plan
+  - ODRL
+  - change detection
+  - data processing
+  - workflows
+  - fitness tracking
+  - data withdrawal
+  - data accuracy
+  - workflow changes
+  - data provenance
+  - data updates
+  - data retention
+  - data destruction
+  - data erasure
+  - data anonymization
+  - compliance model
+
+Campagna2020:
+  - GDPR
+  - compliance
+  - data provenance
+  - model
+  - transparency
+  - data retention
+  - data accuracy
+  - data updates
+  - data destruction
+  - data erasure
+  - data anonymization
+  - data transfers
+  - legal basis
+  - provenance graph
+  - temporal reasoning
+  - data lifecycle
+  - data subjects
+  - agents
+  - activities
+  - entities
+
+Ujcich2018:
+  - GDPR
+  - compliance
+  - data provenance
+  - model
+  - data processing
+  - agents
+  - activities
+  - entities
+  - temporal reasoning
+  - data consent
+  - data retention
+  - data updates
+  - data destruction
+  - data erasure
+  - data anonymization
+  - data transfers
+  - legal basis
+  - design patterns
+  - compliance verification
+  - data lifecycle
+
+Bonatti2018:
+  - GDPR
+  - compliance
+  - transparency
+  - RDF
+  - data processing
+  - logging
+  - querying
+  - consent
+  - legal basis
+  - data transfers
+  - data retention
+  - data accuracy
+  - data updates
+  - data destruction
+  - data erasure
+  - data anonymization
+  - compliance verification
+  - data governance
+  - interoperability
+  - accountability
+
+Matulevicius2020:
+  - GDPR
+  - compliance
+  - BPMN
+  - business processes
+  - compliance repository
+  - compliance requirements
+  - data processing
+  - data transfers
+  - legal basis
+  - data retention
+  - data accuracy
+  - data updates
+  - data destruction
+  - data erasure
+  - data anonymization
+  - compliance verification
+  - process integration
+  - regulatory requirements
+  - dynamic compliance
+  - operational processes
+
+Besik2019:
+  - GDPR
+  - compliance
+  - ontology
+  - clinical workflows
+  - data processing
+  - data categories
+  - processing activities
+  - compliance rules
+  - data retention
+  - data accuracy
+  - data updates
+  - data destruction
+  - data erasure
+  - data anonymization
+  - data transfers
+  - legal basis
+  - automated reasoning
+  - compliance verification
+  - e-health
+  - privacy
+
+Tom2018:
+  - GDPR
+  - compliance
+  - conceptual model
+  - GDPRov
+  - DataCategory
+  - DataSubject
+  - Purpose
+  - Consent
+  - ProcessingActivity
+  - Transfer
+  - LegalBasis
+  - data processing
+  - data retention
+  - data accuracy
+  - data updates
+  - data destruction
+  - data erasure
+  - data anonymization
+  - data transfers
+  - legal documentation
+
+Bartolini2015:
+  - GDPR
+  - compliance
+  - ontology
+  - workflows
+  - data protection
+  - data processing
+  - data controllers
+  - data subjects
+  - duties
+  - rights
+  - compliance verification
+  - security standards
+  - ISO 27001
+  - business processes
+  - data accuracy
+  - data updates
+  - data retention
+  - data destruction
+  - data erasure
+  - data anonymization
+
+Bonatti2020:
+  - GDPR
+  - compliance
+  - policy language
+  - SPECIAL
+  - consent
+  - business policies
+  - regulatory obligations
+  - automated compliance
+  - data processing
+  - legal basis
+  - data transfers
+  - data retention
+  - data accuracy
+  - data updates
+  - data destruction
+  - data erasure
+  - data anonymization
+  - compliance verification
+  - GDPR analysis
+  - policy enforcement
+
+Fatema2017:
+  - GDPR
+  - compliance
+  - consent
+  - semantic model
+  - CDMM
+  - provenance
+  - processes
+  - permissions
+  - obligations
+  - data lifecycle
+  - data retention
+  - data accuracy
+  - data updates
+  - data destruction
+  - data erasure
+  - data anonymization
+  - data transfers
+  - legal basis
+  - compliance verification
+  - XACML
+
+Pandit2020:
+  - GDPR
+  - compliance
+  - GDPRov
+  - provenance
+  - consent
+  - data processing
+  - PROV-O
+  - P-Plan
+  - GDPRtEXT
+  - data retention
+  - data accuracy
+  - data updates
+  - data destruction
+  - data erasure
+  - data anonymization
+  - data transfers
+  - legal basis
+  - compliance verification
+  - semantic web
+  - data activities
+
+Torre2021:
+  - GDPR
+  - compliance
+  - model-based
+  - representation
+  - Enterprise Architect
+  - conceptual model
+  - compliance rules
+  - OCL
+  - variation points
+  - data processing
+  - data transfers
+  - legal basis
+  - data retention
+  - data accuracy
+  - data updates
+  - data destruction
+  - data erasure
+  - data anonymization
+  - compliance verification
+  - traceability
+
+Pandit2018:
+  - GDPR
+  - compliance
+  - provenance
+  - privacy policies
+  - metadata
+  - keyword-based extraction
+  - GDPRtEXT
+  - machine learning
+  - UsablePrivacy
+  - GDPRov
+  - PROV-O
+  - P-Plan
+  - data flows
+  - consent
+  - data collection
+  - data usage
+  - data processing
+  - data sharing
+  - data storage
+  - legal accountability
+
+Kirrane2018:
+  - GDPR
+  - compliance
+  - consent management
+  - transparency
+  - compliance architecture
+  - Semantic Web
+  - Linked Data
+  - data governance
+  - scalability
+  - flexibility
+  - data processing
+  - data retention
+  - data accuracy
+  - data updates
+  - data destruction
+  - data erasure
+  - data anonymization
+  - data transfers
+  - legal basis
+  - compliance monitoring
+```

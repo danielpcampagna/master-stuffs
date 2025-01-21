@@ -1,0 +1,14 @@
+model="gpt-4"
+prompt=f"""Please classify the following publication in either a scientific publication or a non-scientific publication. If it is a scientific publication, provide a comprehensive summary about it, including:
+
+- The problem it addresses
+- The methodology used
+- The key contributions (in bullet points)
+- A list of related work
+- How the authors evaluated their contribution
+- The future work it recommends
+- If it proposes a model (provenance, ontology, etc.); then list the technologies which it was built upon (PROV-O, UML, XML, RDF, Workflow, etc.)
+
+Publication details:
+{publication_details}
+"""

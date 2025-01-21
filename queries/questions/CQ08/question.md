@@ -1,9 +1,15 @@
+---
+status: outdated
+comment: Este documento está desatualizado. A versão mais recente deve ser vista no artigo (overleaf).
+---
+
+
 For each category of personal data, list the period for which the data will be retained e.g. one month? one year?
 As a general rule data must be retained for no longer than is necessary for the purpose for which it was collected in the first place.
 
 ---
 
-In GDPR [^1], the category of personal data is defined as the sub classes of the personal data class. The definition of the existing categories thus lies in the context where the model is instantiated.
+In GDPRov [^1], the category of personal data is defined as the sub classes of the personal data class. The definition of the existing categories thus lies in the context where the model is instantiated.
 <!-- . Additionally, Pandit has argued that this question demands the  -->
 
 Looking at the question, the expected result thus is a list of tuples containing the category of data and the respective period (or retention rule) for which the data will be retained. Both Ujcich [^2] and DPV [^3] ontologies have designed this information attached to the legal (or justification) base that legitimates this data collection.
@@ -16,6 +22,28 @@ Besik and Freytag [4] have proposed the `RetentionPolicy` class to represent the
 (2) Fixed date: when the validity time is indicated (e.g., 31 December 2022);
 (3) After purpose: when the data is stored as long as it is needed to perform a requested process;
 (4) Indefinite: when the retention period is not explicit, corresponding to 7% of the total [^5].
+
+## Extending the model
+
+Considering the presented analysis, we summarize in Table \ref{tab:cq08-proposed-classes} and \ref{tab:cq08-proposed-properties} the classes and properties, respectively, the  model should have to address the question CQ8 properly.
+
+
+| Class                      | Description                                                                                                                                                   | Extending? |
+|----------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------|------------|
+| `:StorageCondition`        | Conditions required or followed regarding storage of data (see also \mintinline{turtle}|dpv:StorageCondition|).                                               | ✓          |
+| `:Duration`                | Duration of a temporal extent expressed as a decimal number scaled by a temporal unit (see also \mintinline{turtle}|time:Duration|).                          | ✓          |
+| `:EndlessDuration`         | The duration that is (known or intended to be) open-ended or without an end (subclass of \mintinline{turtle}{:Duration}).                                     | ✓          |
+| `:FixedOccurencesDuration` | The duration that takes place a fixed number of times, e.g. ``3 times'' (subclass of \mintinline{turtle}{:Duration}).                                         | ✓          |
+| `:TemporalDuration`        | The duration that has a fixed temporal duration, e.g. ``6 months'' (subclass of \mintinline{turtle}{:Duration}).                                              | ✓          |
+| `:UntilEventDuration`      | The duration that takes place until a specific event occurs, e.g. data is no longer needed for original purpose (subclass of \mintinline{turtle}{:Duration}). | ✓          |
+| `:UntilTimeDuration`       | The duration that has a fixed end date, e.g. ``2022-12-31'' (subclass of \mintinline{turtle}{:Duration}).                                                     | ✓          |
+
+
+| Properties             | Domain                                 | Target                                 | Description                                                  | Extending? |
+|------------------------|----------------------------------------|----------------------------------------|--------------------------------------------------------------|------------|
+| `:hasStorageCondition` | `:Process`                             | `:StorageCondition`                    | Establishes the storage conditions for a collection process. | ✓          |
+| `:hasDuration`         | `:StorageCondition`                    | `:Time`                                | Informs the duration for a given storage condition.          | ✓          |
+
 
 ---
 # References:

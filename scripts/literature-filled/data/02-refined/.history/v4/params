@@ -1,0 +1,21 @@
+model="gpt-4"
+prompt="""Please classify the following publication in either a scientific publication or a non-scientific publication. If it is a scientific publication, provide a comprehensive summary about it, including:
+
+- The problem it addresses;
+- The approach utilized (including technologies used; e.g., Ontology, UML, PROV, XML, RDF, Workflow, etc.);
+- If the approach introduces a model, list some of the main components of this model
+- The methodology used;
+- The key contributions (in bullet points);
+- How the current model advances the state-of-the-art;
+- How the contribution was evaluated;
+- The discussion about the results;
+- The future work and open issues;
+
+Publication details:
+{publication_details}
+
+---
+
+If it is a non-scientific publication, just provide a one paragraph description.
+Your answer should be in markdown format.
+"""

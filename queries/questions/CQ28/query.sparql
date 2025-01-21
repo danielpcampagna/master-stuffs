@@ -1,4 +1,5 @@
 prefix : <http://example.org/SAPOS#>
+PREFIX rdf: <https://www.w3.org/1999/02/22-rdf-syntax-ns#>
 prefix gdprov: <https://w3id.org/GDPRov#>
 prefix owl: <http://www.w3.org/2002/07/owl#>
 prefix pPlan: <http://purl.org/net/p-plan#>

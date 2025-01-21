@@ -1,0 +1,5 @@
+The publication titled **"Directive 95/46/EC of the European Parliament and of the Council of 24 October 1995 on the protection of individuals with regard to the processing of personal data and on the free movement of such data"** is a **non-scientific publication**.
+
+### Description
+
+This directive, issued by the European Union, lays down regulations concerning the protection of individuals with respect to the processing of personal data and the free movement of such data within the EU. It aims to harmonize data protection laws across member states to ensure a high level of protection for personal data and to facilitate the free flow of data within the EU. This directive has been a foundational legal instrument for data protection and has influenced subsequent legislation, including the General Data Protection Regulation (GDPR).

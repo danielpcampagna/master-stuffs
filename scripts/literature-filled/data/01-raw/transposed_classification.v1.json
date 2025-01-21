@@ -1,0 +1,374 @@
+{
+    "Question 8": {
+        "Ryan, Paul and Pandit, Harshvardhan J and Brennan, Rob. Building a Data Processing Activities Catalog: Representing Heterogeneous Compliance-Related Information for GDPR Using DCAT-AP and DPV. 2021": {
+            "score": 100,
+            "justification": "The approach documents data processing activities in terms of their temporal period, aiding in the list of the retention period for each category of personal data using DCAT-AP and DPV."
+        },
+        "Pandit, Harshvardhan J, O\u2019Sullivan, Declan, and Lewis, Dave. GDPR-driven Change Detection in Consent and Activity Metadata. 2018": {
+            "score": 0,
+            "justification": "The approach lacks components to record and query the retention period for each category of personal data."
+        },
+        "Achieving GDPR Compliance through Provenance: An Extended Model": {
+            "score": 100,
+            "justification": "The model addresses the need to inform data subjects about the period for which their data will be stored using `startedAtTime` and `endedAtTime` relations in the provenance graph."
+        },
+        "Ujcich, Benjamin E and Bates, Adam and Sanders, William H. A provenance model for the European union general data protection regulation. 2018": {
+            "score": 70,
+            "justification": "The model includes temporal notions and timestamps for data activities and can partially address data retention periods by tracking when data were collected and processed. However, it does not explicitly provide a mechanism for specifying data retention periods for different categories of personal data."
+        },
+        "Bonatti, Piero; Dullaert, Wouter; Fern\u00e1ndez, Javier D.; Kirrane, Sabrina; Milosevic; Polleres, Axel. The SPECIAL Policy Log Vocabulary": {
+            "score": 0,
+            "justification": "The SPECIAL Policy Log Vocabulary does not include specific components for tracking data retention periods, making it insufficient for answering this question comprehensively."
+        },
+        "Matulevicius, Raimundas and Tom, Jake and Kala, Kaspar and Sing, Eduard. A Method for Managing GDPR Compliance in Business Processes. 2020": {
+            "score": 0,
+            "justification": "The approach does not explicitly address the retention periods for different categories of personal data."
+        },
+        "Ontology-Based Privacy Compliance Checking for Clinical Workflows": {
+            "score": 75,
+            "justification": "The approach can model retention periods for each category of personal data and verify if data is retained for no longer than necessary. However, it may lack dynamic capability to enforce these periods automatically without additional integration with data management systems."
+        },
+        "Conceptual representation of the GDPR: model and application directions": {
+            "score": 0,
+            "justification": "The GDPRov model does not explicitly include a component to specify the retention period for each category of personal data."
+        },
+        "Bartolini, Cesare and Muthuri, Robert and Santos, Cristiana. Using ontologies to model data protection requirements in workflows. 2015": {
+            "score": 0,
+            "justification": "The current approach does not specifically address the categorization of personal data and the retention periods required for compliance. The ontology's granularity is too coarse, and it lacks specific provisions to list data retention periods explicitly."
+        },
+        "Bonatti, Piero A and Kirrane, Sabrina and Petrova, Iliana M and Sauro, Luigi. Machine understandable policies and GDPR compliance checking. 2020": {
+            "score": 100,
+            "justification": "The approach uses the SPECIAL policy language to encode the envisaged time limits for erasure of different categories of data as specified by Article 30, aiding in compliance with this requirement."
+        },
+        "Compliance through Informed Consent: Semantic Based Consent Permission and Data Management Model": {
+            "score": 80,
+            "justification": "The model incorporates the lifecycle of consent and data, including the retention period, and uses the Provenance component to track retention periods. However, it may not fully cover the granularity required for all possible retention scenarios."
+        },
+        "PANDIT, HARSHVARDHAN JITENDRA. Representing Activities associated with Processing of Personal Data and Consent using Semantic Web for GDPR Compliance. 2020": {
+            "score": 0,
+            "justification": "The GDPRov model does not currently include components for specifying retention periods for different categories of personal data."
+        },
+        "Torre, Damiano and Alferez, Mauricio and Soltana, Ghanem and Sabetzadeh, Mehrdad and Briand, Lionel. Modeling data protection and privacy: application and experience with GDPR. 2021": {
+            "score": 0,
+            "justification": "The approach does not explicitly address retention periods for personal data categories."
+        },
+        "Pandit, Harshvardhan Jitendra, O\u2019Sullivan, Declan, and Lewis, Dave. Extracting provenance metadata from privacy policies. 2018": {
+            "score": 0,
+            "justification": "The approach does not specifically address the retention period for each category of personal data. The focus is on extracting and representing provenance metadata related to data collection, usage, processing, sharing, and storage."
+        },
+        "Kirrane, Sabrina and Fern\u00e1ndez, Javier D and Dullaert, Wouter and Milosevic, Uros and Polleres, Axel and Bonatti, Piero A and Wenning, Rigo and Drozd, Olha and Raschke, Philip. A scalable consent, transparency and compliance architecture. 2018. ESWC.": {
+            "score": 80,
+            "justification": "The architecture includes a consent management module that tracks retention periods for different categories of personal data, ensuring data is retained no longer than necessary."
+        }
+    },
+    "Question 28": {
+        "Ryan, Paul and Pandit, Harshvardhan J and Brennan, Rob. Building a Data Processing Activities Catalog: Representing Heterogeneous Compliance-Related Information for GDPR Using DCAT-AP and DPV. 2021": {
+            "score": 100,
+            "justification": "Procedures for ensuring data accuracy and updates can be documented within the catalog, which supports the maintenance of up-to-date and accurate data by assigning contact points and limiting scope to organizational units."
+        },
+        "Pandit, Harshvardhan J, O\u2019Sullivan, Declan, and Lewis, Dave. GDPR-driven Change Detection in Consent and Activity Metadata. 2018": {
+            "score": 100,
+            "justification": "The approach ensures personal data is kept up to date and accurate by using P-Plan to track the provenance of activities and recording changes without delay."
+        },
+        "Achieving GDPR Compliance through Provenance: An Extended Model": {
+            "score": 0,
+            "justification": "The model lacks components to ensure personal data is kept up to date and accurate, and to handle corrections without delay."
+        },
+        "Ujcich, Benjamin E and Bates, Adam and Sanders, William H. A provenance model for the European union general data protection regulation. 2018": {
+            "score": 80,
+            "justification": "The model can track when corrections to personal data are made by capturing timestamps and the provenance of data changes, supporting the requirement to keep data up to date and accurate. It does not, however, provide specific mechanisms for ensuring data accuracy without delay."
+        },
+        "Bonatti, Piero; Dullaert, Wouter; Fern\u00e1ndez, Javier D.; Kirrane, Sabrina; Milosevic; Polleres, Axel. The SPECIAL Policy Log Vocabulary": {
+            "score": 0,
+            "justification": "The vocabulary does not explicitly address procedures for ensuring that personal data is kept up to date and accurate, nor does it include components related to data accuracy or correction procedures."
+        },
+        "Matulevicius, Raimundas and Tom, Jake and Kala, Kaspar and Sing, Eduard. A Method for Managing GDPR Compliance in Business Processes. 2020": {
+            "score": 0,
+            "justification": "The method does not provide a direct mechanism to ensure that personal data is kept up to date and accurate."
+        },
+        "Ontology-Based Privacy Compliance Checking for Clinical Workflows": {
+            "score": 75,
+            "justification": "The approach includes components for processing activities that can incorporate procedures ensuring data accuracy and up-to-dateness, verifying that corrections are made without delay. However, it may not enforce real-time data corrections without integration with operational data systems."
+        },
+        "Conceptual representation of the GDPR: model and application directions": {
+            "score": 100,
+            "justification": "The `ProcessingActivity` component can be used to track updates and corrections to personal data, ensuring necessary changes are made without delay."
+        },
+        "Bartolini, Cesare and Muthuri, Robert and Santos, Cristiana. Using ontologies to model data protection requirements in workflows. 2015": {
+            "score": 25,
+            "justification": "The ontology helps data controllers understand their obligations and can be queried to clarify functions related to data accuracy and updates. However, it does not provide a direct mechanism to ensure that personal data is kept up to date and corrected without delay, lacking procedural components that could automate or enforce these requirements."
+        },
+        "Bonatti, Piero A and Kirrane, Sabrina and Petrova, Iliana M and Sauro, Luigi. Machine understandable policies and GDPR compliance checking. 2020": {
+            "score": 0,
+            "justification": "The paper does not explicitly mention mechanisms for keeping data up-to-date or procedures for making necessary corrections without delay."
+        },
+        "Compliance through Informed Consent: Semantic Based Consent Permission and Data Management Model": {
+            "score": 70,
+            "justification": "The model addresses data corrections and updates through the Processes and Obligations components but might lack detailed mechanisms to automatically ensure data remains up to date across multiple databases and systems."
+        },
+        "PANDIT, HARSHVARDHAN JITENDRA. Representing Activities associated with Processing of Personal Data and Consent using Semantic Web for GDPR Compliance. 2020": {
+            "score": 0,
+            "justification": "While GDPRov can document activities, it lacks specific components to ensure that data is kept up to date and accurate."
+        },
+        "Torre, Damiano and Alferez, Mauricio and Soltana, Ghanem and Sabetzadeh, Mehrdad and Briand, Lionel. Modeling data protection and privacy: application and experience with GDPR. 2021": {
+            "score": 0,
+            "justification": "The model does not include components that ensure personal data is kept up to date and accurate."
+        },
+        "Pandit, Harshvardhan Jitendra, O\u2019Sullivan, Declan, and Lewis, Dave. Extracting provenance metadata from privacy policies. 2018": {
+            "score": 0,
+            "justification": "The approach does not cover procedures for ensuring personal data is kept up to date and accurate. The extraction of provenance metadata is centered around the activities over personal data rather than the accuracy and updating procedures."
+        },
+        "Kirrane, Sabrina and Fern\u00e1ndez, Javier D and Dullaert, Wouter and Milosevic, Uros and Polleres, Axel and Bonatti, Piero A and Wenning, Rigo and Drozd, Olha and Raschke, Philip. A scalable consent, transparency and compliance architecture. 2018. ESWC.": {
+            "score": 80,
+            "justification": "The transparency framework ensures personal data is kept up to date and accurate, facilitating logging of data updates and corrections."
+        }
+    },
+    "Question 29": {
+        "Ryan, Paul and Pandit, Harshvardhan J and Brennan, Rob. Building a Data Processing Activities Catalog: Representing Heterogeneous Compliance-Related Information for GDPR Using DCAT-AP and DPV. 2021": {
+            "score": 100,
+            "justification": "The use of DCAT-AP and DPV supports the documentation of retention policies, ensuring data are held no longer than necessary."
+        },
+        "Pandit, Harshvardhan J, O\u2019Sullivan, Declan, and Lewis, Dave. GDPR-driven Change Detection in Consent and Activity Metadata. 2018": {
+            "score": 0,
+            "justification": "The approach does not provide detailed mechanisms for enforcing retention policies and procedures."
+        },
+        "Achieving GDPR Compliance through Provenance: An Extended Model": {
+            "score": 0,
+            "justification": "There are no specific elements in the model to enforce retention policies and procedures that ensure data is held no longer than necessary."
+        },
+        "Ujcich, Benjamin E and Bates, Adam and Sanders, William H. A provenance model for the European union general data protection regulation. 2018": {
+            "score": 60,
+            "justification": "The model's emphasis on temporal reasoning and data retention periods can contribute to establishing retention policies. However, it does not include explicit retention policies or procedures; additional policies may be needed."
+        },
+        "Bonatti, Piero; Dullaert, Wouter; Fern\u00e1ndez, Javier D.; Kirrane, Sabrina; Milosevic; Polleres, Axel. The SPECIAL Policy Log Vocabulary": {
+            "score": 0,
+            "justification": "The vocabulary does not provide components dedicated to retention policies and procedures, falling short of answering this question."
+        },
+        "Matulevicius, Raimundas and Tom, Jake and Kala, Kaspar and Sing, Eduard. A Method for Managing GDPR Compliance in Business Processes. 2020": {
+            "score": 0,
+            "justification": "The approach lacks specific components or policies for data retention beyond documentation in the `ComplianceRepository`."
+        },
+        "Ontology-Based Privacy Compliance Checking for Clinical Workflows": {
+            "score": 75,
+            "justification": "The ontology can define retention policies and automatically check data retention periods, flagging any violations. Nonetheless, ensuring these policies are enforced in practice requires integration with data storage and management systems."
+        },
+        "Conceptual representation of the GDPR: model and application directions": {
+            "score": 0,
+            "justification": "The model does not provide a specific component for retention policies and procedures."
+        },
+        "Bartolini, Cesare and Muthuri, Robert and Santos, Cristiana. Using ontologies to model data protection requirements in workflows. 2015": {
+            "score": 0,
+            "justification": "The ontology does not include specific retention policies or procedures to ensure data is held no longer than necessary. It focuses more on identifying duties and rights rather than implementing retention strategies."
+        },
+        "Bonatti, Piero A and Kirrane, Sabrina and Petrova, Iliana M and Sauro, Luigi. Machine understandable policies and GDPR compliance checking. 2020": {
+            "score": 100,
+            "justification": "The SPECIAL policy language can encode retention policies and procedures, helping ensure data is held no longer than necessary, as required by Article 30."
+        },
+        "Compliance through Informed Consent: Semantic Based Consent Permission and Data Management Model": {
+            "score": 80,
+            "justification": "Retention policies are managed using the Permission and Provenance components, ensuring data is held only as long as necessary and providing an audit trail. However, more detailed guidelines and enforcement mechanisms might be needed."
+        },
+        "PANDIT, HARSHVARDHAN JITENDRA. Representing Activities associated with Processing of Personal Data and Consent using Semantic Web for GDPR Compliance. 2020": {
+            "score": 0,
+            "justification": "The model does not explicitly cover retention policies and procedures."
+        },
+        "Torre, Damiano and Alferez, Mauricio and Soltana, Ghanem and Sabetzadeh, Mehrdad and Briand, Lionel. Modeling data protection and privacy: application and experience with GDPR. 2021": {
+            "score": 0,
+            "justification": "The approach lacks specific components to address data retention policies and procedures."
+        },
+        "Pandit, Harshvardhan Jitendra, O\u2019Sullivan, Declan, and Lewis, Dave. Extracting provenance metadata from privacy policies. 2018": {
+            "score": 0,
+            "justification": "The approach does not address retention policies and procedures. It is focused on the identification, extraction, and representation of provenance metadata related to the handling of personal data."
+        },
+        "Kirrane, Sabrina and Fern\u00e1ndez, Javier D and Dullaert, Wouter and Milosevic, Uros and Polleres, Axel and Bonatti, Piero A and Wenning, Rigo and Drozd, Olha and Raschke, Philip. A scalable consent, transparency and compliance architecture. 2018. ESWC.": {
+            "score": 70,
+            "justification": "The compliance monitoring system helps implement and enforce data retention policies, ensuring data is held only as long as necessary."
+        }
+    },
+    "Question 51": {
+        "Ryan, Paul and Pandit, Harshvardhan J and Brennan, Rob. Building a Data Processing Activities Catalog: Representing Heterogeneous Compliance-Related Information for GDPR Using DCAT-AP and DPV. 2021": {
+            "score": 100,
+            "justification": "By documenting the lifecycle of data processing activities, the catalog can include metadata about the destruction, erasure, or anonymization of personal data."
+        },
+        "Pandit, Harshvardhan J, O\u2019Sullivan, Declan, and Lewis, Dave. GDPR-driven Change Detection in Consent and Activity Metadata. 2018": {
+            "score": 100,
+            "justification": "The approach uses P-Plan to track the provenance of data destruction activities, which helps demonstrate compliance with data destruction requirements."
+        },
+        "Achieving GDPR Compliance through Provenance: An Extended Model": {
+            "score": 0,
+            "justification": "The model does not cover systematic destruction, erasing, or anonymization of data when it is no longer legally required."
+        },
+        "Ujcich, Benjamin E and Bates, Adam and Sanders, William H. A provenance model for the European union general data protection regulation. 2018": {
+            "score": 70,
+            "justification": "The model supports documenting when data are destroyed, erased, or anonymized by maintaining a record of these actions. However, it does not include specific procedures for systematically handling data when it is no longer required."
+        },
+        "Bonatti, Piero; Dullaert, Wouter; Fern\u00e1ndez, Javier D.; Kirrane, Sabrina; Milosevic; Polleres, Axel. The SPECIAL Policy Log Vocabulary": {
+            "score": 0,
+            "justification": "There are no mechanisms within the vocabulary for systematically destroying, erasing, or anonymizing personal data when it is no longer required."
+        },
+        "Matulevicius, Raimundas and Tom, Jake and Kala, Kaspar and Sing, Eduard. A Method for Managing GDPR Compliance in Business Processes. 2020": {
+            "score": 0,
+            "justification": "The destruction, erasure, or anonymization of personal data when no longer needed is not explicitly covered by the proposed method."
+        },
+        "Ontology-Based Privacy Compliance Checking for Clinical Workflows": {
+            "score": 75,
+            "justification": "The model can specify procedures for data destruction or anonymization and verify if personal data is handled appropriately when no longer legally required. However, it may lack the capability to execute these actions without additional system integration."
+        },
+        "Conceptual representation of the GDPR: model and application directions": {
+            "score": 0,
+            "justification": "The model lacks a dedicated component to systematically manage the destruction, erasure, or anonymization of personal data."
+        },
+        "Bartolini, Cesare and Muthuri, Robert and Santos, Cristiana. Using ontologies to model data protection requirements in workflows. 2015": {
+            "score": 0,
+            "justification": "The model does not cover the systematic destruction, erasure, or anonymization of personal data when no longer required. It lacks the components to manage the data lifecycle and enforce such actions."
+        },
+        "Bonatti, Piero A and Kirrane, Sabrina and Petrova, Iliana M and Sauro, Luigi. Machine understandable policies and GDPR compliance checking. 2020": {
+            "score": 0,
+            "justification": "The paper does not explicitly address the systematic destruction, erasure, or anonymization of personal data when it is no longer legally required."
+        },
+        "Compliance through Informed Consent: Semantic Based Consent Permission and Data Management Model": {
+            "score": 70,
+            "justification": "The Obligations component defines rules for data destruction, erasure, or anonymization, and the Provenance component tracks compliance with these rules. More specific implementation details might be required for consistent execution."
+        },
+        "PANDIT, HARSHVARDHAN JITENDRA. Representing Activities associated with Processing of Personal Data and Consent using Semantic Web for GDPR Compliance. 2020": {
+            "score": 0,
+            "justification": "GDPRov does not include specific components for systematically destroying, erasing, or anonymizing personal data."
+        },
+        "Torre, Damiano and Alferez, Mauricio and Soltana, Ghanem and Sabetzadeh, Mehrdad and Briand, Lionel. Modeling data protection and privacy: application and experience with GDPR. 2021": {
+            "score": 0,
+            "justification": "The approach does not cover the systematic destruction, erasure, or anonymization of personal data."
+        },
+        "Pandit, Harshvardhan Jitendra, O\u2019Sullivan, Declan, and Lewis, Dave. Extracting provenance metadata from privacy policies. 2018": {
+            "score": 0,
+            "justification": "The approach does not provide mechanisms for ensuring the systematic destruction, erasure, or anonymization of personal data. The extracted metadata deals with the collection and usage activities rather than the end-of-life processes for personal data."
+        },
+        "Kirrane, Sabrina and Fern\u00e1ndez, Javier D and Dullaert, Wouter and Milosevic, Uros and Polleres, Axel and Bonatti, Piero A and Wenning, Rigo and Drozd, Olha and Raschke, Philip. A scalable consent, transparency and compliance architecture. 2018. ESWC.": {
+            "score": 70,
+            "justification": "The system supports data destruction, erasure, or anonymisation when no longer legally required, logging and auditing these activities for compliance."
+        }
+    },
+    "Question 63": {
+        "Ryan, Paul and Pandit, Harshvardhan J and Brennan, Rob. Building a Data Processing Activities Catalog: Representing Heterogeneous Compliance-Related Information for GDPR Using DCAT-AP and DPV. 2021": {
+            "score": 0,
+            "justification": "The paper does not specify if the catalog can comprehensively list all data transfers, including details such as the nature of the data, processing purposes, and recipient information."
+        },
+        "Pandit, Harshvardhan J, O\u2019Sullivan, Declan, and Lewis, Dave. GDPR-driven Change Detection in Consent and Activity Metadata. 2018": {
+            "score": 0,
+            "justification": "The current model does not cover the detailed tracking of data transfers, including the nature of the data, the purpose of processing, and the recipient information."
+        },
+        "Achieving GDPR Compliance through Provenance: An Extended Model": {
+            "score": 0,
+            "justification": "Comprehensive tracking of data transfers, including the nature, purpose, origin, destination, and recipients of the data, is not fully represented."
+        },
+        "Ujcich, Benjamin E and Bates, Adam and Sanders, William H. A provenance model for the European union general data protection regulation. 2018": {
+            "score": 90,
+            "justification": "The model includes components for tracking data transfers, including the origins and destinations of data, and can help list all transfers and answer questions about the nature and purpose of data processing."
+        },
+        "Bonatti, Piero; Dullaert, Wouter; Fern\u00e1ndez, Javier D.; Kirrane, Sabrina; Milosevic; Polleres, Axel. The SPECIAL Policy Log Vocabulary": {
+            "score": 100,
+            "justification": "The vocabulary can contribute to answering this question through its `LogEntry`, `DataProcessing`, `Purpose`, and `ProcessingContext` components, which systematically log and query details about data transfers."
+        },
+        "Matulevicius, Raimundas and Tom, Jake and Kala, Kaspar and Sing, Eduard. A Method for Managing GDPR Compliance in Business Processes. 2020": {
+            "score": 100,
+            "justification": "The `ComplianceRepository` can list all transfers, including details such as the nature of the data, the purpose of the processing, and transfer specifics such as the originating and receiving country, along with the recipient."
+        },
+        "Ontology-Based Privacy Compliance Checking for Clinical Workflows": {
+            "score": 75,
+            "justification": "The approach can model the nature of the data, purpose of processing, and data transfers within its ontology, listing all transfers and providing detailed information about the data flow, including exporting and receiving countries and recipients."
+        },
+        "Conceptual representation of the GDPR: model and application directions": {
+            "score": 100,
+            "justification": "The `DataCategory`, `ProcessingActivity`, and `Transfer` components help list all transfers and capture detailed documentation of data transfers."
+        },
+        "Bartolini, Cesare and Muthuri, Robert and Santos, Cristiana. Using ontologies to model data protection requirements in workflows. 2015": {
+            "score": 0,
+            "justification": "The ontology does not specifically list all data transfers, including the nature of the data, processing purposes, and details of the transfers. It also does not document the legal basis for these transfers."
+        },
+        "Bonatti, Piero A and Kirrane, Sabrina and Petrova, Iliana M and Sauro, Luigi. Machine understandable policies and GDPR compliance checking. 2020": {
+            "score": 50,
+            "justification": "The SPECIAL policy language can partially address this question by encoding the categories of recipients and transfers of personal data, but it is not fully comprehensive."
+        },
+        "Compliance through Informed Consent: Semantic Based Consent Permission and Data Management Model": {
+            "score": 80,
+            "justification": "The Provenance component can document all data transfers, ensuring comprehensive tracking of data flows and compliance with GDPR requirements. However, it might not cover all complexities of international data transfers."
+        },
+        "PANDIT, HARSHVARDHAN JITENDRA. Representing Activities associated with Processing of Personal Data and Consent using Semantic Web for GDPR Compliance. 2020": {
+            "score": 0,
+            "justification": "The current model does not comprehensively cover all aspects of data transfers, such as the details of the transfer process, the nature of the data, and the recipient information."
+        },
+        "Torre, Damiano and Alferez, Mauricio and Soltana, Ghanem and Sabetzadeh, Mehrdad and Briand, Lionel. Modeling data protection and privacy: application and experience with GDPR. 2021": {
+            "score": 0,
+            "justification": "The model does not comprehensively list all aspects of data transfers, such as the nature of the data and specific recipients."
+        },
+        "Pandit, Harshvardhan Jitendra, O\u2019Sullivan, Declan, and Lewis, Dave. Extracting provenance metadata from privacy policies. 2018": {
+            "score": 0,
+            "justification": "The approach does not list all transfers of personal data, including details about the nature of the data, purpose of processing, and details of cross-border transfers. It is primarily aimed at extracting provenance metadata related to data handling activities within privacy policies."
+        },
+        "Kirrane, Sabrina and Fern\u00e1ndez, Javier D and Dullaert, Wouter and Milosevic, Uros and Polleres, Axel and Bonatti, Piero A and Wenning, Rigo and Drozd, Olha and Raschke, Philip. A scalable consent, transparency and compliance architecture. 2018. ESWC.": {
+            "score": 60,
+            "justification": "The architecture logs and tracks data transfers, including details about the nature of the data, purpose, and countries involved."
+        }
+    },
+    "Question 64": {
+        "Ryan, Paul and Pandit, Harshvardhan J and Brennan, Rob. Building a Data Processing Activities Catalog: Representing Heterogeneous Compliance-Related Information for GDPR Using DCAT-AP and DPV. 2021": {
+            "score": 0,
+            "justification": "The catalog's current model does not explicitly cover documenting the legal basis for data transfers, such as EU Commission adequacy decisions or standard contractual clauses."
+        },
+        "Pandit, Harshvardhan J, O\u2019Sullivan, Declan, and Lewis, Dave. GDPR-driven Change Detection in Consent and Activity Metadata. 2018": {
+            "score": 0,
+            "justification": "The approach does not address the legal basis for data transfers or the documentation of such bases."
+        },
+        "Achieving GDPR Compliance through Provenance: An Extended Model": {
+            "score": 0,
+            "justification": "The model does not document the legal basis for data transfers, such as EU Commission adequacy decisions or standard contractual clauses."
+        },
+        "Ujcich, Benjamin E and Bates, Adam and Sanders, William H. A provenance model for the European union general data protection regulation. 2018": {
+            "score": 30,
+            "justification": "The model does not explicitly address the legal basis for data transfers. While it can track data origins and destinations, it lacks components to document the legal justifications for these transfers."
+        },
+        "Bonatti, Piero; Dullaert, Wouter; Fern\u00e1ndez, Javier D.; Kirrane, Sabrina; Milosevic; Polleres, Axel. The SPECIAL Policy Log Vocabulary": {
+            "score": 100,
+            "justification": "The `LegalBasis` component allows for the documentation of the legal basis for data transfers, ensuring data controllers can provide evidence of compliance, which is directly relevant to this question."
+        },
+        "Matulevicius, Raimundas and Tom, Jake and Kala, Kaspar and Sing, Eduard. A Method for Managing GDPR Compliance in Business Processes. 2020": {
+            "score": 100,
+            "justification": "The `ComplianceRepository` can store legal bases for data transfers, ensuring that each transfer's legal justification is documented."
+        },
+        "Ontology-Based Privacy Compliance Checking for Clinical Workflows": {
+            "score": 75,
+            "justification": "The ontology can represent and document the legal basis for data transfers, such as EU Commission adequacy decisions or standard contractual clauses. However, the model may not autonomously verify legal compliance without access to external legal databases or documents."
+        },
+        "Conceptual representation of the GDPR: model and application directions": {
+            "score": 100,
+            "justification": "The `LegalBasis` component documents the legal basis for data transfers, including EU Commission adequacy decisions and standard contractual clauses."
+        },
+        "Bartolini, Cesare and Muthuri, Robert and Santos, Cristiana. Using ontologies to model data protection requirements in workflows. 2015": {
+            "score": 0,
+            "justification": "Although the model helps identify compliance with GDPR, it does not explicitly document the legal basis for data transfers, such as EU Commission adequacy decisions or standard contractual clauses."
+        },
+        "Bonatti, Piero A and Kirrane, Sabrina and Petrova, Iliana M and Sauro, Luigi. Machine understandable policies and GDPR compliance checking. 2020": {
+            "score": 0,
+            "justification": "The paper does not discuss the legal basis for data transfers or the documentation of such bases, so it does not cover this question."
+        },
+        "Compliance through Informed Consent: Semantic Based Consent Permission and Data Management Model": {
+            "score": 80,
+            "justification": "The Permission component records the legal basis for data transfers, such as EU Commission adequacy decisions or standard contractual clauses, but might need additional components for managing legal bases across different jurisdictions."
+        },
+        "PANDIT, HARSHVARDHAN JITENDRA. Representing Activities associated with Processing of Personal Data and Consent using Semantic Web for GDPR Compliance. 2020": {
+            "score": 0,
+            "justification": "The legal basis for data transfers is not currently documented within GDPRov."
+        },
+        "Torre, Damiano and Alferez, Mauricio and Soltana, Ghanem and Sabetzadeh, Mehrdad and Briand, Lionel. Modeling data protection and privacy: application and experience with GDPR. 2021": {
+            "score": 100,
+            "justification": "The approach provides a detailed model that includes the concept of adequacy decisions and appropriate safeguards, which can be tailored to document and verify the legal basis for data transfer."
+        },
+        "Pandit, Harshvardhan Jitendra, O\u2019Sullivan, Declan, and Lewis, Dave. Extracting provenance metadata from privacy policies. 2018": {
+            "score": 0,
+            "justification": "The approach does not address the legal basis for data transfers. It focuses on representing the data flows and activities involving personal data rather than the legal justifications for data transfers."
+        },
+        "Kirrane, Sabrina and Fern\u00e1ndez, Javier D and Dullaert, Wouter and Milosevic, Uros and Polleres, Axel and Bonatti, Piero A and Wenning, Rigo and Drozd, Olha and Raschke, Philip. A scalable consent, transparency and compliance architecture. 2018. ESWC.": {
+            "score": 60,
+            "justification": "The consent management module documents the legal basis for data transfers, allowing for query and audit to ensure legal compliance."
+        }
+    }
+}
