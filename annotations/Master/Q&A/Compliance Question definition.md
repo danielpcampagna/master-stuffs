@@ -1,0 +1,1 @@
+A CQ [40] is a natural language sentence that expresses a pattern for a type of questions the domain experts expect an ontology to answer

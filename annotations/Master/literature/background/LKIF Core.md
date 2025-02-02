@@ -1,0 +1,3 @@
+**LKIF Core**: Action.owl is an ontology that represents actions in general, i.e., processes that are performed by an agent. We use in particular lkif:Agent to model lkif:Organization and lkif:Person (Breuker et al., 2007).
+
+**LKIF Core**: Role.owl is an ontology to describe typologies of roles (epistemic roles, functions, person roles, organisation roles). We use in particular lkif:Role (Breuker et al., 2007).

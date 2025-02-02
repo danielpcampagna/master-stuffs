@@ -1,0 +1,1 @@
+"concepts without percepts are empty, percepts without concepts are blind." -- Immanuel Kant

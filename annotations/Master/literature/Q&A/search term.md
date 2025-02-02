@@ -1,0 +1,1 @@
+("General Data Protection Regulation" OR "GDPR") compliance ("provenance" OR "provenance model" OR "semantic technology" OR "ontology")

@@ -1,0 +1,3 @@
+![[Pasted image 20220617053040.png]]
+
+This approach does not propose a provenance model. Before, it concerns preparing the grounds for a commonality between terms used in further models. It was done by exploring the information flows influenced by the GDPR, which led to identifying entities involved in such flows and their relations. The methodology employed considers an analysis of the relevant articles for each entity. Thus, we think this paper is out of our scope.

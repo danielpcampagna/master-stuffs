@@ -1,0 +1,1 @@
+**Time Interval (TI)** is an ontology design pattern that enables the description of periods of time that are characterised by a starting date and an ending date. We use this ontology to manage the time interval (Peroni et al., 2017).

@@ -1,0 +1,132 @@
+{
+  "main": {
+    "id": "6a6f09eb17cfe60b",
+    "type": "split",
+    "children": [
+      {
+        "id": "5cf7cc9d42c4a947",
+        "type": "leaf",
+        "state": {
+          "type": "markdown",
+          "state": {
+            "file": "TODO.md",
+            "mode": "source",
+            "source": false
+          }
+        }
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "d80aca2a100edfdf",
+    "type": "split",
+    "children": [
+      {
+        "id": "0604b83b5dc62dc5",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "041c12f93c3205b2",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "extra/sites.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "4383f81f958554b6",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "MeLOn",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "46129c2dea9bd4d0",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {}
+            }
+          }
+        ],
+        "currentTab": 2
+      }
+    ],
+    "direction": "horizontal",
+    "width": 282.0107650756836
+  },
+  "right": {
+    "id": "9ec5779c6ec833b1",
+    "type": "split",
+    "children": [
+      {
+        "id": "9d8443b2131ee493",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "a4f8731354aab5de",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "TODO.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": true,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "78bef5d70b33d1b2",
+            "type": "leaf",
+            "state": {
+              "type": "juggl_nodes",
+              "state": {}
+            }
+          },
+          {
+            "id": "abedb11abb8b9d3c",
+            "type": "leaf",
+            "state": {
+              "type": "juggl_style",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 308.0826721191406,
+    "collapsed": true
+  },
+  "active": "5cf7cc9d42c4a947",
+  "lastOpenFiles": [
+    "WAR ROOM!/FINAL STEPS IN 8 DAYS!.md",
+    "Avaliacao dos modelos.md",
+    "WAR ROOM!/escrita/Capítulo 5 - Conclusão.md",
+    "WAR ROOM!/escrita/Capítulo 4 - Evolução do modelo e resultados.md",
+    "WAR ROOM!/escrita/capítulo 3 - de revisão da literatura.md",
+    "WAR ROOM!/escrita/capítulo 1 - Introdução.md",
+    "WAR ROOM!/escrita/Capítulo 2 - Background.md",
+    "WAR ROOM!/escrita/conteudo/para falar sobre o PROV, RDF, W3C.md",
+    "WAR ROOM!/escrita/conteudo/ontology engineeromg methodology.md",
+    "WAR ROOM!/escrita/conteudo/ontologia vs modelo, definitons.md"
+  ]
+}

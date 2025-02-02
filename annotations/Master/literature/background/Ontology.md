@@ -1,0 +1,1 @@
+An ontology is commonly defined as: “an explicit specification of a conceptualization” [17].

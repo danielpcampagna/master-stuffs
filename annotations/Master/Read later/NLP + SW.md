@@ -1,0 +1,1 @@
+- [The Semantic Web: Apotheosis of Annotation, but What Are Its Semantics?](https://eprints.whiterose.ac.uk/4041/2/wilksy2.pdf)

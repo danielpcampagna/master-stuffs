@@ -1,0 +1,1 @@
+Um bom exemplo para demonstrar a efetividade da sua abordagem seria extender o pandas (especialmente o DataFrame) a fim de coletar os dados de proveniência dele, visto que uma considerável parte das manipulações de dados em python ocorrem através do uso do pandas.DataFrame.

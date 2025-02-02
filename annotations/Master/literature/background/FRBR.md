@@ -1,0 +1,1 @@
+**FRBR**: FRBR is an ontology that implements the FRBR model (IFLA Study Group on the Functional Requirements for Bibliographic Records, 1996).

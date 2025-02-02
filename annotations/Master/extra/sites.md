@@ -1,0 +1,1 @@
+- **small seo**: conferir plágio
